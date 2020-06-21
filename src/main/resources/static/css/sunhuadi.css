@@ -1,0 +1,9 @@
+.div_foot {
+    position:fixed; bottom:10px; left:40%;
+    text-align: center;
+    line-height: 50px;
+    width: 20%;
+}
+.adr{
+    position:fixed; bottom:10px; left:20%;
+}
