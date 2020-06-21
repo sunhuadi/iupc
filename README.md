@@ -3,9 +3,6 @@
 # 孙华迪
 孙华迪git测试
 添加
-
-这个是本地没有git的内容
-
 # 如果被修改
 测试提交如果提示merge debase
 选择rebase
