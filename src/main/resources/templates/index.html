@@ -13,7 +13,7 @@
     <link th:href="@{css/semantic.css}" rel="stylesheet">
     <script src="code.jquery.com/jquery-3.4.1.min.js"> </script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
 <body>
@@ -56,6 +56,16 @@
     <button class="ui inverted black button">黑色</button>
 </div>
 这是一个主页。继承了bootstrap、semantic的css，可以直接使用模板
-
+<div id="app">
+    {{ message }}
+</div>
+<script>
+var app = new Vue({
+el: '#app',
+data: {
+message: 'Hello Vue!'
+}
+})
+</script>
 </body>
 </html>
