@@ -6,25 +6,25 @@
     <link th:href="@{css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
     <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
-    <link th:href="@{css/semantic.css}" rel="stylesheet">
-    <script src="code.jquery.com/jquery-3.4.1.min.js"> </script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
 <body>
-<div class="ui pointing menu">
-    <a class="item active">
+<div id="app" class="ui pointing menu">
+    <a  :class="isactive[0]?'item':'item active'"@click="clickit(0)">
         主页
     </a>
-    <a class="item">
-        信息
+    <a :class="isactive[1]?'item':'item active'"@click="clickit(1)" >
+        第二
     </a>
-    <a class="item">
+    <a  :class="isactive[2]?'item':'item active'"@click="clickit(2)">
         朋友
     </a>
     <div class="right menu">
@@ -55,17 +55,30 @@
     <button class="ui inverted grey button">灰色</button>
     <button class="ui inverted black button">黑色</button>
 </div>
-这是一个主页。继承了bootstrap、semantic的css，可以直接使用模板
-<div id="app">
-    {{ message }}
-</div>
+
+
 <script>
 var app = new Vue({
 el: '#app',
 data: {
-message: 'Hello Vue!'
+    message: 'Hello Vue!',
+    cls:['item','item','item'],
+    isactive:[false,false,false],
+    isactive1:false;
+    isactive2:false;
+    isactive3:false;
+},
+methods:{
+   clickit:function(which){
+        for(i=0;i<this.isactive.length;i++) {
+            this.isactive[i]=false;
+
+        this.isactive[which]=true;
+        console.log(this.isactive);
+   }
 }
 })
 </script>
 </body>
+
 </html>
