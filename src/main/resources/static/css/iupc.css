@@ -1,7 +1,53 @@
-body{
-    background-image:url(/image/bg_blue.png);
-}
 
+.zx_box_title{
+    text-align: center;
+    font-size:30px;
+    font-weight: bolder;
+    font-family: 华文细黑;
+}
+.zxi{
+    position: relative;
+    margin:20px;
+    width:80%;
+    background: #F8EDDB;
+    color: #6e6d71;
+}
+.zxi_pic{
+    width:150px;
+    height:150px;
+}
+.zxi_text{
+    position:absolute;
+    left:160px;
+    top:5%;
+    height: 100%;
+    width:80%;
+}
+.zxi_content{
+    font-size: 15px;
+    position: absolute;
+    width:90%;
+    top:25%;
+
+}
+.zxi_title{
+    position:absolute;
+    font-size:25px;
+    font-weight: bold;
+    top:1%;
+}
+#zx_box{
+    position:absolute;
+    left:25%;
+    top:10%;
+    width: 75%;
+    background: #E3EFF9;
+}
+.zxi_time{
+    position:absolute;
+    bottom: 5%;
+    font-size:16px;
+}
 #search_list{
     width: 300px;
     padding: 5px;
@@ -38,7 +84,7 @@ body{
     position: absolute;
     width:100%;
     height:10%;
-    background: #b4ffba;
+    background: #b8cce2;
 }
 #header_search{
     position: absolute;

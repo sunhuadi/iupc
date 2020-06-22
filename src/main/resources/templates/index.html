@@ -53,6 +53,9 @@
 </div>
 
 <div id="zx_box">
+    <p class="zx_box_title">热门资讯</p>
+    <hr style="color:black;" />
+
     <div v-for="item in zxall" class="zxi">
         <img class="zxi_pic"  :src="item.image" />
         <div class="zxi_text">
@@ -63,6 +66,9 @@
     </div>
 
 </div>
+<ul id="tourist">
+    <li v-for="item in content" class="tourist_li">{{ item }}</li>
+</ul>
 <script>
 
  window.onload=function () {
@@ -112,60 +118,53 @@
                         "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
                     time:"2020-6-23",
                 },
-                {image:"image/zixun/test3.jpg",
+                {
+                    image:"image/zixun/test3.jpg",
                     title:"618大促！党妹倾情推荐！",
                     content:
                         "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
                     time:"2020-6-23",
                 },
+
                 ]
 
         }
      });
+    var tourist_vue= new Vue(
+        {
+            el:"#tourist",
+            data:{
+                content:["三坑笔记","店家社区","我的收藏","二手平台","发布资讯"],
+            },
+        }
+    )
  }
 </script>
 </body>
 <style>
-.zxi{
-    position: relative;
-    margin:20px;
-    width:80%;
-    background: #abffd7;
-}
-    .zxi_pic{
-        width:150px;
-        height:150px;
+    body{
+        background-image:url(/image/bg_blue.png);
+        background-size:300px 300px;
     }
-    .zxi_text{
-        position:absolute;
-        left:160px;
-        top:5%;
-        height: 100%;
-        width:80%;
-    }
-    .zxi_content{
-        font-size: 15px;
+    #tourist{
+        width: 20%;
         position: absolute;
-        width:90%;
-        top:25%;
+        left:1%;
+        top:10%;
+        height:70%;
+        background: #1202f3;
+        list-style: none;
+    }
+    .tourist_li{
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
+        background: #f3278e;
+        left:0;
+        position: relative;
+        margin-top: 10px;
 
     }
-    .zxi_title{
-        position:absolute;
-        font-size:25px;
-        font-weight: bold;
-        top:1%;
-    }
-    #zx_box{
-        position:absolute;
-        left:5%;
-        top:10%;
-        width: 70%;
-    }
-    .zxi_time{
-        position:absolute;
-        bottom: 5%;
-        font-size:16px;
-    }
+
 </style>
 </html>
