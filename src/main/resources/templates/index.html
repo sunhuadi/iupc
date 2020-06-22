@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>小学期网站</title>
     <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{css/semantic.css}" rel="stylesheet">
@@ -19,7 +20,10 @@
 <body>
 <div class="header">
     <div id="header_message">
-        <div class="column"><i style="height: 60px;width: 60px;" class="envelope icon"></i>envelope</div>+
+        <div class="column">
+            <img src="/image/message.png"  style="height: 60px;height:60px;" class="img-rounded">
+            <span>消 息</span>
+        </div>
     </div>
 
     <div id="header_title">三 坑 圈</div>
@@ -27,37 +31,61 @@
     <div id="header_search" class="ui search">
         <div style="height: 60px;width: 400px;" class="ui icon input">
             <input class="prompt" type="text" placeholder="" v-model="svalue" @keyup-enter="saveit" >
-            <i class="search icon"></i>
+            <button style="height:50px;width:80px;margin-top:6px; display: inline-block" class="ui button" @click="saveit">搜索</button>
         </div>
-        <input value="搜索" type="button" @click="saveit" />
         <div class="results"></div>
-        <ul v-if="hshow">
-            <li v-for="(item,index) in history_search">{{ item }} <button @click="deleteit(index)"  value="删除" /> </li>
+        <ul v-if="history_search.length>0" id="search_list">
+            <li v-for="(item,index) in history_search" class="search-hli">
+                {{ item }}
+                <button class="hsearch_button" @click="deleteit(index)" >×</button>
+            </li>
         </ul>
     </div>
 
-    <div id="header_setting"> 设 置 </div>
+    <div id="header_setting">
+        <img style="height:60px;width:60px;" src="image/setting.png" />
+    </div>
 
     <div id="header_txbox">
-        <div id="header_tx"></div>
-        <div style="top:25px;left:85px;position: absolute;">头像</div>
+        <img src="image/tx.ico" id="header_tx">
+        <div style="top:25px;left:85px;position: absolute;"></div>
     </div>
 </div>
 
+<div id="zx_box">
+    <div v-for="item in zxall" class="zxi">
+        <img class="zxi_pic"  :src="item.image" />
+        <div class="zxi_text">
+            <p class="zxi_title" >{{ item.title }}</p>
+            <p class="zxi_content">{{ item.content }}</p>
+            <p class="zxi_time" >{{item.time }}</p>
+        </div>
+    </div>
+
+</div>
 <script>
+
  window.onload=function () {
     var search_vue= new Vue(
         {
             el:"#header_search",
             data:{
                 svalue:"在这里输入搜索内容",
-                history_search:["aa","bb","cc"],
+                history_search:[],
                 hshow:true,
             },
             methods:{
                 saveit:function () {
-                    this.history_search.push(this.svalue);
-                        console.log("aaa");
+                    this.history_search.unshift(this.svalue);
+                    for(i=1;i<this.history_search.length;i++)
+                    {
+                        if(this.history_search[i]==this.svalue)
+                        {
+                            this.history_search.splice(i,1);
+                            break;
+                        }
+                    }
+                    console.log("aaa");
                 },
                 deleteit(which)
                 {
@@ -66,62 +94,78 @@
             }
         }
     );
+    var zx_vue=new Vue({
+        el: "#zx_box",
+        data: {
+            zxall:[
+                {
+                    image:"image/zixun/test1.jpg",
+                    title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
+                    content:
+                        "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                    time:"2020-6-22",
+                },
+                {
+                    image:"image/zixun/test2.jpg",
+                    title:"震惊！这条裙子美爆了！",
+                    content:
+                        "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                    time:"2020-6-23",
+                },
+                {image:"image/zixun/test3.jpg",
+                    title:"618大促！党妹倾情推荐！",
+                    content:
+                        "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                    time:"2020-6-23",
+                },
+                ]
+
+        }
+     });
  }
 </script>
 </body>
 <style>
-    .header{
-        position: absolute;
-        width:100%;
-        height:10%;
-        background: #b4ffba;
+.zxi{
+    position: relative;
+    margin:20px;
+    width:80%;
+    background: #abffd7;
+}
+    .zxi_pic{
+        width:150px;
+        height:150px;
     }
-    #header_search{
-        position: absolute;
-        left:25%;
-        top:10px;
-        width:300px;
-        height:100px;
-    }
-    #header_message{
-        position: absolute;
-        width: 150px;
-        height: 70px;
-        top:5px;
-        background: #ffe6af;
-    }
-    #header_setting{
-        position: absolute;
-        width: 150px;
-        height: 70px;
-        left:80%;
-        top:5px;
-        background: #ffe6af;
-    }
-    #header_txbox{
-        position: absolute;
-        width: 150px;
-        height: 70px;
-        right:10px;
-        top:5px;
-        background: #ffe6af;
-    }
-    #header_tx{
-        position: absolute;
-        width: 70px;
-        height: 70px;
-        top:5px;
-        border-radius: 100px;
-        background: #91b8ff;
-    }
-    #header_title{
+    .zxi_text{
         position:absolute;
-        font-family: 腾祥匆匆体简;
-        color: #02e7ff;
-        left:10%;
-        top:15px;
-        margin: 15px;
-        font-size:40px;
+        left:160px;
+        top:5%;
+        height: 100%;
+        width:80%;
+    }
+    .zxi_content{
+        font-size: 15px;
+        position: absolute;
+        width:90%;
+        top:25%;
+
+    }
+    .zxi_title{
+        position:absolute;
+        font-size:25px;
+        font-weight: bold;
+        top:1%;
+    }
+    #zx_box{
+        position:absolute;
+        left:5%;
+        top:10%;
+        width: 70%;
+    }
+    .zxi_time{
+        position:absolute;
+        bottom: 5%;
+        font-size:16px;
     }
 </style>
 </html>

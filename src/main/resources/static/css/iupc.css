@@ -1,0 +1,86 @@
+body{
+    background-image:url(/image/bg_blue.png);
+}
+
+#search_list{
+    width: 300px;
+    padding: 5px;
+    list-style: none;
+    border-radius: 10px;
+    border: #0f0f0f;
+    background: #f7ffd4;
+    border-style: wave;
+}
+.search-hli{
+    width:240px;
+    min-height:30px;
+    background: white;
+    border: #0bffd8;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top:5px;
+    padding-left:20px;
+    padding-right: 5px;
+    font-family: 腾祥匆匆体简;
+}
+.hsearch_button{
+    display: inline-block;
+    margin: 0;
+    height:30px;
+    width: 30px;
+    font-size:20px;
+    position: absolute;
+    right:20px;
+    background: none;
+    border:none;
+}
+.header{
+    position: absolute;
+    width:100%;
+    height:10%;
+    background: #b4ffba;
+}
+#header_search{
+    position: absolute;
+    left:25%;
+    top:10px;
+    width:300px;
+    height:100px;
+}
+#header_message{
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    top:5px;
+    font-size: 18px;
+}
+#header_setting{
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    left:90%;
+    top:5px;
+}
+#header_txbox{
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    left:94%;
+    top:5px;
+}
+#header_tx{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    background: #91b8ff;
+}
+#header_title{
+    position:absolute;
+    font-family: 腾祥匆匆体简;
+    color: #02e7ff;
+    left:10%;
+    top:15px;
+    margin: 15px;
+    font-size:40px;
+}
