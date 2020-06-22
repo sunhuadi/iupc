@@ -17,79 +17,111 @@
 
 </head>
 <body>
-<div id="app" class="ui pointing menu">
-    <a :class="isactive1?'item active':'item'"@click="clickit(0)">
-        主页
-    </a>
-    <a :class="isactive2?'item active':'item'"@click="clickit(1)" >
-        第二
-    </a>
-    <a  :class="isactive3?'item active':'item'"@click="clickit(2)">
-        朋友
-    </a>
-    <div class="right menu">
-        <div class="item">
-            <div class="ui transparent icon input">
-                <input type="text" placeholder="搜索...">
-                <i class="search link icon"></i>
-            </div>
+<div class="header">
+    <div id="header_message">
+        <div class="column"><i style="height: 60px;width: 60px;" class="envelope icon"></i>envelope</div>+
+    </div>
+
+    <div id="header_title">三 坑 圈</div>
+
+    <div id="header_search" class="ui search">
+        <div style="height: 60px;width: 400px;" class="ui icon input">
+            <input class="prompt" type="text" placeholder="" v-model="svalue" @keyup-enter="saveit" >
+            <i class="search icon"></i>
         </div>
+        <input value="搜索" type="button" @click="saveit" />
+        <div class="results"></div>
+        <ul v-if="hshow">
+            <li v-for="(item,index) in history_search">{{ item }} <button @click="deleteit(index)"  value="删除" /> </li>
+        </ul>
+    </div>
+
+    <div id="header_setting"> 设 置 </div>
+
+    <div id="header_txbox">
+        <div id="header_tx"></div>
+        <div style="top:25px;left:85px;position: absolute;">头像</div>
     </div>
 </div>
-<div class="ui segment">
-    <p>this is my test！！！</p>
-</div>
-<div class="ui inverted segment">
-    <button class="ui inverted button">标准</button>
-    <button class="ui inverted red button">红色</button>
-    <button class="ui inverted orange button">橙色</button>
-    <button class="ui inverted yellow button">黄色</button>
-    <button class="ui inverted olive button">橄榄绿</button>
-    <button class="ui inverted green button">纯绿</button>
-    <button class="ui inverted teal button">水鸭蓝</button>
-    <button class="ui inverted blue button">纯蓝</button>
-    <button class="ui inverted violet button">紫罗兰</button>
-    <button class="ui inverted purple button">纯紫</button>
-    <button class="ui inverted pink button">粉红</button>
-    <button class="ui inverted brown button">棕色</button>
-    <button class="ui inverted grey button">灰色</button>
-    <button class="ui inverted black button">黑色</button>
-</div>
-
 
 <script>
-var app = new Vue({
-el: '#app',
-data: {
-    message: 'Hello Vue!',
-    cls:['item','item','item'],
-    isactive:[false,false,false],
-    isactive1:false,
-    isactive2:false,
-    isactive3:false,
-},
-methods:{
-   clickit:function(which){
-       this.isactive1=false;
-       this.isactive2=false;
-       this.isactive3=false;
-        switch(which)
-       {
-           case 0:
-               this.isactive1=true;
-               break;
-           case 1:
-           this.isactive2=true;
-               break;
-           case 2:
-           this.isactive3=true;
-               break;
-       }
-       console.log("click");
-   }
-}
-})
+ window.onload=function () {
+    var search_vue= new Vue(
+        {
+            el:"#header_search",
+            data:{
+                svalue:"在这里输入搜索内容",
+                history_search:["aa","bb","cc"],
+                hshow:true,
+            },
+            methods:{
+                saveit:function () {
+                    this.history_search.push(this.svalue);
+                        console.log("aaa");
+                },
+                deleteit(which)
+                {
+                    this.history_search.splice(which,1);
+                }
+            }
+        }
+    );
+ }
 </script>
 </body>
-
+<style>
+    .header{
+        position: absolute;
+        width:100%;
+        height:10%;
+        background: #b4ffba;
+    }
+    #header_search{
+        position: absolute;
+        left:25%;
+        top:10px;
+        width:300px;
+        height:100px;
+    }
+    #header_message{
+        position: absolute;
+        width: 150px;
+        height: 70px;
+        top:5px;
+        background: #ffe6af;
+    }
+    #header_setting{
+        position: absolute;
+        width: 150px;
+        height: 70px;
+        left:80%;
+        top:5px;
+        background: #ffe6af;
+    }
+    #header_txbox{
+        position: absolute;
+        width: 150px;
+        height: 70px;
+        right:10px;
+        top:5px;
+        background: #ffe6af;
+    }
+    #header_tx{
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        top:5px;
+        border-radius: 100px;
+        background: #91b8ff;
+    }
+    #header_title{
+        position:absolute;
+        font-family: 腾祥匆匆体简;
+        color: #02e7ff;
+        left:10%;
+        top:15px;
+        margin: 15px;
+        font-size:40px;
+    }
+</style>
 </html>
