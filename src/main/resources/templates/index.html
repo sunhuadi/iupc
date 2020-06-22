@@ -18,13 +18,13 @@
 </head>
 <body>
 <div id="app" class="ui pointing menu">
-    <a  :class="isactive[0]?'item':'item active'"@click="clickit(0)">
+    <a :class="isactive1?'item active':'item'"@click="clickit(0)">
         主页
     </a>
-    <a :class="isactive[1]?'item':'item active'"@click="clickit(1)" >
+    <a :class="isactive2?'item active':'item'"@click="clickit(1)" >
         第二
     </a>
-    <a  :class="isactive[2]?'item':'item active'"@click="clickit(2)">
+    <a  :class="isactive3?'item active':'item'"@click="clickit(2)">
         朋友
     </a>
     <div class="right menu">
@@ -64,17 +64,28 @@ data: {
     message: 'Hello Vue!',
     cls:['item','item','item'],
     isactive:[false,false,false],
-    isactive1:false;
-    isactive2:false;
-    isactive3:false;
+    isactive1:false,
+    isactive2:false,
+    isactive3:false,
 },
 methods:{
    clickit:function(which){
-        for(i=0;i<this.isactive.length;i++) {
-            this.isactive[i]=false;
-
-        this.isactive[which]=true;
-        console.log(this.isactive);
+       this.isactive1=false;
+       this.isactive2=false;
+       this.isactive3=false;
+        switch(which)
+       {
+           case 0:
+               this.isactive1=true;
+               break;
+           case 1:
+           this.isactive2=true;
+               break;
+           case 2:
+           this.isactive3=true;
+               break;
+       }
+       console.log("click");
    }
 }
 })
