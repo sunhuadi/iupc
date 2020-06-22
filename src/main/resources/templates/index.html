@@ -51,7 +51,22 @@
         <div style="top:25px;left:85px;position: absolute;"></div>
     </div>
 </div>
+<!--
+<div id="zx_box">
+    <p class="zx_box_title">热门资讯</p>
+    <hr style="color:black;" />
 
+    <div class="zxi" th:each="zx:${zxlist}"  >
+        <img class="zxi_pic"  th:src="@{${zx.getImage()}}" />
+        <div class="zxi_text">
+            <p class="zxi_title" th:text="${zx.getTitle()}" ></p>
+            <p class="zxi_content"th:text="${zx.getContent()}"> </p>
+            <p class="zxi_time" th:text="${zx.getFormattime()}"></p>
+        </div>
+
+
+
+</div>    </div>-->
 <div id="zx_box">
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
@@ -64,13 +79,10 @@
             <p class="zxi_time" >{{item.time }}</p>
         </div>
     </div>
-
-</div>
 <ul id="tourist">
     <li v-for="item in content" class="tourist_li">{{ item }}</li>
 </ul>
-<script>
-
+<script th:inline="javascript">
  window.onload=function () {
     var search_vue= new Vue(
         {
@@ -80,30 +92,14 @@
                 history_search:[],
                 hshow:true,
             },
-            methods:{
-                saveit:function () {
-                    this.history_search.unshift(this.svalue);
-                    for(i=1;i<this.history_search.length;i++)
-                    {
-                        if(this.history_search[i]==this.svalue)
-                        {
-                            this.history_search.splice(i,1);
-                            break;
-                        }
-                    }
-                    console.log("aaa");
-                },
-                deleteit(which)
-                {
-                    this.history_search.splice(which,1);
-                }
-            }
         }
     );
+    var zxlist=[[${zxlist}]]
     var zx_vue=new Vue({
         el: "#zx_box",
         data: {
-            zxall:[
+            zxall:zxlist,
+            zxall1:[
                 {
                     image:"image/zixun/test1.jpg",
                     title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
@@ -127,7 +123,6 @@
                 },
 
                 ]
-
         }
      });
     var tourist_vue= new Vue(
