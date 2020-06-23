@@ -38,9 +38,9 @@
 }
 #zx_box{
     position:absolute;
-    left:25%;
-    top:10%;
-    width: 75%;
+    left:15%;
+    top:60%;
+    width: 60%;
     background: #E3EFF9;
 }
 .zxi_time{
@@ -56,6 +56,7 @@
     border: #0f0f0f;
     background: #f7ffd4;
     border-style: wave;
+    z-index: 999;
 }
 .search-hli{
     width:240px;
@@ -68,6 +69,7 @@
     padding-left:20px;
     padding-right: 5px;
     font-family: 腾祥匆匆体简;
+    z-index: -999;
 }
 .hsearch_button{
     display: inline-block;

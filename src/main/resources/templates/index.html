@@ -11,6 +11,7 @@
     <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
     <script type="text/javascript" th:src="@{js/vue.js}" ></script>
     <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -51,7 +52,36 @@
         <div style="top:25px;left:85px;position: absolute;"></div>
     </div>
 </div>
-
+<div id="ads">
+    <div class="sidepicbox" id="side_box1">
+        <img class="sideboxp" src="image/0.jpg" />
+        <img class="sideboxp" src="image/jk1.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/2.jpg" />
+        <img class="sideboxp" src="image/1.jpg" />
+    </div>
+    <div id="pic_box">
+        <div class="picbox">
+            <img src="image/dangmei1.jpg" id="pic1" class="box_pic">
+            <img src="image/dangmei2.jpg" id="pic2" class="box_pic">
+            <img src="image/dangmei3.jpg" id="pic3" class="box_pic">
+        </div>
+    </div>
+    <div class="sidepicbox" id="side_box2">
+        <img class="sideboxp" src="image/0.jpg" />
+        <img class="sideboxp" src="image/jk1.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/2.jpg" />
+        <img class="sideboxp" src="image/1.jpg" />
+    </div>
+</div>
+<ul id="tourist">
+    <li  v-for="item in content" class="tourist_li" >{{ item }}</li>
+</ul>
 <div id="zx_box">
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
@@ -66,9 +96,6 @@
     </div>
 
 </div>
-<ul id="tourist">
-    <li v-for="item in content" class="tourist_li">{{ item }}</li>
-</ul>
 <script>
 
  window.onload=function () {
@@ -140,30 +167,86 @@
     )
  }
 </script>
+<script src="js/pic_box.js" ></script>
 </body>
 <style>
-    body{
-        background-image:url(/image/bg_blue.png);
-        background-size:300px 300px;
+    *{
+        font-family: 微软雅黑;
     }
     #tourist{
-        width: 20%;
-        position: absolute;
-        left:1%;
+        width: 15%;
+        position: fixed;
         top:10%;
         height:70%;
-        background: #1202f3;
+        left:0;
         list-style: none;
     }
     .tourist_li{
         width: 100%;
-        height: 40px;
-        font-size: 20px;
-        background: #f3278e;
-        left:0;
+        height: 60px;
+        font-size: 15px;
+        background: #b8cce2;
         position: relative;
-        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-radius: 50px;
+        color: #ffffff;
+        text-align: center;
+        line-height:80px;
 
+    }
+    .sidepicbox{
+        height:100%;
+        width:12%;
+        position: absolute;
+        overflow: auto;
+        top:10%;
+
+    }
+    .sideboxp{
+        height:38%;
+        width:100%;
+        position: relative;
+        left: 0;
+        margin-bottom: 6px;
+        border: #0f0f0f;
+        border-width: 2px;
+
+    }
+    #side_box1{
+        left:17%;
+    }
+    #side_box2{
+        left:71%;
+    }
+    body{
+        background-image:url(/image/bg_blue.png);
+        background-size:300px 300px;
+    }
+    #ads{
+        width: 100%;
+        height:43%;
+        position:absolute;
+        top:10%;
+        background:  rgb(200,240,240,0.2);
+    }
+    #pic_box{
+        position: absolute;
+        top:10%;
+        left:30%;
+        margin: 0;
+        width:40%;
+        border:gray;
+        border-width: 5px;
+        border-style: solid;
+        text-align: center;
+    }
+    .box_pic{
+        position: absolute;
+        height:0px;
+        width: 0%;
+        top:0;
+        text-align: left;
     }
 
 </style>
