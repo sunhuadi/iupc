@@ -3,18 +3,20 @@ var pic1=document.getElementById("pic1");
 var pic2=document.getElementById("pic2");
 var pic3=document.getElementById("pic3");
 var boxs=document.getElementById("pic_box");
-var sdbox1=document.getElementById("side_box1");
-var sdbox2=document.getElementById("side_box2");
 var n=0;
 var l=boxs.clientWidth;
 var fx=1;
 var v=0.001;
 var wt=0.8;
+
+var sdbox1=document.getElementById("side_box1");
+var sdbox2=document.getElementById("side_box2");
 var cn=0;
 var cnmx=10;
 var topmax=185;
-var sclock=0;
-var tsted=1;
+var lasttop1,lasttop2;
+var stp1=1,stp2=-1;
+
 function ds(p1,p2,p3)
 {
 
@@ -47,30 +49,17 @@ function ds(p1,p2,p3)
     }
     else nn=n;
     cn++;
-    var rcnmx;
-    if(tsted==0){
-        rcnmx=1;
-    }
-    else {
-        rcnmx=cnmx;
-    }
-    if(cn%rcnmx==0){
-        sdbox1.scrollTop++;
-        sdbox2.scrollTop=topmax-sdbox1.scrollTop;
-        if(sclock==sdbox1.scrollTop&&tsted==0)
-        {
-            topmax=sclock;
-            tsted=1;
-        }
-        sclock=sdbox1.scrollTop;
-        if(sdbox1.scrollTop>=topmax)
-        {
-            sdbox1.scrollTop=0;
-        }
+    if(cn%cnmx==0){
+        sdbox1.scrollTop+=stp1;
+        sdbox2.scrollTop+=stp2;
+        if(lasttop1==sdbox1.scrollTop)
+            stp1*=-1;
+        if(lasttop2==sdbox2.scrollTop)
+            stp2*=-1;
+        lasttop1=sdbox1.scrollTop;
+        lasttop2=sdbox2.scrollTop;
     }
 
-    console.log(topmax);
-    console.log(sdbox1.scrollTop);
     p1.style.width=nn*l+'px';
     p1.style.left=0;
     p2.style.width=l-nn*l+'px';
