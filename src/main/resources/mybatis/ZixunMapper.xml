@@ -4,8 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iupc.Mapper.ZixunMapper">
 
-    <select id="qurryzixunall" resultType="zixun">
+    <select id="qurryzixunall" resultType="zixun" >
         select * from zixun
     </select>
+
 
 </mapper>
