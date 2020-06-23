@@ -16,7 +16,6 @@
     <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -53,22 +52,36 @@
         <div style="top:25px;left:85px;position: absolute;"></div>
     </div>
 </div>
-<!--
-<div id="zx_box">
-    <p class="zx_box_title">热门资讯</p>
-    <hr style="color:black;" />
-
-    <div class="zxi" th:each="zx:${zxlist}"  >
-        <img class="zxi_pic"  th:src="@{${zx.getImage()}}" />
-        <div class="zxi_text">
-            <p class="zxi_title" th:text="${zx.getTitle()}" ></p>
-            <p class="zxi_content"th:text="${zx.getContent()}"> </p>
-            <p class="zxi_time" th:text="${zx.getFormattime()}"></p>
+<div id="ads">
+    <div class="sidepicbox" id="side_box1">
+        <img class="sideboxp" src="image/0.jpg" />
+        <img class="sideboxp" src="image/jk1.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/2.jpg" />
+        <img class="sideboxp" src="image/1.jpg" />
+    </div>
+    <div id="pic_box">
+        <div class="picbox">
+            <img src="image/dangmei1.jpg" id="pic1" class="box_pic">
+            <img src="image/dangmei2.jpg" id="pic2" class="box_pic">
+            <img src="image/dangmei3.jpg" id="pic3" class="box_pic">
         </div>
-
-
-
-</div>    </div>-->
+    </div>
+    <div class="sidepicbox" id="side_box2">
+        <img class="sideboxp" src="image/0.jpg" />
+        <img class="sideboxp" src="image/jk1.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/jk2.jpg" />
+        <img class="sideboxp" src="image/2.jpg" />
+        <img class="sideboxp" src="image/1.jpg" />
+    </div>
+</div>
+<ul id="tourist">
+    <li  v-for="item in content" class="tourist_li" >{{ item }}</li>
+</ul>
 <div id="zx_box">
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
@@ -81,6 +94,7 @@
             <p class="zxi_time" >{{item.time }}</p>
         </div>
     </div>
+
 </div>
 <script>
 
