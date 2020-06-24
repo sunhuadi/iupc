@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
+    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+</head>
+<body>
+<div th:insert="~{index::header}"></div>
+<div id="tourist">
+    <div v-for="(item,index) in tli">
+        <div   class="tourist_li" >
+            <p class="tourist_lp">{{ item.content }}</p>
+            <button class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</button>
+        </div>
+        <div v-if="item.isshow"  :id="item.isshow?'showtlic':''" class="tourist_content">
+            <div class="touristcont_lp" v-for="it in item.slcontent">{{ it }}</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+
+</html>
