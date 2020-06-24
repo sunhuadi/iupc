@@ -1,6 +1,69 @@
 *{
     z-index: 0;
 }
+#body{
+    background-image:url(/image/bg_blue.png);
+    background-size:300px 300px;
+}
+.touristcont_lp{
+    letter-spacing: 5px;
+    border-style: dotted;
+    height:30px;
+    font-size: 15px;
+    margin: 1px;
+    padding-left: 20px;
+    color: white;
+}
+.touristlib{
+    background:#b8cce2 ;
+    color:white;
+    position: relative;
+    float:right;
+    border-style: none;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+.tourist_lp{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    position: relative;
+    border-radius: 10px;
+    color: #ffffff;
+}
+#tourist{
+    width: 13%;
+    position: fixed;
+    top:10%;
+    height:70%;
+    left:0;
+    list-style: none;
+    margin-left: 0;
+}
+.tourist_li{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    background: #b8cce2;
+    position: relative;
+    margin-top:10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+.tourist_content{
+    width: 95%;
+    position: relative;
+    background: #b8cce2 ;
+    overflow: hidden;
+}
+.tourist_lp{
+    position: absolute;
+    left:20%;
+    letter-spacing: 5px;
+}
 .sidepicbox{
     height:100%;
     width:12%;
@@ -10,7 +73,7 @@
 
 }
 .sideboxp{
-    height:40%;
+    height:38%;
     width:100%;
     position: relative;
     left: 0;
@@ -28,10 +91,10 @@
 
 #ads{
     width: 100%;
-    height:47%;
+    height:43%;
     position:absolute;
-    top:7%;
-
+    top:10%;
+    background:  rgb(200,240,240,0.2);
 }
 #pic_box{
     position: absolute;
@@ -43,7 +106,6 @@
     border-width: 5px;
     border-style: solid;
     text-align: center;
-    z-index: -1;
 
 }
 .box_pic{
@@ -63,47 +125,6 @@ ul li{
     font-size:30px;
     font-weight: bolder;
     font-family: 华文细黑;
-    line-height:50px;
-}
-.zxi{
-    position: relative;
-    margin:20px;
-    width:97%;
-    background: #FFF7ED;
-    color: #6e6d71;
-    border-radius: 100px;
-}
-.zxi_pic{
-    width:150px;
-    height:150px;
-    border-radius: 100px;
-}
-.zxi_text{
-    position:absolute;
-    left:160px;
-    top:5%;
-    height: 100%;
-    width:80%;
-}
-.zxi_content{
-    font-size: 13px;
-    position: absolute;
-    width:80%;
-    top:25%;
-
-}
-.zxi_title{
-    position:absolute;
-    font-size:22px;
-    font-weight: bold;
-    top:1%;
-}
-#zx_box{
-    position:absolute;
-    left:14%;
-    top:60%;
-    width: 76%;
-    background: #E3EFF9;
 }
 #zx_box_1{
     position:absolute;
@@ -119,38 +140,88 @@ ul li{
     width: 50%;
     background: #E3EFF9;
 }
+.zxi{
+    position: relative;
+    margin:20px;
+    width:90%;
+    background: #F8EDDB;
+    color: #6e6d71;
+    border-radius: 20px;
+}
+.zxi_pic{
+    width:150px;
+    height:150px;
+    border-radius: 75px;
+}
+.zxi_pic:hover{
+    border-radius: 20px;
+}
+.zxi_text{
+    position:absolute;
+    left:160px;
+    top:5%;
+    height: 100%;
+    width:80%;
+}
+.zxi_content{
+    font-size: 12px;
+    position: absolute;
+    width:85%;
+    top:25%;
+}
+.zxi:hover{
+    transform: scale(1.05);
+}
+.zxi_title{
+
+    position:absolute;
+    font-size:18px;
+    font-weight: bold;
+    top:1%;
+    width: 90%;
+    overflow: auto;
+}
+.zxi_title:hover{
+    color: #f39489;
+}
+#zx_box{
+    position:absolute;
+    left:14%;
+    top:60%;
+    width: 76%;
+    background: #E3EFF9;
+    border-radius: 30px;
+}
 .zxi_time{
     position:absolute;
     bottom: 5%;
-    font-size:16px;
+    font-size:14px;
 }
 #search_list{
-    width: 700px;
+    width: 300px;
     padding: 5px;
     list-style: none;
     border-radius: 10px;
     border: #0f0f0f;
-    background: #FFF7ED;
+    background: #f7ffd4;
     border-style: wave;
-    z-index: 1;
+    z-index: 999;
 }
 .search-hli{
-    width:650px;
+    width:240px;
     min-height:30px;
     background: white;
     border: #0bffd8;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 20px;
     margin-top:5px;
     padding-left:20px;
     padding-right: 5px;
     font-family: 腾祥匆匆体简;
-    z-index: 1;
-    line-height: 35px;
+    z-index: -999;
 }
 .hsearch_button{
     display: inline-block;
-    left:660px;
     margin: 0;
     height:30px;
     width: 30px;
@@ -159,7 +230,6 @@ ul li{
     right:20px;
     background: none;
     border:none;
-    z-index: 1;
 }
 .header{
     position: fixed;
@@ -170,7 +240,7 @@ ul li{
 }
 #header_search{
     position: absolute;
-    left:37%;
+    left:25%;
     top:10px;
     width:300px;
     height:100px;
@@ -188,14 +258,6 @@ ul li{
     height: 70px;
     left:90%;
     top:5px;
-}
-#header_biaoti{
-    position: absolute;
-    width: 150px;
-    height: 70px;
-    left:10%;
-
-
 }
 #header_txbox{
     position: absolute;
@@ -218,5 +280,5 @@ ul li{
     left:10%;
     top:15px;
     margin: 15px;
-    font-size:50px;
+    font-size:40px;
 }
