@@ -21,7 +21,7 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     private IIndexService iis;
-    @GetMapping("/")
+//    @GetMapping("/")
     public String index(Model model)
     {
         List<zixun> zxlist=iis.getAll();
@@ -29,7 +29,7 @@ public class IndexController {
         return "index";
     }
     @ResponseBody
-    @GetMapping("/test")
+//    @GetMapping("/test")
     public List<HashMap<String,String> >Test()
     {
         List<HashMap<String,String> >list = new ArrayList<HashMap<String, String>>();

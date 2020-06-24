@@ -28,12 +28,15 @@
         </div>
     </div>
 
-    <div id="header_title">三 坑 圈</div>
+    <div id="header_biaoti">
+        <img style="height:78px;width:350px;" src="image/三坑圈.png" />
+    </div>
+
 
     <div id="header_search" class="ui search">
-        <div style="height: 60px;width: 400px;" class="ui icon input">
-            <input class="prompt" type="text" placeholder="" v-model="svalue" @keyup-enter="saveit" >
-            <button style="height:50px;width:80px;margin-top:6px; display: inline-block" class="ui button" @click="saveit">搜索</button>
+        <div style="height: 60px;width: 800px;" class="ui icon input">
+            <input class="prompt" type="text" placeholder="" v-model="svalue" @keyup.enter="saveit" >
+            <button style="background-color: #FDEDED; height:50px;width:80px;margin-top:6px; display: inline-block" class="ui button" @click="saveit">搜索</button>
         </div>
         <div class="results"></div>
         <ul v-if="history_search.length>0" id="search_list">
@@ -94,14 +97,27 @@
 <div id="zx_box">
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
-    <div v-for="item in zxall" class="zxi">
-        <img class="zxi_pic"  :src="item.image" />
-        <div class="zxi_text">
-            <p class="zxi_title" >{{ item.title }}</p>
-            <p class="zxi_content">{{ item.content }}</p>
-            <p class="zxi_time" >{{item.time }}</p>
+    <div id="zx_box_1">
+        <div v-for="item in zxall" class="zxi">
+            <img class="zxi_pic"  :src="item.image" />
+            <div class="zxi_text">
+                <p class="zxi_title" >{{ item.title }}</p>
+                <p class="zxi_content">{{ item.content }}</p>
+                <p class="zxi_time" >{{item.time }}</p>
+            </div>
         </div>
     </div>
+    <div id="zx_box_2">
+        <div v-for="item in zxall_1" class="zxi">
+            <img class="zxi_pic"  :src="item.image" />
+            <div class="zxi_text">
+                <p class="zxi_title" >{{ item.title }}</p>
+                <p class="zxi_content">{{ item.content }}</p>
+                <p class="zxi_time" >{{item.time }}</p>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <script>
@@ -140,6 +156,30 @@
             el: "#zx_box",
             data: {
                 zxall:[
+                    {
+                        image:"image/zixun/test1.jpg",
+                        title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
+                        content:
+                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                        time:"2020-6-22",
+                    },
+                    {
+                        image:"image/zixun/test2.jpg",
+                        title:"震惊！这条裙子美爆了！",
+                        content:
+                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                        time:"2020-6-23",
+                    },
+                    {
+                        image:"image/zixun/test3.jpg",
+                        title:"618大促！党妹倾情推荐！",
+                        content:
+                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
+                        time:"2020-6-23",
+                    },
+
+                ],
+                zxall_1:[
                     {
                         image:"image/zixun/test1.jpg",
                         title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",

@@ -10,7 +10,7 @@
 
 }
 .sideboxp{
-    height:38%;
+    height:40%;
     width:100%;
     position: relative;
     left: 0;
@@ -20,29 +20,31 @@
 
 }
 #side_box1{
-    left:17%;
+    left:14%;
 }
 #side_box2{
-    left:71%;
+    left:78%;
 }
 
 #ads{
     width: 100%;
-    height:43%;
+    height:47%;
     position:absolute;
-    top:10%;
-    background:  rgb(200,240,240,0.2);
+    top:7%;
+
 }
 #pic_box{
     position: absolute;
-    top:10%;
-    left:30%;
-    margin: 0;
-    width:40%;
-    border:gray;
+    top:7%;
+    left:27%;
+    width: 50%;
+    down:90%;
+    border: #ffefed;
     border-width: 5px;
     border-style: solid;
     text-align: center;
+    z-index: -1;
+
 }
 .box_pic{
     position: absolute;
@@ -61,17 +63,20 @@ ul li{
     font-size:30px;
     font-weight: bolder;
     font-family: 华文细黑;
+    line-height:50px;
 }
 .zxi{
     position: relative;
     margin:20px;
-    width:80%;
-    background: #F8EDDB;
+    width:97%;
+    background: #FFF7ED;
     color: #6e6d71;
+    border-radius: 100px;
 }
 .zxi_pic{
     width:150px;
     height:150px;
+    border-radius: 100px;
 }
 .zxi_text{
     position:absolute;
@@ -81,23 +86,37 @@ ul li{
     width:80%;
 }
 .zxi_content{
-    font-size: 15px;
+    font-size: 13px;
     position: absolute;
-    width:90%;
+    width:80%;
     top:25%;
 
 }
 .zxi_title{
     position:absolute;
-    font-size:25px;
+    font-size:22px;
     font-weight: bold;
     top:1%;
 }
 #zx_box{
     position:absolute;
-    left:15%;
+    left:14%;
     top:60%;
-    width: 60%;
+    width: 76%;
+    background: #E3EFF9;
+}
+#zx_box_1{
+    position:absolute;
+    left:0%;
+    top:60%;
+    width: 50%;
+    background: #E3EFF9;
+}
+#zx_box_2{
+    position:absolute;
+    left:50%;
+    top:60%;
+    width: 50%;
     background: #E3EFF9;
 }
 .zxi_time{
@@ -106,30 +125,32 @@ ul li{
     font-size:16px;
 }
 #search_list{
-    width: 300px;
+    width: 700px;
     padding: 5px;
     list-style: none;
     border-radius: 10px;
     border: #0f0f0f;
-    background: #f7ffd4;
+    background: #FFF7ED;
     border-style: wave;
-    z-index: 999;
+    z-index: 1;
 }
 .search-hli{
-    width:240px;
+    width:650px;
     min-height:30px;
     background: white;
     border: #0bffd8;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 20px;
     margin-top:5px;
     padding-left:20px;
     padding-right: 5px;
     font-family: 腾祥匆匆体简;
-    z-index: -999;
+    z-index: 1;
+    line-height: 35px;
 }
 .hsearch_button{
     display: inline-block;
+    left:660px;
     margin: 0;
     height:30px;
     width: 30px;
@@ -138,6 +159,7 @@ ul li{
     right:20px;
     background: none;
     border:none;
+    z-index: 1;
 }
 .header{
     position: fixed;
@@ -148,7 +170,7 @@ ul li{
 }
 #header_search{
     position: absolute;
-    left:25%;
+    left:37%;
     top:10px;
     width:300px;
     height:100px;
@@ -166,6 +188,14 @@ ul li{
     height: 70px;
     left:90%;
     top:5px;
+}
+#header_biaoti{
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    left:10%;
+
+
 }
 #header_txbox{
     position: absolute;
@@ -188,5 +218,5 @@ ul li{
     left:10%;
     top:15px;
     margin: 15px;
-    font-size:40px;
+    font-size:50px;
 }
