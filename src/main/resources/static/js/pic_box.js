@@ -7,22 +7,24 @@ var n=0;
 var l=boxs.clientWidth;
 var fx=1;
 var v=0.001;
-var wt=0.8;
+var wt=0.2;
 
 var sdbox1=document.getElementById("side_box1");
 var sdbox2=document.getElementById("side_box2");
 var cn=0;
 var cnmx=10;
-var topmax=185;
+var topmax=300;
+var clickwaitime=10;
 var lasttop1,lasttop2;
 var stp1=1,stp2=-1;
-
+var lck1=0,lck2=0;
+var st=0;
 function ds(p1,p2,p3)
 {
 
     l=boxs.clientWidth;
-    var h=l/7*3.5;
-    n=n+fx*v;
+    var h=l/2;
+    n=n+fx*v;//长度比例
     if(n>=1+wt)
     {
         fx=-1;
@@ -36,9 +38,8 @@ function ds(p1,p2,p3)
         var pic=pic1;
         pic1=pic3;
         pic3=pic;
-
     }
-    var nn;
+    var nn;//实际长度比例
     if(n>=1)
     {
         nn=1;
@@ -48,18 +49,32 @@ function ds(p1,p2,p3)
         nn=0;
     }
     else nn=n;
-    cn++;
-    if(cn%cnmx==0){
-        sdbox1.scrollTop+=stp1;
-        sdbox2.scrollTop+=stp2;
-        if(lasttop1==sdbox1.scrollTop)
-            stp1*=-1;
-        if(lasttop2==sdbox2.scrollTop)
-            stp2*=-1;
-        lasttop1=sdbox1.scrollTop;
-        lasttop2=sdbox2.scrollTop;
+    if(1){
+        if(st==0)
+            sdbox2.scrollTop+=topmax;
+        st=1;
+        cn++;
+        if(cn%cnmx==0){
+            if(lck1==0)
+                sdbox1.scrollTop+=stp1;
+            else
+                lck1--;
+            if(lck2==0)
+                sdbox2.scrollTop+=stp2;
+            else
+                lck2--;
+            if(lasttop1-sdbox1.scrollTop==0)
+                stp1*=-1;
+            else if (Math.abs(lasttop1-sdbox1.scrollTop)>2)
+                lck1+=clickwaitime;
+            if(lasttop2-sdbox2.scrollTop==0)
+                stp2*=-1;
+            else if (Math.abs(lasttop2-sdbox2.scrollTop)>2)
+                lck2+=clickwaitime;
+            lasttop1=sdbox1.scrollTop;
+            lasttop2=sdbox2.scrollTop;
+        }
     }
-
     p1.style.width=nn*l+'px';
     p1.style.left=0;
     p2.style.width=l-nn*l+'px';

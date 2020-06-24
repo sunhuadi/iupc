@@ -1,4 +1,61 @@
+*{
+    z-index: 0;
+}
+.sidepicbox{
+    height:100%;
+    width:12%;
+    position: absolute;
+    overflow: auto;
+    top:10%;
 
+}
+.sideboxp{
+    height:38%;
+    width:100%;
+    position: relative;
+    left: 0;
+    margin-bottom: 6px;
+    border: #0f0f0f;
+    border-width: 2px;
+
+}
+#side_box1{
+    left:17%;
+}
+#side_box2{
+    left:71%;
+}
+
+#ads{
+    width: 100%;
+    height:43%;
+    position:absolute;
+    top:10%;
+    background:  rgb(200,240,240,0.2);
+}
+#pic_box{
+    position: absolute;
+    top:10%;
+    left:30%;
+    margin: 0;
+    width:40%;
+    border:gray;
+    border-width: 5px;
+    border-style: solid;
+    text-align: center;
+}
+.box_pic{
+    position: absolute;
+    height:0px;
+    width: 0%;
+    top:0;
+    text-align: left;
+}
+
+ul li{
+    margin: 0;
+    padding: 0;
+}
 .zx_box_title{
     text-align: center;
     font-size:30px;
@@ -83,10 +140,11 @@
     border:none;
 }
 .header{
-    position: absolute;
+    position: fixed;
     width:100%;
     height:10%;
     background: #b8cce2;
+    z-index: 1;
 }
 #header_search{
     position: absolute;
@@ -126,7 +184,7 @@
 #header_title{
     position:absolute;
     font-family: 腾祥匆匆体简;
-    color: #02e7ff;
+    color: white;
     left:10%;
     top:15px;
     margin: 15px;

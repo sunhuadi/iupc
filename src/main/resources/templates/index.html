@@ -16,13 +16,14 @@
     <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 </head>
 <body>
 <div class="header">
     <div id="header_message">
         <div class="column">
-            <img src="/image/message.png"  style="height: 60px;height:60px;" class="img-rounded">
+            <img src="/image/hdj.png"  style="height: 60px;height:60px;" class="img-rounded">
             <span>消 息</span>
         </div>
     </div>
@@ -79,13 +80,20 @@
         <img class="sideboxp" src="image/1.jpg" />
     </div>
 </div>
-<ul id="tourist">
-    <li  v-for="item in content" class="tourist_li" >{{ item }}</li>
-</ul>
+<div id="tourist">
+    <div v-for="(item,index) in tli">
+        <div   class="tourist_li" >
+            <p class="tourist_lp">{{ item.content }}</p>
+            <button class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</button>
+        </div>
+        <div v-if="item.isshow"  :id="item.isshow?'showtlic':''" class="tourist_content">
+            <div class="touristcont_lp" v-for="it in item.slcontent">{{ it }}</div>
+        </div>
+    </div>
+</div>
 <div id="zx_box">
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
-
     <div v-for="item in zxall" class="zxi">
         <img class="zxi_pic"  :src="item.image" />
         <div class="zxi_text">
@@ -97,8 +105,9 @@
 
 </div>
 <script>
-
     window.onload=function () {
+        var tch=0;
+        var maxtch=0;
         var search_vue= new Vue(
             {
                 el:"#header_search",
@@ -161,93 +170,107 @@
             {
                 el:"#tourist",
                 data:{
-                    content:["三坑笔记","店家社区","我的收藏","二手平台","发布资讯"],
+                    tli:[
+                        {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
+                        {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
+                        {content:"三坑笔记",isshow:false,slcontent:["汉服","汉服","汉服","Lolita","JK"]},
+                        {content:"我的收藏",isshow:false,slcontent:["西装","皮鞋","袈裟"]},
+                        {content:"发布笔记",isshow:false,slcontent:["中山装","道袍","比基尼"]},
+                        {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
+                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                    ]
+
                 },
-            }
-        )
+                methods:{
+                    showit:function (which) {
+                        for(i=0;i<this.tli.length;i++){
+                            if(i!=which)
+                            this.tli[i].isshow=false;
+                        }
+                        tch=0;
+                        maxtch=this.tli[which].slcontent.length*31+5;
+                        this.tli[which].isshow=!(this.tli[which].isshow);
+                    }
+                }
+            },
+        setInterval(function () {
+            var a=document.getElementById("showtlic");
+            tch=tch+5;
+            if(tch>maxtch)
+            a.style.height=maxtch+'px';
+            else
+            a.style.height=tch+'px';
+
+        },20)
     }
+
+
 </script>
 <script src="js/pic_box.js" ></script>
 </body>
 <style>
-    *{
-        font-family: 微软雅黑;
+    .touristcont_lp{
+        letter-spacing: 5px;
+        border-style: dotted;
+        height:30px;
+        font-size: 15px;
+        margin: 1px;
+        padding-left: 20px;
+        color: white;
+    }
+    .touristlib{
+        background:#b8cce2 ;
+        color:white;
+        position: relative;
+        float:right;
+        border-style: none;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        border-radius: 20px;
+    }
+    .tourist_lp{
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        position: relative;
+        border-radius: 10px;
+        color: #ffffff;
     }
     #tourist{
-        width: 15%;
+        width: 13%;
         position: fixed;
         top:10%;
         height:70%;
         left:0;
         list-style: none;
+        margin-left: 0;
     }
     .tourist_li{
         width: 100%;
-        height: 60px;
-        font-size: 15px;
+        height: 50px;
+        font-size: 18px;
         background: #b8cce2;
         position: relative;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-radius: 50px;
+        margin-top:10px;
+        padding: 10px;
+        border-radius: 10px;
         color: #ffffff;
-        text-align: center;
-        line-height:80px;
-
     }
-    .sidepicbox{
-        height:100%;
-        width:12%;
-        position: absolute;
-        overflow: auto;
-        top:10%;
-
-    }
-    .sideboxp{
-        height:38%;
-        width:100%;
+    .tourist_content{
+        width: 95%;
         position: relative;
-        left: 0;
-        margin-bottom: 6px;
-        border: #0f0f0f;
-        border-width: 2px;
-
+        background: #b8cce2 ;
+        overflow: hidden;
     }
-    #side_box1{
-        left:17%;
-    }
-    #side_box2{
-        left:71%;
+    .tourist_lp{
+        position: absolute;
+        left:20%;
+        letter-spacing: 5px;
     }
     body{
         background-image:url(/image/bg_blue.png);
         background-size:300px 300px;
     }
-    #ads{
-        width: 100%;
-        height:43%;
-        position:absolute;
-        top:10%;
-        background:  rgb(200,240,240,0.2);
-    }
-    #pic_box{
-        position: absolute;
-        top:10%;
-        left:30%;
-        margin: 0;
-        width:40%;
-        border:gray;
-        border-width: 5px;
-        border-style: solid;
-        text-align: center;
-    }
-    .box_pic{
-        position: absolute;
-        height:0px;
-        width: 0%;
-        top:0;
-        text-align: left;
-    }
-
 </style>
 </html>
