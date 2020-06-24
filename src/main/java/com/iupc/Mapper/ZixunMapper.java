@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface ZixunMapper {
     List <zixun> qurryzixunall();
-
 }
