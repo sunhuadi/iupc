@@ -22,20 +22,11 @@
 </head>
 <body>
 <div th:insert="~{index::header}"></div>
-<div id="tourist">
-    <div v-for="(item,index) in tli">
-        <div   class="tourist_li" >
-            <p class="tourist_lp">{{ item.content }}</p>
-            <button class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</button>
-        </div>
-        <div v-if="item.isshow"  :id="item.isshow?'showtlic':''" class="tourist_content">
-            <div class="touristcont_lp" v-for="it in item.slcontent">{{ it }}</div>
-        </div>
-    </div>
-</div>
+<div th:insert="~{index::tourist}"></div>
 </body>
 <script>
 
 </script>
-
+<style>
+</style>
 </html>

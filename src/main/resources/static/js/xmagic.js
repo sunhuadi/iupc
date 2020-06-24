@@ -44,6 +44,8 @@ window.onload=function () {
                     {content:"发布笔记",isshow:false,slcontent:["中山装","道袍","比基尼"]},
                     {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
                     {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                    {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                    {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
                 ]
 
             },
@@ -63,8 +65,9 @@ window.onload=function () {
         setInterval(function () {
             var idname="showtlic";
             var a=document.getElementById(idname);
-            console.log(tch);
+            //console.log(tch);
             tch+=tchstp;
+            if(a!=null)
             if(tch>=maxtch)
             a.style.height=maxtch+'px';
             else

@@ -21,7 +21,7 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     private IIndexService iis;
-    @GetMapping("/")
+    //@GetMapping("/")
     public String index(Model model)
     {
         List<zixun> zxlist=iis.getAll();
@@ -40,7 +40,6 @@ public class IndexController {
            mp.put("name","sunhuadi"+i);
                 list.add(i,mp);
         }
-
         return list;
     }
 

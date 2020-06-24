@@ -1,7 +1,7 @@
 *{
     z-index: 0;
 }
-body{
+#body{
     background-image:url(/image/bg_blue.png);
     background-size:300px 300px;
 }
@@ -83,10 +83,10 @@ body{
 
 }
 #side_box1{
-    left:17%;
+    left:14%;
 }
 #side_box2{
-    left:71%;
+    left:78%;
 }
 
 #ads{
@@ -98,14 +98,15 @@ body{
 }
 #pic_box{
     position: absolute;
-    top:10%;
-    left:30%;
-    margin: 0;
-    width:40%;
-    border:gray;
+    top:7%;
+    left:27%;
+    width: 50%;
+    down:90%;
+    border: #ffefed;
     border-width: 5px;
     border-style: solid;
     text-align: center;
+
 }
 .box_pic{
     position: absolute;
@@ -125,16 +126,35 @@ ul li{
     font-weight: bolder;
     font-family: 华文细黑;
 }
+#zx_box_1{
+    position:absolute;
+    left:0%;
+    top:60%;
+    width: 50%;
+    background: #E3EFF9;
+}
+#zx_box_2{
+    position:absolute;
+    left:50%;
+    top:60%;
+    width: 50%;
+    background: #E3EFF9;
+}
 .zxi{
     position: relative;
     margin:20px;
-    width:80%;
+    width:90%;
     background: #F8EDDB;
     color: #6e6d71;
+    border-radius: 20px;
 }
 .zxi_pic{
     width:150px;
     height:150px;
+    border-radius: 75px;
+}
+.zxi_pic:hover{
+    border-radius: 20px;
 }
 .zxi_text{
     position:absolute;
@@ -144,29 +164,38 @@ ul li{
     width:80%;
 }
 .zxi_content{
-    font-size: 15px;
+    font-size: 12px;
     position: absolute;
-    width:90%;
+    width:85%;
     top:25%;
-
+}
+.zxi:hover{
+    transform: scale(1.05);
 }
 .zxi_title{
+
     position:absolute;
-    font-size:25px;
+    font-size:18px;
     font-weight: bold;
     top:1%;
+    width: 90%;
+    overflow: auto;
+}
+.zxi_title:hover{
+    color: #f39489;
 }
 #zx_box{
     position:absolute;
-    left:15%;
+    left:14%;
     top:60%;
-    width: 60%;
+    width: 76%;
     background: #E3EFF9;
+    border-radius: 30px;
 }
 .zxi_time{
     position:absolute;
     bottom: 5%;
-    font-size:16px;
+    font-size:14px;
 }
 #search_list{
     width: 300px;
