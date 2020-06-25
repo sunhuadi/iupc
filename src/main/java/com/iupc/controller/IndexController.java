@@ -1,21 +1,23 @@
 package com.iupc.controller;
 
-import com.iupc.Mapper.ZixunMapper;
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.iupc.pojo.zixun;
 import com.iupc.service.IIndexService;
+import com.iupc.util.CommonFileUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
-import java.text.DateFormat;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class IndexController {
@@ -42,5 +44,21 @@ public class IndexController {
         }
         return list;
     }
+    private final static Logger logger = LoggerFactory.getLogger(IndexController.class);
+
+    @Autowired
+    private CommonFileUtil fileUtil;
+    @ResponseBody
+    @RequestMapping("/ok")
+    public String signup(@RequestParam("myfile") MultipartFile file,Model model) throws IOException {
+        if(file.isEmpty()){
+            logger.info("文件不存在");
+        }
+        String path = fileUtil.uploadFile(file);
+
+        System.out.println(path);
+        return "success";
+    }
+
 
 }
