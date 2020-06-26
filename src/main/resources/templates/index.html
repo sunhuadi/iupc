@@ -17,7 +17,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div class="header" th:fragment="header">
@@ -27,7 +27,6 @@
             <span>消 息</span>
         </div>
     </div>
-
     <div id="header_title">三 坑 圈</div>
 
     <div id="header_search" class="ui search">
@@ -43,7 +42,6 @@
             </li>
         </ul>
     </div>
-
     <div id="header_setting">
         <img style="height:60px;width:60px;" src="image/setting.png" />
     </div>
@@ -95,17 +93,16 @@
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
     <div v-for="item in zxall" class="zxi">
-        <img class="zxi_pic"  :src="item.image" />
+        <img class="zxi_pic"  :src="item.news_img" />
         <div class="zxi_text">
-            <p class="zxi_title" >{{ item.title }}</p>
-            <p class="zxi_content">{{ item.content }}</p>
-            <p class="zxi_time" >{{item.time }}</p>
+            <p class="zxi_title" >{{ item.news_title }}</p>
+            <p class="zxi_content">{{ item.news_content }}</p>
+            <p class="zxi_time" >{{item.news_formattime }}</p>
         </div>
     </div>
-
 </div>
 <script>
-    window.onload=function () {
+
         var tch=0;
         var maxtch=0;
         var search_vue= new Vue(
@@ -128,6 +125,19 @@
                             }
                         }
                         console.log("aaa");
+                        var _this=this
+                        axios.post('/search', {
+                            value:this.svalue,
+                        }).then(function (response) {
+                            zx_vue.zxall=null
+                            zx_vue.zxall=response.data;
+                            console.log(zx_vue.zxall)
+                            console.log(response.data);
+                            //console.log(response.data)
+                        })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
                     },
                     deleteit(which)
                     {
@@ -139,33 +149,34 @@
         var zx_vue=new Vue({
             el: "#zx_box",
             data: {
-                zxall:[
-                    {
-                        image:"image/zixun/test1.jpg",
-                        title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-22",
-                    },
-                    {
-                        image:"image/zixun/test2.jpg",
-                        title:"震惊！这条裙子美爆了！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
-                    {
-                        image:"image/zixun/test3.jpg",
-                        title:"618大促！党妹倾情推荐！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
+                zxall:[]
 
-                ]
+            },methods:{
+                setData:function() {
+                    var _this=this
+                    axios.get('/getnews')
+                        .then(function (response) {//是返回的所有信息
+                            //console.log(response);
+                            console.log(response.data)
+
+                           // console.log(_this.zxall[0].content)
+                            //response.length
+                            _this.zxall=response.data;
+                            console.log(_this.zxall)
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+
+                        })
+                }
+
 
             }
+            ,mounted:function () {
+                this.setData();
+            }
         });
+
         var tourist_vue= new Vue(
             {
                 el:"#tourist",
@@ -179,7 +190,6 @@
                         {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
                         {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
                     ]
-
                 },
                 methods:{
                     showit:function (which) {
@@ -202,7 +212,7 @@
             a.style.height=tch+'px';
 
         },20),)
-    }
+
 
 
 </script>

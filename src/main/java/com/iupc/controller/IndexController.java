@@ -1,8 +1,6 @@
 package com.iupc.controller;
 
-import com.github.tobato.fastdfs.domain.StorePath;
-import com.github.tobato.fastdfs.service.FastFileStorageClient;
-import com.iupc.pojo.zixun;
+import com.iupc.pojo.News;
 import com.iupc.service.IIndexService;
 import com.iupc.util.CommonFileUtil;
 import org.slf4j.Logger;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Decoder;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,13 +20,35 @@ import java.util.List;
 public class IndexController {
     @Autowired
     private IIndexService iis;
-    //@GetMapping("/")
+/*
+    @GetMapping("/x")
     public String index(Model model)
     {
         List<zixun> zxlist=iis.getAll();
         model.addAttribute("zxlist",zxlist);
+
         return "index";
+    }*/
+    @ResponseBody
+    @GetMapping("/getnews")
+    public List<News> index(Model model)
+    {
+        List<News> newsList=iis.getAllnews();
+        System.out.println(newsList.get(0));
+        return newsList;
     }
+
+    @ResponseBody
+    @PostMapping("/search")
+    public List<News> Test(@RequestBody HashMap<String,String> map)//传入类型为键值对
+    {
+        String value=map.get("value");
+        System.out.println(map.get("value"));
+        List<News> newsList=iis.getNewsBysearch(value);
+       // System.out.println(newsList.get(0));
+        return newsList;
+    }
+/*
     @ResponseBody
     @GetMapping("/test")
     public List<HashMap<String,String> >Test()
@@ -43,7 +62,8 @@ public class IndexController {
                 list.add(i,mp);
         }
         return list;
-    }
+    }*/
+
     private final static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
