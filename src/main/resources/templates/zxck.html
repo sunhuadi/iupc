@@ -33,16 +33,11 @@
     <hr style="border:none;left:5%;width: 90%;height:3px;position: absolute;top:10%;z-index:1;background-color: white"/>
 
     <div class="zixun_info">
-       <span><img src="image/透明蓝色蝴蝶结.gif" style="height: 20px;width: 20px"/>  点赞</span>
-       <span><img src="image/透明蓝色蝴蝶结.gif" style="height: 20px;width: 20px"/>  点赞</span>
+        <span> <img :src="islike?'image/透明蓝色蝴蝶结.gif':'image/hdj.png'" @click="dolike" style="height: 20px;width: 20px"  />{{  '点赞: '+likenum }}</span>
     </div>
 
     <div class="zixun_pic">
-        <img  src="image/zixun_pic1.jpg" class="zixun_picture">
-        <img  src="image/zixun_pic2.jpg" class="zixun_picture">
-        <img  src="image/zixun_pic3.jpg" class="zixun_picture">
-        <img  src="image/zixun_pic4.jpg" class="zixun_picture">
-        <img  src="image/zixun_pic4.jpg" class="zixun_picture">
+        <img v-for="item in piclist"  :src="item" class="zixun_picture">
     </div>
     <div class="zixun_text">
         <table>
@@ -66,15 +61,11 @@
                 <td class="zixun_td">上新形式</td>
                 <td class="zixun_td1">{{ text_modality }}</td>
             </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td"><a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a></td>
+            </tr>
 
         </table>
-<!--         <p style="text-align: center;font-size: 25px;font-weight: bold">上新信息</p><br>-->
-<!--         <p class="zixun_textstyle">商品：{{ text_title }}</p><br>-->
-<!--         <p class="zixun_textstyle">上新店铺：{{ text_shop }}</p><br>-->
-<!--         <p class="zixun_textstyle">上新时间：{{ text_time }}</p><br>-->
-<!--         <p class="zixun_textstyle">价格：{{ text_price }}</p><br>-->
-<!--         <p class="zixun_textstyle">上新形式：{{ text_modality }}</p><br>-->
-<!--         <a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a>-->
     </div>
 </div>
 <script>
@@ -87,6 +78,21 @@
                 text_time:"6月26日21：40-7月6日21:40",
                 text_price:200,
                 text_modality:"现货（包邮）",
+                likenum:1,
+                islike:false,
+                piclist:["image/zixun_pic1.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg","image/zixun_pic4.jpg","image/zixun_pic1.jpg"],
+            },
+            methods:{
+                dolike:function () {
+                    console.log(this.likenum);
+                    if(this.islike){
+                        this.likenum--;
+                    }
+                    else{
+                        this.likenum++;
+                    }
+                    this.islike=!this.islike;
+                }
             }
         });
 
