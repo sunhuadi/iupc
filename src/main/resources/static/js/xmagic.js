@@ -1,5 +1,3 @@
-
-window.onload=function () {
     var tch=0;
     var tchstp=5;
     var maxtch=0;
@@ -75,8 +73,8 @@ window.onload=function () {
             }
 
 
-        },20),30);
-}
+        },20));
+
 
 
 

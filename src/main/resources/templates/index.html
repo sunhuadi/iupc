@@ -13,7 +13,6 @@
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
     <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
     <script type="text/javascript" th:src="@{js/vue.js}" ></script>
-    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
@@ -57,29 +56,15 @@
 </div>
 <div id="ads">
     <div class="sidepicbox" id="side_box1">
-        <img class="sideboxp" src="image/0.jpg" />
-        <img class="sideboxp" src="image/jk1.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/2.jpg" />
-        <img class="sideboxp" src="image/1.jpg" />
+        <img v-for="item in sidelist1" class="sideboxp" :src="item" />
     </div>
     <div id="pic_box">
         <div class="picbox">
-            <img src="image/dangmei1.jpg" id="pic1" class="box_pic">
-            <img src="image/dangmei2.jpg" id="pic2" class="box_pic">
-            <img src="image/dangmei3.jpg" id="pic3" class="box_pic">
+            <img  v-for="(item,index) in boxpic" :src="item" :id="'pic'+(index+1)" class="box_pic">
         </div>
     </div>
     <div class="sidepicbox" id="side_box2">
-        <img class="sideboxp" src="image/0.jpg" />
-        <img class="sideboxp" src="image/jk1.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/jk2.jpg" />
-        <img class="sideboxp" src="image/2.jpg" />
-        <img class="sideboxp" src="image/1.jpg" />
+        <img v-for="item in sidelist2" class="sideboxp" :src="item" />
     </div>
 </div>
 <div id="tourist" th:fragment="tourist">
@@ -121,128 +106,37 @@
 
 </div>
 <script>
-    window.onload=function () {
-        var tch=0;
-        var maxtch=0;
-        var search_vue= new Vue(
-            {
-                el:"#header_search",
-                data:{
-                    svalue:"在这里输入搜索内容",
-                    history_search:[],
-                    hshow:true,
-                },
-                methods:{
-                    saveit:function () {
-                        this.history_search.unshift(this.svalue);
-                        for(i=1;i<this.history_search.length;i++)
-                        {
-                            if(this.history_search[i]==this.svalue)
-                            {
-                                this.history_search.splice(i,1);
-                                break;
-                            }
-                        }
-                        console.log("aaa");
-                    },
-                    deleteit(which)
-                    {
-                        this.history_search.splice(which,1);
-                    }
-                }
-            }
-        );
-        var zx_vue=new Vue({
-            el: "#zx_box",
-            data: {
-                zxall:[
-                    {
-                        image:"image/zixun/test1.jpg",
-                        title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-22",
-                    },
-                    {
-                        image:"image/zixun/test2.jpg",
-                        title:"震惊！这条裙子美爆了！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
-                    {
-                        image:"image/zixun/test3.jpg",
-                        title:"618大促！党妹倾情推荐！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
+    var adsvue= new Vue({
+        el:"#ads",
+        data:{
+            sidelist1:[
+                "image/0.jpg",
+                "image/jk1.jpg",
+                "image/jk2.jpg",
+                "image/2.jpg",
+                "image/dm.gif",
+                "image/1.jpg",
+            ],
+            sidelist2:[
+                "image/0.jpg",
+                "image/jk1.jpg",
+                "image/jk2.jpg",
+                "image/2.jpg",
+                "image/dm.gif",
+                "image/1.jpg",
+            ],
+            boxpic:[
+                "image/dm.gif",
+                "image/1.jpg",
+                "image/2.jpg",
+            ]
+        }
 
-                ],
-                zxall_1:[
-                    {
-                        image:"image/zixun/test1.jpg",
-                        title:"震惊！这条裙子美爆了，现在买还送洗脸盆！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-22",
-                    },
-                    {
-                        image:"image/zixun/test2.jpg",
-                        title:"震惊！这条裙子美爆了！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
-                    {
-                        image:"image/zixun/test3.jpg",
-                        title:"618大促！党妹倾情推荐！",
-                        content:
-                            "这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。这是一条测试资讯，它的内容都是废话。",
-                        time:"2020-6-23",
-                    },
-
-                ]
-
-            }
-        });
-        var tourist_vue= new Vue(
-            {
-                el:"#tourist",
-                data:{
-                    tli:[
-                        {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
-                        {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
-                        {content:"三坑笔记",isshow:false,slcontent:["汉服","汉服","汉服","Lolita","JK"]},
-                        {content:"我的收藏",isshow:false,slcontent:["西装","皮鞋","袈裟"]},
-                        {content:"发布笔记",isshow:false,slcontent:["中山装","道袍","比基尼"]},
-                        {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
-                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
-                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
-                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
-                    ]
-
-                },
-                methods:{
-                    showit:function (which) {
-                        for(i=0;i<this.tli.length;i++){
-                            if(i!=which)
-                            this.tli[i].isshow=false;
-                        }
-                        tch=0;
-                        maxtch=this.tli[which].slcontent.length*31+5;
-                        this.tli[which].isshow=!(this.tli[which].isshow);
-                    }
-                }
-            });
-            var aa=document.getElementsByClassName("zxi_pic_fly");
-            var aa_1=0;
-            var aa_2=0;
-    }
-
-
+    });
 </script>
 <script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script src="js/indexvue.js" ></script>
 </body>
 <style>
 
