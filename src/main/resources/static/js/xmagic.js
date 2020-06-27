@@ -18,7 +18,6 @@
                     {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
                     {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
                 ]
-
             },
             methods:{
                 showit:function (which) {
@@ -48,7 +47,63 @@
 
         },20));
 
+    var snsh;
+    var search_vue= new Vue(
+        {
+            el:"#header_search",
+            data:{
+                svalue:"",
+                history_search:[],
+                filtersearch:[],
+                hshow:false,
+                stopunshow:false,
+            },
+            methods:{
+                saveit:function () {
+                    this.svalue=this.svalue.trim();
+                    if(this.svalue=="")
+                    {
+                        alert("搜索内容不能为空");
+                    }
+                    else{
+                        this.history_search.unshift(this.svalue);
+                        for(i=1;i<this.history_search.length;i++)
+                        {
+                            if(this.history_search[i]==this.svalue)
+                            {
+                                this.history_search.splice(i,1);
+                                break;
+                            }
+                        }
+                        sessionStorage.setItem("history_search",JSON.stringify(this.history_search));
+                        window.location.href="/zxck?searchkey=";
+                    }
 
+                },
+                deleteit(which)
+                {
+                    this.hshow=true;
+                    this.history_search.splice(which,1);
+                    sessionStorage.setItem("history_search",JSON.stringify(this.history_search));
+                },
+                doshowit()
+                {
+                    snhs=JSON.parse(sessionStorage.getItem("history_search"));
+                    console.log(snhs);
+                    if(snhs!=null){
+                        this.history_search=snhs;
+                        if(this.history_search.length>0)
+                            this.hshow=true;
+                    }
+
+                },
+                unshowit(){
+                    if(!this.stopunshow)
+                        this.hshow=false;
+                },
+            }
+        }//http://www.lynworld.cn/cloudtext.php?ctid=30
+    );
 
 
 

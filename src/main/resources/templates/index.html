@@ -113,48 +113,6 @@
             pic3:"image/0.jpg"
         }
     })
-    var search_vue= new Vue(
-        {
-            el:"#header_search",
-            data:{
-                svalue:"在这里输入搜索内容",
-                history_search:[],
-                filtersearch:[],
-                hshow:false,
-                stopunshow:false,
-            },
-            methods:{
-                saveit:function () {
-                    this.history_search.unshift(this.svalue);
-                    for(i=1;i<this.history_search.length;i++)
-                    {
-                        if(this.history_search[i]==this.svalue)
-                        {
-                            this.history_search.splice(i,1);
-                            break;
-                        }
-                    }
-                },
-                deleteit(which)
-                {
-                    this.hshow=true;
-                    this.history_search.splice(which,1);
-                },
-                doshowit()
-                {
-                    if(this.history_search.length>0)
-                    this.hshow=true;
-                    console.log(this.hshow);
-                },
-                unshowit(){
-                    if(!this.stopunshow)
-                    this.hshow=false;
-                    console.log(this.hshow);
-                    console.log(this.stopunshow);
-                },
-            }
-        }//http://www.lynworld.cn/cloudtext.php?ctid=30
-    );
 </script>
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
