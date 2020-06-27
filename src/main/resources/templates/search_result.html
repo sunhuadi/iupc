@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:insert="~{index::header}"></div>
+<div th:insert="~{index::tourist}"></div>
+<div class="mianframe">
+    <ul id="shrs">
+        <li v-for="item in searchdata">
+            <h3> {{ item.news_title }}</h3>
+            <p> {{ item.news_content }}</p>
+            <p> {{ item.news_author }}</p>
+            <p> {{ item.news_formattime }}</p>
+
+        </li>
+    </ul>
+</div>
+</body>
+<style>
+    .mianframe{
+        background: #b7e9f3;
+        color:black;
+        font-size: 30px;
+        top:10%;
+        left: 15%;
+        position: absolute;
+        width: 70%;
+        height:50%;
+    }
+</style>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script >
+    var search_kw=sessionStorage.getItem("search_keyword");
+    var rsvue= new Vue({
+        el:"#shrs",
+        data:{
+            searchdata:["123"],
+        }
+    });
+    var datas;
+    console.log(search_kw);
+    axios.post('/search', {
+        value:search_kw,
+    }).then(function (response) {
+        rsvue.searchdata=null
+        rsvue.searchdata=response.data;
+        console.log(rsvue.searchdata)
+        //console.log(response.data);
+//console.log(response.data)
+    })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
+
+</html>

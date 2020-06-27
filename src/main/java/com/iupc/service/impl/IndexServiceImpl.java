@@ -45,6 +45,9 @@ public class IndexServiceImpl implements IIndexService {
     @Override
     public List<News> getNewsBysearch(String value) {
             List<News> newsList=ns.qurryNewsByContent(value);
+        for (int i = 0; i < newsList.size(); i++) {
+            newsList.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_time()));
+        }
             return newsList;
     }
 }

@@ -76,7 +76,8 @@
                             }
                         }
                         sessionStorage.setItem("history_search",JSON.stringify(this.history_search));
-                        window.location.href="/zxck?searchkey=";
+                        sessionStorage.setItem("search_keyword",this.svalue);
+                        window.location.href="/search_result";
                     }
 
                 },
