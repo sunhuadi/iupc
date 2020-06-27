@@ -238,23 +238,6 @@
             var aa=document.getElementsByClassName("zxi_pic_fly");
             var aa_1=0;
             var aa_2=0;
-        setInterval(function () {
-            var a=document.getElementById("showtlic");
-            tch=tch+5;
-            if(a!=null)
-            if(tch>maxtch)
-            a.style.height=maxtch+'px';
-            else
-            a.style.height=tch+'px';
-            for(i=0;i<aa.length;i++)
-            {
-                console.log(aa[i]);
-                aa_1+=1;
-                aa_2+=1;
-                aa[i].style.left=aa_1+'px';
-                aa[i].style.top=aa_2+'px';
-            }
-        },20)
     }
 
 

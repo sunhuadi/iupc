@@ -1,8 +1,7 @@
-*{
-    z-index: 0;
-}
-#body{
-    background-image:url(/image/bg_blue.png);
+
+body{
+    background:url("../image/bg_blue.png") ;
+    background-size: cover;
     background-size:300px 300px;
     overflow: auto;
 }
