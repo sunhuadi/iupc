@@ -13,7 +13,6 @@ import org.springframework.jmx.support.RegistrationPolicy;
 
 
 
-@MapperScan("com.iupc.Mapper")
 // 解决jmx重复注册bean的问题
 @SpringBootApplication
 @Import(FdfsClientConfig.class)

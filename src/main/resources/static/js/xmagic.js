@@ -67,14 +67,15 @@ window.onload=function () {
             var a=document.getElementById(idname);
             //console.log(tch);
             tch+=tchstp;
-            if(a!=null)
-            if(tch>=maxtch)
-            a.style.height=maxtch+'px';
-            else
-            a.style.height=tch+'px';
+            if(a!=null){
+                if(tch>=maxtch)
+                    a.style.height=maxtch+'px';
+                else
+                    a.style.height=tch+'px';
+            }
+
 
         },20),30);
-
 }
 
 

@@ -51,9 +51,7 @@ public class CommonFileUtil {
      */
     StorageClient1  storageClient1;
     public String uploadFile(File file) throws IOException {
-
         FileInputStream inputStream = new FileInputStream(file);
-
        StorePath path = storageClient.uploadFile(inputStream, file.length(),
                 FilenameUtils.getExtension(file.getName()), null);
         return getResAccessUrl(path);
