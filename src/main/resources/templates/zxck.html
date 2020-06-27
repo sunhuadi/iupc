@@ -30,25 +30,53 @@
       <span style="font-size: 20px;color: #557496">返回</span>
     </div>
     <p class="zixun_title" >{{ title }}</p>
-    <hr style="color:black;width: 90%;"/>
+    <hr style="border:none;left:5%;width: 90%;height:3px;position: absolute;top:10%;z-index:1;background-color: white"/>
+
+    <div class="zixun_info">
+       <span><img src="image/透明蓝色蝴蝶结.gif" style="height: 20px;width: 20px"/>  点赞</span>
+       <span><img src="image/透明蓝色蝴蝶结.gif" style="height: 20px;width: 20px"/>  点赞</span>
+    </div>
+
     <div class="zixun_pic">
         <img  src="image/zixun_pic1.jpg" class="zixun_picture">
         <img  src="image/zixun_pic2.jpg" class="zixun_picture">
         <img  src="image/zixun_pic3.jpg" class="zixun_picture">
         <img  src="image/zixun_pic4.jpg" class="zixun_picture">
+        <img  src="image/zixun_pic4.jpg" class="zixun_picture">
     </div>
     <div class="zixun_text">
-         <p style="text-align: center;font-size: 25px;font-weight: bold">上新信息</p><br>
-         <p class="zixun_textstyle">商品：{{ text_title }}</p><br>
-         <p class="zixun_textstyle">上新店铺：{{ text_shop }}</p><br>
-         <p class="zixun_textstyle">上新时间：{{ text_time }}</p><br>
-         <p class="zixun_textstyle">价格：{{ text_price }}</p><br>
-         <p class="zixun_textstyle">上新形式：{{ text_modality }}</p><br>
-         <a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a>
+        <table>
+            <tr class="zixun_tr">
+                <td style="letter-spacing: 40px" class="zixun_td">商品</td>
+                <td class="zixun_td1">{{ text_title }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td">上新店铺</td>
+                <td class="zixun_td1">{{ text_shop }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td">上新时间</td>
+                <td class="zixun_td1">{{ text_time }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td">价格</td>
+                <td class="zixun_td1">{{ text_price }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td">上新形式</td>
+                <td class="zixun_td1">{{ text_modality }}</td>
+            </tr>
+
+        </table>
+<!--         <p style="text-align: center;font-size: 25px;font-weight: bold">上新信息</p><br>-->
+<!--         <p class="zixun_textstyle">商品：{{ text_title }}</p><br>-->
+<!--         <p class="zixun_textstyle">上新店铺：{{ text_shop }}</p><br>-->
+<!--         <p class="zixun_textstyle">上新时间：{{ text_time }}</p><br>-->
+<!--         <p class="zixun_textstyle">价格：{{ text_price }}</p><br>-->
+<!--         <p class="zixun_textstyle">上新形式：{{ text_modality }}</p><br>-->
+<!--         <a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a>-->
     </div>
 </div>
-
-
 <script>
         var zixunvue = new Vue({
             el: "#zixun_box",
@@ -61,22 +89,8 @@
                 text_modality:"现货（包邮）",
             }
         });
-        var aa=document.getElementsByClassName("zixun_cake");
-        var aa_1=0;
-        var aa_2=0;
-        var vx=1;
-        var vy=1;
-        var hei=document.getElementsByClassName("zixun_box").clientHeight;
-        setInterval(function () {
-            aa_1+=vx;
-            aa_2+=vy;
-            if(aa_2>100||aa_2<0)
-            {vy*=-1;}
-            if(aa_1>100||aa_1<0)
-            { vx*=-1;}
-            aa.style.left=aa_1+'px';
-            aa.style.top=aa_2+'px';
-        },20)
+
+
 </script>
 <script src="js/pic_box.js" ></script>
 </body>
@@ -87,7 +101,7 @@
         left:17%;
         top:11%;
         width: 80%;
-        height: 190%;
+        height: 110%;
         background: #E3EFF9;
         border-radius: 30px;
         margin-bottom: 100px;
@@ -95,18 +109,20 @@
     }
     .zixun_pic{
         position: relative;
-        top:4%;
+        top:8%;
         left:2%;
-        width: 46%;
-        height: 92%;
+        width: 620px;
+        height: 610px;
         margin-bottom: 100px;
+        border: #0f0f10;
+        overflow: auto;
     }
     .zixun_text{
         position: absolute;
         left: 53%;
-        top:9%;
+        top:17%;
         width: 40%;
-        height: 40%;
+        height: 70%;
         font-size:24px;
         background-color: #FFF7ED;
         padding: 30px;
@@ -118,7 +134,9 @@
         position: relative;
         width: 290px;
         height: 290px;
-        margin: 8px;
+       margin-bottom: 10px;
+        margin-right: 10px;
+        margin-left: 0;
     }
     .zixun_picture:hover{
         transform: scale(1.05);
@@ -138,12 +156,33 @@
     .zixun_textstyle:hover{
         color:#B55464;
     }
-    .zixun_cake{
+    .zixun_info{
         position: absolute;
-        left:20%;
-        height: 50px;
-        width: 50px;
-        z-index: 1;
+        top:5%;
+        width: 300px;
+        height: 70px;
+        left: 70%;
+        background-color: #1fc231;
+    }
+    .zixun_tr{
+
+        width: 400px;
+        height: 40px;
+        margin: 20px;
+    }
+    .zixun_td{
+
+        width: 150px;
+        height: 35px;
+        margin: 8px;
+
+    }.zixun_td1{
+        width: 280px;
+        height: 35px;
+        font-size: 23px;
+        margin: 8px;
+        margin-left: 40px;
+
     }
 
 </style>
