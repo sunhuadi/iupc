@@ -2,34 +2,7 @@
     var tchstp=5;
     var maxtch=0;
     var whichone=0;
-    var search_vue= new Vue(
-        {
-            el:"#header_search",
-            data:{
-                svalue:"在这里输入搜索内容",
-                history_search:[],
-                hshow:true,
-            },
-            methods:{
-                saveit:function () {
-                    this.history_search.unshift(this.svalue);
-                    for(i=1;i<this.history_search.length;i++)
-                    {
-                        if(this.history_search[i]==this.svalue)
-                        {
-                            this.history_search.splice(i,1);
-                            break;
-                        }
-                    }
-                    console.log("aaa");
-                },
-                deleteit(which)
-                {
-                    this.history_search.splice(which,1);
-                }
-            }
-        }
-    );
+
     var tourist_vue= new Vue(
         {
             el:"#tourist",

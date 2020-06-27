@@ -8,7 +8,6 @@ var l=boxs.clientWidth;
 var fx=1;
 var v=0.001;
 var wt=0.2;
-
 var sdbox1=document.getElementById("side_box1");
 var sdbox2=document.getElementById("side_box2");
 var cn=0;
@@ -21,7 +20,6 @@ var lck1=0,lck2=0;
 var st=0;
 function ds(p1,p2,p3)
 {
-
     l=boxs.clientWidth;
     var h=l/2;
     n=n+fx*v;//长度比例
@@ -84,7 +82,5 @@ function ds(p1,p2,p3)
     p2.style.height=h+'px';
     p3.style.height=h+'px';
     boxs.style.height=h+10+'px';
-
-
 }
 setInterval("ds(pic1,pic2,pic3)",1);

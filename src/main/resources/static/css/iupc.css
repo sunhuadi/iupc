@@ -69,7 +69,6 @@ body{
     position: absolute;
     overflow: auto;
     top:10%;
-
 }
 .sideboxp{
     height:38%;
@@ -79,7 +78,6 @@ body{
     margin-bottom: 6px;
     border: #0f0f0f;
     border-width: 2px;
-
 }
 #side_box1{
     left:14%;
@@ -87,13 +85,12 @@ body{
 #side_box2{
     left:78%;
 }
-
 #ads{
     width: 100%;
     height:43%;
     position:absolute;
     top:10%;
-    background:  rgb(200,240,240,0.2);
+    background: rgb(200,240,240,0.2);
 }
 #pic_box{
     position: absolute;
@@ -105,7 +102,6 @@ body{
     border-width: 5px;
     border-style: solid;
     text-align: center;
-
 }
 .box_pic{
     position: absolute;
@@ -114,7 +110,6 @@ body{
     top:0;
     text-align: left;
 }
-
 ul li{
     margin: 0;
     padding: 0;
@@ -172,7 +167,6 @@ ul li{
     transform: scale(1.05);
 }
 .zxi_title{
-
     position:absolute;
     font-size:18px;
     font-weight: bold;
@@ -220,7 +214,6 @@ ul li{
     z-index: 1;
     line-height: 35px;
 }
-
 .hsearch_button{
     display: inline-block;
     left:660px;
@@ -285,12 +278,9 @@ ul li{
     margin: 15px;
     font-size:40px;
 }
-
 #header_biaoti{
     position: absolute;
     width: 150px;
     height: 70px;
     left:8%;
-
-
 }
