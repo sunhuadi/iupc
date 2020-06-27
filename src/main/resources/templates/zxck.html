@@ -24,10 +24,127 @@
 <body>
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
-</body>
-<script>
+<div id="zixun_box">
+    <div>
+      <img style="width: 90px;height: 78px" src="image/返回.png" >
+      <span style="font-size: 20px;color: #557496">返回</span>
+    </div>
+    <p class="zixun_title" >{{ title }}</p>
+    <hr style="color:black;width: 90%;"/>
+    <div class="zixun_pic">
+        <img  src="image/zixun_pic1.jpg" class="zixun_picture">
+        <img  src="image/zixun_pic2.jpg" class="zixun_picture">
+        <img  src="image/zixun_pic3.jpg" class="zixun_picture">
+        <img  src="image/zixun_pic4.jpg" class="zixun_picture">
+    </div>
+    <div class="zixun_text">
+         <p style="text-align: center;font-size: 25px;font-weight: bold">上新信息</p><br>
+         <p class="zixun_textstyle">商品：{{ text_title }}</p><br>
+         <p class="zixun_textstyle">上新店铺：{{ text_shop }}</p><br>
+         <p class="zixun_textstyle">上新时间：{{ text_time }}</p><br>
+         <p class="zixun_textstyle">价格：{{ text_price }}</p><br>
+         <p class="zixun_textstyle">上新形式：{{ text_modality }}</p><br>
+         <a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a>
+    </div>
+</div>
 
+
+<script>
+        var zixunvue = new Vue({
+            el: "#zixun_box",
+            data:{
+                title: "闲乘月",
+                text_title:"格裙 闲乘月",
+                text_shop:"Sumire-栗米JK馆",
+                text_time:"6月26日21：40-7月6日21:40",
+                text_price:200,
+                text_modality:"现货（包邮）",
+            }
+        });
+        var aa=document.getElementsByClassName("zixun_cake");
+        var aa_1=0;
+        var aa_2=0;
+        var vx=1;
+        var vy=1;
+        var hei=document.getElementsByClassName("zixun_box").clientHeight;
+        setInterval(function () {
+            aa_1+=vx;
+            aa_2+=vy;
+            if(aa_2>100||aa_2<0)
+            {vy*=-1;}
+            if(aa_1>100||aa_1<0)
+            { vx*=-1;}
+            aa.style.left=aa_1+'px';
+            aa.style.top=aa_2+'px';
+        },20)
 </script>
+<script src="js/pic_box.js" ></script>
+</body>
+
 <style>
+    #zixun_box{
+        position: absolute;
+        left:17%;
+        top:11%;
+        width: 80%;
+        height: 190%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+
+    }
+    .zixun_pic{
+        position: relative;
+        top:4%;
+        left:2%;
+        width: 46%;
+        height: 92%;
+        margin-bottom: 100px;
+    }
+    .zixun_text{
+        position: absolute;
+        left: 53%;
+        top:9%;
+        width: 40%;
+        height: 40%;
+        font-size:24px;
+        background-color: #FFF7ED;
+        padding: 30px;
+        border-radius: 30px;
+
+
+    }
+    .zixun_picture{
+        position: relative;
+        width: 290px;
+        height: 290px;
+        margin: 8px;
+    }
+    .zixun_picture:hover{
+        transform: scale(1.05);
+    }
+    .zixun_title{
+        position:absolute;
+        font-size:35px;
+        font-weight: bold;
+        top:1.5%;
+        width: 40%;
+        left: 30%;
+        text-align: center;
+        color: #557496;
+    }
+    .zixun_textstyle{
+    }
+    .zixun_textstyle:hover{
+        color:#B55464;
+    }
+    .zixun_cake{
+        position: absolute;
+        left:20%;
+        height: 50px;
+        width: 50px;
+        z-index: 1;
+    }
+
 </style>
 </html>

@@ -4,6 +4,7 @@
 #body{
     background-image:url(/image/bg_blue.png);
     background-size:300px 300px;
+    overflow: auto;
 }
 .touristcont_lp{
     letter-spacing: 5px;
@@ -198,30 +199,33 @@ ul li{
     font-size:14px;
 }
 #search_list{
-    width: 300px;
+    width: 700px;
     padding: 5px;
     list-style: none;
     border-radius: 10px;
     border: #0f0f0f;
-    background: #f7ffd4;
+    background: #FFF7ED;
     border-style: wave;
-    z-index: 999;
+    z-index: 1;
 }
 .search-hli{
-    width:240px;
+    width:650px;
     min-height:30px;
     background: white;
     border: #0bffd8;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 20px;
     margin-top:5px;
     padding-left:20px;
     padding-right: 5px;
     font-family: 腾祥匆匆体简;
-    z-index: -999;
+    z-index: 1;
+    line-height: 35px;
 }
+
 .hsearch_button{
     display: inline-block;
+    left:660px;
     margin: 0;
     height:30px;
     width: 30px;
@@ -230,6 +234,7 @@ ul li{
     right:20px;
     background: none;
     border:none;
+    z-index: 1;
 }
 .header{
     position: fixed;
@@ -240,7 +245,7 @@ ul li{
 }
 #header_search{
     position: absolute;
-    left:25%;
+    left:30%;
     top:10px;
     width:300px;
     height:100px;
@@ -281,4 +286,13 @@ ul li{
     top:15px;
     margin: 15px;
     font-size:40px;
+}
+
+#header_biaoti{
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    left:8%;
+
+
 }

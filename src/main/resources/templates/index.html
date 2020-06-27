@@ -29,9 +29,8 @@
     </div>
 
     <div id="header_biaoti">
-        <img style="height:78px;width:350px;" src="image/三坑圈.png" />
+        <img style="height:78px;width:300px;" src="image/三坑圈.png" />
     </div>
-
 
     <div id="header_search" class="ui search">
         <div style="height: 60px;width: 800px;" class="ui icon input">
@@ -83,7 +82,7 @@
         <img class="sideboxp" src="image/1.jpg" />
     </div>
 </div>
-<div id="tourist">
+<div id="tourist" th:fragment="tourist">
     <div v-for="(item,index) in tli">
         <div   class="tourist_li" >
             <p class="tourist_lp">{{ item.content }}</p>
@@ -100,6 +99,7 @@
     <div id="zx_box_1">
         <div v-for="item in zxall" class="zxi">
             <img class="zxi_pic"  :src="item.image" />
+            <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
             <div class="zxi_text">
                 <p class="zxi_title" >{{ item.title }}</p>
                 <p class="zxi_content">{{ item.content }}</p>
@@ -110,6 +110,7 @@
     <div id="zx_box_2">
         <div v-for="item in zxall_1" class="zxi">
             <img class="zxi_pic"  :src="item.image" />
+            <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
             <div class="zxi_text">
                 <p class="zxi_title" >{{ item.title }}</p>
                 <p class="zxi_content">{{ item.content }}</p>
@@ -217,6 +218,8 @@
                         {content:"发布笔记",isshow:false,slcontent:["中山装","道袍","比基尼"]},
                         {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
                         {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                        {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
                     ]
 
                 },
@@ -231,16 +234,27 @@
                         this.tli[which].isshow=!(this.tli[which].isshow);
                     }
                 }
-            },
+            });
+            var aa=document.getElementsByClassName("zxi_pic_fly");
+            var aa_1=0;
+            var aa_2=0;
         setInterval(function () {
             var a=document.getElementById("showtlic");
             tch=tch+5;
+            if(a!=null)
             if(tch>maxtch)
             a.style.height=maxtch+'px';
             else
             a.style.height=tch+'px';
-
-        },20),)
+            for(i=0;i<aa.length;i++)
+            {
+                console.log(aa[i]);
+                aa_1+=1;
+                aa_2+=1;
+                aa[i].style.left=aa_1+'px';
+                aa[i].style.top=aa_2+'px';
+            }
+        },20)
     }
 
 
@@ -248,6 +262,14 @@
 <script src="js/pic_box.js" ></script>
 </body>
 <style>
+
+    .zxi_pic_fly{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+    }
 
 </style>
 </html>
