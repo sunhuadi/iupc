@@ -32,10 +32,10 @@
     </div>
     <div id="header_search" class="ui search">
         <div style="height: 60px;width: 800px;" class="ui icon input">
-            <input class="prompt" type="text" placeholder="" v-model="svalue" @Blur="unshowit"  @focus="doshowit"  @keyup.enter="saveit" >
+            <input class="prompt" type="text" placeholder="" v-model="svalue" @Blur="unshowit" @focus="doshowit" @keyup.enter="saveit" >
             <button style="background-color: #FDEDED; height:50px;width:80px;margin-top:6px; display: inline-block" class="ui button" @click="saveit">搜索</button>
         </div>
-        <div class="results"   @click="hshow=false" ></div>
+        <div class="results" @click="hshow=false" ></div>
         <ul @mouseover="stopunshow=true" @mouseleave="stopunshow=false" v-show="hshow&history_search.length>0" id="search_list">
             <li v-for="(item,index) in history_search" @click.self="svalue=item;hshow=false" class="search-hli">
                 {{ item }}
@@ -54,12 +54,11 @@
 <div id="ads">
     <div class="sidepicbox" id="side_box1">
         <img v-for="item in sidelist1" class="sideboxp" :src="item" />
-
     </div>
     <div id="pic_box">
-            <img :src="pic1" alt="" id="pic1" class="box_pic"  />
-            <img :src="pic2" alt="" id="pic2" class="box_pic" />
-            <img :src="pic3" alt="" id="pic3" class="box_pic" />
+        <img :src="pic1" alt="" id="pic1" class="box_pic" />
+        <img :src="pic2" alt="" id="pic2" class="box_pic" />
+        <img :src="pic3" alt="" id="pic3" class="box_pic" />
     </div>
     <div class="sidepicbox" id="side_box2">
         <img v-for="item in sidelist2" class="sideboxp" :src="item" />

@@ -12,6 +12,8 @@
     <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
+    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
     <script type="text/javascript" th:src="@{js/vue.js}" ></script>
     <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -24,89 +26,107 @@
 <div th:insert="~{index::tourist}"></div>
 <div id="zixun_box">
     <div>
-      <img style="width: 90px;height: 78px" src="image/返回.png" >
-      <span style="font-size: 20px;color: #557496">返回</span>
+        <img style="width: 90px;height: 78px" src="image/返回.png" >
+        <span style="font-size: 20px;color: #557496">返回</span>
     </div>
     <p class="zixun_title" >{{ title }}</p>
-    <hr style="border:none;left:5%;width: 90%;height:3px;position: absolute;top:10%;z-index:1;background-color: white"/>
+    <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
 
     <div class="zixun_info">
-        <span> <img :src="islike?'image/透明蓝色蝴蝶结.gif':'image/hdj.png'" @click="dolike" style="height: 20px;width: 20px"  />{{  '点赞: '+likenum }}</span>
+        <span> <img :src="islike?'image/透明蓝色蝴蝶结.gif':'image/hdj.png'" @click="dolike" style="height: 30px;width: 30px"  />{{  '点赞: '+likenum }}</span>
+        <span> <img src="image/cake.png"  style="height: 30px;width: 30px"  />{{  '浏览: '+looknum }}</span>
+        <span style="margin-left: 30px"> {{text_fbtime}}</span>
+        <span>{{'By  '+text_shop}}</span>
     </div>
 
     <div class="zixun_pic">
         <img v-for="item in piclist"  :src="item" class="zixun_picture">
     </div>
     <div class="zixun_text">
-        <table>
+        <table style="border-collapse:separate; border-spacing:0px 40px;">
             <tr class="zixun_tr">
                 <td style="letter-spacing: 40px" class="zixun_td">商品</td>
                 <td class="zixun_td1">{{ text_title }}</td>
             </tr>
+
             <tr class="zixun_tr">
                 <td class="zixun_td">上新店铺</td>
                 <td class="zixun_td1">{{ text_shop }}</td>
             </tr>
+
             <tr class="zixun_tr">
                 <td class="zixun_td">上新时间</td>
                 <td class="zixun_td1">{{ text_time }}</td>
             </tr>
+
             <tr class="zixun_tr">
-                <td class="zixun_td">价格</td>
+                <td style="letter-spacing: 40px" class="zixun_td">价格</td>
                 <td class="zixun_td1">{{ text_price }}</td>
             </tr>
+
             <tr class="zixun_tr">
                 <td class="zixun_td">上新形式</td>
                 <td class="zixun_td1">{{ text_modality }}</td>
             </tr>
+
+
             <tr class="zixun_tr">
                 <td class="zixun_td"><a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a></td>
             </tr>
-
         </table>
+
+
     </div>
+    <div class="zixun_intro">
+        <p class="zixun_intro_text">
+            {{'商品简介:'+text_intro}}
+        </p>
+    </div>
+
 </div>
 <script>
-        var zixunvue = new Vue({
-            el: "#zixun_box",
-            data:{
-                title: "闲乘月",
-                text_title:"格裙 闲乘月",
-                text_shop:"Sumire-栗米JK馆",
-                text_time:"6月26日21：40-7月6日21:40",
-                text_price:200,
-                text_modality:"现货（包邮）",
-                likenum:1356,
-                islike:false,
-                piclist:["image/zixun_pic1.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg","image/zixun_pic4.jpg","image/zixun_pic1.jpg"],
-            },
-            methods:{
-                dolike:function () {
-                    console.log(this.likenum);
-                    if(this.islike){
-                        this.likenum--;
-                    }
-                    else{
-                        this.likenum++;
-                    }
-                    this.islike=!this.islike;
+    var zixunvue = new Vue({
+        el: "#zixun_box",
+        data:{
+            text_fbtime:"5月20日13：14",
+            title: "闲乘月",
+            text_title:"格裙 闲乘月",
+            text_shop:"Sumire-栗米JK馆",
+            text_time:"6月26日21：40-7月6日21:40",
+            text_price:200,
+            text_modality:"现货（包邮）",
+            text_intro:"这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆",
+            likenum:1,
+            looknum:100,
+            islike:false,
+            piclist:["image/zixun_pic1.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg","image/zixun_pic4.jpg","image/zixun_pic1.jpg"],
+        },
+        methods:{
+            dolike:function () {
+                console.log(this.likenum);
+                if(this.islike){
+                    this.likenum--;
                 }
+                else{
+                    this.likenum++;
+                }
+                this.islike=!this.islike;
             }
-        });
+        }
+    });
 
 
 </script>
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
 </body>
-
 <style>
     #zixun_box{
         position: absolute;
         left:17%;
         top:11%;
         width: 80%;
-        height: 110%;
+        height: 130%;
         background: #E3EFF9;
         border-radius: 30px;
         margin-bottom: 100px;
@@ -120,26 +140,24 @@
         height: 610px;
         margin-bottom: 100px;
         border: #0f0f10;
-        overflow: auto;
+        overflow:auto;
     }
     .zixun_text{
         position: absolute;
         left: 53%;
-        top:17%;
+        top:15.5%;
         width: 40%;
-        height: 70%;
+        height: 60%;
         font-size:24px;
         background-color: #FFF7ED;
         padding: 30px;
         border-radius: 30px;
-
-
     }
     .zixun_picture{
         position: relative;
         width: 290px;
         height: 290px;
-       margin-bottom: 10px;
+        margin-bottom: 10px;
         margin-right: 10px;
         margin-left: 0;
     }
@@ -149,31 +167,30 @@
     .zixun_title{
         position:absolute;
         font-size:35px;
-        font-weight: bold;
+        /*font-weight: bold;*/
         top:1.5%;
         width: 40%;
         left: 30%;
         text-align: center;
         color: #557496;
-    }
-    .zixun_textstyle{
-    }
-    .zixun_textstyle:hover{
-        color:#B55464;
+        letter-spacing: 20px;
     }
     .zixun_info{
         position: absolute;
-        top:5%;
+        top:6%;
         width: 300px;
-        height: 70px;
-        left: 70%;
-        background-color: #1fc231;
+        height: 60px;
+        left: 77.5%;
+        background-color: #D4E5F3;
     }
     .zixun_tr{
 
-        width: 400px;
+        width: 500px;
         height: 40px;
-        margin: 20px;
+
+    }
+    .zixun_tr:hover{
+        color:#C97582;
     }
     .zixun_td{
 
@@ -182,12 +199,22 @@
         margin: 8px;
 
     }.zixun_td1{
-        width: 280px;
-        height: 35px;
-        font-size: 23px;
-        margin: 8px;
-        margin-left: 40px;
-
+         width: 350px;
+         height: 35px;
+         font-size: 23px;
+     }
+    .zixun_intro{
+        position: absolute;
+        top:80%;
+        width: 92%;
+        height: 16%;
+        left:2%;
+        background-color:#FFF7ED ;
+        border-radius: 30px;
+    }
+    .zixun_intro_text{
+        font-size: 20px;
+        margin: 40px;
     }
 
 </style>

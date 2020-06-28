@@ -27,7 +27,6 @@
             <p> {{ item.news_content }}</p>
             <p> {{ item.news_author }}</p>
             <p> {{ item.news_formattime }}</p>
-
         </li>
     </ul>
 </div>
@@ -56,6 +55,7 @@
     });
     var datas;
     console.log(search_kw);
+
     axios.post('/search', {
         value:search_kw,
     }).then(function (response) {
