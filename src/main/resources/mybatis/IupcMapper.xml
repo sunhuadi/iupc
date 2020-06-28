@@ -7,9 +7,10 @@
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
-    <select id="qurryNewsByContent" resultType="News" parameterType="String">
+    <select id="qurryNewsByContent" resultType="News" parameterType="News">
         select * from news
-        where news_content like concat('%',#{value},'%')
+        where news_content like concat('%',#{news_content},'%')
+        or news_title like concat('%',#{news_title},'%')
     </select>
     <select id="qurryNewsById" resultType="News" parameterType="String">
         select * from news

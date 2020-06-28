@@ -50,11 +50,14 @@ public class IndexController {
 
     @ResponseBody
     @PostMapping("/search")
-    public List<News> Test(@RequestBody HashMap<String,String> map)//传入类型为键值对
+    public List<News>Test(@RequestBody News news)//传入类型为键值对
     {
-        String value=map.get("value");
-        System.out.println("搜索请求，关键字： "+map.get("value"));
-        List<News> newsList=iis.getNewsBysearch(value);
+        //String value=map.get("value");
+        System.out.println(news.getNews_title());
+        System.out.println(news.getNews_content());
+       // List<News> newsl=iis.getNewsBysearch(value);
+        List<News> newsList=iis.getNewsBysearch(news);
+
        // System.out.println(newsList.get(0));
         return newsList;
     }

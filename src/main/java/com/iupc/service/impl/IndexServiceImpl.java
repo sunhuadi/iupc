@@ -43,12 +43,22 @@ public class IndexServiceImpl implements IIndexService {
     }
 
     @Override
-    public List<News> getNewsBysearch(String value) {
-            List<News> newsList=ns.qurryNewsByContent(value);
-        for (int i = 0; i < newsList.size(); i++) {
-            newsList.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_time()));
-            newsList.get(i).setNews_fbegintime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_begintime()));
-            newsList.get(i).setNews_fstoptime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_stoptime()));
+    public List<News>getNewsBysearch(News news) {
+        List<News> newsListall=ns.qurryNewsByContent(news);
+
+        for(int i=0;i<newsListall.size();i++)
+        {
+            newsListall.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsListall.get(i).getNews_time()));
+                /*
+                if(i%2==0)
+                {
+                    newsList[0].add(newsListall.get(i));
+                    System.out.println("i%2==0:"+newsListall.get(i).getNews_title());
+                }
+                else {
+                    newsList[1].add(newsListall.get(i));
+                    System.out.println("i%2!=0:"+newsListall.get(i).getNews_title());
+                }*/
         }
             return newsList;
     }
