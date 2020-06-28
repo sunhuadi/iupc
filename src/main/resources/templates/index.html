@@ -79,15 +79,7 @@
     <p class="zx_box_title">热门资讯</p>
     <hr style="color:black;" />
     <div id="zx_box_1">
-<!--        <div v-for="item in zxall" class="zxi">-->
-<!--            <img class="zxi_pic" :src="item.image" />-->
-<!--            <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">-->
-<!--            <div class="zxi_text">-->
-<!--                <p class="zxi_title" >{{ item.title }}</p>-->
-<!--                <p class="zxi_content">{{ item.content }}</p>-->
-<!--                <p class="zxi_time" >{{item.time }}</p>-->
-<!--            </div>-->
-<!--        </div>-->
+<!--
         <news  v-for="item in zxall" myclassname="zxi" :news_title="item.title" :news_id="3" :news_img="item.image" :news_time="item.time" :news_content="item.content">
         </news>
     </div>
