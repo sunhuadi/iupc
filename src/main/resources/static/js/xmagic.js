@@ -99,3 +99,28 @@ var search_vue= new Vue(
         }
     }//http://www.lynworld.cn/cloudtext.php?ctid=30
 );
+Vue.component("news",{
+    template:`
+<div :class="myclassname">
+<img class="zxi_pic" :src="news_img" />
+<img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
+<div class="zxi_text">
+<p class="zxi_title" ><a href="http://www.lynworld.cn">{{ news_title }}</a></p>
+<p class="zxi_content">{{ shortifycontent }}</p>
+<p class="zxi_time" >{{ news_time }}</p>
+</div>
+</div>`,
+    props:{
+        news_title:String,
+        news_id:String,
+        news_time:String,
+        news_img:String,
+        news_content:String,
+        myclassname:String,
+    },
+    computed:{
+        shortifycontent(){
+            return this.news_content.slice(0,200);
+        }
+    }
+})
