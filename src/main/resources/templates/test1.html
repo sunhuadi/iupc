@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
 </body>
+<script>
+    axios.post('/search', {
+        value:"2",
+    }).then(function (response) {
+        console.log(response)
+    })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
 </html>

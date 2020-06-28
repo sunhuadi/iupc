@@ -11,10 +11,7 @@
     <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
-    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
-    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
     <script type="text/javascript" th:src="@{js/vue.js}" ></script>
-    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
@@ -25,11 +22,7 @@
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
 <div id="zixun_box">
-    <div>
-        <img style="width: 90px;height: 78px" src="image/返回.png" >
-        <span style="font-size: 20px;color: #557496">返回</span>
-    </div>
-
+    <gotoback></gotoback>
     <p class="zixun_title" >{{ title }}</p>
 
     <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
@@ -55,6 +48,9 @@
     </div>
 
 </div>
+
+</body>
+<script src="js/xmagic.js" ></script>
 <script>
     var zixunvue = new Vue({
         el: "#zixun_box",
@@ -85,13 +81,11 @@
         }
     });
 
-</script>
-<script src="js/pic_box.js" ></script>
-<script src="js/xmagic.js" ></script>
-</body>
-<script>
 
+
+    //
 </script>
+
 <style>
     #zixun_box{
         position: absolute;

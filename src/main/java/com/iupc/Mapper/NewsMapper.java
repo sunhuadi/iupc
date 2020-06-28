@@ -11,5 +11,6 @@ import java.util.List;
 public interface NewsMapper {
     List<News> qurryAllNews();
     List<News> qurryNewsByContent(String value);
+    List<News> qurryNewsById(String value);
 
 }

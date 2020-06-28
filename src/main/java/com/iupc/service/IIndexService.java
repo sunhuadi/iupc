@@ -9,4 +9,5 @@ public interface IIndexService {
     List<zixun> getAll();
     List<News> getAllnews();
     List<News> getNewsBysearch(String value);
+    List<News> getNewsById(String value);
 }

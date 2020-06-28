@@ -11,6 +11,60 @@ public class News {
     private String news_img;
     private String news_good;
     private String news_title;
+    private java.util.Date news_stoptime;
+    private java.util.Date news_begintime;
+    private String news_fbegintime;
+    private String news_fstoptime;
+    private String news_updateway;
+    private float news_price;
+    public Date getNews_stoptime() {
+        return news_stoptime;
+    }
+
+    public void setNews_stoptime(Date news_stoptime) {
+        this.news_stoptime = news_stoptime;
+    }
+
+    public Date getNews_begintime() {
+        return news_begintime;
+    }
+
+    public void setNews_begintime(Date news_begintime) {
+        this.news_begintime = news_begintime;
+    }
+
+    public String getNews_fbegintime() {
+        return news_fbegintime;
+    }
+
+    public void setNews_fbegintime(String news_fbegintime) {
+        this.news_fbegintime = news_fbegintime;
+    }
+
+    public String getNews_fstoptime() {
+        return news_fstoptime;
+    }
+
+    public void setNews_fstoptime(String news_fstoptime) {
+        this.news_fstoptime = news_fstoptime;
+    }
+
+    public String getNews_updateway() {
+        return news_updateway;
+    }
+
+    public void setNews_updateway(String news_updateway) {
+        this.news_updateway = news_updateway;
+    }
+
+    public float getNews_price() {
+        return news_price;
+    }
+
+    public void setNews_price(float news_price) {
+        this.news_price = news_price;
+    }
+
 
     public String getNews_title() {
         return news_title;

@@ -12,13 +12,11 @@
     <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
     <script type="text/javascript" th:src="@{js/npm.js}" ></script>
-    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
-    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
     <script type="text/javascript" th:src="@{js/vue.js}" ></script>
-    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -85,7 +83,7 @@
 
 </div>
 <script>
-    var zixunvue = new Vue({
+    var newsvue = new Vue({
         el: "#zixun_box",
         data:{
             text_fbtime:"5月20日13：14",
@@ -93,7 +91,7 @@
             text_title:"格裙 闲乘月",
             text_shop:"Sumire-栗米JK馆",
             text_time:"6月26日21：40-7月6日21:40",
-            text_price:200,
+            text_price:200.0,
             text_modality:"现货（包邮）",
             text_intro:"这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆",
             likenum:1,
@@ -114,7 +112,25 @@
             }
         }
     });
-
+    axios.post('/search', {
+        value:"2",
+    }).then(function (response) {
+       var datas=response.data;
+       console.log(datas)
+       if(datas!=null)
+       {
+           newsvue.text_fbtime=datas[0].news_formattime;
+           newsvue.text_title=datas[0].news_title;
+           newsvue.text_intro=datas[0].news_content;
+           newsvue.text_shop=datas[0].news_author;
+           newsvue.text_modality=datas[0].news_updateway;
+           newsvue.text_price=datas[0].news_price;
+           newsvue.text_time=datas[0].news_fbegintime+" -- "+datas[0].news_fstoptime;
+       }
+    })
+        .catch(function (error) {
+            console.log(error);
+        });
 
 </script>
 <script src="js/pic_box.js" ></script>

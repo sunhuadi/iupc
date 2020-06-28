@@ -1,3 +1,7 @@
+/*
+ * 侧边栏
+ * 导航栏
+ */
 var tch=0;
 var tchstp=5;
 var maxtch=0;
@@ -34,7 +38,6 @@ var tourist_vue= new Vue(
     setInterval(function () {
         var idname="showtlic";
         var a=document.getElementById(idname);
-//console.log(tch);
         tch+=tchstp;
         if(a!=null){
             if(tch>=maxtch)
@@ -43,6 +46,9 @@ var tourist_vue= new Vue(
                 a.style.height=tch+'px';
         }
     },20));
+/*
+ * 搜索
+ */
 var snsh;
 var search_vue= new Vue(
     {
@@ -97,19 +103,28 @@ var search_vue= new Vue(
                     this.hshow=false;
             },
         }
-    }//http://www.lynworld.cn/cloudtext.php?ctid=30
+    }
 );
+/*
+ *news 组件
+ * myclassname  设置class
+ * news_title   设置标题
+ * news_img     设置图片地址
+ * news_content 设置内容，当字数大于200时会截取到200
+ * news_id      设置news的id，用于跳转
+ * news_time    设置news发布时间
+ */
 Vue.component("news",{
     template:`
-<div :class="myclassname">
-<img class="zxi_pic" :src="news_img" />
-<img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
-<div class="zxi_text">
-<p class="zxi_title" ><a href="http://www.lynworld.cn">{{ news_title }}</a></p>
-<p class="zxi_content">{{ shortifycontent }}</p>
-<p class="zxi_time" >{{ news_time }}</p>
-</div>
-</div>`,
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="news_img" />
+        <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
+        <div class="zxi_text">
+        <p class="zxi_title" ><a href="http://www.lynworld.cn">{{ news_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ news_time }}</p>
+        </div>
+        </div>`,
     props:{
         news_title:String,
         news_id:String,
@@ -124,3 +139,20 @@ Vue.component("news",{
         }
     }
 })
+/*
+ * 返回按钮组件
+ *  myclassname 设置class
+ */
+Vue.component("gotoback",{
+    template:`
+        <span :class="myclassname"  @click="dogoback" >返回</span>
+    `,
+    methods: {
+        dogoback(){
+            history.back();
+        }
+    },
+    props: {
+        myclassname: String,
+    }
+});
