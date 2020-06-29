@@ -1,22 +1,38 @@
 package com.iupc.pojo;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import org.springframework.context.annotation.Bean;
+
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class News {
     private String news_id;
     private String news_content;
     private String news_author;
-    private java.util.Date news_time;
-    private String news_formattime;
+    private java.sql.Timestamp news_time;
     private String news_img;
     private String news_good;
     private String news_title;
     private java.util.Date news_stoptime;
     private java.util.Date news_begintime;
-    private String news_fbegintime;
-    private String news_fstoptime;
     private String news_updateway;
     private float news_price;
+
+    public void setNews(String news_id, String news_content, String news_author, Timestamp news_time, String news_img, String news_good, String news_title, Date news_stoptime, Date news_begintime, String news_updateway, float news_price) {
+        this.news_id = news_id;
+        this.news_content = news_content;
+        this.news_author = news_author;
+        this.news_time = news_time;
+        this.news_img = news_img;
+        this.news_good = news_good;
+        this.news_title = news_title;
+        this.news_stoptime = news_stoptime;
+        this.news_begintime = news_begintime;
+        this.news_updateway = news_updateway;
+        this.news_price = news_price;
+    }
+
     public Date getNews_stoptime() {
         return news_stoptime;
     }
@@ -33,21 +49,6 @@ public class News {
         this.news_begintime = news_begintime;
     }
 
-    public String getNews_fbegintime() {
-        return news_fbegintime;
-    }
-
-    public void setNews_fbegintime(String news_fbegintime) {
-        this.news_fbegintime = news_fbegintime;
-    }
-
-    public String getNews_fstoptime() {
-        return news_fstoptime;
-    }
-
-    public void setNews_fstoptime(String news_fstoptime) {
-        this.news_fstoptime = news_fstoptime;
-    }
 
     public String getNews_updateway() {
         return news_updateway;
@@ -102,18 +103,6 @@ public class News {
 
     public Date getNews_time() {
         return news_time;
-    }
-
-    public void setNews_time(Date news_time) {
-        this.news_time = news_time;
-    }
-
-    public String getNews_formattime() {
-        return news_formattime;
-    }
-
-    public void setNews_formattime(String news_formattime) {
-        this.news_formattime = news_formattime;
     }
 
     public String getNews_img() {

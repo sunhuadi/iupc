@@ -16,4 +16,10 @@
         select * from news
         where news_id=#{value}
     </select>
+    <insert id="insertNews" parameterType="News">
+     insert into news
+     (news_id,news_content,news_author,news_time,news_img,news_good,news_title,news_stoptime,news_begintime,news_updateway,news_price)
+      values
+      (#{news_id}, #{news_content}, #{news_author}, #{news_time}, #{news_img}, #{news_good}, #{news_title}, #{news_stoptime}, #{news_begintime}, #{news_updateway}, #{news_price})
+</insert>
 </mapper>

@@ -11,8 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.crypto.Data;
 import java.io.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,11 +34,18 @@ public class IndexController {
         return "index";
     }*/
     @ResponseBody
-    @GetMapping("/getnews")
+    @GetMapping("/getallnews")
     public List<News> index(Model model)
     {
+       // Date date=new Date();
+        System.out.println("util:"+new Date());
+       // System.out.println("sql:"+new java.sql.Date(new Date()));
+       // java.util.Date dt = new java.util.Date();
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        //String currentTime = dt.toString();
+        //Date date = new Date();
         List<News> newsList=iis.getAllnews();
-        System.out.println(newsList.get(0));
+        System.out.println(currentTime);
         return newsList;
     }
 
@@ -50,7 +61,7 @@ public class IndexController {
 
     @ResponseBody
     @PostMapping("/search")
-    public List<News>Test(@RequestBody News news)//传入类型为键值对
+    public List<News>Test(@RequestBody News news)//传入类型为News对象
     {
         //String value=map.get("value");
         System.out.println(news.getNews_title());
@@ -92,6 +103,13 @@ public class IndexController {
         System.out.println(path);
         return "success";
     }
+    @PostMapping("/ok")
+    public String upload(@RequestParam("files")MultipartFile[] files)throws IOException
+    {
+
+        return "success";
+    }
+
 
 
 }
