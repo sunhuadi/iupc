@@ -112,8 +112,9 @@
             }
         }
     });
-    axios.post('/search', {
-        value:"2",
+    var mynewsid=sessionStorage.getItem("mynews_id");
+    axios.post('/getonenews', {
+        value:mynewsid,
     }).then(function (response) {
        var datas=response.data;
        console.log(datas)

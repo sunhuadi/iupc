@@ -4,6 +4,32 @@ body{
     background-size:300px 300px;
     overflow: auto;
 }
+.mainframe_title{
+    text-align: center;
+}
+.mianframe{
+    background: #b7e9f3;
+    color:black;
+    font-size: 30px;
+    top:11%;
+    left: 15%;
+    position: absolute;
+    width: 70%;
+    min-width:1200px;
+    height:80%;
+    padding-bottom: 80px;
+    display: table;
+}
+.news_sh{
+    position: relative;
+    display: inline-block;
+    margin:20px;
+    width:90%;
+    max-width: 500px;
+    background: #F8EDDB;
+    color: #6e6d71;
+    border-radius: 20px;
+}
 .touristcont_lp{
     letter-spacing: 5px;
     border-style: dotted;

@@ -120,7 +120,7 @@ Vue.component("news",{
         <img class="zxi_pic" :src="news_img" />
         <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
         <div class="zxi_text">
-        <p class="zxi_title" ><a href="http://www.lynworld.cn">{{ news_title }}</a></p>
+        <p class="zxi_title" @click="readthisnews" >{{ news_title }}</a></p>
         <p class="zxi_content">{{ shortifycontent }}</p>
         <p class="zxi_time" >{{ news_time }}</p>
         </div>
@@ -135,7 +135,17 @@ Vue.component("news",{
     },
     computed:{
         shortifycontent(){
-            return this.news_content.slice(0,200);
+            if(this.news_content.length<=150)
+            return this.news_content;
+            else
+            return this.news_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisnews()
+        {
+            sessionStorage.setItem("mynews_id",this.news_id);
+            window.location.href="/zxck";
         }
     }
 })
