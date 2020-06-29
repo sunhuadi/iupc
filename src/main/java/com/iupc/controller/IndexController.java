@@ -79,14 +79,16 @@ public class IndexController {
     @Autowired
     private CommonFileUtil fileUtil;
     @ResponseBody
-    @RequestMapping("/ok")
-    public String signup(@RequestParam("myfile") MultipartFile file,Model model) throws IOException {
-        if(file.isEmpty()){
-            logger.info("文件不存在");
+    @PostMapping("/ok")
+    public String signup(@RequestParam("myfile") MultipartFile[] file,Model model) throws IOException {
+        System.out.println(file.length);
+        for(int i=0;i<file.length;i++){
+            if(file[i].isEmpty()){
+                logger.info("文件不存在");
+            }
+            String path = fileUtil.uploadFile(file[i]);
+            System.out.println(path);
         }
-        String path = fileUtil.uploadFile(file);
-
-        System.out.println(path);
         return "success";
     }
 

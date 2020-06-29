@@ -34,8 +34,7 @@
 </style>
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
-<script >
-
+<script>
     var search_kw=sessionStorage.getItem("search_keyword");
     var rsvue= new Vue({
         el:"#shrs",
@@ -45,16 +44,12 @@
     });
     var datas;
     console.log(search_kw);
-    axios.post('/search', {
-        value:search_kw,
-    }).then(function (response) {
+    axios.post('/search', {value:search_kw,})
+        .then(function (response) {
         rsvue.searchdata=null
         rsvue.searchdata=response.data;
         console.log(rsvue.searchdata)
-        //console.log(response.data);
-//console.log(response.data)
-    })
-        .catch(function (error) {
+    }).catch(function (error) {
             console.log(error);
         });
 </script>

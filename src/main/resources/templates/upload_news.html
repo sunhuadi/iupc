@@ -30,11 +30,11 @@
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
-                <input type="file" id="picuper" class="upinput" onchange="changepic()" accept="image/jpg,image/jpeg,image/png,image/PNG" >
+                <input type="file"  id="picuper" class="upinput" @change="changepic()" accept="image/jpg" >
             </p>
-            <div class="previewpic">
-                <img id="pv_pic" style="height: 150px;width: 150px;margin:auto;" src="image/0.jpg" />
-                <p style="text-align: center  ">上传预览</p>
+            <div class="previewer1">
+                <img id="pv_pic" class="previewed_pics"  src="image/0.jpg" />
+                <p style="text-align: center  ">封面预览</p>
             </div>
         </div>
 
@@ -73,44 +73,94 @@
         </div><br />
         <div class="up_part">
             <p class="upfile" >
-                <label class="uplabel">上传封面</label>
-                <input type="file" id="picsuper" multiple="multiple" class="upinput" onchange="getpics()" accept="image/jpg,image/jpeg,image/png,image/PNG" >
+                <label class="uplabel">上传图片</label>
+                <input type="file" id="picsuper" multiple="multiple" class="upinput" @change="getpics()" accept="image/jpg,image/jpeg,image/png,image/PNG" >
             </p>
-            <div class="previewpic">
-                <img id="pv_pics" style="height: 150px;width: 150px;margin:auto;" src="image/0.jpg" />
-                <p style="text-align: center  ">上传预览</p>
+        </div>
+        <div class="up_part">
+            <p class="upp"> <label class="uplabel">图片预览</label></p>
+            <div class="previewers">
+                <span v-for="(item,index) in picslist">
+                    <img   :src="item" class="previewed_pics"  style="height: 150px;width: 150px;margin:auto;" />
+                </span>
+
             </div>
         </div>
         <button class="xbutton" > 发布 </button>
     </div>
-
 </div>
 </body>
 <script src="js/xmagic.js"></script>
 <script>
+    var els=document.getElementById("picuper")
     var  news_uper_vue= new Vue({
         el:"#news_uper",
         data:{
             picslist:[],
+        },
+        methods:{
+        changepic() {
+            var reads = new FileReader();
+            var f = document.getElementById('picuper').files[0];
+            reads.readAsDataURL(f);
+            reads.onload = function(e) {
+                document.getElementById('pv_pic').src = this.result;
+            };
+            },
+            getpics() {
+                var readpics = new FileReader();
+                var eluper=document.getElementById('picsuper');
+                var arraylen=eluper.files.length;
+                var readnum=0;
+                var imgs=eluper.files[readnum];
+                readpics.readAsDataURL(imgs);
+                this.picslist=[];
+                var that=this;
+                readpics.onload = function(e) {
+                    that.picslist.push(readpics.result);
+                    readnum++;
+                    if(readnum<arraylen)
+                    {
+                        imgs=eluper.files[readnum];
+                        readpics.readAsDataURL(imgs);
+                    }
+                };
+            },
+            savepics()
+            {
+                let formData = new FormData();
+                formData.append('type', 'image/jpg');
+
+                console.log(picsuper.files.length)
+                for(var i=0;i<picsuper.files.length;i++)
+                {
+                    formData.append('myfile', picsuper.files[i]);
+                    console.log(picsuper.files[i])
+                }
+                axios.post('/ok', formData)
+                    .then(res => {
+                        console.log("成功！")
+                    })
+                    .catch(err => {
+                        console.log("失败！")
+                    });
+            },
+            savepic(){
+                let formData = new FormData();
+                formData.append('type', 'image/jpg');
+                formData.append('myfile', picuper.files[0]);
+                axios.post('/ok', formData)
+                    .then(res => {
+                        console.log("成功！")
+                    })
+                    .catch(err => {
+                        console.log("失败！")
+                    });
+            }
+
         }
     })
 
-    function changepic() {
-        var reads = new FileReader();
-        f = document.getElementById('picuper').files[0];
-        reads.readAsDataURL(f);
-        reads.onload = function(e) {
-            document.getElementById('pv_pic').src = this.result;
-        };
-    }
-    function getpics() {
-        var readpics = new FileReader();
-        var pics = document.getElementById('picsuper').files[1];
-        readpics.readAsDataURL(pics);
-        readpics.onload = function(e) {
-            document.getElementById('pv_pics').src = readpics.result;
-        };
-    }
 </script>
 <style>
     .up_part{
@@ -148,7 +198,13 @@
         height:80px;
         left:10%;
     }
-    .previewpic{
+    .previewed_pics{
+        position: relative;
+        height: 150px;
+        width: 150px;
+        margin:5px;
+    }
+    .previewer1{
         height:180px;
         right:30%;
         top:0;
@@ -156,6 +212,16 @@
         position: absolute;
         width: 150px;
         margin: 0;
+    }
+    .previewers{
+        height:480px;
+        left:10%;
+        font-size: 20px;
+        position: relative;
+        width: 480px;
+        margin: 0;
+        overflow: auto;
+
     }
     .xbutton{
         position: relative;
