@@ -12,4 +12,7 @@ public interface NewsMapper {
     List<News> qurryAllNews();
     List<News> qurryNewsByContent(String value);
     List<News> qurryNewsById(String value);
+    List<News> qurryNewsByContent(News news);
+    void insertNews(News news);
+
 }
