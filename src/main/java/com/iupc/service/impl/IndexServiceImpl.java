@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -27,40 +28,26 @@ public class IndexServiceImpl implements IIndexService {
         List<zixun> zxlist = zx.qurryzixunall();
         for (int i = 0; i < zxlist.size(); i++) {
             //System.out.println(zxlist.get(i).getTime());
-            zxlist.get(i).setFormattime(DateFormat.getDateInstance(DateFormat.FULL).format(zxlist.get(i).getTime()));
+
+           // zxlist.get(i).setFormattime(DateFormat.getDateInstance(DateFormat.FULL).format(zxlist.get(i).getTime()));
             // System.out.println(zxlist.get(i).getFormattime());
         }
         return zxlist;
     }
 
     public List<News> getAllnews() {
-        String formatDate = null;
-        List<News> newsList = ns.qurryAllNews();
-        for (int i = 0; i < newsList.size(); i++) {
-            newsList.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_time()));
-        }
-        return newsList;
+       // String formatDate = null;
+
+        return ns.qurryAllNews();
     }
 
     @Override
-    public List<News> getNewsBysearch(String value) {
-            List<News> newsList=ns.qurryNewsByContent(value);
-        for (int i = 0; i < newsList.size(); i++) {
-            newsList.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_time()));
-            newsList.get(i).setNews_fbegintime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_begintime()));
-            newsList.get(i).setNews_fstoptime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_stoptime()));
-        }
-            return newsList;
+    public List<News>getNewsBysearch(News news) {
+            return ns.qurryNewsByContent(news);
     }
     @Override
     public List<News> getNewsById(String value) {
-        List<News> newsList=ns.qurryNewsById(value);
-        for (int i = 0; i < newsList.size(); i++) {
-            newsList.get(i).setNews_formattime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_time()));
-            newsList.get(i).setNews_fbegintime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_begintime()));
-            newsList.get(i).setNews_fstoptime(DateFormat.getDateInstance(DateFormat.FULL).format(newsList.get(i).getNews_stoptime()));
-        }
-        return newsList;
+        return ns.qurryNewsById(value);
     }
 }
 

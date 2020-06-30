@@ -88,6 +88,14 @@
             <artifactId>jetty-webapp</artifactId>
             <version>9.2.28.v20190418</version>
         </dependency>
+<!-- 整合shiro-->
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.5.1</version>
+        </dependency>
 
     </dependencies>
 

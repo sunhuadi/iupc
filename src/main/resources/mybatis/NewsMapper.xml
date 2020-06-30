@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iupc.Mapper.NewsMapper">
+
+    <select id="qurryAllNews" resultType="News" >
+        select * from news
+    </select>
+    <select id="qurryNewsByContent" resultType="News" parameterType="News">
+        select * from news
+        where news_content like concat('%',#{news_content},'%')
+        or news_title like concat('%',#{news_title},'%')
+    </select>
+    <select id="qurryNewsById" resultType="News" parameterType="String">
+        select * from news
+        where news_id=#{value}
+    </select>
+    <insert id="insertNews" parameterType="News">
+     insert into news
+     (news_id,news_content,news_author,news_time,news_img,news_good,news_title,news_stoptime,news_begintime,news_updateway,news_price)
+      values
+      (#{news_id}, #{news_content}, #{news_author}, #{news_time}, #{news_img}, #{news_good}, #{news_title}, #{news_stoptime}, #{news_begintime}, #{news_updateway}, #{news_price})
+</insert>
+</mapper>

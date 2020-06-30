@@ -7,3 +7,12 @@
 .adr{
     position:fixed; bottom:10px; left:20%;
 }
+
+#login_out{
+    margin-top: 10cm;
+    position: fixed;
+    width:100%;
+    height:90%;
+    background: #d90e47;
+    z-index: 0;
+}

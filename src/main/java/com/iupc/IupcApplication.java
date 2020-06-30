@@ -10,13 +10,15 @@ import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.Import;
 import org.springframework.jmx.support.RegistrationPolicy;
 
-
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 
 
 // 解决jmx重复注册bean的问题
 @SpringBootApplication
 @Import(FdfsClientConfig.class)
 public class IupcApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(IupcApplication.class, args);
