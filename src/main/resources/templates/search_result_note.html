@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:insert="~{index::header}"></div>
+<div th:insert="~{index::tourist}"></div>
+<div class="mianframe">
+    <h1 class="mainframe_title"> 搜索结果 </h1>
+    <hr />
+    <span id="search_note">
+        <searchnote v-for="item in search_note_data" myclassname="search_notes" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce">
+        </searchnote>
+    </span>
+</div>
+</body>
+<style>
+
+</style>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script >
+    var searchnotevue=new Vue({
+        el:"#search_note",
+        data:{
+            search_note_data:[
+                {   text_fbtime:"5月20日13：15",
+                    title: "小椿搭配笔记",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg"
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "小椿搭配笔记",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg"
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "小椿搭配笔记",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg"
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "小椿搭配笔记",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg"
+
+                }
+            ]
+
+        }
+    })
+
+//     var search_kw=sessionStorage.getItem("search_keyword");
+//     var rsvue= new Vue({
+//         el:"#shrs_note",
+//         data:{
+//             searchdata:[],
+//         }
+//     });
+//     var datas;
+//     console.log(search_kw);
+//     axios.post('/search', {
+//         value:search_kw,
+//     }).then(function (response) {
+//         rsvue.searchdata=null
+//         rsvue.searchdata=response.data;
+//         console.log(rsvue.searchdata)
+//         //console.log(response.data);
+// //console.log(response.data)
+//     })
+//         .catch(function (error) {
+//             console.log(error);
+//         });
+</script>
+
+</html>
