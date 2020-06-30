@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
+    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+<div id="register_box">
+    <div class="username">
+        <span style="font-size: 25px">请设置昵称</span>
+        <input class="name" type="text" placeholder="" v-model="svalue" @keyup.enter="saveit" >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
+    <div class="passw1">
+        <span style="font-size: 25px">请设置密码</span>
+        <input type="text" class="password1">
+        <br>
+    </div>
+    <div class="passw2">
+        <span style="font-size: 25px">请确认密码</span>
+        <input type="text" class="password2">
+        <br>
+    </div>
+    <div class="usertype">
+        <span style="font-size: 25px">您是三坑爱好者or店家？</span>
+        <br><br>
+        <label><input name="usertype" type="radio" value=""/>三坑爱好者</label>
+        <label><input name="usertype" type="radio" value=""/>店家</label>
+        <br>
+    </div>
+    <div>
+        <button style="background-color: #FDEDED; height:50px;width:80px;margin-top:6px; display: inline-block" class="regibutton" @click="saveit">注册</button>
+    </div>
+    <div class="return">
+        <img style="width: 90px;height: 78px" src="image/返回.png" >
+        <span style="font-size: 20px;color: #557496">返回</span>
+    </div>
+</div>
+</body>
+
+<style>
+    #register_box{
+        width: 100%;
+        height: 100%;
+        background:#E3EFF9;
+    }
+    .username{
+        position: relative;
+        top:200px;
+        left: 42%;
+    }
+    .passw1{
+        position: relative;
+        top:220px;
+        left: 42%;
+    }
+    .passw2{
+        position: relative;
+        top:240px;
+        left: 42%;
+    }
+    .usertype{
+        position: relative;
+        top:260px;
+        left: 42%;
+    }
+    .regibutton{
+        position: relative;
+        left:48%;
+        top:310px;
+        border-radius: 4px;
+        border: 2px solid #FAE3EA;
+    }
+    .name{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .password1{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .password2{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .return{
+        position: absolute;
+        top:1px;
+        left: 1px;
+    }
+</style>
+</html>
