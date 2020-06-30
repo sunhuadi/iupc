@@ -19,17 +19,19 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
-<div class="header" th:fragment="header" >
+<body class="background">
+<div class="header" th:fragment="header">
     <div id="header_message">
         <div class="column">
-            <img src="/image/hdj.png" style="height: 60px;height:60px;" class="img-rounded">
+            <img src="/image/hdj.png"  style="height: 60px;height:60px;" class="img-rounded">
             <span>消 息</span>
         </div>
     </div>
+
     <div id="header_biaoti">
         <a href="/"><img style="height:78px;width:300px;" src="image/三坑圈.png" /></a>
     </div>
+
     <div id="header_search" class="ui search">
         <div style="height: 60px;width: 800px;" class="ui icon input">
             <input class="prompt" type="text" placeholder="" v-model="svalue" @Blur="unshowit" @focus="doshowit" @keyup.enter="saveit" >
@@ -43,9 +45,11 @@
             </li>
         </ul>
     </div>
+
     <div id="header_setting">
         <img style="height:60px;width:60px;" src="image/setting.png" />
     </div>
+
     <div id="header_txbox">
         <img src="image/tx.ico" id="header_tx">
         <div style="top:25px;left:85px;position: absolute;"></div>
@@ -85,12 +89,12 @@
     </div>
     <div id="zx_box_2">
         <div v-for="item in zxall_1" class="zxi">
-            <img class="zxi_pic" :src="item.image" />
+            <img class="zxi_pic" :src="item.news_img" />
             <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
             <div class="zxi_text">
-                <p class="zxi_title" >{{ item.title }}</p>
-                <p class="zxi_content">{{ item.content }}</p>
-                <p class="zxi_time" >{{item.time }}</p>
+                <p class="zxi_title" >{{ item.news_title }}</p>
+                <p class="zxi_content">{{ item.news_content }}</p>
+                <p class="zxi_time" >{{item.news_time }}</p>
             </div>
         </div>
     </div>
@@ -112,6 +116,14 @@
 <script src="js/indexvue.js" ></script>
 </body>
 <style>
+
+    .zxi_pic_fly{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+    }
 
 </style>
 </html>

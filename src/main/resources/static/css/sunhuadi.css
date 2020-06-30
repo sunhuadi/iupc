@@ -8,11 +8,18 @@
     position:fixed; bottom:10px; left:20%;
 }
 
-#login_out{
-    margin-top: 10cm;
-    position: fixed;
-    width:100%;
-    height:90%;
-    background: #d90e47;
+.login_out{
+
+    position: absolute;
+    width:50%;
+    height:40%;
+    top:30%;
+    left: 20%;
     z-index: 0;
+}
+.background{
+    background:url("../image/1.jpg") ;
+    background-attachment:fixed;
+    background-size: cover;
+    overflow: auto;
 }
