@@ -42,9 +42,10 @@ public class IndexServiceImpl implements IIndexService {
     }
 
     @Override
-    public List<News>getNewsBysearch(News news) {
-            return ns.qurryNewsByContent(news);
+    public List<News>getNewsBysearch(String  value) {
+            return ns.qurryNewsByContent(value);
     }
+
     @Override
     public List<News> getNewsById(String value) {
         return ns.qurryNewsById(value);

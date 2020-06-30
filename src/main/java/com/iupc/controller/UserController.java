@@ -30,15 +30,12 @@ public class UserController {
             mp.put("msg","用户名为空，请重新输入。");
             return mp;
         }
-
         Users users=usersMapper.getUserByName(user);
-      //  System.out.println("该用户和密码为："+user.getUserid()+user.getUserpassword());
-        //System.out.println("数据库中该用户和密码为："+users.getUserid()+users.getUserpassword());
-     if(users==null)
-    {
+       if(users==null)
+      {
         mp.put("code","1");
         mp.put("msg","用户不存在，请重新输入。");
-    }
+      }
      else if(users.getUserpassword().equals(user.getUserpassword()))
         {
             mp.put("code","0");

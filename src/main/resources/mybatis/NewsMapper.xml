@@ -7,10 +7,10 @@
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
-    <select id="qurryNewsByContent" resultType="News" parameterType="News">
+    <select id="qurryNewsByContent" resultType="News" parameterType="String">
         select * from news
-        where news_content like concat('%',#{news_content},'%')
-        or news_title like concat('%',#{news_title},'%')
+        where news_content like concat('%',#{value},'%')
+        or news_title like concat('%',#{value},'%')
     </select>
     <select id="qurryNewsById" resultType="News" parameterType="String">
         select * from news
@@ -22,4 +22,15 @@
       values
       (#{news_id}, #{news_content}, #{news_author}, #{news_time}, #{news_img}, #{news_good}, #{news_title}, #{news_stoptime}, #{news_begintime}, #{news_updateway}, #{news_price})
 </insert>
+    <insert id="insertNewsPic" parameterType="NewsPic">
+
+    insert into news_pic
+    (news_pic,news_id)
+    value(#{news_pic},#{news_id})
+    </insert>
+        <select id="getNewsNumber" resultType="int" >
+            select count(*) from news
+        </select>
+
+
 </mapper>

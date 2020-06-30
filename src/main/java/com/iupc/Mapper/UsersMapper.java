@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UsersMapper {
     Users getUserByName(Users user);
+
 }

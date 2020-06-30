@@ -26,7 +26,7 @@
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">资讯标题</label>
-                <input type="text" class="upinput"  >
+                <input type="text" class="upinput"  v-model="news.news_title">
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -42,33 +42,33 @@
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新商品</label>
-            <input type="text" class="upinput"  >
+            <input type="text" class="upinput"  v-model="news.good">
         </p>
         <p class="upp" >
             <label class="uplabel">价格</label>
-            <input type="text" class="upinput"  >
+            <input type="text" class="upinput" v-model="news.news_price" >
         </p>
         <p class="upp" >
             <label class="uplabel">上新形式</label>
-            <input type="text" class="upinput"  >
+            <input type="text" class="upinput"  v-model="news.news_updateway">
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新时间</label>
-            <input type="date" class="upinput"  >
+            <input type="datetime-local" class="upinput"  v-model="news.news_begintime">
         </p>
         <p class="upp" >
             <label class="uplabel">下架时间</label>
-            <input type="date" class="upinput"  >
+            <input type="datetime-local" class="upinput" v-model="news.news_stoptime" >
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="up_textarea">
             <label class="uplabel">内容介绍</label>
-            <textarea class="news_textarea"></textarea>
+            <textarea class="news_textarea"v-model="news.news_content"></textarea>
         </p>
         </div><br />
         <div class="up_part">
@@ -83,10 +83,9 @@
                 <span v-for="(item,index) in picslist">
                     <img   :src="item" class="previewed_pics"  style="height: 150px;width: 150px;margin:auto;" />
                 </span>
-
             </div>
         </div>
-        <button class="xbutton" > 发布 </button>
+        <button class="xbutton" @click="upload"> 发布 </button>
     </div>
 </div>
 </body>
@@ -97,6 +96,18 @@
         el:"#news_uper",
         data:{
             picslist:[],
+            news:{
+                news_id:null,
+                news_content: null,
+                news_author:null,
+                news_time: null,
+                news_good:null,
+                news_title: null,
+                news_price:null,
+                 news_begintime:null,
+                news_stoptim:null,
+                news_updayeway:null,
+            },
         },
         methods:{
         changepic() {
@@ -128,6 +139,7 @@
             },
             savepics()
             {
+                /*
                 let formData = new FormData();
                 formData.append('type', 'image/jpg');
 
@@ -143,9 +155,10 @@
                     })
                     .catch(err => {
                         console.log("失败！")
-                    });
+                    });*/
             },
             savepic(){
+            /*
                 let formData = new FormData();
                 formData.append('type', 'image/jpg');
                 formData.append('myfile', picuper.files[0]);
@@ -155,11 +168,68 @@
                     })
                     .catch(err => {
                         console.log("失败！")
+                    });*/
+            },
+            upload:function () {
+                let formData = new FormData();
+                that=this
+                formData.append('myfile',picsuper.files[0])
+                //formData.append('news', that.news);
+                console.log(that.news)
+                console.log(picsuper.files.length)
+                for(var i=0;i<picsuper.files.length;i++)
+                {
+                    formData.append('myfiles', picsuper.files[i]);
+                    console.log(picsuper.files[i])
+                }
+                //console.log(that.news.length)
+
+                formData.append("news", new Blob([JSON.stringify(that.news)], {type: "application/json"}));
+                //console.log(formData.get("news"))
+                console.log("正在发送请求......")
+                //console.log(formData.keys())
+                axios.post('/uploadNews', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                )
+                    .then(res => {
+                        console.log("成功！")
+                    })
+                    .catch(err => {
+                        console.log("失败！")
                     });
-            }
+
+            },
+
 
         }
     })
+    function objectToFormData (obj, form, namespace) {
+        const fd = form || new FormData();
+        let formKey;
+
+        for(var property in obj) {
+            if(obj.hasOwnProperty(property)) {
+                let key = Array.isArray(obj) ? '[]' : `[${property}]`;
+                if(namespace) {
+                    formKey = namespace + key;
+                } else {
+                    formKey = property;
+                }
+
+                // if the property is an object, but not a File, use recursivity.
+                if(typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+                    objectToFormData(obj[property], fd, formKey);
+                } else {
+
+                    // if it's a string or a File object
+                    fd.append(formKey, obj[property]);
+                }
+
+            }
+        }
+
+        return fd;
+
+    }
 
 </script>
 <style>
