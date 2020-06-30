@@ -1,4 +1,4 @@
-package com.sample;
+package com.iupc.pojo;
 
 
 public class DiscussContent {
