@@ -84,7 +84,6 @@
                 <span v-for="(item,index) in picslist">
                     <img   :src="item" class="previewed_pics"  style="height: 150px;width: 150px;margin:auto;" />
                 </span>
-
             </div>
         </div>
         <button class="xbutton" > 发布 </button>
@@ -174,7 +173,8 @@
     .up_part{
         position: relative;
         left:5%;
-        min-height:200px;
+        min-height:150px;
+        width: 70%;
     }
     .upp{
         position: relative;
@@ -182,6 +182,7 @@
         margin-top:20px;
         height:40px;
         left:10%;
+        display: inline-block;
     }
     .uplabel{
         width: 120px;
@@ -214,8 +215,8 @@
     }
     .previewer1{
         height:180px;
-        right:30%;
-        top:0;
+        right:20%;
+        top:-10%;
         font-size: 20px;
         position: absolute;
         width: 150px;

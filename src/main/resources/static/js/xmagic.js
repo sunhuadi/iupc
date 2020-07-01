@@ -3,7 +3,7 @@
  * 导航栏
  */
 var tch=0;
-var tchstp=5;
+var tchstp=7;
 var maxtch=0;
 var whichone=0;
 var tourist_vue= new Vue(
