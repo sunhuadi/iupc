@@ -18,8 +18,5 @@
     z-index: 0;
 }
 .background{
-    background:url("../image/1.jpg") ;
-    background-attachment:fixed;
-    background-size: cover;
-    overflow: auto;
+
 }

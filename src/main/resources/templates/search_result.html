@@ -42,16 +42,17 @@
             searchdata:[],
         }
     });
-    var datas;
     console.log(search_kw);
     axios.post('/search', {value:search_kw,})
         .then(function (response) {
-        rsvue.searchdata=null
-        rsvue.searchdata=response.data;
-        console.log(rsvue.searchdata)
-    }).catch(function (error) {
+            rsvue.searchdata=null
+            rsvue.searchdata=response.data;
+            console.log(rsvue.searchdata)
+        }).catch(
+            function (error) {
             console.log(error);
         });
+
 </script>
 
 </html>

@@ -28,7 +28,7 @@ var tourist_vue= new Vue(
                     if(i!=which)
                         this.tli[i].isshow=false;
                 }
-                maxtch=this.tli[which].slcontent.length*31+5;
+                maxtch=this.tli[which].slcontent.length*33+5;
                 tch=0;
                 whichone=which;
                 this.tli[which].isshow=!(this.tli[which].isshow);

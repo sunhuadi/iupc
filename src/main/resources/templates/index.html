@@ -19,7 +19,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="background">
+<body class="body">
 <div class="header" th:fragment="header">
     <div id="header_message">
         <div class="column">
@@ -69,10 +69,10 @@
     </div>
 </div>
 <div id="tourist" th:fragment="tourist">
-    <div v-for="(item,index) in tli">
+    <div class="tourist_part" v-for="(item,index) in tli">
         <div class="tourist_li" >
             <p class="tourist_lp">{{ item.content }}</p>
-            <button class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</button>
+            <span class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</span>
         </div>
         <div v-if="item.isshow" :id="item.isshow?'showtlic':''" class="tourist_content">
             <div class="touristcont_lp" v-for="it in item.slcontent">{{ it }}</div>
@@ -104,11 +104,11 @@
     var picboxvue=new Vue({
         el:"#ads",
         data:{
-            sidelist1:["image/0.jpg","image/1.jpg","image/2.jpg"],
-            sidelist2:["image/0.jpg","image/0.jpg","image/0.jpg"],
-            pic1:"image/0.jpg",
-            pic2:"image/0.jpg",
-            pic3:"image/0.jpg"
+            sidelist1:["image/jk1.jpg","image/jk2.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg"],
+            sidelist2:["image/note_pic_1.jpg","image/1.jpg","image/2.jpg","image/note_pic_3.jpg","image/note_pic_2.jpg"],
+            pic1:"image/dangmei1.jpg",
+            pic2:"image/dangmei2.jpg",
+            pic3:"image/dm.gif"
         }
     })
 </script>

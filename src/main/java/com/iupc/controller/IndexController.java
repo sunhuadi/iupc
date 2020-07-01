@@ -88,7 +88,7 @@ public class IndexController {
     @Autowired
     private CommonFileUtil fileUtil;
     @ResponseBody
-    @PostMapping("/ok")
+    @PostMapping("/pics")
     public String signup(@RequestParam("myfile") MultipartFile[] file,Model model) throws IOException {
         System.out.println(file.length);
         for(int i=0;i<file.length;i++){

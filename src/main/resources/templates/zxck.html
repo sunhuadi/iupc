@@ -117,7 +117,7 @@
         value:mynewsid,
     }).then(function (response) {
        var datas=response.data;
-       console.log(datas)
+       console.log(response)
        if(datas!=null)
        {
            newsvue.text_fbtime=datas[0].news_formattime;
