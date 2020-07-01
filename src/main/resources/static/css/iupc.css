@@ -1,14 +1,14 @@
-body{
+.body{
     background:url("../image/bg_blue.png") ;
-    background-size: cover;
-    background-size:300px 300px;
+    background-attachment:fixed;
+    background-size: 200px 200px;
     overflow: auto;
 }
 .mainframe_title{
     text-align: center;
 }
 .mianframe{
-    background: #b7e9f3;
+    background: #E3EFF9;
     color:black;
     font-size: 30px;
     top:11%;
@@ -24,7 +24,8 @@ body{
     position: relative;
     display: inline-block;
     margin:20px;
-    width:90%;
+    width:45%;
+    display: inline-block;
     max-width: 500px;
     background: #F8EDDB;
     color: #6e6d71;
@@ -32,16 +33,24 @@ body{
 }
 .touristcont_lp{
     letter-spacing: 5px;
-    border-style: dotted;
+    border-style: outset;
+    border-width: 1px;
     height:30px;
     font-size: 15px;
-    margin: 1px;
+    background: #c6e9f3 ;
+    margin:3px;
     padding-left: 20px;
-    color: white;
 }
-.touristlib{
+.touristcont_lp:hover{
+    transform: scale(1.1);
     background:#b8cce2 ;
     color:white;
+}
+.tourist_part{
+    border: outset #a1b7d1 4px;
+    border-radius: 3px;
+}
+.touristlib{
     position: relative;
     float:right;
     border-style: none;
@@ -56,32 +65,38 @@ body{
     font-size: 18px;
     position: relative;
     border-radius: 10px;
-    color: #ffffff;
+    border: #727177;
 }
 #tourist{
-    width: 13%;
+    width: 12%;
     position: fixed;
-    top:10%;
-    height:70%;
+    top:10.5%;
+    height:90%;
     left:0;
     list-style: none;
+    background:#b8cce2 ;
     margin-left: 0;
+    overflow: hidden;
 }
 .tourist_li{
     width: 100%;
     height: 50px;
-    font-size: 18px;
+    left: 0;
+    font-size: 20px;
     background: #b8cce2;
     position: relative;
     margin-top:10px;
     padding: 10px;
     border-radius: 10px;
-    color: #ffffff;
+    color: #58575d;
+    font-weight: bolder;
+
 }
 .tourist_content{
-    width: 95%;
+    width: 100%;
+    border-style: inset;
     position: relative;
-    background: #b8cce2 ;
+
     overflow: hidden;
 }
 .tourist_lp{
@@ -148,16 +163,8 @@ ul li{
 }
 #zx_box_1{
     position:absolute;
-    left:0%;
     top:60%;
-    width: 50%;
-    background: #E3EFF9;
-}
-#zx_box_2{
-    position:absolute;
-    left:50%;
-    top:60%;
-    width: 50%;
+    width: 100%;
     background: #E3EFF9;
 }
 .zxi_pic_fly{
@@ -170,7 +177,8 @@ ul li{
 .zxi{
     position: relative;
     margin:20px;
-    width:90%;
+    display: inline-block;
+    width:45%;
     background: #F8EDDB;
     color: #6e6d71;
     border-radius: 20px;

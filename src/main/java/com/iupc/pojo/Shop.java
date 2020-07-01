@@ -8,6 +8,15 @@ public class Shop {
   private String shop_password;
   private String shop_introduce;
   private String shop_pic;
+  private String role;
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
 
   public String getShop_id() {
     return shop_id;

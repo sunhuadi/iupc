@@ -96,6 +96,16 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.5.1</version>
         </dependency>
+        <!--java map转类-->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.70</version>
+        </dependency>
+
+
 
     </dependencies>
 

@@ -61,15 +61,10 @@ public class IndexController {
 
     @ResponseBody
     @PostMapping("/search")
-    public List<News>Test(@RequestBody News news)//传入类型为News对象
+    public List<News>Test(@RequestBody HashMap<String,String> map)//传入类型为News对象
     {
-        //String value=map.get("value");
-        System.out.println(news.getNews_title());
-        System.out.println(news.getNews_content());
-       // List<News> newsl=iis.getNewsBysearch(value);
-        List<News> newsList=iis.getNewsBysearch(news);
-
-       // System.out.println(newsList.get(0));
+        //map.get("value");
+        List<News> newsList=iis.getNewsBysearch(map.get("value"));
         return newsList;
     }
 /*
@@ -93,7 +88,7 @@ public class IndexController {
     @Autowired
     private CommonFileUtil fileUtil;
     @ResponseBody
-    @PostMapping("/ok")
+    @PostMapping("/pics")
     public String signup(@RequestParam("myfile") MultipartFile[] file,Model model) throws IOException {
         System.out.println(file.length);
         for(int i=0;i<file.length;i++){
@@ -105,12 +100,8 @@ public class IndexController {
         }
         return "success";
     }
-    @PostMapping("/ok")
-    public String upload(@RequestParam("files")MultipartFile[] files)throws IOException
-    {
 
-        return "success";
-    }
+
 
 
 

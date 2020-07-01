@@ -2,6 +2,7 @@ package com.iupc.controller;
 
 import com.iupc.Mapper.UsersMapper;
 import com.iupc.pojo.Users;
+import com.iupc.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,44 +17,32 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    UsersMapper usersMapper;
+    IUserService iUserService;
     @ResponseBody
     @PostMapping("/logins")
-    public HashMap<String,String> Test(@RequestBody Users user)
+    public HashMap<String,String> Test(@RequestBody HashMap<String,String> user)
     {
         HashMap<String,String> mp=new HashMap<String,String>();
         System.out.println("收到请求，正在确认......");
-        System.out.println("用户名为："+user.getUserid());
-        if(user.getUserid()=="")
+        String userid=user.get("userid");
+        String userpassword=user.get("userpassword");
+        String role=user.get("role");
+        System.out.println("用户名为："+user.get("userid"));
+        //System.out.println("密码为："+use);
+        if(userid=="")
         {
             mp.put("code","3");
             mp.put("msg","用户名为空，请重新输入。");
             return mp;
         }
+        if(role.equals("1"))
+        {
+            mp=iUserService.testShop(userid,userpassword);
+        }
+        else {
+           mp=iUserService.testUser(userid,userpassword,role);
+        }
 
-        Users users=usersMapper.getUserByName(user);
-      //  System.out.println("该用户和密码为："+user.getUserid()+user.getUserpassword());
-        //System.out.println("数据库中该用户和密码为："+users.getUserid()+users.getUserpassword());
-     if(users==null)
-    {
-        mp.put("code","1");
-        mp.put("msg","用户不存在，请重新输入。");
-    }
-     else if(users.getUserpassword().equals(user.getUserpassword()))
-        {
-            mp.put("code","0");
-            mp.put("msg","密码正确，登陆成功。");
-        }
-        else if(users==null)
-        {
-            mp.put("code","1");
-            mp.put("msg","用户不存在，请重新输入。");
-        }
-        else
-        {
-            mp.put("code","2");
-            mp.put("msg","密码错误，请重新输入密码。");
-        }
         return mp;
     }
 }

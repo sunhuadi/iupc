@@ -17,7 +17,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mianframe" id="news_uper" style="overflow: auto">
@@ -26,7 +26,7 @@
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">资讯标题</label>
-                <input type="text" class="upinput"  >
+                <input v-model="upn_title" type="text" class="upinput"  >
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -34,7 +34,6 @@
             </p>
             <div class="previewer1">
                 <img id="pv_pic" class="previewed_pics"  src="image/0.jpg" />
-                <p style="text-align: center  ">封面预览</p>
             </div>
         </div>
 
@@ -42,33 +41,34 @@
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新商品</label>
-            <input type="text" class="upinput"  >
+            <input v-model="upn_goods" type="text" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">价格</label>
-            <input type="text" class="upinput"  >
+            <input v-model="upn_price" type="text" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">上新形式</label>
-            <input type="text" class="upinput"  >
+            <input v-model="upn_way" type="text" class="upinput"  >
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新时间</label>
-            <input type="date" class="upinput"  >
+            <input  v-model="upn_begintime" type="date" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">下架时间</label>
-            <input type="date" class="upinput"  >
+            <input v-model="upn_stoptime" type="date" class="upinput"  >
+
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="up_textarea">
             <label class="uplabel">内容介绍</label>
-            <textarea class="news_textarea"></textarea>
+            <textarea v-model="upn_content" class="news_textarea"></textarea>
         </p>
         </div><br />
         <div class="up_part">
@@ -83,7 +83,6 @@
                 <span v-for="(item,index) in picslist">
                     <img   :src="item" class="previewed_pics"  style="height: 150px;width: 150px;margin:auto;" />
                 </span>
-
             </div>
         </div>
         <button class="xbutton" > 发布 </button>
@@ -97,6 +96,13 @@
         el:"#news_uper",
         data:{
             picslist:[],
+            upn_title:"在这里输入标题",
+            upn_goods:"请输入商品",
+            upn_price:0,
+            upn_way:"现货",
+            upn_begintime:"",
+            upn_stoptime:"",
+            upn_content:""
         },
         methods:{
         changepic() {
@@ -106,7 +112,7 @@
             reads.onload = function(e) {
                 document.getElementById('pv_pic').src = this.result;
             };
-            },
+        },
             getpics() {
                 var readpics = new FileReader();
                 var eluper=document.getElementById('picsuper');
@@ -114,7 +120,7 @@
                 var readnum=0;
                 var imgs=eluper.files[readnum];
                 readpics.readAsDataURL(imgs);
-                this.picslist=[];
+                //this.picslist=[];
                 var that=this;
                 readpics.onload = function(e) {
                     that.picslist.push(readpics.result);
@@ -166,7 +172,8 @@
     .up_part{
         position: relative;
         left:5%;
-        min-height:200px;
+        min-height:150px;
+        width: 70%;
     }
     .upp{
         position: relative;
@@ -174,6 +181,7 @@
         margin-top:20px;
         height:40px;
         left:10%;
+        display: inline-block;
     }
     .uplabel{
         width: 120px;
@@ -188,8 +196,8 @@
         font-weight: bolder;
     }
     .upinput:focus{
-        background: #b4c7de;
-        color:white;
+        background: #fff4d2;
+
     }
     .upfile{
         position: relative;
@@ -202,12 +210,17 @@
         position: relative;
         height: 150px;
         width: 150px;
-        margin:5px;
+        margin:10px;
+    }
+    .previewed_pics:hover{
+        border: #ffcbe7;
+        border-style: inset;
+        border-width: 4px;
     }
     .previewer1{
         height:180px;
-        right:30%;
-        top:0;
+        right:20%;
+        top:-10%;
         font-size: 20px;
         position: absolute;
         width: 150px;
@@ -230,10 +243,10 @@
         width: 75px;
         font-size: 18px;
         border-radius: 5px;
-        border: none;
+        border: outset #82b6ff;
     }
     .xbutton:hover{
-        background: #dec4b2;
+        background: #fff8ed;
         color: #4f5666;
         font-size:20px;
     }

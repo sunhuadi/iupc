@@ -14,12 +14,12 @@ public class News {
     private String news_img;
     private String news_good;
     private String news_title;
-    private java.util.Date news_stoptime;
-    private java.util.Date news_begintime;
+    private java.sql.Timestamp news_stoptime;
+    private java.sql.Timestamp news_begintime;
     private String news_updateway;
     private float news_price;
 
-    public void setNews(String news_id, String news_content, String news_author, Timestamp news_time, String news_img, String news_good, String news_title, Date news_stoptime, Date news_begintime, String news_updateway, float news_price) {
+    public void setNews(String news_id, String news_content, String news_author, Timestamp news_time, String news_img, String news_good, String news_title, Timestamp news_stoptime, Timestamp news_begintime, String news_updateway, float news_price) {
         this.news_id = news_id;
         this.news_content = news_content;
         this.news_author = news_author;
@@ -33,20 +33,21 @@ public class News {
         this.news_price = news_price;
     }
 
+    public void setNews_stoptime(Timestamp news_stoptime) {
+        this.news_stoptime = news_stoptime;
+    }
+
+    public void setNews_begintime(Timestamp news_begintime) {
+        this.news_begintime = news_begintime;
+    }
+
     public Date getNews_stoptime() {
         return news_stoptime;
     }
 
-    public void setNews_stoptime(Date news_stoptime) {
-        this.news_stoptime = news_stoptime;
-    }
 
     public Date getNews_begintime() {
         return news_begintime;
-    }
-
-    public void setNews_begintime(Date news_begintime) {
-        this.news_begintime = news_begintime;
     }
 
 
@@ -76,6 +77,10 @@ public class News {
     }
 //private String news_id;
    // private String news_title;
+
+    public void setNews_time(Timestamp news_time) {
+        this.news_time = news_time;
+    }
 
     public String getNews_id() {
         return news_id;
