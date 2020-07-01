@@ -8,7 +8,7 @@
     text-align: center;
 }
 .mianframe{
-    background: #b7e9f3;
+    background: #E3EFF9;
     color:black;
     font-size: 30px;
     top:11%;
@@ -47,9 +47,7 @@
     color:white;
 }
 .tourist_part{
-    border: #807d86;
-    border-style: groove;
-    border-width: 1px;
+    border: outset #a1b7d1 4px;
     border-radius: 3px;
 }
 .touristlib{

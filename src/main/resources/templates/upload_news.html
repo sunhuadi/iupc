@@ -17,7 +17,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mianframe" id="news_uper" style="overflow: auto">
@@ -34,7 +34,6 @@
             </p>
             <div class="previewer1">
                 <img id="pv_pic" class="previewed_pics"  src="image/0.jpg" />
-                <p style="text-align: center  ">封面预览</p>
             </div>
         </div>
 
@@ -197,8 +196,8 @@
         font-weight: bolder;
     }
     .upinput:focus{
-        background: #b4c7de;
-        color:white;
+        background: #fff4d2;
+
     }
     .upfile{
         position: relative;
@@ -211,7 +210,12 @@
         position: relative;
         height: 150px;
         width: 150px;
-        margin:5px;
+        margin:10px;
+    }
+    .previewed_pics:hover{
+        border: #ffcbe7;
+        border-style: inset;
+        border-width: 4px;
     }
     .previewer1{
         height:180px;
@@ -239,10 +243,10 @@
         width: 75px;
         font-size: 18px;
         border-radius: 5px;
-        border: none;
+        border: outset #82b6ff;
     }
     .xbutton:hover{
-        background: #dec4b2;
+        background: #fff8ed;
         color: #4f5666;
         font-size:20px;
     }
