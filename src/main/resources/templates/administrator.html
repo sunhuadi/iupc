@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+</head>
+<body>
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div id="zixun_box">
+<table class="admin_table">
+    <td class="zixun_td1">店家</td>
+    <td class="zixun_td1">审核内容</td>
+    <td class="zixun_td1">申请时间</td>
+    <td class="zixun_td1">通过</td>
+    <td class="zixun_td1">不通过</td>
+
+    <tr v-for="item in admin" class="zixun_tr">
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td">{{item.shop}}</td>
+        <td class="zixun_td1">
+            <a href="https://www.baidu.com/">点此查看</a>
+        </td>
+        <td class="zixun_td1">{{item.time}}</td>
+        <td class="zixun_td1">
+            <button class="admin_button">通过</button>
+        </td>
+        <td class="zixun_td1">
+            <button class="admin_button">不通过</button>
+        </td>
+
+    </tr>
+
+
+</table>
+</div>
+
+</body>
+<script src="js/xmagic.js" ></script>
+<script>
+    var administrator=new Vue({
+        el:"#zixun_box",
+        data:{
+            admin:[
+                {
+                    shop:"半糖奶绿",
+                    detail:"www.baidu.com/",
+                    time:"2020-7-1",
+                },
+                {
+                    shop:"二毛",
+                    detail:"https://www.baidu.com/",
+                    time:"2020-7-1",
+                },
+                {
+                    shop:"hope",
+                    detail:"https://www.baidu.com/",
+                    time:"2020-7-1",
+                },
+            ]
+
+        }
+    })
+</script>
+<style>
+    #zixun_box{
+        position: absolute;
+        left:17%;
+        top:11%;
+        width: 80%;
+        height: 130%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+
+    }
+    .zixun_tr{
+        position: relative;
+        width: 500px;
+        height: 40px;
+        background-color: #FFF7ED;
+    }
+
+    .zixun_td{
+
+        width: 150px;
+        height: 35px;
+        margin: 8px;
+
+    }
+    .zixun_td:hover {
+        color:#C97582;
+    }
+    .zixun_td1{
+         width: 250px;
+         height: 35px;
+         font-size: 23px;
+        text-align: center;
+     }
+    .zixun_td1:hover{
+        color:#C97582;
+    }
+    .admin_table{
+        position: absolute;
+        left:5%;
+        width: 85%;
+
+        border-collapse:separate;
+        border-spacing:0px 40px;
+    }
+    .admin_button{
+        background-color:#FAE3EA;
+        border-radius: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border: 2px solid #EBC7D1;
+    }
+
+    }
+
+</style>
+</html>
