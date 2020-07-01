@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
+    <script type="text/javascript" th:src="@{js/xmagic.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <!--<script src="code.jquery.com/jquery-3.4.1.min.js"> </script>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div id="shopcheck_box">
+    <img src="image/note_pic_1.jpg" class="shopcheck_pic">
+
+    <div class="shopcheck_text">
+        <p class="shopcheck_text_title">{{shop_title}}</p>
+        <table class="shopcheck_text_table">
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">价格</td>
+                <td class="shopcheck_td1">{{shop_price}}</td>
+            </tr>
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">发货地</td>
+                <td class="shopcheck_td1">{{shop_where}}</td>
+            </tr>
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">类别</td>
+                <td class="shopcheck_td1">{{shop_kind}}</td>
+            </tr>
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">尺码</td>
+                <td class="shopcheck_td1">
+                    <select>
+                        <option v-for="item in shop_size"  :value="a">{{item}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">颜色</td>
+                <td class="shopcheck_td1">
+                    <select>
+                        <option v-for="item in shop_color"  :value="a">{{item}}</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:37%;z-index:0;background-color: white"/>
+
+    <div class="shopcheck_detail">
+        <p class="shopcheck_detail_title">商品详情</p>
+
+        <div class="shopcheckdetail_pic">
+            <img v-for="item in piclist"  :src="item" class="shopcheck_picture">
+        </div>
+        <p class="shopdetail">{{shop_detail}}</p>
+    </div>
+
+</div>
+<script>
+    var shopcheck_vue=new Vue({
+        el:"#shopcheck_box",
+        data:{
+            shop_title:"闲乘月",
+            shop_price:200,
+            shop_where:"青岛",
+            shop_size:["S","M","XL"],
+            shop_color:["淡黄","恶人紫","姨妈红"],
+            shop_kind:"JK",
+            piclist:["image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_2.jpg","image/note_pic_3.jpg","image/note_pic_4.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg"],
+            shop_detail:"卖家承诺七天内发货，中通韵达包邮，到货后七天内无条件退换"
+        }
+    })
+</script>
+
+
+
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+</body>
+<style>
+    #shopcheck_box {
+        position: absolute;
+        left: 17%;
+        top: 11%;
+        width: 80%;
+        height: 250%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+    }
+    .shopcheckdetail_pic{
+        position: absolute;
+        top:10%;
+        width: 96%;
+        left:2%;
+        height: 60%;
+
+        overflow: auto;
+
+
+    }
+    .shopcheck_picture{
+        position: relative;
+        width: 370px;
+        height: 370px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-left: 0;
+
+    }
+    .shopcheck_pic{
+        position: absolute;
+        width: 40%;
+        height: 30%;
+        left:5%;
+        top:3%;
+        border-radius: 30px;
+    }
+    .shopcheck_text{
+        position:relative;
+        top:3%;
+        left:47%;
+        width: 50%;
+        height: 30%;
+        background-color: #FFF7ED;
+        border-radius: 30px;
+    }
+    .shopcheck_text_title{
+        position: absolute;
+        top:2%;
+        left:2%;
+        width: 100%;
+        height: 10%;
+        color: #557496;
+        letter-spacing: 20px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+    .shopcheck_detail_title{
+        position: absolute;
+        top:2%;
+        left:2%;
+        width: 100%;
+        height: 10%;
+
+        letter-spacing: 20px;
+        text-align: center;
+        font-size: 25px;
+
+    }
+    .shopdetail{
+        position: absolute;
+        top:73%;
+        left: 5%;
+        width: 90%;
+        font-size: 23px;
+    }
+
+    .shopcheck_tr{
+
+        width: 500px;
+        height: 40px;
+
+    }
+    .shopcheck_tr:hover{
+        color:#C97582;
+    }
+    .shopcheck_td{
+
+        width: 150px;
+        height: 35px;
+        margin: 8px;
+        font-size: 23px;
+
+    }
+    .shopcheck_td1{
+         width: 350px;
+         height: 35px;
+         font-size: 23px;
+     }
+    .shopcheck_text_table{
+        position: absolute;
+        left: 10%;
+        width: 100%;
+        height: 40%;
+        top:10%;
+        border-collapse:separate;
+        border-spacing:0px 40px;"
+    }
+    .shopcheck_detail{
+        position: absolute;
+        top:40%;
+        left: 5%;
+        width: 92%;
+        height: 60%;
+        background-color: #FFF7ED;
+        border-radius: 30px;
+    }
+
+</style>
+</html>
