@@ -1,50 +1,11 @@
-<script>
-    update(e){
-        let file = e.target.files[0];
-        let param = new FormData(); //创建form对象
-        param.append('tweetPic',file,file.name);//通过append向form对象添加数据
-//param.append('chunk','0');//添加form表单中其他数据
-//console.log(param.get('tweetPic')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
-        let config = {
-            headers:{'Content-Type':'multipart/form-data'}
-        };  //添加请求头
-        axios.post('url/',param,config)
-            .then(response=>{
-                console.log(response.data);
-            })
-    }
-</script>
-<!--<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>小学期网站</title>
-    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
-    <link th:href="@{css/iupc.css}" rel="stylesheet">
-    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{css/semantic.css}" rel="stylesheet">
-    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
-    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
-    <script type="text/javascript" th:src="@{js/pic_box.js}" ></script>
-    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>add</title>
+    add
 </head>
 <body>
 
 </body>
-<script>
-    axios.post('/search', {
-        value:"2",
-    }).then(function (response) {
-        console.log(response)
-    })
-        .catch(function (error) {
-            console.log(error);
-        });
-</script>
 </html>

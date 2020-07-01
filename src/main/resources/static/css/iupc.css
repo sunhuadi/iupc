@@ -166,14 +166,7 @@ ul li{
     position:absolute;
     left:0%;
     top:60%;
-    width: 50%;
-    background: #E3EFF9;
-}
-#zx_box_2{
-    position:absolute;
-    left:50%;
-    top:60%;
-    width: 50%;
+    width: 100%;
     background: #E3EFF9;
 }
 .zxi_pic_fly{
@@ -186,7 +179,8 @@ ul li{
 .zxi{
     position: relative;
     margin:20px;
-    width:90%;
+    display: inline-block;
+    width:45%;
     background: #F8EDDB;
     color: #6e6d71;
     border-radius: 20px;

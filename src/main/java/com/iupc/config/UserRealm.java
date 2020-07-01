@@ -17,6 +17,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
         System.out.println("执行授权");
+
         return null;
     }
 

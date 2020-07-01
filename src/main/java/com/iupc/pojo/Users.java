@@ -4,7 +4,7 @@ public class Users {
     private String userid;//登录名
     private String userpassword;
     private String portrait;
-    private String userpermission;
+    private String role;
     private String username;//昵称
     public String getUserid() {
         return userid;
@@ -30,12 +30,12 @@ public class Users {
         this.portrait = portrait;
     }
 
-    public String getUserpermission() {
-        return userpermission;
+    public String getRole() {
+        return role;
     }
 
-    public void setUserpermission(String userpermission) {
-        this.userpermission = userpermission;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getUsername() {

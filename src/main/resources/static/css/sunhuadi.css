@@ -18,5 +18,8 @@
     z-index: 0;
 }
 .background{
-
+    background:url("../image/bg_blue.png") ;
+    background-attachment:fixed;
+    background-size: cover;
+    overflow: auto;
 }

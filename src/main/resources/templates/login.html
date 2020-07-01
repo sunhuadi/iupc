@@ -70,9 +70,9 @@
                     <label>身份</label>
                     <div class="ui left icon input">
                         <select v-model="role">
-                            <option>用户</option>
-                            <option>店家</option>
-                            <option>管理员</option>
+                            <option value="2">用户</option>
+                            <option value="1">店家</option>
+                            <option value="0">管理员</option>
                         </select>
                     </div>
                 </div>
@@ -91,26 +91,33 @@
             userid:"",
             userpassword: "",
             role:"",
-            user:null,
+            //user:null,
            // msg:sessionStorage.getItem("msg"),
         }, methods:{
             denglu:function () {
                 console.log("正在发送请求.....")
                 console.log(this.userid)
+                console.log(this.role)
                 that=this;
                 axios.post('/logins',{
                     userid:that.userid,
                     userpassword: that.userpassword,
-                    role:"",
+                    role:that.role,
                 })
                     .then(function (response) {//是返回的所有信息
                         //response.length
                         console.log(response.data)
                         if (response.data.code=="0")
                         {
+                            alert(response.data.msg)
                             console.log(response.data.code)
+                            that.msg=response.data.msg
+                            console.log(response.data.role)
+                            console.log(response.data.username)
+                            console.log(response.data.img)
+                            //console.log(response.data.role)
                            // sessionStorage.setItem("msg","");
-                            window.location.href="/";
+                            window.location.href="/login";
                         }
                         else {
                             that.msg=response.data.msg

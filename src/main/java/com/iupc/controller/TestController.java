@@ -20,6 +20,12 @@ import java.util.List;
 public class TestController {
 
 
+    @RequestMapping("/test/index")
+    public String index()
+    {
+        return  "test/index";
+    }
+
     @RequestMapping("/test/add")
     public String add()
     {

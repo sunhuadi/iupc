@@ -1,5 +1,4 @@
 package com.iupc.service.impl;
-
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.controller.IndexController;
 import com.iupc.pojo.News;
@@ -70,7 +69,6 @@ public class UploadServicImpl implements IUploadService {
             }
             System.out.println("http://39.97.113.33/"+path);
         }
-
         return mp;
     }
 

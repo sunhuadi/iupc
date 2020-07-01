@@ -25,7 +25,7 @@
 <div id="zixun_box">
     <div>
         <img style="width: 90px;height: 78px" src="image/返回.png" >
-        <span style="font-size: 20px;color: #557496">返回</span>
+        <gotoback></gotoback>
     </div>
     <p class="zixun_title" >{{ title }}</p>
     <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
@@ -55,6 +55,10 @@
             <tr class="zixun_tr">
                 <td class="zixun_td">上新时间</td>
                 <td class="zixun_td1">{{ text_time }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td class="zixun_td">下架时间</td>
+                <td class="zixun_td1">{{ text_stop }}</td>
             </tr>
 
             <tr class="zixun_tr">
@@ -90,13 +94,15 @@
             title: "闲乘月",
             text_title:"格裙 闲乘月",
             text_shop:"Sumire-栗米JK馆",
-            text_time:"6月26日21：40-7月6日21:40",
+            text_time:"6月26日21：40",
+            text_stop:"7月6日21:40",
             text_price:200.0,
             text_modality:"现货（包邮）",
             text_intro:"这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆",
             likenum:1,
             looknum:100,
             islike:false,
+
             piclist:["image/zixun_pic1.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg","image/zixun_pic4.jpg","image/zixun_pic1.jpg"],
         },
         methods:{
@@ -126,7 +132,9 @@
            newsvue.text_shop=datas[0].news_author;
            newsvue.text_modality=datas[0].news_updateway;
            newsvue.text_price=datas[0].news_price;
-           newsvue.text_time=datas[0].news_fbegintime+" -- "+datas[0].news_fstoptime;
+           newsvue.text_time=datas[0].news_begintime
+           newsvue.text_stop=datas[0].news_stoptime;
+               //+" -- "+datas[0].news_stoptime;
        }
     })
         .catch(function (error) {
