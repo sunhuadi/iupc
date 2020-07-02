@@ -2,16 +2,52 @@ package com.iupc.pojo;
 
 public class Goods {
 
-    private String Goods_id;
-    private String Goods_name;
-    private String Goods_price;
-    private String Goods_time;
-    private String Goods_category;
-    private String Goods_link;
-    private String Goods_modality;
-    private String Goods_shopid;
-    private String Goods_picture;
-    private String Goods_introduce;
+    private String Goods_id;//商品id
+    private String Goods_name;//商品名字
+    private String Goods_price;//商品价格
+    private String Goods_time;//上架时间
+    private String Goods_category;//商品类别
+    private String Goods_link;//商品购买连接
+    private String Goods_modality;//待定
+    private String Goods_shopid;//所属商店id
+    private String Goods_picture;//商品图片
+    private String Goods_introduce;//商品介绍
+    private int Goods_Snum;//S剩余数目
+    private int Goods_Mnum;
+    private int Goods_Lnum;
+    private int Goods_Sum;//总剩余数
+
+    public int getGoods_Snum() {
+        return Goods_Snum;
+    }
+
+    public void setGoods_Snum(int goods_Snum) {
+        Goods_Snum = goods_Snum;
+    }
+
+    public int getGoods_Mnum() {
+        return Goods_Mnum;
+    }
+
+    public void setGoods_Mnum(int goods_Mnum) {
+        Goods_Mnum = goods_Mnum;
+    }
+
+    public int getGoods_Lnum() {
+        return Goods_Lnum;
+    }
+
+    public void setGoods_Lnum(int goods_Lnum) {
+        Goods_Lnum = goods_Lnum;
+    }
+
+    public int getGoods_Sum() {
+        return Goods_Sum;
+    }
+
+    public void setGoods_Sum(int goods_Sum) {
+        Goods_Sum = goods_Sum;
+    }
 
     public String getGoods_id() {
         return Goods_id;

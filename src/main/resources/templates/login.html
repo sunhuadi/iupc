@@ -66,16 +66,6 @@
                         <i class="lock icon"></i>
                     </div>
                 </div>
-                <div class="field">
-                    <label>身份</label>
-                    <div class="ui left icon input">
-                        <select v-model="role">
-                            <option value="2">用户</option>
-                            <option value="1">店家</option>
-                            <option value="0">管理员</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="ui blue submit button" @click="denglu">Login</div>
             </div>
         </div>
@@ -100,9 +90,8 @@
                 console.log(this.role)
                 that=this;
                 axios.post('/logins',{
-                    userid:that.userid,
-                    userpassword: that.userpassword,
-                    role:that.role,
+                    username:that.userid,
+                    password: that.userpassword,
                 })
                     .then(function (response) {//是返回的所有信息
                         //response.length

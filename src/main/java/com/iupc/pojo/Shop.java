@@ -3,20 +3,10 @@ package com.iupc.pojo;
 
 public class Shop {
 
-  private String shop_id;
-  private String shop_name;
-  private String shop_password;
-  private String shop_introduce;
-  private String shop_pic;
-  private String role;
-
-  public String getRole() {
-    return role;
-  }
-
-  public void setRole(String role) {
-    this.role = role;
-  }
+  private String shop_name;//商店名字
+  private String shop_introduce;//店铺介绍
+  private String shop_pic;//店铺头像
+  private String username;//店铺所属用户
 
   public String getShop_id() {
     return shop_id;
@@ -24,6 +14,15 @@ public class Shop {
 
   public void setShop_id(String shop_id) {
     this.shop_id = shop_id;
+  }
+
+  private String shop_id;//商店id
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getShop_name() {
@@ -34,13 +33,6 @@ public class Shop {
     this.shop_name = shop_name;
   }
 
-  public String getShop_password() {
-    return shop_password;
-  }
-
-  public void setShop_password(String shop_password) {
-    this.shop_password = shop_password;
-  }
 
   public String getShop_introduce() {
     return shop_introduce;

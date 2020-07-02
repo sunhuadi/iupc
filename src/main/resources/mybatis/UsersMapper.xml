@@ -6,11 +6,11 @@
 
     <select id="getUserByName" resultType="Users" parameterType="String">
         select * from users
-        where binary userid=#{userid}
+        where binary username=#{username}
     </select>
     <select id="getShopByName" resultType="Shop" parameterType="String">
         select * from shop
-        where binary shop_id=#{userid}
+        where binary shop_id=#{username}
     </select>
 
 </mapper>
