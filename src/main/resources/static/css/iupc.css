@@ -1,10 +1,10 @@
 :root{
-    --bgimg:url("../image/background/10.JPG");
+    --bgimg:url("../image/background/13.JPG");
     --bgimgwidth:1748px;
     --bgimgheight:847px;
 }
 .body{
-    background-image:url("../image/background/aa1.jpg");
+    /*background-image:url("../image/background/aa1.jpg");*/
     /*background-image:var(--bgimg);*/
     background-size:cover;
     background-attachment: fixed;
@@ -140,6 +140,7 @@
     height:43%;
     position:absolute;
     top:10%;
+    left:2%;
 }
 #pic_box{
     position: absolute;
@@ -241,7 +242,7 @@ ul li{
     background-position:7% 70% ;
     background-image: var(--bgimg);
     background-size: var(--bgimgwidth) var(--bgimgheight);
-    width: 76%;
+    width:82%;
     clear:both;
     overflow: hidden;
     margin: 10px 0 40px 0;

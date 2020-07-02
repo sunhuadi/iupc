@@ -47,9 +47,13 @@
     </div>
 
     <div id="header_setting">
-        <img style="height:60px;width:60px;" src="image/setting.png" />
+        <div>
+            <img @click="bgsettingshow" style="height:60px;width:60px;" src="image/setting.png" />
+        </div>
+        <div v-if="bgsisshow" class="bgs">
+            <img class="bgspic"  v-for="(item,index) in bgslist" @click="changebg(index)" :src="item.src"/>
+        </div>
     </div>
-
     <div id="header_txbox">
         <img src="image/tx.ico" id="header_tx">
         <div style="top:25px;left:85px;position: absolute;"></div>
@@ -82,8 +86,8 @@
 <div id="zx_box">
     <p class="zx_box_title">热门资讯
     </p>
-
     <div id="zx_box_1">
+        <button onclick="changebg()"></button>
         <news  myclassname="zxi" news_title="item.news_title" news_id=item.news_id news_img="item.news_img" news_time="item.news_time" news_content="item.news_content">
         </news>
         <news  v-for="item in zxall" myclassname="zxi" :news_title="item.news_title" :news_id=item.news_id :news_img="item.news_img" :news_time="item.news_time" :news_content="item.news_content">
@@ -105,9 +109,38 @@
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
 <script src="js/indexvue.js" ></script>
+<script>
+    var setvue=new Vue({
+        el:"#header_setting",
+        data: {
+            bgsisshow:false,
+            bgslist:[
+            ],
+
+        },
+        methods:{
+            bgsettingshow() {
+                this.bgsisshow=!this.bgsisshow;
+                console.log("showit");
+            },
+            changebg(which){
+                document.documentElement.style.setProperty("--bgimg",'url("'+this.bgslist[which].var+'")')
+            }
+
+        }
+
+    },)
+
+    for(var i=1;i<21;i++){
+        var bgp={src:"",var:""};
+        bgp.src="image/background/"+i+".jpg";
+        console.log(bgp.src);
+        bgp.var="../"+bgp.src;
+        setvue.bgslist.push(bgp);
+    }
+</script>
 </body>
 <style>
-
     .zxi_pic_fly{
         position: absolute;
         left: 0;
@@ -115,6 +148,17 @@
         width: 50px;
         height: 50px;
     }
-
+    .bgspic{
+        width: 100px;
+        height: 100px;
+    }
+    .bgs{
+        height:300px;
+        width:320px;
+        position: absolute;
+        top:100%;
+        right:10px;
+        overflow: auto;
+    }
 </style>
 </html>

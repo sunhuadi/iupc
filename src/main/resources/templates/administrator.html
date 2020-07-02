@@ -28,7 +28,12 @@
         <td class="zixun_td1">通过</td>
         <td class="zixun_td1">不通过</td>
     </tr>
-    <datapiece v-for="item in admin" :did="'1'" :dtype="'news'" :dauthor="item.shop" :dtime="item.time"></datapiece>
+    <datapiece v-for="item in admin"
+               :did="'1'"
+               :dtype="'news'"
+               :dauthor="item.shop"
+               :dtime="item.time">
+    </datapiece>
 
 
 </table>
