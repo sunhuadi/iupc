@@ -105,8 +105,8 @@
                 news_title: null,
                 news_price:null,
                 news_begintime:null,
-                news_stoptim:null,
-                news_updayeway:null,
+                news_stoptime:null,
+                news_updateway:null,
             },
         },
         methods:{
@@ -144,31 +144,60 @@
 
             },
             upload:function () {
-                let formData = new FormData();
-                that=this
-                formData.append('myfile',picsuper.files[0])
-                //formData.append('news', that.news);
-                console.log(that.news)
-                console.log(picsuper.files.length)
-                for(var i=0;i<picsuper.files.length;i++)
-                {
-                    formData.append('myfiles', picsuper.files[i]);
-                    console.log(picsuper.files[i])
-                }
-                //console.log(that.news.length)
+            console.log(this.news)
 
-                formData.append("news", new Blob([JSON.stringify(that.news)], {type: "application/json"}));
-                //console.log(formData.get("news"))
-                console.log("正在发送请求......")
-                //console.log(formData.keys())
-                axios.post('/uploadNews', formData, {headers: {'Content-Type': 'multipart/form-data'}}
-                )
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
+                if(this.news.news_content!=null&&
+                this.news.news_good!=null&&
+                this.news.news_title!=null&&
+                this.news.news_price!=null&&
+                this.news.news_begintime!=null&&
+                this.news.news_stoptime!=null&&
+                this.news.news_updateway!=null)
+            {
+                if(picuper.files[0]==null)
+                {
+                    alert("请上传封面！！")
+                }
+                else if(picsuper.files[0]==null)
+                {
+                    alert("请上传描述图片！")
+                }
+                else {
+                    let formData = new FormData();
+                    that=this
+                    formData.append('myfile',picuper.files[0])
+                    //formData.append('news', that.news);
+                    console.log(that.news)
+                    console.log(picsuper.files.length)
+                    for(var i=0;i<picsuper.files.length;i++)
+                    {
+                        formData.append('myfiles', picsuper.files[i]);
+                        console.log(picsuper.files[i])
+                    }
+                    //console.log(that.news.length)
+
+                    formData.append("news", new Blob([JSON.stringify(that.news)], {type: "application/json"}));
+                    //console.log(formData.get("news"))
+                    console.log("正在发送请求......")
+                    //console.log(formData.keys())
+                    axios.post('/uploadNews', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                    )
+                        .then(res => {
+                            console.log("成功！")
+                            alert(res.data.msg)
+                        })
+                        .catch(err => {
+                            alert(res.data.msg)
+                            console.log("失败！")
+                        });
+
+
+                }
+
+            }else {
+                alert("请检查是否有未填写内容！")
+            }
+
 
             },
 
