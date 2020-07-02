@@ -26,7 +26,7 @@
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">资讯标题</label>
-                <input v-model="upn_title" type="text" class="upinput"  >
+                <input v-model="news.news_title" type="text" class="upinput"  >
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -41,26 +41,26 @@
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新商品</label>
-            <input v-model="upn_goods" type="text" class="upinput"  >
+            <input  v-model="news.good" type="text" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">价格</label>
-            <input v-model="upn_price" type="text" class="upinput"  >
+            <input  v-model="news.news_price" type="text" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">上新形式</label>
-            <input v-model="upn_way" type="text" class="upinput"  >
+            <input v-model="news.news_updateway" type="text" class="upinput"  >
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新时间</label>
-            <input  v-model="upn_begintime" type="date" class="upinput"  >
+            <input type="datetime-local" class="upinput"  v-model="news.news_begintime">
         </p>
         <p class="upp" >
             <label class="uplabel">下架时间</label>
-            <input v-model="upn_stoptime" type="date" class="upinput"  >
+            <input type="datetime-local" class="upinput" v-model="news.news_stoptime" >
 
         </p>
         </div>
@@ -68,7 +68,7 @@
         <div class="up_part">
         <p class="up_textarea">
             <label class="uplabel">内容介绍</label>
-            <textarea v-model="upn_content" class="news_textarea"></textarea>
+            <textarea class="news_textarea"v-model="news.news_content"></textarea>
         </p>
         </div><br />
         <div class="up_part">
@@ -85,7 +85,7 @@
                 </span>
             </div>
         </div>
-        <button class="xbutton" > 发布 </button>
+        <button class="xbutton" @click="upload"> 发布 </button>
     </div>
 </div>
 </body>
@@ -96,13 +96,18 @@
         el:"#news_uper",
         data:{
             picslist:[],
-            upn_title:"在这里输入标题",
-            upn_goods:"请输入商品",
-            upn_price:0,
-            upn_way:"现货",
-            upn_begintime:"",
-            upn_stoptime:"",
-            upn_content:""
+            news:{
+                news_id:null,
+                news_content: null,
+                news_author:null,
+                //news_time: null,
+                news_good:null,
+                news_title: null,
+                news_price:null,
+                //news_begintime:null,
+                //news_stoptim:null,
+                news_updayeway:null,
+            },
         },
         methods:{
         changepic() {
