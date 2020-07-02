@@ -13,6 +13,17 @@ public class Notes {
     private java.sql.Timestamp note_time;//笔记发布时间
     private String note_content;//笔记内容
     private String note_title;//笔记标题
+
+    private String note_img;
+
+    public String getNote_img() {
+        return note_img;
+    }
+
+    public void setNote_img(String note_img) {
+        this.note_img = note_img;
+    }
+
     public String getNote_title() {
         return note_title;
     }

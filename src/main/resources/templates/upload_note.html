@@ -26,7 +26,7 @@
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">笔记标题</label>
-                <input type="text" class="upinput"  >
+                <input type="text" class="upinput" v-model="notes.note_title" >
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -41,8 +41,8 @@
         <hr style="border:none;height:5px;background:#b8cce2;width:90%;" />
         <div class="up_part">
             <p class="up_textarea">
-                <label class="uplabel">内容介绍</label>
-                <textarea class="news_textarea"></textarea>
+                <label class="uplabel" >内容介绍</label>
+                <textarea  v-model="notes.note_content" class="news_textarea"></textarea>
             </p>
         </div><br />
         <div class="up_part">
@@ -60,7 +60,7 @@
 
             </div>
         </div>
-        <button class="xbutton" > 发布 </button>
+        <button class="xbutton" @click="upload"> 发布 </button>
     </div>
 </div>
 </body>
@@ -71,6 +71,10 @@
         el:"#news_uper",
         data:{
             picslist:[],
+            notes:{
+                note_title:null,
+                note_content:null
+            }
         },
         methods:{
             changepic() {
@@ -102,35 +106,57 @@
             },
             savepics()
             {
-                let formData = new FormData();
-                formData.append('type', 'image/jpg');
 
-                console.log(picsuper.files.length)
-                for(var i=0;i<picsuper.files.length;i++)
-                {
-                    formData.append('myfile', picsuper.files[i]);
-                    console.log(picsuper.files[i])
-                }
-                axios.post('/ok', formData)
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
             },
             savepic(){
-                let formData = new FormData();
-                formData.append('type', 'image/jpg');
-                formData.append('myfile', picuper.files[0]);
-                axios.post('/ok', formData)
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
-            }
+
+            }, upload:function () {
+                console.log(this.note_title,this.note_content)
+                if( this.notes.note_title!=null&&this.notes.note_content!=null)
+                {
+                    if(picuper.files[0]==null)
+                    {
+                        alert("请上传封面！！")
+                    }
+                    else if(picsuper.files[0]==null)
+                    {
+                        alert("请上传描述图片！")
+                    }else {
+                        let formData = new FormData();
+                        that=this
+                        formData.append('myfile',picuper.files[0])
+                        //formData.append('news', that.news);
+                        //console.log(that.news)
+                        //console.log(picsuper.files.length)
+                        for(var i=0;i<picsuper.files.length;i++)
+                        {
+                            formData.append('myfiles', picsuper.files[i]);
+                            //console.log(picsuper.files[i])
+                        }
+                        console.log(that.notes)
+
+                        formData.append("notes", new Blob([JSON.stringify(that.notes)], {type: "application/json"}));
+                        console.log(formData.get("notes"))
+                        console.log("正在发送请求......")
+                        //console.log(formData.keys())
+                        axios.post('/uploadNotes', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                        )
+                            .then(res => {
+                                alert(res.data.msg)
+                                console.log("成功！")
+                            })
+                            .catch(err => {
+                                console.log("失败！")
+                                alert(res.data.msg)
+                            });
+
+                    }
+                }else {
+                    alert("请检查是否有未填写内容！")
+                }
+
+
+            },
 
         }
     })
