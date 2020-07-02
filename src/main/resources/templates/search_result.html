@@ -17,16 +17,23 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mianframe">
     <h1 class="mainframe_title"> 搜索结果 </h1>
-    <hr />
-    <span id="shrs">
-        <news v-for="item in searchdata" myclassname="news_sh" :news_title="item.news_title" :news_id="item.news_id" :news_img="item.news_img" :news_time="item.news_formattime" :news_content="item.news_content">
+    <hr style="border: none;height: 3px;background: #0f0f0f" />
+    <span id="shrs" style="width: 100%">
+        <news v-for="item in searchdata"
+              myclassname="zxi"
+              :news_title="item.news_title"
+              :news_id="item.news_id"
+              :news_img="item.news_img"
+              :news_time="item.news_time"
+              :news_content="item.news_content"
+        >
         </news>
-    </span>
+        </span>
 </div>
 </body>
 <style>

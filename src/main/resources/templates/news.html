@@ -25,26 +25,38 @@
 </head>
 <body>
     <div id="main" class="mainframe">
-        <input v-model="myvalue" />
-        {{ myvalue }}
-        <p @click="clit"> 123</p>
-         <p  v-for="(item,index) in dalist" @click="clit(index)"> {{ item }} </p>
+        <table>
+            <tr v-for="(item,index) in inputs">
+                <td>型号</td>
+                <td><input v-model="inputs[index].key"  /></td>
+                <td>数量</td>
+                <td><input v-model="inputs[index].value" /></td>
+                <td>价格</td>
+                <td><input v-model="inputs[index].value" /></td>
+                <td><button @click="deleteone(index)">删除本行</button></td>
+            </tr>
+        </table>
+        <button @click="insertone"> +1</button>
+        <button @click="deleteall"> clear</button>
     </div>
 </body>
 <script>
     var myvue=new Vue({
         el:"#main",
         data:{
-            myvalue:"",
-            dalist:[
-                "123",
-                "456",
-                "789"
-            ]
+            inputs:[],
         },
         methods:{
-            clit(which){
-               this.myvalue=this.dalist[which];
+            insertone()
+            {
+                this.inputs.push({key:"",value:"",price:""})
+            },
+            deleteall(){
+                this.inputs.splice(0,this.inputs.length)
+            },
+            deleteone(which)
+            {
+                this.inputs.splice(which,1);
             }
         },
         computed:{

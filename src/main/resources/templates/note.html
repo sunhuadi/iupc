@@ -17,7 +17,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 </head>
-<body>
+<body class="body">
 
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
@@ -29,7 +29,7 @@
 
     <div class="zixun_info">
         <span> <img :src="islike?'image/透明蓝色蝴蝶结.gif':'image/hdj.png'" @click="dolike" style="height: 30px;width: 30px"  />{{  '点赞: '+likenum }}</span>
-        <span> <img src="image/cake.png"  style="height: 30px;width: 30px"  />{{  '浏览: '+looknum }}</span>
+        <span> <img src="image/cake.png"  style="height: 30px;width: 30px"  />{{ '浏览: '+looknum }}</span>
         <span style="margin-left: 30px"> {{text_fbtime}}</span>
         <span>{{'By  '+text_shop}}</span>
     </div>

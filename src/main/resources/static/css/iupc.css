@@ -1,8 +1,13 @@
+:root{
+    --bgimg:url("../image/background/13.JPG");
+    --bgimgwidth:1748px;
+    --bgimgheight:847px;
+}
 .body{
-    background:url("../image/bg_blue.png") ;
-    background-attachment:fixed;
-    background-size: 200px 200px;
-    overflow: auto;
+    /*background-image:url("../image/background/aa1.jpg");*/
+    /*background-image:var(--bgimg);*/
+    background-size:cover;
+    background-attachment: fixed;
 }
 .mainframe_title{
     text-align: center;
@@ -12,24 +17,24 @@
     color:black;
     font-size: 30px;
     top:11%;
-    left: 15%;
+    left: 14%;
     position: absolute;
-    width: 70%;
+    width: 85%;
     min-width:1200px;
-    height:80%;
+    height:87%;
     padding-bottom: 80px;
+    background: rgba(222,246,255,0.8);
     display: table;
+    border-style: outset;
 }
 .news_sh{
     position: relative;
     display: inline-block;
     margin:20px;
-    width:45%;
+    width:47%;
     display: inline-block;
-    max-width: 500px;
     background: #F8EDDB;
     color: #6e6d71;
-    border-radius: 20px;
 }
 .touristcont_lp{
     letter-spacing: 5px;
@@ -37,18 +42,20 @@
     border-width: 1px;
     height:30px;
     font-size: 15px;
-    background: #c6e9f3 ;
+    background: rgba(211,209,231,0.7);
     margin:3px;
     padding-left: 20px;
 }
 .touristcont_lp:hover{
     transform: scale(1.1);
-    background:#b8cce2 ;
+    background: rgba(211,209,231,1);
     color:white;
+    font-size: 18px;
 }
 .tourist_part{
-    border: outset #a1b7d1 4px;
+    border: solid #d4d6de 2px;
     border-radius: 3px;
+    background-size:50% 100%;
 }
 .touristlib{
     position: relative;
@@ -71,25 +78,27 @@
     width: 12%;
     position: fixed;
     top:10.5%;
-    height:90%;
+    height:88%;
+    border: solid #e8e2ff;
     left:0;
     list-style: none;
-    background:#b8cce2 ;
     margin-left: 0;
     overflow: hidden;
+    background-image:var(--bgimg) ;
+    background-position: 0% 10.5% ;
 }
 .tourist_li{
     width: 100%;
     height: 50px;
     left: 0;
     font-size: 20px;
-    background: #b8cce2;
+    /*background: #b8cce2;*/
     position: relative;
-    margin-top:10px;
-    padding: 10px;
-    border-radius: 10px;
-    color: #58575d;
-    font-weight: bolder;
+    padding:20px 10px 20px 0;
+    margin-bottom: 5px;
+    color: rgba(0,0,0,0.9);
+    background: rgba(255,255,255,0.5);
+    font-weight: 500;
 
 }
 .tourist_content{
@@ -105,14 +114,14 @@
     letter-spacing: 5px;
 }
 .sidepicbox{
-    height:100%;
+    height:120%;
     width:12%;
     position: absolute;
     overflow: auto;
     top:10%;
 }
 .sideboxp{
-    height:38%;
+    height:28%;
     width:100%;
     position: relative;
     left: 0;
@@ -131,7 +140,7 @@
     height:43%;
     position:absolute;
     top:10%;
-    background: rgb(200,240,240,0.2);
+    left:2%;
 }
 #pic_box{
     position: absolute;
@@ -159,13 +168,19 @@ ul li{
     text-align: center;
     font-size:30px;
     font-weight: bolder;
+    height:65px;
     font-family: 华文细黑;
+    position: relative;
+    margin:0;
+    background: rgba(255,255,255,0.5);
 }
 #zx_box_1{
+
     position:absolute;
-    top:60%;
+    top:70px;
     width: 100%;
-    background: #E3EFF9;
+    height:100%;
+    background: rgba(255,255,255,0.6);
 }
 .zxi_pic_fly{
     position: absolute;
@@ -176,12 +191,12 @@ ul li{
 }
 .zxi{
     position: relative;
-    margin:20px;
+    margin:5px 20px 5px 30px;
     display: inline-block;
     width:45%;
-    background: #F8EDDB;
-    color: #6e6d71;
-    border-radius: 20px;
+    background: rgba(255,235,235,0.8);
+    color:black;
+    border-style: inset;
 }
 .zxi_pic{
     width:150px;
@@ -199,19 +214,20 @@ ul li{
     width:80%;
 }
 .zxi_content{
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
     width:85%;
-    top:25%;
+    top:21%;
 }
 .zxi:hover{
     transform: scale(1.05);
 }
 .zxi_title{
     position:absolute;
-    font-size:18px;
+    font-size:19px;
     font-weight: bold;
     top:1%;
+
     width: 90%;
     overflow: auto;
 }
@@ -221,10 +237,15 @@ ul li{
 #zx_box{
     position:absolute;
     left:14%;
-    top:60%;
-    width: 76%;
-    background: #E3EFF9;
-    border-radius: 30px;
+    min-height:100%;
+    top:70%;
+    background-position:7% 70% ;
+    background-image: var(--bgimg);
+    background-size: var(--bgimgwidth) var(--bgimgheight);
+    width:82%;
+    clear:both;
+    overflow: hidden;
+    margin: 10px 0 40px 0;
 }
 .zxi_time{
     position:absolute;
@@ -272,15 +293,19 @@ ul li{
     position: fixed;
     width:100%;
     height:10%;
-    background: #b8cce2;
+    background-image:var(--bgimg) ;
+    background-size:var(--bgimgwidth) var(--bgimgheight) ;
+    background-position: 0 0 ;
     z-index: 1;
 }
 #header_search{
     position: absolute;
     left:30%;
     top:10px;
+    font-weight: bold;
     width:300px;
     height:100px;
+    opacity: 0.8;
 }
 #header_message{
     position: absolute;
