@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>注册</title>
+    <title>登录</title>
     <link th:href="@{css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{css/iupc.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
@@ -18,122 +18,97 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="background">
-<div class="header" th:fragment="header">
-    <div id="header_message">
-        <div class="column">
-            <img src="/image/hdj.png"  style="height: 60px;height:60px;" class="img-rounded">
-        </div>
+<body>
+<div id="register_box">
+    <div class="username">
+        <span style="font-size: 25px">请设置昵称</span>
+        <input class="name" type="text" placeholder="" v-model="svalue" @keyup.enter="saveit" >
+        <!--<input type="text" name="name">-->
+        <br>
     </div>
-    <div id="header_biaoti">
-        <img style="height:78px;width:300px;" src="image/三坑圈.png" />
+    <div class="passw1">
+        <span style="font-size: 25px">请设置密码</span>
+        <input type="text" class="password1">
+        <br>
     </div>
-    <div id="header_search" class="ui search">
-        <div style="height: 60px;width: 800px;" class="ui icon input">
-            <input class="prompt" type="text" placeholder="" v-model="svalue" @Blur="unshowit" @focus="doshowit" @keyup.enter="saveit" >
-            <button style="background-color: #FDEDED; height:50px;width:80px;margin-top:6px; display: inline-block" class="ui button" @click="saveit">搜索</button>
-        </div>
+    <div class="passw2">
+        <span style="font-size: 25px">请确认密码</span>
+        <input type="text" class="password2">
+        <br>
     </div>
-    <div id="header_setting">
-        <img style="height:60px;width:60px;" src="image/setting.png" />
+    <div class="usertype">
+        <span style="font-size: 25px">您是三坑爱好者or店家？</span>
+        <br><br>
+        <label><input name="usertype" type="radio" value=""/>三坑爱好者</label>
+        <label><input name="usertype" type="radio" value=""/>店家</label>
+        <br>
     </div>
-
-    <div id="header_txbox">
-        <img src="image/tx.ico" id="header_tx">
-        <div style="top:25px;left:85px;position: absolute;"></div>
+    <div>
+        <button style="background-color: #FDEDED; height:50px;width:80px;margin-top:6px; display: inline-block" class="regibutton" @click="saveit">注册</button>
     </div>
-
-</div>
-<div class="login_out" id="login_vue">
-    <div class="ui placeholder segment">
-        <div class="ui two column very relaxed stackable grid">
-            <div class="column">
-                <div class="ui form">
-                    <div class="field">
-                        <label>Username</label>
-                        <div class="ui left icon input">
-
-                            <input type="text" placeholder="Username" v-model="userid" >
-                            <i class="user icon"></i>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <div class="ui left icon input">
-                            <input type="password" placeholder="Password" v-model="userpassword" @keyup.enter="denglu">
-                            <i class="lock icon"></i>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>身份</label>
-                        <div class="ui left icon input">
-                            <select v-model="role">
-                                <option value="2">用户</option>
-                                <option value="1">店家</option>
-                                <option value="0">管理员</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="ui blue submit button" @click="denglu">Login</div>
-                </div>
-            </div>
-        </div>
+    <div class="return">
+        <img style="width: 90px;height: 78px" src="image/返回.png" >
+        <span style="font-size: 20px;color: #557496">返回</span>
     </div>
 </div>
-
 </body>
-<script>
-    var login=new Vue({
-        el:"#login_vue",
-        data:{
-            userid:"",
-            userpassword: "",
-            role:"",
-            //user:null,
-            // msg:sessionStorage.getItem("msg"),
-        }, methods:{
-            denglu:function () {
-                console.log("正在发送请求.....")
-                console.log(this.userid)
-                console.log(this.role)
-                that=this;
-                axios.post('/logins',{
-                    userid:that.userid,
-                    userpassword: that.userpassword,
-                    role:that.role,
-                })
-                    .then(function (response) {//是返回的所有信息
-                        //response.length
-                        console.log(response.data)
-                        if (response.data.code=="0")
-                        {
-                            alert(response.data.msg)
-                            console.log(response.data.code)
-                            that.msg=response.data.msg
-                            console.log(response.data.role)
-                            console.log(response.data.username)
-                            console.log(response.data.img)
-                            //console.log(response.data.role)
-                            // sessionStorage.setItem("msg","");
-                            window.location.href="/login";
-                        }
-                        else {
-                            that.msg=response.data.msg
-                            alert(response.data.msg);
-                            //sessionStorage.setItem("msg",response.data.msg);
-                            window.location.href="/login";
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
 
-            }
-        }
-
-    })
-
-</script>
+<style>
+    #register_box{
+        width: 100%;
+        height: 100%;
+        background:#E3EFF9;
+    }
+    .username{
+        position: relative;
+        top:200px;
+        left: 42%;
+    }
+    .passw1{
+        position: relative;
+        top:220px;
+        left: 42%;
+    }
+    .passw2{
+        position: relative;
+        top:240px;
+        left: 42%;
+    }
+    .usertype{
+        position: relative;
+        top:260px;
+        left: 42%;
+    }
+    .regibutton{
+        position: relative;
+        left:48%;
+        top:310px;
+        border-radius: 4px;
+        border: 2px solid #FAE3EA;
+    }
+    .name{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .password1{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .password2{
+        border-radius: 4px;
+        border: 1px solid #9CB5D3;
+        width: 200px;
+        height: 30px;
+    }
+    .return{
+        position: absolute;
+        top:1px;
+        left: 1px;
+    }
+</style>
 </html>
