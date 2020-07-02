@@ -44,7 +44,7 @@
             <input v-model="upn_goods" type="text" class="upinput"  >
         </p>
         <p class="upp" >
-            <label class="uplabel">价格</label>
+            <label class="uplabel">价 格</label>
             <input v-model="upn_price" type="text" class="upinput"  >
         </p>
         <p class="upp" >
@@ -177,14 +177,13 @@
     }
     .upp{
         position: relative;
-        margin:0;
-        margin-top:20px;
         height:40px;
         left:10%;
         display: inline-block;
+        margin: 20px 40px 0 0;
     }
     .uplabel{
-        width: 120px;
+        width: 100px;
         font-size:22px;
     }
     .upinput{
@@ -194,6 +193,7 @@
         border-radius: 10px;
         font-family: "微软雅黑 Light";
         font-weight: bolder;
+        margin:0;
     }
     .upinput:focus{
         background: #fff4d2;

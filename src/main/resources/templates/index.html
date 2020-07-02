@@ -29,7 +29,7 @@
     </div>
 
     <div id="header_biaoti">
-        <a href="/"><img style="height:78px;width:300px;" src="image/三坑圈.png" /></a>
+        <a href="/"><img style="height:78px;width:300px;" src="image/三坑圈 黑.png" /></a>
     </div>
 
     <div id="header_search" class="ui search">
@@ -80,9 +80,12 @@
     </div>
 </div>
 <div id="zx_box">
-    <p class="zx_box_title">热门资讯</p>
-    <hr style="color:black;" />
+    <p class="zx_box_title">热门资讯
+    </p>
+
     <div id="zx_box_1">
+        <news  myclassname="zxi" news_title="item.news_title" news_id=item.news_id news_img="item.news_img" news_time="item.news_time" news_content="item.news_content">
+        </news>
         <news  v-for="item in zxall" myclassname="zxi" :news_title="item.news_title" :news_id=item.news_id :news_img="item.news_img" :news_time="item.news_time" :news_content="item.news_content">
         </news>
     </div>

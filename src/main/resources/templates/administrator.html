@@ -18,30 +18,17 @@
 
 </head>
 <body>
-<div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
 <div id="zixun_box">
 <table class="admin_table">
-    <td class="zixun_td1">店家</td>
-    <td class="zixun_td1">审核内容</td>
-    <td class="zixun_td1">申请时间</td>
-    <td class="zixun_td1">通过</td>
-    <td class="zixun_td1">不通过</td>
-
-    <tr v-for="item in admin" class="zixun_tr">
-        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td">{{item.shop}}</td>
-        <td class="zixun_td1">
-            <a href="https://www.baidu.com/">点此查看</a>
-        </td>
-        <td class="zixun_td1">{{item.time}}</td>
-        <td class="zixun_td1">
-            <button class="admin_button">通过</button>
-        </td>
-        <td class="zixun_td1">
-            <button class="admin_button">不通过</button>
-        </td>
-
+    <tr class="zixun_tr">
+        <td class="zixun_td1">店家</td>
+        <td class="zixun_td1">审核内容</td>
+        <td class="zixun_td1">申请时间</td>
+        <td class="zixun_td1">通过</td>
+        <td class="zixun_td1">不通过</td>
     </tr>
+    <datapiece v-for="item in admin" :did="'1'" :dtype="'news'" :dauthor="item.shop" :dtime="item.time"></datapiece>
 
 
 </table>
@@ -50,6 +37,54 @@
 </body>
 <script src="js/xmagic.js" ></script>
 <script>
+    Vue.component("datapiece",
+        {
+            template:`
+            <tr class="zixun_tr">
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td">{{dauthor}}</td>
+        <td class="zixun_td1">
+            <span @click="checkcontent">点此查看</span>
+        </td>
+        <td class="zixun_td1">{{dtime}}</td>
+        <td class="zixun_td1">{{dtype}}</td>
+        <td class="zixun_td1">
+            <button class="admin_button">通过</button>
+        </td>
+        <td class="zixun_td1">
+            <button class="admin_button">驳回</button>
+        </td>
+    </tr>       `,
+            props:{
+                dauthor:String,
+                dtime:String,
+                dtype:String,
+                did:String,
+            },
+            methods:{
+              checkcontent(){
+                  var tlink;
+                  switch (this.dtype) {
+                      case "news":
+                          tlink="/zxck";
+                          sessionStorage.setItem("mynews_id",this.did);
+                          break;
+                      case "note":
+                          tlink="/note";
+                          sessionStorage.setItem("mynote_id",this.did);
+                          break;
+                      case "goods":
+                          tlink="/note";
+                          sessionStorage.setItem("mynews_id",this.did);
+                          break;
+                  }
+                  console.log(tlink);
+                  window.location.href=tlink;
+              }
+
+            },
+
+        }
+        )
     var administrator=new Vue({
         el:"#zixun_box",
         data:{
