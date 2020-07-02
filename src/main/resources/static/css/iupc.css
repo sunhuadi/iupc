@@ -17,24 +17,24 @@
     color:black;
     font-size: 30px;
     top:11%;
-    left: 15%;
+    left: 14%;
     position: absolute;
-    width: 70%;
+    width: 85%;
     min-width:1200px;
-    height:80%;
+    height:87%;
     padding-bottom: 80px;
+    background: rgba(222,246,255,0.8);
     display: table;
+    border-style: outset;
 }
 .news_sh{
     position: relative;
     display: inline-block;
     margin:20px;
-    width:45%;
+    width:47%;
     display: inline-block;
-    max-width: 500px;
     background: #F8EDDB;
     color: #6e6d71;
-    border-radius: 20px;
 }
 .touristcont_lp{
     letter-spacing: 5px;
@@ -193,9 +193,9 @@ ul li{
     margin:5px 20px 5px 30px;
     display: inline-block;
     width:45%;
-    background: #F8EDDB;
+    background: rgba(255,235,235,0.8);
     color:black;
-    border-radius: 20px;
+    border-style: inset;
 }
 .zxi_pic{
     width:150px;
