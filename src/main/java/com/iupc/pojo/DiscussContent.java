@@ -3,12 +3,12 @@ package com.iupc.pojo;
 
 public class DiscussContent {
 
-  private String dcid;
-  private String pubuser_id;
-  private String answerto;
-  private String content;
-  private java.sql.Timestamp pubtime;
-  private long discuss_id;
+  private String dcid;//讨论id
+  private String pubuser_id;//发布者id
+  private String answerto;//二级讨论所属一级内容，如果为-1则为
+  private String content;//内容
+  private java.sql.Timestamp pubtime;//发布时间
+  private long shop_id;//所属商家id
 
 
   public String getDcid() {
@@ -58,11 +58,11 @@ public class DiscussContent {
     this.pubuser_id = pubuser_id;
   }
 
-  public long getDiscuss_id() {
-    return discuss_id;
+  public long getShop_id() {
+    return shop_id;
   }
 
-  public void setDiscuss_id(long discuss_id) {
-    this.discuss_id = discuss_id;
+  public void setShop_id(long shop_id) {
+    this.shop_id = shop_id;
   }
 }

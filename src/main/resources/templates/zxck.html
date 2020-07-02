@@ -103,7 +103,7 @@
             looknum:100,
             islike:false,
 
-            piclist:["image/zixun_pic1.jpg","image/zixun_pic1.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg","image/zixun_pic4.jpg","image/zixun_pic1.jpg"],
+            piclist:[],
         },
         methods:{
             dolike:function () {
@@ -126,14 +126,15 @@
        console.log(response)
        if(datas!=null)
        {
-           newsvue.text_fbtime=datas[0].news_formattime;
-           newsvue.text_title=datas[0].news_title;
-           newsvue.text_intro=datas[0].news_content;
-           newsvue.text_shop=datas[0].news_author;
-           newsvue.text_modality=datas[0].news_updateway;
-           newsvue.text_price=datas[0].news_price;
-           newsvue.text_time=datas[0].news_begintime
-           newsvue.text_stop=datas[0].news_stoptime;
+           newsvue.text_fbtime=datas.news_formattime;
+           newsvue.text_title=datas.news_title;
+           newsvue.text_intro=datas.news_content;
+           newsvue.text_shop=datas.news_author;
+           newsvue.text_modality=datas.news_updateway;
+           newsvue.text_price=datas.news_price;
+           newsvue.text_time=datas.news_begintime
+           newsvue.text_stop=datas.news_stoptime;
+           newsvue.piclist=datas.news_pic;
                //+" -- "+datas[0].news_stoptime;
        }
     })

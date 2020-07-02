@@ -51,12 +51,13 @@ public class IndexController {
 
     @ResponseBody
     @PostMapping("/getonenews")
-    public  List<News> getthatnew(@RequestBody HashMap<String,String> map)
+    public  News getthatnew(@RequestBody HashMap<String,String> map)
     {
         String value=map.get("value");
         System.out.println("查看资讯，ID： "+map.get("value"));
-        List<News> newsList =iis.getNewsById(value);
-        return newsList;
+        News news =iis.getNewsById(value);
+
+        return news;
     }
 
     @ResponseBody

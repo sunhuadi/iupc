@@ -28,9 +28,13 @@
     (news_pic,news_id)
     value(#{news_pic},#{news_id})
     </insert>
-        <select id="getNewsNumber" resultType="int" >
+<select id="getNewsNumber" resultType="int" >
             select count(*) from news
-        </select>
+</select>
+<select id="qurryPicbyId" resultType="String" >
+   select news_pic from news_pic
+   where news_id=#{news_id}
+</select>
 
 
 </mapper>

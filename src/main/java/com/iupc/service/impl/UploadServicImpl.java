@@ -1,8 +1,10 @@
 package com.iupc.service.impl;
 import com.iupc.Mapper.NewsMapper;
+import com.iupc.Mapper.UsersMapper;
 import com.iupc.controller.IndexController;
 import com.iupc.pojo.News;
 import com.iupc.pojo.NewsPic;
+import com.iupc.pojo.Users;
 import com.iupc.service.IUploadService;
 import com.iupc.util.CommonFileUtil;
 import org.slf4j.Logger;
@@ -69,6 +71,27 @@ public class UploadServicImpl implements IUploadService {
             }
             System.out.println("http://39.97.113.33/"+path);
         }
+        return mp;
+    }
+    @Autowired
+    UsersMapper usersMapper;
+    public HashMap<String,String> upload_user(MultipartFile file, Users user) throws IOException{
+        HashMap<String,String> mp=new HashMap<String,String>();
+        usersMapper.getUserByName(user.getUsername());
+        if(usersMapper.getUserByName(user.getUsername())!=null)
+        {
+
+             mp.put("code","1");
+             mp.put("msg","该用户已被注册");
+            return mp;
+        }
+        String path = fileUtil.uploadFile(file);
+        user.setPortrait("http://39.97.113.33/"+path);
+        System.out.println(user.getPortrait());
+        user.setRole("2");
+        usersMapper.insertUsers(user);
+        mp.put("code","0");
+        mp.put("msg","注册成功");
         return mp;
     }
 

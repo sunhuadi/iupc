@@ -66,16 +66,6 @@
                         <i class="lock icon"></i>
                     </div>
                 </div>
-                <div class="field">
-                    <label>身份</label>
-                    <div class="ui left icon input">
-                        <select v-model="role">
-                            <option value="2">用户</option>
-                            <option value="1">店家</option>
-                            <option value="0">管理员</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="ui blue submit button" @click="denglu">Login</div>
             </div>
         </div>
@@ -95,40 +85,51 @@
            // msg:sessionStorage.getItem("msg"),
         }, methods:{
             denglu:function () {
-                console.log("正在发送请求.....")
+
                 console.log(this.userid)
                 console.log(this.role)
                 that=this;
-                axios.post('/logins',{
-                    userid:that.userid,
-                    userpassword: that.userpassword,
-                    role:that.role,
-                })
-                    .then(function (response) {//是返回的所有信息
-                        //response.length
-                        console.log(response.data)
-                        if (response.data.code=="0")
-                        {
-                            alert(response.data.msg)
-                            console.log(response.data.code)
-                            that.msg=response.data.msg
-                            console.log(response.data.role)
-                            console.log(response.data.username)
-                            console.log(response.data.img)
-                            //console.log(response.data.role)
-                           // sessionStorage.setItem("msg","");
-                            window.location.href="/login";
-                        }
-                        else {
-                            that.msg=response.data.msg
-                            alert(response.data.msg);
-                            //sessionStorage.setItem("msg",response.data.msg);
-                            window.location.href="/login";
-                        }
+                if(this.userid=="")
+                {
+                    alert("请输入用户名！");
+                }
+                else if(this.userpassword=="")
+                {
+                    alert("请输入您的密码！")
+                }
+                else {
+                    console.log("正在发送请求.....")
+                    axios.post('/logins',{
+                        username:that.userid,
+                        password: that.userpassword,
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .then(function (response) {//是返回的所有信息
+                            //response.length
+                            console.log(response.data)
+                            if (response.data.code=="0")
+                            {
+                                alert(response.data.msg)
+                                console.log(response.data.code)
+                                that.msg=response.data.msg
+                                console.log(response.data.role)
+                                console.log(response.data.username)
+                                console.log(response.data.img)
+                                //console.log(response.data.role)
+                                // sessionStorage.setItem("msg","");
+                                window.location.href="/";
+                            }
+                            else {
+                                that.msg=response.data.msg
+                                alert(response.data.msg);
+                                //sessionStorage.setItem("msg",response.data.msg);
+                                //window.location.href="/login";
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
 
             }
         }
