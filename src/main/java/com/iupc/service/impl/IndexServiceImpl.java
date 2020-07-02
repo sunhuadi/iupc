@@ -47,8 +47,16 @@ public class IndexServiceImpl implements IIndexService {
     }
 
     @Override
-    public List<News> getNewsById(String value) {
-        return ns.qurryNewsById(value);
+    public News getNewsById(String value) {
+        News news=ns.qurryNewsById(value);
+        String[] pic=ns.qurryPicbyId(value);
+
+        for(int i=0;i<pic.length;i++)
+        {
+            System.out.println(pic[i]);
+        }
+        news.setNews_pic(pic);
+        return news;
     }
 }
 

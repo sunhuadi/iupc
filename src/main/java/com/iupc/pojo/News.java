@@ -18,6 +18,15 @@ public class News {
     private java.sql.Timestamp news_begintime;//下架时间
     private String news_updateway;//上新形式
     private float news_price;//上新价格
+    private String[] news_pic;//多图
+
+    public String[] getNews_pic() {
+        return news_pic;
+    }
+
+    public void setNews_pic(String[] news_pic) {
+        this.news_pic = news_pic;
+    }
 
     public void setNews(String news_id, String news_content, String news_author, Timestamp news_time, String news_img, String news_good, String news_title, Timestamp news_stoptime, Timestamp news_begintime, String news_updateway, float news_price) {
         this.news_id = news_id;

@@ -34,8 +34,7 @@ public class UserServiceImpl implements IUserService {
                 mp.put("img",users.getPortrait());
                 mp.put("name",users.getShowname());
         }
-        else//密码错误
-        {
+        else {
             mp.put("code","2");
             mp.put("msg","密码错误，请重新输入密码。");
         }
