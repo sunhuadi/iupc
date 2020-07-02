@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface UsersMapper {
     Users getUserByName(String username);
     Shop getShopByName(String username);
+    void insertUsers(Users user);
 }

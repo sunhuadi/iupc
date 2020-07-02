@@ -5,8 +5,15 @@ public class Users {
     private String password;//密码
     private String portrait;//头像
     private String role;//身份
-    private String name;//昵称
+    private String showname;//昵称
 
+    public String getShowname() {
+        return showname;
+    }
+
+    public void setShowname(String showname) {
+        this.showname = showname;
+    }
 
     public String getPortrait() {
         return portrait;
@@ -28,13 +35,6 @@ public class Users {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setRole(String role) {
         this.role = role;

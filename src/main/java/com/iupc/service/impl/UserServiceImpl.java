@@ -32,7 +32,7 @@ public class UserServiceImpl implements IUserService {
                 mp.put("role",users.getRole());
                 mp.put("username",users.getUsername());
                 mp.put("img",users.getPortrait());
-                mp.put("name",users.getName());
+                mp.put("name",users.getShowname());
         }
         else//密码错误
         {

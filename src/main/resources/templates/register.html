@@ -18,25 +18,26 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div class="register_box" id="register">
     <div class="username">
         <span style="font-size: 25px">请设置用户名</span>
-        <input class="name" type="text" placeholder="" v-model="username" >
+        <input class="name" type="text" placeholder="" v-model="user.username" >
         <!--<input type="text" name="name">-->
         <br>
     </div>
     <br>
     <div class="username">
         <span style="font-size: 25px">请设置昵称</span>
-        <input class="name" type="text" placeholder="" v-model="name" >
+        <input class="name" type="text" placeholder="" v-model="user.showname" >
         <!--<input type="text" name="name">-->
         <br>
     </div>
     <div class="passw1">
         <span style="font-size: 25px">请设置密码</span>
-        <input type="password" class="password1" v-model="password">
+        <input type="password" class="password1" v-model="user.password">
         <br>
     </div>
     <div class="passw2">
@@ -46,12 +47,11 @@
     </div>
     <div class="upimg">
         <p class="upfile" >
-            <label class="uplabel">上传头像</label>
+            <label class="uplabel">上传封面</label>
             <input type="file"  id="picuper" class="upinput" @change="changepic()" accept="image/jpg" >
         </p>
         <div class="previewer1">
             <img id="pv_pic" class="previewed_pics"  src="image/0.jpg" />
-            <p style="text-align: center  ">封面预览</p>
         </div>
 </div>
     <div>
@@ -67,49 +67,60 @@
         el:"#register",
         data:{
             user:{
-                username:"",
-                password: "",
-                name:"",
+                username:null,
+                password: null,
+                showname:null,
             },
-            repassword:"",
+            repassword:null,
             //role:"",
             //user:null,
             // msg:sessionStorage.getItem("msg"),
         }, methods:{
-            zhuce:function () {
-                console.log("正在发送请求.....")
-                console.log(this.userid)
-                console.log(this.role)
-                that=this;
-                axios.post('/zhuce',{
-                    username:that.userid,
-                    password: that.userpassword,
-                })
-                    .then(function (response) {//是返回的所有信息
-                        //response.length
-                        console.log(response.data)
-                        if (response.data.code=="0")
-                        {
-                            alert(response.data.msg)
-                            console.log(response.data.code)
-                            that.msg=response.data.msg
-                            console.log(response.data.role)
-                            console.log(response.data.username)
-                            console.log(response.data.img)
-                            //console.log(response.data.role)
-                            // sessionStorage.setItem("msg","");
-                            window.location.href="/login";
-                        }
-                        else {
-                            that.msg=response.data.msg
-                            alert(response.data.msg);
-                            //sessionStorage.setItem("msg",response.data.msg);
-                            window.location.href="/login";
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+            changepic() {
+                var reads = new FileReader();
+                var f = document.getElementById('picuper').files[0];
+                reads.readAsDataURL(f);
+                reads.onload = function(e) {
+                    document.getElementById('pv_pic').src = this.result;
+                };
+            },
+            zhuce:function () {let formData = new FormData();
+                that=this
+                if(that.user.username!=null&&that.user.password!=null&& that.user.showname!=null&&that.repassword!=null&&picuper.files[0]!=null)
+                {
+                    if(that.user.password==that.repassword)
+                    {
+                        formData.append('myfile',picuper.files[0])
+                        //formData.append('news', that.news);
+                        console.log(that.user)
+                        //console.log(that.news.length)
+                        formData.append("user", new Blob([JSON.stringify(that.user)], {type: "application/json"}));
+                        //console.log(formData.get("news"))
+                        console.log("正在发送请求......")
+                        //console.log(formData.keys())
+                        axios.post('/upregister', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                        ).then(res => {
+                            console.log(res.data)
+                                console.log("成功！")
+                            if(res.data.code=="0")
+                            {
+                                alert(res.data.msg)
+                            }
+                            else {
+                                alert(res.data.msg)
+                            }
+                            })
+                            .catch(err => {
+                                console.log("失败！")
+                            })
+                    }
+                    else {
+                        alert("两次输入密码错误，请重试!")
+                    }
+                }
+                else{
+                    alert("请输入所有信息！！")
+                }
 
             }
         }
@@ -180,12 +191,12 @@
         top:1px;
         left: 1px;
     }
-     .up_part{
-         position: relative;
-         left:5%;
-         min-height:150px;
-         width: 70%;
-     }
+    .up_part{
+        position: relative;
+        left:5%;
+        min-height:150px;
+        width: 70%;
+    }
     .upp{
         position: relative;
         margin:0;

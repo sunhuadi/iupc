@@ -12,5 +12,11 @@
         select * from shop
         where binary shop_id=#{username}
     </select>
+    <insert id="insertUsers" parameterType="Users">
+     insert into users
+     (username,password,showname,portrait,role)
+      values
+      (#{username},#{password},#{showname},#{portrait},#{role})
+</insert>
 
 </mapper>

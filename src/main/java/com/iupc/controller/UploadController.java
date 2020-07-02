@@ -2,8 +2,10 @@ package com.iupc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.iupc.pojo.News;
+import com.iupc.pojo.Users;
 import com.iupc.service.IUploadService;
 import com.iupc.util.CommonFileUtil;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +39,18 @@ public class UploadController {
         //News useNews = new News();
         return ius.upload_news(files,file,useNews);
     }
+
+    @ResponseBody
+    @PostMapping("/upregister")
+    public HashMap<String,String> uploadUser(
+                                             @RequestParam("myfile") MultipartFile file,
+                                             @RequestPart Map<String, Object> user) throws IOException {
+        System.out.println("已经接受请求，正在处理......");
+        Users cuser = JSON.parseObject(JSON.toJSONString(user), Users.class);
+        System.out.println(cuser);
+        //News useNews = new News();
+        return ius.upload_user(file,cuser);
+    }
+
+
 }
