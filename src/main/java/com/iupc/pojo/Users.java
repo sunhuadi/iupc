@@ -1,26 +1,12 @@
 package com.iupc.pojo;
 
 public class Users {
-    private String userid;//登录名
-    private String userpassword;
-    private String portrait;
-    private String role;
-    private String username;//昵称
-    public String getUserid() {
-        return userid;
-    }
+    private String username;//登录名
+    private String password;//密码
+    private String portrait;//头像
+    private String role;//身份
+    private String name;//昵称
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getUserpassword() {
-        return userpassword;
-    }
-
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
-    }
 
     public String getPortrait() {
         return portrait;
@@ -32,6 +18,22 @@ public class Users {
 
     public String getRole() {
         return role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setRole(String role) {

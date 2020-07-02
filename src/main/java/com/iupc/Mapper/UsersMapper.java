@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UsersMapper {
-    Users getUserByName(String userid);
-    Shop getShopByName(String userid);
+    Users getUserByName(String username);
+    Shop getShopByName(String username);
 }
