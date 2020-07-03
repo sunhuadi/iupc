@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div th:insert="~{index::header}"></div>
@@ -35,11 +35,11 @@
         <td class="zixun_td2">通过</td>
         <td class="zixun_td2">不通过</td>
 
-    <datapiece v-for="item in admin"
-               :did="'1'"
+    <datapiece v-for="item in news"
+               :did="item.news_id"
                :dtype="'news'"
-               :dauthor="item.shop"
-               :dtime="item.time">
+               :dauthor="item.news_author"
+               :dtime="item.news_time">
     </datapiece>
 
 
@@ -61,10 +61,10 @@
         <td class="zixun_td1">{{dtime}}</td>
         <td class="zixun_td1">{{dtype}}</td>
         <td class="zixun_td1">
-            <button class="admin_button">通过</button>
+            <button class="admin_button"  @click="pass">通过</button>
         </td>
         <td class="zixun_td1">
-            <button class="admin_button">驳回</button>
+            <button class="admin_button" @click="reject">驳回</button>
         </td>
     </tr>  </table>     `,
             props:{
@@ -92,7 +92,32 @@
                   }
                   console.log(tlink);
                   window.location.href=tlink;
-              }
+              },pass:function () {
+
+                    axios.post('/admin1', {
+                        admin:"1",
+                        id:this.did
+                    }).then(function (response) {
+                        alert(response.data.msg)
+                        console.log(response);
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                reject:function () {
+                    axios.post('/admin1', {
+                        admin:"2",
+                        id:this.did
+                    }).then(function (response) {
+                        alert(response.data.msg)
+                        window.location.href="/admin";
+                        console.log(response);
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
 
             },
 
@@ -117,8 +142,45 @@
                     detail:"https://www.baidu.com/",
                     time:"2020-7-1",
                 },
-            ]
+            ],news:{
 
+            }
+
+        },mounted(){
+            that=this
+            axios.get('/getallnewsshow1')
+            .then(function (response) {//是返回的所有信息
+                console.log(response);
+                console.log(response.data)
+                that.news=response.data
+                //response.length
+            })
+            .catch(function (error) {
+                console.log(error);
+
+
+        });
+        },methods: {
+            pass:function () {
+                axios.post('/admin1', {
+                    admin:"1",
+                }).then(function (response) {
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            reject:function () {
+                axios.post('/admin1', {
+                    admin:"2",
+                }).then(function (response) {
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     })
 </script>

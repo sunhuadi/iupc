@@ -51,6 +51,14 @@ public class IndexController {
     }
 
     @ResponseBody
+    @GetMapping("/getallnewsshow1")
+    public List<News> indexshow1(Model model)
+    {
+        List<News> newsList=newsMapper.qurryAllNewsShow("0");
+        return newsList;
+    }
+
+    @ResponseBody
     @PostMapping("/getonenews")
     public  News getthatnew(@RequestBody HashMap<String,String> map)
     {
@@ -98,6 +106,21 @@ public class IndexController {
         return newsMapper.qurryGoodsByIdSzieColor(id,size,color);
     }
 
+    @ResponseBody
+    @PostMapping("/admin1")
+    public HashMap<String,String> admin(@RequestBody HashMap<String,String> map)
+    {
+        String admin=map.get("admin");
+        String id=map.get("id");
+        System.out.println(id+admin);
+        News news=new News();
+        news.setNews_id(id);
+        news.setNews_show(admin);
+        newsMapper.updataNews(news);
+        HashMap<String,String> mp=new HashMap<>();
+        mp.put("msg","操作成功！");
+        return mp ;
+    }
 
     @ResponseBody
     @PostMapping("/search")
