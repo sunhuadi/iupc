@@ -3,7 +3,9 @@
     --bgimgwidth:1748px;
     --bgimgheight:847px;
 }
-
+a{
+    color:black;
+}
 .body{
     /*background-image:url("../image/background/aa1.jpg");*/
     /*background-image:var(--bgimg);*/
