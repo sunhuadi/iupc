@@ -115,7 +115,7 @@ public class UploadServicImpl implements IUploadService {
             path = fileUtil.uploadFile(files[i]);
             if (path!=null)
             {
-                notesMapper.insertNotesPic(new NotesPic("http://39.97.113.33/"+path,note.getNote_id()));
+                notesMapper.insertNotesPic(new NotesPic(note.getNote_id(),"http://39.97.113.33/"+path));
             }
             System.out.println("http://39.97.113.33/"+path);
         }

@@ -1,6 +1,7 @@
 package com.iupc.controller;
 
 import com.iupc.pojo.News;
+import com.iupc.pojo.Notes;
 import com.iupc.service.IIndexService;
 import com.iupc.util.CommonFileUtil;
 import org.slf4j.Logger;
@@ -11,14 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.crypto.Data;
 import java.io.*;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class IndexController {
@@ -59,15 +55,27 @@ public class IndexController {
 
         return news;
     }
+    @ResponseBody
+    @PostMapping("/getnotbyid")
+    public Notes getnotebyid(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        System.out.println("查看笔记，ID： "+map.get("id"));
+        return iis.getNotesById(id);
+    }
+
 
     @ResponseBody
     @PostMapping("/search")
-    public List<News>Test(@RequestBody HashMap<String,String> map)//传入类型为News对象
+    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map
     {
         //map.get("value");
-        List<News> newsList=iis.getNewsBysearch(map.get("value"));
-        return newsList;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+            List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+        return objList;
     }
+
+
 /*
     @ResponseBody
     @GetMapping("/test")
