@@ -14,10 +14,19 @@ var tourist_vue= new Vue(
                 {content:"三坑笔记",
                     isshow:false,
                     slcontent:[
+                        {name:"汉服",link:"/all_news_hf"},
+                        {name:"Lolita",link:"/all_news_lolita"},
+                        {name:"JK",link:"/all_news_jk"},
+                        {name:"全部",link:"/all_news"},
+                    ]
+                },
+                {content:"查看资讯",
+                    isshow:false,
+                    slcontent:[
                         {name:"汉服",link:"/zxck"},
                         {name:"Lolita",link:""},
                         {name:"JK",link:""},
-                        {name:"更多",link:""},
+                        {name:"全部",link:""},
                     ]
                 },
                 {content:"我的收藏",
@@ -28,13 +37,37 @@ var tourist_vue= new Vue(
                         {name:"商品",link:""},
                     ]
                 },
-                {content:"我的收藏",
+                {content:"笔记发布",
                     isshow:false,
                     slcontent:[
-                        {name:"资讯",link:""},
-                        {name:"笔记",link:""},
-                        {name:"商品",link:""},
+                        {name:"发布笔记",link:""},
+                        {name:"已发布",link:""},
                     ]
+                },
+
+                {content:"我的店铺",
+                    isshow:false,
+                    slcontent:[
+                        {name:"进入店铺",link:""},
+                        {name:"店铺管理",link:""},
+                    ]
+                },
+                {content:"店家专属",
+                    isshow:false,
+                    slcontent:[
+                        {name:"商品上新",link:"/upload_good"},
+                        {name:"资讯发布",link:"/upload_news"},
+                        {name:"讨论区",link:""},
+                    ]
+                },
+                {content:"我的信息",
+                    isshow:false,
+                    slcontent:[
+                        {name:"我的消息",link:""},
+                        {name:"账号信息",link:""},
+                    ]
+                },
+                {content:"敬请期待",
                 },
             ]
         },
@@ -48,6 +81,10 @@ var tourist_vue= new Vue(
                 tch=0;
                 whichone=which;
                 this.tli[which].isshow=!(this.tli[which].isshow);
+            },
+            goto(link){
+                window.location.href=link;
+                console.log("goto"+link);
             }
         }
     },

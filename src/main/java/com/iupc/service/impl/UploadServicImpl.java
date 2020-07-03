@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Service("UploadServic")
 public class UploadServicImpl implements IUploadService {
@@ -85,6 +86,7 @@ public class UploadServicImpl implements IUploadService {
         mp.put("msg","注册成功");
         return mp;
     }
+
     @Autowired
     NotesMapper notesMapper;
     public HashMap<String,String> upload_note(MultipartFile[] files, MultipartFile file, Notes note) throws IOException{
@@ -102,7 +104,6 @@ public class UploadServicImpl implements IUploadService {
         System.out.println("当前时间为:"+time);
         note.setNote_time(time);
         //作者
-
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
         note.setNote_author(currentUser.getShowname());
@@ -122,5 +123,55 @@ public class UploadServicImpl implements IUploadService {
         mp.put("msg","上传成功");
         return mp;
     }
+
+    public HashMap<String,String> upload_goods(MultipartFile[] files, MultipartFile file, Goods good, List<Goods_num> goods_num) throws IOException
+    {
+        HashMap<String,String> mp=new HashMap<String,String>();
+        //头像
+        String path = fileUtil.uploadFile(file);
+        good.setGoods_picture("http://39.97.113.33/"+path);
+        System.out.println(good.getGoods_picture());
+        //id
+        String id=Integer.toString(nm.getGoodsNumber());
+        good.setGoods_id(id);
+        //时间
+        Timestamp time = new Timestamp(new Date().getTime());
+        System.out.println("当前时间为:"+time);
+        good.setGoods_time(time);
+        //作者
+
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        good.setGoods_shopid(currentUser.getShowname());
+
+        System.out.println(files.length);
+        for(int i=0;i<files.length;i++){
+            if(files[i].isEmpty()){
+                logger.info("文件不存在");
+            }
+            path = fileUtil.uploadFile(files[i]);
+            if (path!=null)
+            {
+               // notesMapper.insertNotesPic(new NotesPic(note.getNote_id(),"http://39.97.113.33/"+path));
+                nm.insertGoodsPic(new GoodsPic(good.getGoods_id(),"http://39.97.113.33/"+path));
+            }
+            System.out.println("http://39.97.113.33/"+path);
+        }
+        int sum=0;
+        for(int i=0;i<goods_num.size();i++)
+        {
+            goods_num.get(i).setGood_id(good.getGoods_id());
+            if (goods_num.get(i).getGood_num()!=0){
+                sum=sum+goods_num.get(i).getGood_num();
+                nm.insertGoodsNum(goods_num.get(i));
+            }
+        }
+        good.setGoods_sum(sum);
+        nm.insertGoods(good);
+        mp.put("msg","上传成功");
+        return mp;
+    }
+
+
 
 }

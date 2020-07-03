@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="body">
+<div th:insert="~{index::header}"></div>
+<div th:insert="~{index::tourist}"></div>
+<div class="mianframe">
+    <h1 class="mainframe_title"> Lolita资讯 </h1>
+    <hr style="border: none;height: 3px;background: #0f0f0f" />
+    <span id="shrs" style="width: 100%">
+        <news v-for="item in searchdata"
+              myclassname="zxi"
+              :news_title="item.news_title"
+              :news_id="item.news_id"
+              :news_img="item.news_img"
+              :news_time="item.news_time"
+              :news_content="item.news_content"
+        >
+        </news>
+        </span>
+</div>
+</body>
+<style>
+
+</style>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script>
+    var search_kw="lolita";
+    var rsvue= new Vue({
+        el:"#shrs",
+        data:{
+            searchdata:[],
+        }
+    });
+    console.log(search_kw);
+    axios.post('/search', {value:search_kw,variable:"0"})
+        .then(function (response) {
+            rsvue.searchdata=null
+            rsvue.searchdata=response.data[0];
+            console.log(rsvue.searchdata)
+        }).catch(
+        function (error) {
+            console.log(error);
+        });
+
+</script>
+
+</html>
