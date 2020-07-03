@@ -3,6 +3,7 @@ package com.iupc.service.impl;
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
 import com.iupc.Mapper.ZixunMapper;
+import com.iupc.pojo.Goods;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.pojo.zixun;
@@ -81,6 +82,15 @@ NotesMapper notesMapper;
         note.setNote_pic(notesMapper.qurryNotePicbyId(id));
 
         return note;
+    }
+
+    public Goods getgoodsById(String id){
+        System.out.println("正在查询，请稍后");
+        Goods good=ns.qurryGoodsById(id);
+        System.out.println("查询规格"+ns.qurryGoodsSizeById(id));
+        good.setSizelist(ns.qurryGoodsSizeById(id));
+        good.setPiclist(ns.qurryGoodsPicbyId(id));
+        return good;
     }
 }
 
