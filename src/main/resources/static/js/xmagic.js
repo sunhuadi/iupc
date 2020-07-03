@@ -166,3 +166,32 @@ Vue.component("gotoback",{
         myclassname: String,
     }
 });
+
+var setvue=new Vue({
+    el:"#header_setting",
+    data: {
+        bgsisshow:false,
+        bgslist:[
+        ],
+
+    },
+    methods:{
+        bgsettingshow() {
+            this.bgsisshow=!this.bgsisshow;
+            console.log("showit");
+        },
+        changebg(which){
+            document.documentElement.style.setProperty("--bgimg",'url("'+this.bgslist[which].var+'")')
+        }
+
+    }
+
+},)
+
+for(var i=1;i<21;i++){
+    var bgp={src:"",var:""};
+    bgp.src="image/background/"+i+".jpg";
+    console.log(bgp.src);
+    bgp.var="../"+bgp.src;
+    setvue.bgslist.push(bgp);
+}
