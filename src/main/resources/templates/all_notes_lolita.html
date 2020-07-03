@@ -22,11 +22,6 @@
 <div th:insert="~{index::tourist}"></div>
 <div class="mainframe">
     <h1 class="mainframe_title"> 搜索结果 </h1>
-    <div class="srtourist">
-        <span> <a class="unacrs" href="/search_result">资讯</a> </span>
-        /<span> <a class="acrs" href="/searchnote">笔记</a> </span>
-        /<span> <a class="unacrs" href="/search_result">商品</a> </span>
-    </div>
     <div class="shrs" id="search_note">
         <note
                 v-for="item in search_note_data"

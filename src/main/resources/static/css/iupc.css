@@ -353,7 +353,7 @@ ul li{
     font-weight: bold;
     width:300px;
     height:100px;
-    opacity: 0.8;
+    opacity:1;
 }
 #header_message{
     position: absolute;

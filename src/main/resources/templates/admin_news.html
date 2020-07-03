@@ -19,14 +19,8 @@
 </head>
 <body>
 <div th:insert="~{index::header}"></div>
-<div class="adminmenu">
-    <div class="admenuli"><a style="color:black" href="">资讯审核</a></div>
-    <div class="admenuli"><a style="color:black" href="">笔记审核</a></div>
-    <div class="admenuli"><a style="color:black" href="">店铺管理</a></div>
-    <div class="admenuli"><a style="color:black" href="">资讯审核</a></div>
-</div>
 <div id="adminbox">
-<table class="admin_table">
+    <table class="admin_table">
 
         <td class="zixun_td2">店家</td>
         <td class="zixun_td2">审核内容</td>
@@ -35,15 +29,15 @@
         <td class="zixun_td2">通过</td>
         <td class="zixun_td2">不通过</td>
 
-    <datapiece v-for="item in admin"
-               :did="'1'"
-               :dtype="'news'"
-               :dauthor="item.shop"
-               :dtime="item.time">
-    </datapiece>
+        <datapiece v-for="item in admin"
+                   :did="'1'"
+                   :dtype="'news'"
+                   :dauthor="item.shop"
+                   :dtime="item.time">
+        </datapiece>
 
 
-</table>
+    </table>
 </div>
 
 </body>
@@ -74,30 +68,30 @@
                 did:String,
             },
             methods:{
-              checkcontent(){
-                  var tlink;
-                  switch (this.dtype) {
-                      case "news":
-                          tlink="/zxck";
-                          sessionStorage.setItem("mynews_id",this.did);
-                          break;
-                      case "note":
-                          tlink="/note";
-                          sessionStorage.setItem("mynote_id",this.did);
-                          break;
-                      case "goods":
-                          tlink="/note";
-                          sessionStorage.setItem("mynews_id",this.did);
-                          break;
-                  }
-                  console.log(tlink);
-                  window.location.href=tlink;
-              }
+                checkcontent(){
+                    var tlink;
+                    switch (this.dtype) {
+                        case "news":
+                            tlink="/zxck";
+                            sessionStorage.setItem("mynews_id",this.did);
+                            break;
+                        case "note":
+                            tlink="/note";
+                            sessionStorage.setItem("mynote_id",this.did);
+                            break;
+                        case "goods":
+                            tlink="/note";
+                            sessionStorage.setItem("mynews_id",this.did);
+                            break;
+                    }
+                    console.log(tlink);
+                    window.location.href=tlink;
+                }
 
             },
 
         }
-        )
+    )
     var administrator=new Vue({
         el:"#adminbox",
         data:{
@@ -130,23 +124,10 @@
         width:75%;
         left:20%;
         height: 130%;
+        background: #f1f3f4;
         /*border-radius: 30px;*/
         margin-bottom: 100px;
-    }
-    .adminmenu{
-        position: absolute;
-        top:12%;
-        left:4%;
-        height: 60%;
-        width: 12%;
 
-    }
-    .admenuli{
-        height: 40px;
-        font-size:25px;
-        border: outset darkgray 2px;
-        text-align: center;
-        margin: 5px 0 5px 0;
     }
     .zixun_tr{
         position: relative;
@@ -158,13 +139,13 @@
         /*border-bottom:1px solid darkgray;*/
     }
     .zixun_td1{
-         width: 150px;
-         height: 45px;
-         font-size: 23px;
+        width: 150px;
+        height: 45px;
+        font-size: 23px;
         text-align: center;
         background-color: #E9EBED;
         border-bottom:1px solid darkgray;
-     }
+    }
     .zixun_td2{
         width: 150px;
         height: 40px;
