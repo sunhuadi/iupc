@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -42,10 +43,19 @@ public class IndexServiceImpl implements IIndexService {
 
         return ns.qurryAllNews();
     }
-
+@Autowired
+NotesMapper notesMapper;
     @Override
-    public List<News>getNewsBysearch(String  value) {
-            return ns.qurryNewsByContent(value);
+    public List<Object>getNewsBysearch(String  value,String v) {
+        if(v.equals("0"))
+        {
+            List<Object> objList= Collections.singletonList(ns.qurryNewsByContent(value));
+            return objList;
+        }else if(v.equals("1")){
+            List<Object> objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
+            return objList;
+        }
+        return null;
     }
 
     @Override
@@ -62,8 +72,7 @@ public class IndexServiceImpl implements IIndexService {
 
         return news;
     }
-    @Autowired
-    NotesMapper notesMapper;
+
     @Override
 
     public Notes getNotesById(String id)

@@ -12,14 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.crypto.Data;
 import java.io.*;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class IndexController {
@@ -72,12 +67,15 @@ public class IndexController {
 
     @ResponseBody
     @PostMapping("/search")
-    public List<News>Test(@RequestBody HashMap<String,String> map)//传入类型为News对象
+    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map
     {
         //map.get("value");
-        List<News> newsList=iis.getNewsBysearch(map.get("value"));
-        return newsList;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+            List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+        return objList;
     }
+
+
 /*
     @ResponseBody
     @GetMapping("/test")

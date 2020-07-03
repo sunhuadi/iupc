@@ -9,7 +9,7 @@ import java.util.List;
 public interface IIndexService {
     List<zixun> getAll();
     List<News> getAllnews();
-    List<News> getNewsBysearch(String value);
+    List<Object> getNewsBysearch(String value,String v);
     News getNewsById(String value);
     Notes getNotesById(String id);
 }
