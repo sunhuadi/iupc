@@ -79,7 +79,7 @@
             <span class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</span>
         </div>
         <div v-if="item.isshow" :id="item.isshow?'showtlic':''" class="tourist_content">
-            <div class="touristcont_lp" v-for="it in item.slcontent"><a :href="it.link">{{ it.name }}</a></div>
+            <div class="touristcont_lp" @click="goto(it.link)" v-for="it in item.slcontent">{{ it.name }}</div>
         </div>
     </div>
 </div>
