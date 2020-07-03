@@ -143,7 +143,21 @@ public class IndexController {
         }
         return "success";
     }
+    @ResponseBody
+    @PostMapping("/favor")
+    public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
 
+        String v=null;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        if(map.get("variable").equals("1"))
+        {
+            v="Note";
+        }
+        //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+
+        return iis.setFavor(map.get("id"),v);
+    }
 
 
 

@@ -23,7 +23,7 @@
 <div th:insert="~{index::header}"></div>
 <div id="zixun_box">
     <gotoback></gotoback>
-    <p class="zixun_title" >{{ title }}</p>
+    <p class="zixun_title" >{{ notes.note_title }}</p>
 
     <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
 
@@ -40,7 +40,10 @@
         <div class="note_link">
             <span >搭配连接</span>
             <a v-for="item in linklist" :href="item" class="note_link_jt">搭配连接</a>
+            <button  class="note_link_jt" @click="favor" >收藏笔记</button>
+
         </div>
+
         <div class="note_intro">
             <p class="note_intro_text">{{notes.note_content}}</p>
         </div>
@@ -73,14 +76,31 @@
                     this.likenum++;
                 }
                 this.islike=!this.islike;
+            },favor:function () {
+                alert("添加收藏")
+                that=this
+                axios.post('/favor', {
+                    id:"0",variable:"1"//1代表收藏笔记
+                }).then(function (response) {
+
+                   // that.notes=response.data
+                    alert(response.data.msg)
+                    console.log(that.notes);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
             }
+
+
         },
         mounted()
         {
+
             that=this
             axios.post('/getnotbyid', {
                 id:"0",
-
             }).then(function (response) {
 
                 that.notes=response.data
@@ -89,7 +109,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
+        },
     });
 
 

@@ -5,6 +5,7 @@ import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.pojo.zixun;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IIndexService {
@@ -14,4 +15,5 @@ public interface IIndexService {
     News getNewsById(String value);
     Notes getNotesById(String id);
     Goods getgoodsById(String id);
+    HashMap<String,String> setFavor(String id,String v);
 }

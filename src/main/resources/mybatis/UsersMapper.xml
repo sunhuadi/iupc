@@ -19,4 +19,12 @@
       (#{username},#{password},#{showname},#{portrait},#{role})
 </insert>
 
+    <insert id="insertFover" parameterType="FavoriteContent">
+     insert into favorite_content
+     (username,fcid,ftype,time)
+      values
+      (#{username},#{fcid},#{ftype},#{time})
+</insert>
+
+
 </mapper>

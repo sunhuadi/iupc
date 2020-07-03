@@ -25,7 +25,13 @@ public class FavoriteContent {
         this.fcid = fcid;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Timestamp getTime() {
         return time;
