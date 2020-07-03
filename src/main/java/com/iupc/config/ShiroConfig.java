@@ -54,7 +54,7 @@ public class ShiroConfig {
 
 
         //拦截
-      // filterMap.put("/**","authc");//必须认证才能访问，
+       filterMap.put("/**","authc");//必须认证才能访问，
        // filterMap.put("/logins","anon");//必须认证才能访问，
        // filterMap.put("/test/update","authc");
 

@@ -1,26 +1,21 @@
 package com.iupc.pojo;
 
+import java.sql.Timestamp;
+
 public class Goods {
 
     private String Goods_id;//商品id
     private String Goods_name;//商品名字
     private String Goods_price;//商品价格
-    private String Goods_time;//上架时间
+    private java.sql.Timestamp Goods_time;//上架时间
     private String Goods_category;//商品类别
     private String Goods_link;//商品购买连接
     private String Goods_modality;//待定
     private String Goods_shopid;//所属商店id
     private String Goods_picture;//商品图片
-    private String Goods_introduce;//商品介绍
-    private int Goods_Sum;//总剩余数
-
-    public int getGoods_Sum() {
-        return Goods_Sum;
-    }
-
-    public void setGoods_Sum(int goods_Sum) {
-        Goods_Sum = goods_Sum;
-    }
+    private String Goods_content;//商品介绍
+    private int Goods_sum;//总剩余数
+    private String  Goods_place;
 
     public String getGoods_id() {
         return Goods_id;
@@ -46,12 +41,36 @@ public class Goods {
         Goods_price = goods_price;
     }
 
-    public String getGoods_time() {
+    public Timestamp getGoods_time() {
         return Goods_time;
     }
 
-    public void setGoods_time(String goods_time) {
+    public void setGoods_time(Timestamp goods_time) {
         Goods_time = goods_time;
+    }
+
+    public String getGoods_content() {
+        return Goods_content;
+    }
+
+    public void setGoods_content(String goods_content) {
+        Goods_content = goods_content;
+    }
+
+    public int getGoods_sum() {
+        return Goods_sum;
+    }
+
+    public void setGoods_sum(int goods_sum) {
+        Goods_sum = goods_sum;
+    }
+
+    public String getGoods_place() {
+        return Goods_place;
+    }
+
+    public void setGoods_place(String goods_place) {
+        Goods_place = goods_place;
     }
 
     public String getGoods_category() {
@@ -92,13 +111,5 @@ public class Goods {
 
     public void setGoods_picture(String goods_picture) {
         Goods_picture = goods_picture;
-    }
-
-    public String getGoods_introduce() {
-        return Goods_introduce;
-    }
-
-    public void setGoods_introduce(String goods_introduce) {
-        Goods_introduce = goods_introduce;
     }
 }

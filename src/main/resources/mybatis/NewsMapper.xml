@@ -37,4 +37,51 @@
 </select>
 
 
+    <insert id="insertGoods" parameterType="Goods">
+     insert into goods
+     (   Goods_id,
+         Goods_name,
+          Goods_price,
+         Goods_time,
+         Goods_category,
+         Goods_link,
+         Goods_modality,
+         Goods_shopid,
+         Goods_picture,
+         Goods_content,
+         Goods_sum,
+         Goods_place)
+      values
+      ( #{Goods_id},
+                #{Goods_name},
+                #{Goods_price},
+                #{Goods_time},
+                #{Goods_category},
+                #{Goods_link},
+                #{Goods_modality},
+                #{Goods_shopid},
+                #{Goods_picture},
+                #{Goods_content},
+                #{Goods_sum},
+                #{Goods_place})
+</insert>
+    <insert id="insertGoodsPic" parameterType="GoodsPic">
+
+    insert into goods_pic
+    (goods_pic,goods_id)
+    value(#{goods_pic},#{goods_id})
+    </insert>
+<select id="getGoodsNumber" resultType="int" >
+            select count(*) from goods
+</select>
+<select id="qurryGoodsPicbyId" resultType="String" >
+   select good_pic from goods_pic
+   where goods_id=#{goods_id}
+</select>
+<select id="insertGoodsNum" parameterType="Goods_num" >
+    insert into good_num
+    (good_id,good_color,good_size,good_num,good_price)
+    value(#{good_id},#{good_color},#{good_size},#{good_num},#{good_price})
+</select>
+
 </mapper>

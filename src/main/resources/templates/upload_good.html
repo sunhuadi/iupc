@@ -26,7 +26,7 @@
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">商品名</label>
-                <input type="text" class="upinput"  >
+                <input type="text" class="upinput"  v-model="goods.Goods_name" >
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -41,28 +41,29 @@
         <hr style="border:none;height:5px;background:#b8cce2;width:90%;" />
         <div class="up_part">
             <p class="upp" >
-                <label class="uplabel">发货地</label>
-                <input type="text" class="upinput"  >
-            </p>
-            <p class="upp" >
-                <label class="uplabel">商品价格</label>
-                <input type="text" class="upinput"  >
+                <label class="uplabel" >发货地</label>
+                <input type="text" class="upinput"  v-model="goods.Goods_place">
             </p>
             <p class="upp" >
                 <label class="uplabel">商品类别</label>
-                <input type="text" class="upinput"  >
+                <input type="text" class="upinput" v-model="goods.Goods_category" >
             </p>
-
+            <p class="upp" >
+                <label class="uplabel">商品最低价格</label>
+                <input type="text" class="upinput" v-model="goods.Goods_price" >
+            </p>
         </div>
         <div class="up_part">
                 <table class="good_table">
                     <tr v-for="(item,index) in inputs">
                         <td class="good_td">型号:</td>
-                        <td><input class="good_input" v-model="inputs[index].key"  /></td>
-                        <td class="good_td">数量:</td>
-                        <td><input class="good_input" v-model="inputs[index].value" /></td>
+                        <td><input class="good_input" v-model="inputs[index].good_size"  /></td>
+                        <td class="good_td">颜色:</td>
+                        <td><input class="good_input" v-model="inputs[index].good_color"  /></td>
                         <td class="good_td">价格:</td>
-                        <td><input class="good_input" v-model="inputs[index].price" /></td>
+                        <td><input class="good_input" v-model="inputs[index].good_price" /></td>
+                        <td class="good_td">数量:</td>
+                        <td><input class="good_input" v-model="inputs[index].good_num" /></td>
                         <td><button class="good_button" @click="deleteone(index)">删除本行</button></td>
                     </tr>
                 </table>
@@ -75,7 +76,7 @@
         <div class="up_part">
             <p class="up_textarea">
                 <label class="uplabel">内容介绍</label>
-                <textarea class="news_textarea"></textarea>
+                <textarea class="news_textarea" v-model="goods.Goods_content"></textarea>
             </p>
         </div><br />
         <div class="up_part">
@@ -93,7 +94,7 @@
 
             </div>
         </div>
-        <button class="xbutton" > 发布 </button>
+        <button class="xbutton" @click="upload" > 发布 </button>
     </div>
 </div>
 </body>
@@ -103,13 +104,25 @@
     var  news_uper_vue= new Vue({
         el:"#news_uper",
         data:{
+            goods:{
+                Goods_name:null,
+                Goods_price:null,
+                Goods_category:null,
+                Goods_link:null,
+                Goods_modality:null,
+                Goods_shopid:null,
+                Goods_picture:null,
+                Goods_introduce:null,
+                Goods_sum:null,
+                Goods_place:null,
+            },
             picslist:[],
             inputs:[],
         },
         methods:{
             insertone()
             {
-                this.inputs.push({key:"",value:"",price:""})
+                this.inputs.push({good_size:"",num:"",price:""})
             },
             deleteall(){
                 this.inputs.splice(0,this.inputs.length)
@@ -147,35 +160,59 @@
             },
             savepics()
             {
-                let formData = new FormData();
-                formData.append('type', 'image/jpg');
 
-                console.log(picsuper.files.length)
-                for(var i=0;i<picsuper.files.length;i++)
-                {
-                    formData.append('myfile', picsuper.files[i]);
-                    console.log(picsuper.files[i])
-                }
-                axios.post('/ok', formData)
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
             },
             savepic(){
-                let formData = new FormData();
-                formData.append('type', 'image/jpg');
-                formData.append('myfile', picuper.files[0]);
-                axios.post('/ok', formData)
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
-            }
+
+            },upload:function () {
+                _this=this.goods
+                if(_this.Goods_name&&_this.Goods_place&&_this.Goods_category&&_this.Goods_price)
+                {
+                    if (picuper.files[0]==null)
+                    {
+                        alert("请上传封面！")
+                    }
+                    else if(picsuper.files[0]==null)
+                    {
+                        alert("请上传商品图片！")
+                    }
+                    else {
+                        let formData = new FormData();
+                        that=this
+                        formData.append('myfile',picuper.files[0])
+                        //formData.append('news', that.news);
+                        //console.log(that.news)
+                        //console.log(picsuper.files.length)
+                        for(var i=0;i<picsuper.files.length;i++)
+                        {
+                            formData.append('myfiles', picsuper.files[i]);
+                            //console.log(picsuper.files[i])
+                        }
+                        console.log(that.goods)
+                        console.log(that.inputs)
+                        formData.append('inputs',new Blob([JSON.stringify(that.inputs)], {type: "application/json"}))
+                        formData.append("goods", new Blob([JSON.stringify(that.goods)], {type: "application/json"}));
+                        // formData.append("inputs", new Blob([JSON.stringify(that.inputs)], {type: "application/json"}));
+                        console.log(formData.get("goods"))
+                        console.log(formData.get("inputs"))
+                        console.log("正在发送请求......")
+                        //console.log(formData.keys())
+                        axios.post('/uploadGoods', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                        )
+                            .then(res => {
+                                alert(res.data.msg)
+                                console.log("成功！")
+                            })
+                            .catch(err => {
+                                console.log("失败！")
+                                alert(res.data.msg)
+                            });
+                    }
+                }else {
+                    alert("请输入信息！")
+                }
+
+            },
 
         }
     })
