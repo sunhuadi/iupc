@@ -13,6 +13,9 @@ import java.util.List;
 public interface NotesMapper {
     List<Notes> qurryAllNotes();
     void insertNotes(Notes note);
-     int getNotesNumber();
+    int getNotesNumber();
     void insertNotesPic(NotesPic np);
+    Notes qurryNoteById(String id);
+    String[] qurryNotePicbyId(String id);
+
 }

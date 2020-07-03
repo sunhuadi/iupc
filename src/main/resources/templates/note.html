@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body class="body">
 
@@ -30,11 +30,11 @@
     <div class="zixun_info">
         <span> <img :src="islike?'image/透明蓝色蝴蝶结.gif':'image/hdj.png'" @click="dolike" style="height: 30px;width: 30px"  />{{  '点赞: '+likenum }}</span>
         <span> <img src="image/cake.png"  style="height: 30px;width: 30px"  />{{ '浏览: '+looknum }}</span>
-        <span style="margin-left: 30px"> {{text_fbtime}}</span>
-        <span>{{'By  '+text_shop}}</span>
+        <span style="margin-left: 30px"> {{notes.note_time}}</span>
+        <span>{{'By  '+notes.note_author}}</span>
     </div>
     <div class="note_pic">
-        <img v-for="item in piclist"  :src="item" class="note_picture">
+        <img v-for="item in notes.note_pic"  :src="item" class="note_picture">
     </div>
     <div class="note_text">
         <div class="note_link">
@@ -42,7 +42,7 @@
             <a v-for="item in linklist" :href="item" class="note_link_jt">搭配连接</a>
         </div>
         <div class="note_intro">
-            <p class="note_intro_text">{{note_introduce}}</p>
+            <p class="note_intro_text">{{notes.note_content}}</p>
         </div>
 
     </div>
@@ -55,13 +55,10 @@
     var zixunvue = new Vue({
         el: "#zixun_box",
         data:{
+            notes:{
+            },
             a:1,
-            text_fbtime:"5月20日13：15",
-            title: "小椿搭配笔记",
-            text_shop:"Sumire-栗米JK馆",
-            text_time:"6月26日21：40-7月6日21:40",
             likenum:1,
-            note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
             looknum:100,
             islike:false,
             linklist:["https://www.baidu.com/","https://www.baidu.com/","https://www.baidu.com/"],
@@ -78,6 +75,21 @@
                 }
                 this.islike=!this.islike;
             }
+        },
+        mounted()
+        {
+            that=this
+            axios.post('/getnotbyid', {
+                id:"0",
+
+            }).then(function (response) {
+
+                that.notes=response.data
+                console.log(that.notes);
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     });
 

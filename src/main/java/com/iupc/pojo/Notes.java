@@ -16,6 +16,15 @@ public class Notes {
 
     private String note_img;
 
+    public String[] getNote_pic() {
+        return note_pic;
+    }
+
+    public void setNote_pic(String[] note_pic) {
+        this.note_pic = note_pic;
+    }
+
+    private String[] note_pic;//多图
     public String getNote_img() {
         return note_img;
     }

@@ -1,6 +1,7 @@
 package com.iupc.controller;
 
 import com.iupc.pojo.News;
+import com.iupc.pojo.Notes;
 import com.iupc.service.IIndexService;
 import com.iupc.util.CommonFileUtil;
 import org.slf4j.Logger;
@@ -59,6 +60,15 @@ public class IndexController {
 
         return news;
     }
+    @ResponseBody
+    @PostMapping("/getnotbyid")
+    public Notes getnotebyid(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        System.out.println("查看笔记，ID： "+map.get("id"));
+        return iis.getNotesById(id);
+    }
+
 
     @ResponseBody
     @PostMapping("/search")

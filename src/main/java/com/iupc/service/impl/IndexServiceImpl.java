@@ -1,8 +1,10 @@
 package com.iupc.service.impl;
 
 import com.iupc.Mapper.NewsMapper;
+import com.iupc.Mapper.NotesMapper;
 import com.iupc.Mapper.ZixunMapper;
 import com.iupc.pojo.News;
+import com.iupc.pojo.Notes;
 import com.iupc.pojo.zixun;
 import com.iupc.service.IIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +57,21 @@ public class IndexServiceImpl implements IIndexService {
         {
             System.out.println(pic[i]);
         }
+        if(pic!=null)
         news.setNews_pic(pic);
+
         return news;
+    }
+    @Autowired
+    NotesMapper notesMapper;
+    @Override
+
+    public Notes getNotesById(String id)
+    {
+        Notes note=notesMapper.qurryNoteById(id);
+        note.setNote_pic(notesMapper.qurryNotePicbyId(id));
+
+        return note;
     }
 }
 

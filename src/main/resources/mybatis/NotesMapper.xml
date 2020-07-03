@@ -22,7 +22,15 @@
    where notes_id=#{notes_id}
 
 </select>
+<select id="qurryNoteById" resultType="Notes" parameterType="String">
+    select *from notes where note_id=#{id}
+</select>
 
+    <select id="qurryNotePicbyId" resultType="String" parameterType="String">
+        select note_pic
+        from notes_pic
+        where note_id=#{id}
+    </select>
     <insert id="insertNotesPic" parameterType="NotesPic">
     insert into notes_pic
     (note_pic,Note_id)
