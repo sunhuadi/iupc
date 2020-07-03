@@ -52,23 +52,25 @@
                 <label class="uplabel">商品类别</label>
                 <input type="text" class="upinput"  >
             </p>
-            <p class="upp" >
-                <label class="uplabel">颜色</label>
-                <input type="text" class="upinput"  >
-            </p>
-            <p class="upp" >
-                <label class="uplabel">尺码</label>
 
-                <label><input  type="checkbox" value=""  />xs &nbsp; </label>
-                <label><input  type="checkbox" value=""  />s &nbsp; </label>
-                <label><input  type="checkbox" value="" />m  &nbsp;</label>
-                <label><input  type="checkbox" value="" />l &nbsp; </label>
-                <label><input  type="checkbox" value="" />xl </label>
-
-            </p>
         </div>
-
-
+        <div class="up_part">
+                <table class="good_table">
+                    <tr v-for="(item,index) in inputs">
+                        <td class="good_td">型号:</td>
+                        <td><input class="good_input" v-model="inputs[index].key"  /></td>
+                        <td class="good_td">数量:</td>
+                        <td><input class="good_input" v-model="inputs[index].value" /></td>
+                        <td class="good_td">价格:</td>
+                        <td><input class="good_input" v-model="inputs[index].price" /></td>
+                        <td><button class="good_button" @click="deleteone(index)">删除本行</button></td>
+                    </tr>
+                </table>
+            <div class="div_button">
+                <button class="good_button1" @click="insertone"> 添加</button>
+                <button class="good_button1" @click="deleteall"> 全部删除</button>
+            </div>
+        </div>
         <hr style="border:none;height:5px;background:#b8cce2;width:90%;" />
         <div class="up_part">
             <p class="up_textarea">
@@ -102,8 +104,20 @@
         el:"#news_uper",
         data:{
             picslist:[],
+            inputs:[],
         },
         methods:{
+            insertone()
+            {
+                this.inputs.push({key:"",value:"",price:""})
+            },
+            deleteall(){
+                this.inputs.splice(0,this.inputs.length)
+            },
+            deleteone(which)
+            {
+                this.inputs.splice(which,1);
+            },
             changepic() {
                 var reads = new FileReader();
                 var f = document.getElementById('picuper').files[0];
@@ -165,6 +179,7 @@
 
         }
     })
+
 
 </script>
 <style>
@@ -256,6 +271,42 @@
         height:350px;
         font-size:20px;
         text-indent: 2em;
+    }
+   .good_input{
+       width: 100px;
+       margin-right: 50px;
+       font-size: 23px;
+   }
+    .good_td{
+        font-size: 23px;
+        font-weight: bolder;
+
+    }
+    .good_table{
+        position: relative;
+        left:10%;
+        border-collapse:separate;
+        border-spacing:0px 20px;
+    }
+    .good_button{
+        width: 110px;
+        font-size: 23px;
+        background-color:#FAE3EA;
+        border-radius: 10px;
+        border: 2px solid #EBC7D1;
+    }
+    .good_button1{
+
+        width: 110px;
+        font-size: 23px;
+        background-color:#FAE3EA;
+        border-radius: 10px;
+        border: 2px solid #EBC7D1;
+    }
+    .div_button{
+        position: absolute;
+        left: 10%;
+
     }
 </style>
 </html>
