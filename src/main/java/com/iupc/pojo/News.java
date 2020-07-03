@@ -19,6 +19,15 @@ public class News {
     private String news_updateway;//上新形式
     private float news_price;//上新价格
     private String[] news_pic;//多图
+    private String news_show;
+
+    public String getNews_show() {
+        return news_show;
+    }
+
+    public void setNews_show(String news_show) {
+        this.news_show = news_show;
+    }
 
     public String[] getNews_pic() {
         return news_pic;

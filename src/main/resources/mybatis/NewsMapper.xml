@@ -7,6 +7,10 @@
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
+        <select id="qurryAllNewsShow" resultType="News" parameterType="String" >
+            select * from news
+            where news_show=#{show}
+        </select>
     <select id="qurryNewsByContent" resultType="News" parameterType="String">
         select * from news
         where news_content like concat('%',#{value},'%')
@@ -104,4 +108,9 @@ select * from good_num
 where good_id=#{id} and good_size=#{size} and good_color=#{color}
 </select>
 
+<update id="updataNews" parameterType="News">
+update news set
+news_show=#{news_show}
+where news_id=#{news_id}
+</update>
 </mapper>
