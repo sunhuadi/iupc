@@ -20,13 +20,13 @@
 <body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
-<div class="mianframe" id="news_uper" style="overflow: auto">
+<div class="mainframe" id="news_uper" style="overflow: auto">
     <div id="up_news" class="uploadbox">
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
             <p class="upp" >
                 <label class="uplabel">资讯标题</label>
-                <input v-model="upn_title" type="text" class="upinput"  >
+                <input v-model="news.news_title" type="text" class="upinput"  >
             </p>
             <p class="upfile" >
                 <label class="uplabel">上传封面</label>
@@ -41,7 +41,7 @@
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新商品</label>
-            <input v-model="upn_goods" type="text" class="upinput"  >
+            <input v-model="news.news_good" type="text" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">价格</label>
@@ -49,18 +49,18 @@
         </p>
         <p class="upp" >
             <label class="uplabel">上新形式</label>
-            <input v-model="upn_way" type="text" class="upinput"  >
+            <input v-model="news.news_updateway" type="text" class="upinput"  >
         </p>
         </div>
         <hr style="border:none;height:5px;background:gray;width:80%;" />
         <div class="up_part">
         <p class="upp" >
             <label class="uplabel">上新时间</label>
-            <input  v-model="upn_begintime" type="date" class="upinput"  >
+            <input  v-model="news.news_begintime" type="date" class="upinput"  >
         </p>
         <p class="upp" >
             <label class="uplabel">下架时间</label>
-            <input v-model="upn_stoptime" type="date" class="upinput"  >
+            <input v-model="news.news_stoptime" type="date" class="upinput"  >
 
         </p>
         </div>
@@ -68,7 +68,7 @@
         <div class="up_part">
         <p class="up_textarea">
             <label class="uplabel">内容介绍</label>
-            <textarea v-model="upn_content" class="news_textarea"></textarea>
+            <textarea v-model="news.news_content" class="news_textarea"></textarea>
         </p>
         </div><br />
         <div class="up_part">
@@ -85,7 +85,7 @@
                 </span>
             </div>
         </div>
-        <button class="xbutton" > 发布 </button>
+        <button class="xbutton" @click="upload" > 发布 </button>
     </div>
 </div>
 </body>
@@ -96,7 +96,6 @@
         el:"#news_uper",
         data:{
             picslist:[],
-
             news:{
                 news_id:null,
                 news_content: null,

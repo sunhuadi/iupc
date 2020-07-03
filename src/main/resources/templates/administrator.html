@@ -19,7 +19,13 @@
 </head>
 <body>
 <div th:insert="~{index::header}"></div>
-<div id="zixun_box">
+<div class="adminmenu">
+    <div class="admenuli"><a style="color:black" href="">资讯审核</a></div>
+    <div class="admenuli"><a style="color:black" href="">笔记审核</a></div>
+    <div class="admenuli"><a style="color:black" href="">店铺管理</a></div>
+    <div class="admenuli"><a style="color:black" href="">资讯审核</a></div>
+</div>
+<div id="adminbox">
 <table class="admin_table">
 
         <td class="zixun_td2">店家</td>
@@ -118,7 +124,7 @@
         }
         )
     var administrator=new Vue({
-        el:"#zixun_box",
+        el:"#adminbox",
         data:{
             admin:[
                 {
@@ -179,16 +185,30 @@
     })
 </script>
 <style>
-    #zixun_box{
+    #adminbox{
         position: absolute;
         /*left:12%;*/
         top:11%;
-        width: 100%;
+        width:75%;
+        left:20%;
         height: 130%;
-        background: #f1f3f4;
         /*border-radius: 30px;*/
         margin-bottom: 100px;
+    }
+    .adminmenu{
+        position: absolute;
+        top:12%;
+        left:4%;
+        height: 60%;
+        width: 12%;
 
+    }
+    .admenuli{
+        height: 40px;
+        font-size:25px;
+        border: outset darkgray 2px;
+        text-align: center;
+        margin: 5px 0 5px 0;
     }
     .zixun_tr{
         position: relative;
