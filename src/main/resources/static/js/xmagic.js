@@ -14,19 +14,19 @@ var tourist_vue= new Vue(
                 {content:"三坑笔记",
                     isshow:false,
                     slcontent:[
-                        {name:"汉服",link:"/all_news_hf"},
-                        {name:"Lolita",link:"/all_news_lolita"},
-                        {name:"JK",link:"/all_news_jk"},
-                        {name:"全部",link:"/all_news"},
+                        {name:"汉服",link:"/all_notes_hf"},
+                        {name:"Lolita",link:"/all_notes_lolita"},
+                        {name:"JK",link:"/all_notes_jk"},
+                        {name:"全部",link:"/all_notes"},
                     ]
                 },
                 {content:"查看资讯",
                     isshow:false,
                     slcontent:[
-                        {name:"汉服",link:"/zxck"},
-                        {name:"Lolita",link:""},
-                        {name:"JK",link:""},
-                        {name:"全部",link:""},
+                        {name:"汉服",link:"/all_news_hf"},
+                        {name:"Lolita",link:"/all_news_lolita"},
+                        {name:"JK",link:"/all_news_jk"},
+                        {name:"全部",link:"/all_news"},
                     ]
                 },
                 {content:"我的收藏",
@@ -249,7 +249,50 @@ if(now_bg!=null)
 for(var i=1;i<21;i++){
     var bgp={src:"",var:""};
     bgp.src="image/background/"+i+".jpg";
-    console.log(bgp.src);
     bgp.var="../"+bgp.src;
     setvue.bgslist.push(bgp);
 }
+Vue.component("note",{
+    template:`
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="note_img" />
+        <div class="zxi_text">
+        <p class="zxi_title" @click="readthisnote" >{{ note_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ note_time }}</p>
+        </div>
+        </div>`,
+    props:{
+        note_title:String,
+        note_id:String,
+        note_time:String,
+        note_img:String,
+        note_content:String,
+        myclassname:String,
+    },
+    computed:{
+        shortifycontent(){
+            if(this.note_content.length<=150)
+                return this.note_content;
+            else
+                return this.note_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisnote()
+        {
+            sessionStorage.setItem("mynoteid",this.note_id);
+            window.location.href="/note";
+        }
+    }
+})
+Vue.component("zzc",{
+    template:` <div 
+ style="position:absolute;
+ pointer-events:none;
+ width: 100%;
+ height: 100%;
+ background:rgba(255,255,255,0.5)">
+</div>`,
+
+})

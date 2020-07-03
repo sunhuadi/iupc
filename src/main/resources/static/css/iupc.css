@@ -6,6 +6,22 @@
 a{
     color:black;
 }
+.unacrs{
+    font-size: 18px;
+    color:black;
+    width: 60px;
+}
+.acrs{
+    font-size: 18px;
+    color: #ffaaa5;
+}
+.srtourist{
+    font-size: 20px;
+    height:30px;
+    left:50px;
+    position: absolute;
+    font-weight:bold;
+}
 .body{
     /*background-image:url("../image/background/aa1.jpg");*/
     /*background-image:var(--bgimg);*/
@@ -20,8 +36,7 @@ a{
 .mainframe_title{
     text-align: center;
 }
-.mianframe{
-    background: #E3EFF9;
+.mainframe{
     color:black;
     font-size: 30px;
     top:11%;
@@ -31,9 +46,12 @@ a{
     min-width:1200px;
     height:87%;
     padding-bottom: 80px;
-    background: rgba(222,246,255,0.8);
+    /*background: rgba(222,246,255,0.8);*/
+    background-image: var(--bgimg);
+    background-size:cover;
     display: table;
     border-style: outset;
+    clear: both;
 }
 .bgspic{
     width: 100px;
@@ -296,6 +314,11 @@ ul li{
     z-index: 1;
     line-height: 35px;
 }
+.shrs{
+    position: absolute;
+    top:15%;
+    width: 100%;
+}
 .hsearch_button{
     display: inline-block;
     left:660px;
@@ -313,6 +336,7 @@ ul li{
     position: fixed;
     width:100%;
     height:10%;
+    top:0;
     background-image:var(--bgimg) ;
     background-size:var(--bgimgwidth) var(--bgimgheight) ;
     background-position: 0 0 ;

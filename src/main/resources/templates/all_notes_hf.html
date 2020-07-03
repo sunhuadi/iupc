@@ -17,55 +17,52 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="body">
+<body class="body">`
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mainframe">
-    <span style="position:absolute;width: 100%;height: 100%;background:rgba(255,255,255,0.5)">
-    <h1 style="z-index:10" class="mainframe_title"> 搜索结果 </h1>
-        <div class="srtourist">
-            <span> <a class="acrs" href="/search_result">资讯</a> </span>
-            /<span> <a class="unacrs" href="/searchnote">笔记</a> </span>
-            /<span> <a class="unacrs" href="/search_result">商品</a> </span>
-        </div>
-        <span class="shrs" id="shrs" style="width: 100%">
-            <news v-for="item in searchdata"
-                  myclassname="zxi"
-                  :news_title="item.news_title"
-                  :news_id="item.news_id"
-                  :news_img="item.news_img"
-                  :news_time="item.news_time"
-                  :news_content="item.news_content"
-            >
-            </news>
-        </span>
-    </span>
+    <h1 class="mainframe_title"> 搜索结果 </h1>
+    <div class="srtourist">
+        <span> <a class="unacrs" href="/search_result">资讯</a> </span>
+        /<span> <a class="acrs" href="/searchnote">笔记</a> </span>
+        /<span> <a class="unacrs" href="/search_result">商品</a> </span>
+    </div>
+    <div class="shrs" id="search_note">
+        <note
+                v-for="item in search_note_data"
+                myclassname="zxi"
+                :note_title="item.note_title"
+                :note_id=item.note_id
+                :note_img="item.note_img"
+                :note_time="item.note_time"
+                :note_content="item.note_content">
+        </note>
+    </div>
 </div>
 </body>
 <style>
 
 </style>
-<script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
-<script>
-    var search_kw=sessionStorage.getItem("search_keyword");
-    var rsvue= new Vue({
-        el:"#shrs",
+<script >
+    var search_kw="汉服";
+    var searchnotevue=new Vue({
+        el:"#search_note",
         data:{
-            searchdata:[],
+            search_note_data:[]
         }
-    });
+    })
+
     console.log(search_kw);
-    axios.post('/search', {value:search_kw,variable:"0"})
+    axios.post('/search', {value:search_kw,variable: "1"})
         .then(function (response) {
-            rsvue.searchdata=null
-            rsvue.searchdata=response.data[0];
-            console.log(rsvue.searchdata)
+            searchnotevue.search_note_data=null
+            searchnotevue.search_note_data=response.data[0];
+            console.log(searchnotevue.search_note_data)
         }).catch(
-            function (error) {
+        function (error) {
             console.log(error);
         });
-
 </script>
 
 </html>

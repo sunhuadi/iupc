@@ -17,47 +17,54 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="body">
+<body class="body">`
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
-<div class="mianframe">
-    <h1 class="mainframe_title"> 搜索结果 </h1>
-    <hr />
-    <span id="search_note">
-        <news v-for="item in search_note_data" myclassname="news_sh" :news_title="item.note_title" :news_id="3" :news_img="item.note_img" :news_time="item.note_time" :news_content="item.note_content">
-        </news>
-    </span>
+<div class="mainframe">
+    <span style="position:absolute;top:0;width: 100%;height: 100%;background:rgba(255,255,255,0.5)">
+    <h1 style="z-index:10" class="mainframe_title"> 搜索结果 </h1>
+    <div class="srtourist">
+        <span> <a class="unacrs" href="/search_result">资讯</a> </span>
+        /<span> <a class="acrs" href="/searchnote">笔记</a> </span>
+        /<span> <a class="unacrs" href="/search_result">商品</a> </span>
+    </div>
+    <div class="shrs" id="search_note">
+        <note
+                v-for="item in search_note_data"
+                myclassname="zxi"
+                :note_title="item.note_title"
+                :note_id=item.note_id
+                :note_img="item.note_img"
+                :note_time="item.note_time"
+                :note_content="item.note_content">
+        </note>
+    </div>
+         </span>
 </div>
 </body>
 <style>
 
 </style>
-<script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
 <script >
     var search_kw=sessionStorage.getItem("search_keyword");
     var searchnotevue=new Vue({
         el:"#search_note",
         data:{
-            search_note_data:[
-            ]
-
-        },mounted(){
-            console.log(search_kw);
-            that=this
-            axios.post('/search', {value:search_kw,variable: "1"})
-                .then(function (response) {
-                    that.search_note_data=null
-                   that.search_note_data=response.data[0];
-                    console.log(that.search_note_data)
-                }).catch(
-                function (error) {
-                    console.log(error);
-                });
+            search_note_data:[]
         }
     })
 
-
+    console.log(search_kw);
+    axios.post('/search', {value:search_kw,variable: "1"})
+        .then(function (response) {
+            searchnotevue.search_note_data=null
+            searchnotevue.search_note_data=response.data[0];
+            console.log(searchnotevue.search_note_data)
+        }).catch(
+        function (error) {
+            console.log(error);
+        });
 </script>
 
 </html>
