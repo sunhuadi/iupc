@@ -87,6 +87,9 @@
     <p class="zx_box_title">热门资讯
     </p>
     <div id="zx_box_1">
+        <button onclick="changebg()"></button>
+        <news  myclassname="zxi" news_title="item.news_title" news_id=item.news_id news_img="item.news_img" news_time="item.news_time" news_content="item.news_content">
+        </news>
         <news  v-for="item in zxall" myclassname="zxi" :news_title="item.news_title" :news_id=item.news_id :news_img="item.news_img" :news_time="item.news_time" :news_content="item.news_content">
         </news>
     </div>

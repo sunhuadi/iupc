@@ -1,5 +1,8 @@
 package com.iupc.controller;
 
+import com.iupc.Mapper.NewsMapper;
+import com.iupc.pojo.Goods;
+import com.iupc.pojo.Goods_num;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.service.IIndexService;
@@ -29,6 +32,8 @@ public class IndexController {
 
         return "index";
     }*/
+    @Autowired
+    NewsMapper newsMapper;
     @ResponseBody
     @GetMapping("/getallnews")
     public List<News> index(Model model)
@@ -62,6 +67,35 @@ public class IndexController {
         String id=map.get("id");
         System.out.println("查看笔记，ID： "+map.get("id"));
         return iis.getNotesById(id);
+    }
+    @ResponseBody
+    @PostMapping("/getonegoods")
+    public Goods getgoodsbyid(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        System.out.println("商品，ID： "+map.get("id"));
+        return iis.getgoodsById(id);
+    }
+
+    @ResponseBody
+    @PostMapping("/getcolor")
+    public String[] getcolor(@RequestBody HashMap<String,String> map)
+    {
+
+        String id=map.get("id");
+        String size=map.get("size");
+        System.out.println("Size： "+map.get("size"));
+        return newsMapper.qurryGoodsColorByIdSzie(id,size);
+    }
+    @ResponseBody
+    @PostMapping("/getnumprice")
+    public Goods_num getnumprice(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        String size=map.get("size");
+        String color=map.get("color");
+        System.out.println("商品，ID,颜色 "+id+size+color);
+        return newsMapper.qurryGoodsByIdSzieColor(id,size,color);
     }
 
 
@@ -109,7 +143,21 @@ public class IndexController {
         }
         return "success";
     }
+    @ResponseBody
+    @PostMapping("/favor")
+    public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
 
+        String v=null;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        if(map.get("variable").equals("1"))
+        {
+            v="Note";
+        }
+        //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+
+        return iis.setFavor(map.get("id"),v);
+    }
 
 
 

@@ -8,6 +8,8 @@ public class Shop {
   private String shop_pic;//店铺头像
   private String username;//店铺所属用户
 
+
+
   public String getShop_id() {
     return shop_id;
   }

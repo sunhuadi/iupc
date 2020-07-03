@@ -37,4 +37,71 @@
 </select>
 
 
+    <insert id="insertGoods" parameterType="Goods">
+     insert into goods
+     (   Goods_id,
+         Goods_name,
+          Goods_price,
+         Goods_time,
+         Goods_category,
+         Goods_link,
+         Goods_modality,
+         Goods_shopid,
+         Goods_picture,
+         Goods_content,
+         Goods_sum,
+         Goods_place)
+      values
+      ( #{Goods_id},
+                #{Goods_name},
+                #{Goods_price},
+                #{Goods_time},
+                #{Goods_category},
+                #{Goods_link},
+                #{Goods_modality},
+                #{Goods_shopid},
+                #{Goods_picture},
+                #{Goods_content},
+                #{Goods_sum},
+                #{Goods_place})
+</insert>
+    <insert id="insertGoodsPic" parameterType="GoodsPic">
+
+    insert into goods_pic
+    (goods_pic,goods_id)
+    value(#{goods_pic},#{goods_id})
+    </insert>
+<select id="getGoodsNumber" resultType="int" >
+            select count(*) from goods
+</select>
+<select id="qurryGoodsPicbyId" resultType="String" >
+   select goods_pic from goods_pic
+   where goods_id=#{goods_id}
+</select>
+<select id="insertGoodsNum" parameterType="Goods_num" >
+    insert into good_num
+    (good_id,good_color,good_size,good_num,good_price)
+    value(#{good_id},#{good_color},#{good_size},#{good_num},#{good_price})
+</select>
+
+<select id="qurryGoodsSizeById" resultType="String">
+select good_size from good_num
+where good_id=#{id}
+</select>
+
+<select id="qurryGoodsById" resultType="Goods">
+select * from goods
+where Goods_id=#{id}
+</select>
+
+<select id="qurryGoodsColorByIdSzie" resultType="String">
+select good_color from good_num
+where good_id=#{id} and good_size=#{size}
+</select>
+
+<select id="qurryGoodsByIdSzieColor" resultType="Goods_num">
+select * from good_num
+where good_id=#{id} and good_size=#{size} and good_color=#{color}
+</select>
+
 </mapper>

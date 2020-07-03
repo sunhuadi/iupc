@@ -1,9 +1,11 @@
 package com.iupc.service;
 
+import com.iupc.pojo.Goods;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.pojo.zixun;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IIndexService {
@@ -12,4 +14,6 @@ public interface IIndexService {
     List<Object> getNewsBysearch(String value,String v);
     News getNewsById(String value);
     Notes getNotesById(String id);
+    Goods getgoodsById(String id);
+    HashMap<String,String> setFavor(String id,String v);
 }

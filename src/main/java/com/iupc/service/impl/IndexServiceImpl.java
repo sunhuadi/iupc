@@ -2,17 +2,21 @@ package com.iupc.service.impl;
 
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
+import com.iupc.Mapper.UsersMapper;
 import com.iupc.Mapper.ZixunMapper;
-import com.iupc.pojo.News;
-import com.iupc.pojo.Notes;
-import com.iupc.pojo.zixun;
+import com.iupc.pojo.*;
 import com.iupc.service.IIndexService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -82,5 +86,34 @@ NotesMapper notesMapper;
 
         return note;
     }
+
+    public Goods getgoodsById(String id){
+        System.out.println("正在查询，请稍后");
+        Goods good=ns.qurryGoodsById(id);
+        System.out.println("查询规格"+ns.qurryGoodsSizeById(id));
+        good.setSizelist(ns.qurryGoodsSizeById(id));
+        good.setPiclist(ns.qurryGoodsPicbyId(id));
+        return good;
+    }
+
+    @Autowired
+    UsersMapper usersMapper;
+    @Override
+  public  HashMap<String,String> setFavor(String id, String v){
+        FavoriteContent fc=new FavoriteContent();
+        fc.setFcid(id);
+        fc.setFtype(v);
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        Timestamp time = new Timestamp(new Date().getTime());
+        System.out.println("当前时间为:"+time);
+        fc.setTime(time);
+        fc.setUsername(currentUser.getUsername());
+        usersMapper.insertFover(fc);
+        HashMap<String,String> mp=new HashMap<String,String>();
+        mp.put("msg","收藏成功");
+        return mp;
+    }
+
 }
 
