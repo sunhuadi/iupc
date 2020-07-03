@@ -16,4 +16,5 @@ public interface IIndexService {
     Notes getNotesById(String id);
     Goods getgoodsById(String id);
     HashMap<String,String> setFavor(String id,String v);
+    HashMap<String,String> delet(String id,String v);
 }

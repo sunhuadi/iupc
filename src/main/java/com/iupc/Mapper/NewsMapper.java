@@ -19,12 +19,13 @@ public interface NewsMapper {
     int getNewsNumber();
     String[] qurryPicbyId(String news_id);
     void updataNews(News news);
-
-
+    void deletGoodsByid(String id);
+    void deletNewsByid(String id);
     void insertGoods(Goods good);
     void insertGoodsPic(GoodsPic gp);
     void insertGoodsNum(Goods_num gm);
     int getGoodsNumber();
+    List<Goods> qurryAllGoods();
     String[] qurryGoodsPicbyId(String good_id);
     Goods qurryGoodsById(String id);
     List<Goods> qurryGoodsBy(String value);

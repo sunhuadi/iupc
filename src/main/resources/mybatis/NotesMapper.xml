@@ -41,5 +41,11 @@
     (note_pic,Note_id)
     value(#{note_pic},#{note_id})
     </insert>
+    <delete id="deletNotesByid" parameterType="String">
+        delete from notes
+        where notes_id=#{id}
+        delete from notes_pic
+        where notes_id=#{id}
+    </delete>
 
 </mapper>

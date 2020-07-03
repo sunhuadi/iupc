@@ -112,11 +112,28 @@ update news set
 news_show=#{news_show}
 where news_id=#{news_id}
 </update>
-<select id="qurryGoodsBy" resultType="Goods">
+<select id="qurryGoodsBy" resultType="Goods" parameterType="String">
 select * from goods
 where Goods_content like concat('%',#{value},'%')
 or  Goods_name like concat('%',#{value},'%')
-or  Goods_news_author like concat('%',#{value},'%')
+or  Goods_category like concat('%',#{value},'%')
 </select>
+<select id="qurryAllGoods" resultType="Goods" parameterType="String">
+select * from goods
+</select>
+    <delete id="deletNewsByid" parameterType="String">
+        delete from news
+        where news_id=#{id}
+        delete from news_pic
+        where news_id=#{id}
+    </delete>
+<delete id="deletGoodsByid" parameterType="String">
+    delete from goods
+    where goods_id=#{id}
+    delete from goods_pic
+    where good_id=#{id}
+    delete from good_num
+    where good_id=#{id}
 
+</delete>
 </mapper>

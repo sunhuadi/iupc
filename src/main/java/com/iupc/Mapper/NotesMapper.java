@@ -19,5 +19,6 @@ public interface NotesMapper {
     Notes qurryNoteById(String id);
     String[] qurryNotePicbyId(String id);
 
+    void deletNotesByid(String id);
 
 }

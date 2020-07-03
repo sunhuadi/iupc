@@ -1,6 +1,7 @@
 package com.iupc.controller;
 
 import com.iupc.Mapper.NewsMapper;
+import com.iupc.Mapper.NotesMapper;
 import com.iupc.pojo.Goods;
 import com.iupc.pojo.Goods_num;
 import com.iupc.pojo.News;
@@ -38,25 +39,38 @@ public class IndexController {
     @GetMapping("/getallnews")
     public List<News> index(Model model)
     {
-       // Date date=new Date();
         System.out.println("util:"+new Date());
-       // System.out.println("sql:"+new java.sql.Date(new Date()));
-       // java.util.Date dt = new java.util.Date();
         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        //String currentTime = dt.toString();
-        //Date date = new Date();
         List<News> newsList=iis.getAllnews();
         System.out.println(currentTime);
         return newsList;
     }
+    @Autowired
+    NotesMapper notesMapper;
+    @ResponseBody
+    @GetMapping("/getallnotes")
+    public List<Notes> allnote()
+    {
+        List<Notes> notes=notesMapper.qurryAllNotes();
+        return notes;
+    }
+    @ResponseBody
+    @GetMapping("/getallgoods")
+    public List<Goods> allgoods(Model model)
+    {
+        List<Goods> notes=newsMapper.qurryAllGoods();
+        return notes;
+    }
 
     @ResponseBody
-    @GetMapping("/getallnewsshow1")
+    @GetMapping("/getallnewsshow1")//可扩展到其他方面
     public List<News> indexshow1(Model model)
     {
         List<News> newsList=newsMapper.qurryAllNewsShow("0");
         return newsList;
     }
+
+
     @ResponseBody
     @PostMapping("/getonenews")
     public  News getthatnew(@RequestBody HashMap<String,String> map)
@@ -122,13 +136,21 @@ public class IndexController {
     }
 
     @ResponseBody
-    @PostMapping("/search")
+    @PostMapping("/search")//适应于三种情况
     public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map
     {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
             List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
         return objList;
+    }
+    @ResponseBody
+    @PostMapping("/delet")//适应于三种情况
+    public HashMap<String,String> delet(@RequestBody HashMap<String,String> map)//传入类型为map,盲写
+    {
+        //map.get("value");
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        return iis.delet(map.get("id"),map.get("variable"));
     }
 
     @ResponseBody
@@ -192,6 +214,7 @@ public class IndexController {
 
         return iis.setFavor(map.get("id"),v);
     }
+
 
 
 
