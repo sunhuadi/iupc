@@ -210,13 +210,6 @@
                     formData.append('myfile', picsuper.files[i]);
                     console.log(picsuper.files[i])
                 }
-                axios.post('/ok', formData)
-                    .then(res => {
-                        console.log("成功！")
-                    })
-                    .catch(err => {
-                        console.log("失败！")
-                    });
             },
 
         }

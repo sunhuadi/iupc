@@ -47,6 +47,8 @@ public class IndexServiceImpl implements IIndexService {
 
         return ns.qurryAllNews();
     }
+
+
 @Autowired
 NotesMapper notesMapper;
     @Override
@@ -58,6 +60,8 @@ NotesMapper notesMapper;
         }else if(v.equals("1")){
             List<Object> objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
             return objList;
+        }else {
+            List<Object> objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
         }
         return null;
     }

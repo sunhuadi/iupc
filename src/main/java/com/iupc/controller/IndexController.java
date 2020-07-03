@@ -57,7 +57,6 @@ public class IndexController {
         List<News> newsList=newsMapper.qurryAllNewsShow("0");
         return newsList;
     }
-
     @ResponseBody
     @PostMapping("/getonenews")
     public  News getthatnew(@RequestBody HashMap<String,String> map)
@@ -129,6 +128,18 @@ public class IndexController {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
             List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+        return objList;
+    }
+
+    @ResponseBody
+    @PostMapping("/searchgoods")
+    public List<Object> getGoods(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
+        //map.get("value");
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+
+
         return objList;
     }
 

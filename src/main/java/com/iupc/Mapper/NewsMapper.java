@@ -27,7 +27,7 @@ public interface NewsMapper {
     int getGoodsNumber();
     String[] qurryGoodsPicbyId(String good_id);
     Goods qurryGoodsById(String id);
-
+    List<Goods> qurryGoodsBy(String value);
     String[] qurryGoodsColorByIdSzie(String id,String size);
     String[] qurryGoodsSizeById(String id);
     Goods_num qurryGoodsByIdSzieColor(String id,String size,String color);
