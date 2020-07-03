@@ -3,9 +3,17 @@
     --bgimgwidth:1748px;
     --bgimgheight:847px;
 }
+a{
+    color:black;
+}
 .body{
     /*background-image:url("../image/background/aa1.jpg");*/
     /*background-image:var(--bgimg);*/
+    background-size:cover;
+    background-attachment: fixed;
+}
+.bgbody{
+    background-image:var(--bgimg);
     background-size:cover;
     background-attachment: fixed;
 }
@@ -26,6 +34,18 @@
     background: rgba(222,246,255,0.8);
     display: table;
     border-style: outset;
+}
+.bgspic{
+    width: 100px;
+    height: 100px;
+}
+.bgs{
+    height:300px;
+    width:320px;
+    position: absolute;
+    top:100%;
+    right:10px;
+    overflow: auto;
 }
 .news_sh{
     position: relative;

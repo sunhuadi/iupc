@@ -7,6 +7,11 @@
     <select id="qurryAllNotes" resultType="Notes" parameterType="String">
         select * from notes
     </select>
+    <select id="qurryNotesBysearch" resultType="Notes" parameterType="String">
+        select * from notes
+        where note_content like concat('%',#{value},'%')
+        or note_title like concat('%',#{value},'%')
+    </select>
     <select id="getNotesNumber" resultType="int">
         select count(*) from notes
     </select>

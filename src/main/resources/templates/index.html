@@ -19,7 +19,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body class="body">
+<body class="bgbody">
 <div class="header" th:fragment="header">
     <div id="header_message">
         <div class="column">
@@ -79,7 +79,7 @@
             <span class="touristlib" @click="showit(index)" >{{ item.isshow?'→':'↓' }}</span>
         </div>
         <div v-if="item.isshow" :id="item.isshow?'showtlic':''" class="tourist_content">
-            <div class="touristcont_lp" v-for="it in item.slcontent">{{ it }}</div>
+            <div class="touristcont_lp" v-for="it in item.slcontent"><a :href="it.link">{{ it.name }}</a></div>
         </div>
     </div>
 </div>
@@ -107,34 +107,7 @@
 <script src="js/xmagic.js" ></script>
 <script src="js/indexvue.js" ></script>
 <script>
-    var setvue=new Vue({
-        el:"#header_setting",
-        data: {
-            bgsisshow:false,
-            bgslist:[
-            ],
 
-        },
-        methods:{
-            bgsettingshow() {
-                this.bgsisshow=!this.bgsisshow;
-                console.log("showit");
-            },
-            changebg(which){
-                document.documentElement.style.setProperty("--bgimg",'url("'+this.bgslist[which].var+'")')
-            }
-
-        }
-
-    },)
-
-    for(var i=1;i<21;i++){
-        var bgp={src:"",var:""};
-        bgp.src="image/background/"+i+".jpg";
-        console.log(bgp.src);
-        bgp.var="../"+bgp.src;
-        setvue.bgslist.push(bgp);
-    }
 </script>
 </body>
 <style>
@@ -145,17 +118,6 @@
         width: 50px;
         height: 50px;
     }
-    .bgspic{
-        width: 100px;
-        height: 100px;
-    }
-    .bgs{
-        height:300px;
-        width:320px;
-        position: absolute;
-        top:100%;
-        right:10px;
-        overflow: auto;
-    }
+
 </style>
 </html>

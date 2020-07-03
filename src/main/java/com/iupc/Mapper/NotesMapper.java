@@ -12,10 +12,12 @@ import java.util.List;
 @Repository
 public interface NotesMapper {
     List<Notes> qurryAllNotes();
+    List<Notes> qurryNotesBysearch(String value);
     void insertNotes(Notes note);
     int getNotesNumber();
     void insertNotesPic(NotesPic np);
     Notes qurryNoteById(String id);
     String[] qurryNotePicbyId(String id);
+
 
 }

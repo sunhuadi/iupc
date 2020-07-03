@@ -11,15 +11,31 @@ var tourist_vue= new Vue(
         el:"#tourist",
         data:{
             tli:[
-                {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
-                {content:"三坑笔记",isshow:false,slcontent:["汉服","Lolita","JK"]},
-                {content:"三坑笔记",isshow:false,slcontent:["汉服","汉服","汉服","Lolita","JK"]},
-                {content:"我的收藏",isshow:false,slcontent:["西装","皮鞋","袈裟"]},
-                {content:"发布笔记",isshow:false,slcontent:["中山装","道袍","比基尼"]},
-                {content:"嗯嗯啊啊",isshow:false,slcontent:["长靴","礼帽","披风"]},
-                {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
-                {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
-                {content:"栖栖遑遑",isshow:false,slcontent:["马褂","旗袍","水手服"]},
+                {content:"三坑笔记",
+                    isshow:false,
+                    slcontent:[
+                        {name:"汉服",link:"/zxck"},
+                        {name:"Lolita",link:""},
+                        {name:"JK",link:""},
+                        {name:"更多",link:""},
+                    ]
+                },
+                {content:"我的收藏",
+                    isshow:false,
+                    slcontent:[
+                        {name:"资讯",link:""},
+                        {name:"笔记",link:""},
+                        {name:"商品",link:""},
+                    ]
+                },
+                {content:"我的收藏",
+                    isshow:false,
+                    slcontent:[
+                        {name:"资讯",link:""},
+                        {name:"笔记",link:""},
+                        {name:"商品",link:""},
+                    ]
+                },
             ]
         },
         methods:{
@@ -166,3 +182,37 @@ Vue.component("gotoback",{
         myclassname: String,
     }
 });
+
+var setvue=new Vue({
+    el:"#header_setting",
+    data: {
+        bgsisshow:false,
+        bgslist:[
+        ],
+
+    },
+    methods:{
+        bgsettingshow() {
+            this.bgsisshow=!this.bgsisshow;
+            console.log("showit");
+        },
+        changebg(which){
+            document.documentElement.style.setProperty("--bgimg",'url("'+this.bgslist[which].var+'")')
+            sessionStorage.setItem("bgpic",this.bgslist[which].var);
+        }
+
+    }
+
+},)
+var now_bg=sessionStorage.getItem("bgpic");
+if(now_bg!=null)
+{
+    document.documentElement.style.setProperty("--bgimg",'url("'+now_bg+'")');
+}
+for(var i=1;i<21;i++){
+    var bgp={src:"",var:""};
+    bgp.src="image/background/"+i+".jpg";
+    console.log(bgp.src);
+    bgp.var="../"+bgp.src;
+    setvue.bgslist.push(bgp);
+}
