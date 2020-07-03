@@ -4,6 +4,11 @@ public class NotesPic {
     private String note_id;
     private String note_pic;
 
+    public NotesPic(String note_id, String note_pic) {
+        this.note_id = note_id;
+        this.note_pic = note_pic;
+    }
+
     public String getNote_id() {
         return note_id;
     }

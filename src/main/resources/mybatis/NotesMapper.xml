@@ -7,5 +7,26 @@
     <select id="qurryAllNotes" resultType="Notes" parameterType="String">
         select * from notes
     </select>
+    <select id="getNotesNumber" resultType="int">
+        select count(*) from notes
+    </select>
+<insert id="insertNotes" parameterType="Notes">
+
+     insert into notes
+    (note_id,note_author,note_time,note_title,note_content,note_img)
+    value(#{note_id},#{note_author},#{note_time},#{note_title},#{note_content},#{note_img})
+</insert>
+
+    <select id="qurryPicbyId" resultType="String" >
+   select notes_pic from notes_pic
+   where notes_id=#{notes_id}
+
+</select>
+
+    <insert id="insertNotesPic" parameterType="NotesPic">
+    insert into notes_pic
+    (note_pic,Note_id)
+    value(#{note_pic},#{note_id})
+    </insert>
 
 </mapper>

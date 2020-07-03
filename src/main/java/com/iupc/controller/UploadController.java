@@ -2,6 +2,7 @@ package com.iupc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.iupc.pojo.News;
+import com.iupc.pojo.Notes;
 import com.iupc.pojo.Users;
 import com.iupc.service.IUploadService;
 import com.iupc.util.CommonFileUtil;
@@ -50,6 +51,18 @@ public class UploadController {
         System.out.println(cuser);
         //News useNews = new News();
         return ius.upload_user(file,cuser);
+    }
+    @ResponseBody
+    @PostMapping("/uploadNotes")
+    public HashMap<String,String> uploadNote(@RequestParam("myfiles") MultipartFile[] files,
+                                             @RequestParam("myfile") MultipartFile file,
+                                             @RequestPart Map<String, Object> notes) throws IOException {
+        System.out.println("已经接受请求，正在处理......");
+        System.out.println(notes);
+        Notes note = JSON.parseObject(JSON.toJSONString(notes), Notes.class);
+        System.out.println(note);
+        //News useNews = new News();
+        return ius.upload_note(files,file,note);
     }
 
 
