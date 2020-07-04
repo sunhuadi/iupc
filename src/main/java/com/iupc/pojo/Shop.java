@@ -1,6 +1,7 @@
 package com.iupc.pojo;
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Shop {
@@ -12,6 +13,15 @@ public class Shop {
   private String shop_id;//商店id
   private List<Goods> goodsList;
 
+  public Timestamp getShop_atime() {
+    return shop_atime;
+  }
+
+  public void setShop_atime(Timestamp shop_atime) {
+    this.shop_atime = shop_atime;
+  }
+
+  private java.sql.Timestamp shop_atime;
   public List<Goods> getGoodsList() {
     return goodsList;
   }

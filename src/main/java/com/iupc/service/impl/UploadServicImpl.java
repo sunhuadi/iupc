@@ -194,6 +194,22 @@ public class UploadServicImpl implements IUploadService {
         return mp;
 
     }
+    public HashMap<String,String> applyshop(MultipartFile file, Shop shop) throws IOException{
+        shop.setShop_id(Integer.toString(usersMapper.getMaxShopid()+1));
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        //shop.setUsername(currentUser.getUsername());
+        shop.setUsername("admin");
+        String path = fileUtil.uploadFile(file);
+        shop.setShop_pic("http://39.97.113.33/"+path);
+        Timestamp time = new Timestamp(new Date().getTime());
+        System.out.println("当前时间为:"+time);
+        shop.setShop_atime(time);
+        HashMap<String,String> mp=new HashMap<String,String>();
+        usersMapper.insertShop(shop);
+        mp.put("msg","上传成功！");
+        return mp;
+    }
 
 
 }

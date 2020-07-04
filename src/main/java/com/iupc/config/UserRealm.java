@@ -32,7 +32,7 @@ public class UserRealm extends AuthorizingRealm {
        info.addRole(currentUser.getRole());
         return info;
     }
-@Autowired
+    @Autowired
     UsersMapper usersMapper;
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
