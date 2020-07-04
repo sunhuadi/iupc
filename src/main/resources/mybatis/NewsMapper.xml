@@ -65,7 +65,6 @@
                 #{Goods_place})
 </insert>
     <insert id="insertGoodsPic" parameterType="GoodsPic">
-
     insert into goods_pic
     (goods_pic,goods_id)
     value(#{goods_pic},#{goods_id})
@@ -147,5 +146,15 @@ select * from goods
 
 </delete>
 
+<select id="qurryAllNewsByFavor" resultType="News" parameterType="String">
+SELECT news.*
+FROM news, favorite_content
+WHERE news.news_id = favorite_content.fcid and favorite_content.ftype=#{v}and favorite_content.username=#{username}
+</select>
+<select id="qurryAllGoodsByFavor" resultType="Goods" parameterType="String">
+SELECT goods.*
+FROM goods, favorite_content
+WHERE goods.Goods_id = favorite_content.fcid and favorite_content.ftype=#{v}and favorite_content.username=#{username}
+</select>
 
 </mapper>

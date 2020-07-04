@@ -24,4 +24,5 @@ public interface NotesMapper {
 
     List<Notes> qurryAllNotesByShow(String show);
     void updataNotesByShow(String id ,String show);
+    List<News> qurryAllNotesByFavor(String username,String v);
 }

@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface NewsMapper {
     List<News> qurryAllNews();
+    List<News> qurryAllNewsByFavor(String username,String v);
+    List<News> qurryAllGoodsByFavor(String username,String v);
+
     List<News> qurryAllNewsByShow(String show);
     void updataNewsByShow(String id ,String show);
 

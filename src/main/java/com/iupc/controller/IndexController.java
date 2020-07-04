@@ -89,6 +89,7 @@ public class IndexController {
         System.out.println("商品，ID： "+map.get("id"));
         return iis.getgoodsById(id);
     }
+
     @ResponseBody
     @PostMapping("/getcolor")
     public String[] getcolor(@RequestBody HashMap<String,String> map)
@@ -101,15 +102,13 @@ public class IndexController {
     }
     @ResponseBody
     @PostMapping("/getnumprice")
-    public Goods_num getnumprice(@RequestBody HashMap<String,String> map)
-    {
-        String id=map.get("id");
-        String size=map.get("size");
-        String color=map.get("color");
-        System.out.println("商品，ID,颜色 "+id+size+color);
-        return newsMapper.qurryGoodsByIdSzieColor(id,size,color);
+    public Goods_num getnumprice(@RequestBody HashMap<String,String> map) {
+        String id = map.get("id");
+        String size = map.get("size");
+        String color = map.get("color");
+        System.out.println("商品，ID,颜色 " + id + size + color);
+        return newsMapper.qurryGoodsByIdSzieColor(id, size, color);
     }
-
     @ResponseBody
     @GetMapping("/getallnewsshow1")//可扩展到其他方面
     public List<Object> indexshow1(@RequestBody HashMap<String,String> map)
@@ -184,6 +183,7 @@ public class IndexController {
         }
         return "success";
     }
+
     @ResponseBody
     @PostMapping("/favor")
     public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
@@ -191,13 +191,9 @@ public class IndexController {
 
         String v=null;
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
-        if(map.get("variable").equals("1"))
-        {
-            v="Note";
-        }
         //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
 
-        return iis.setFavor(map.get("id"),v);
+        return iis.setFavor(map.get("id"),map.get("variable"));
     }
 
 

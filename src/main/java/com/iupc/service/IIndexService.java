@@ -23,5 +23,5 @@ public interface IIndexService {
     HashMap<String,String> delet(String id,String v);
     public List<Object> indexshow(String v,String show);
     public HashMap<String,String> admin(String v,String admin,String id);
-
+    public List<Object> favor(String v);
 }
