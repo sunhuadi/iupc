@@ -59,44 +59,44 @@
         el:"#discuss",
         data:{
             comment:[{
-                    dcid:"",
-                    img:"image/0.jpg",
-                    pubuser_id:"123",
-                    pubtime:"",
-                    content:"渭城朝雨浥轻尘，客舍青青柳色新",
-                    discusslist:[
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        },
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        },
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        }
-                    ]
+                dcid:"",
+                img:"image/0.jpg",
+                pubuser_id:"123",
+                pubtime:"",
+                content:"渭城朝雨浥轻尘，客舍青青柳色新",
+                discusslist:[
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    },
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    },
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    }
+                ]
 
-                },
+            },
             ],
             answer_id:"",
             answer_name:"",
         },
         methods:{
             answerto(id,name){
-               this.answer_id=id;
-               this.answer_name=name;
+                this.answer_id=id;
+                this.answer_name=name;
             }
 
         }
@@ -112,7 +112,7 @@
 <style>
     .discuss_area{
         height:58%;
-        background: #edc2bc;
+        background: #FDFDF7;
         overflow: auto;
         position: fixed;
         width: 85%;
@@ -123,7 +123,7 @@
         bottom: 60px;
         height:40px;
         width: 180px;
-        background: #0ea432;
+        background: #FFF7ED;
     }
     .answerb{
         position: absolute;
@@ -134,7 +134,7 @@
         width: 90%;
         height:140px;
         position: relative;
-        background: #ffe7ef;
+        background: #D0DDED;
         border-radius:5px;
     }
     .discuss_title{
@@ -153,7 +153,7 @@
         bottom:0;
         width: 85%;
         height: 250px;
-        background: #9f90ed;
+        background: #E3EFF9;
         border-bottom: 2px solid gray;
     }
     .discuss_img{
@@ -176,11 +176,12 @@
     }
     .discuss_button{
         position: absolute;
-        top:200px;
+        top:205px;
         right: 2%;
         width: 80px;
-        height: 50px;
-        background-color: pink;
+        height: 40px;
+        background-color: #FDEDED;
+        border:2px;
     }
     .detail_area{
         position: absolute;
@@ -196,7 +197,7 @@
         width: 90%;
         height:400px;
         overflow: auto;
-        background-color: #ffefed;
+        background-color: #E3EFF9;
         margin:20px 0 20px 0;
         clear: both;
         min-height:200px;

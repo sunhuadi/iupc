@@ -206,7 +206,7 @@ public class IndexController {
     public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
     {
 
-        //String v=null;
+        String v=null;
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
         //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
 

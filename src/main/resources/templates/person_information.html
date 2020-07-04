@@ -21,25 +21,25 @@
 
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
-<div id="zixun_box">
+<div class="mainframe" id="abc">
     <gotoback></gotoback>
     <div class="zixun_text">
         <p class="person_title">个人信息</p>
         <table class="store_table">
 
-            <tr class="zixun_tr">
+            <tr class="personinfo">
                 <td style="letter-spacing: 40px" class="zixun_td">头像:</td>
                 <td class="zixun_td1"><img class="person_img" src="image/dangmei1.jpg"></td>
             </tr>
-            <tr class="zixun_tr">
+            <tr class="personinfo">
                 <td style="letter-spacing: 40px" class="zixun_td">昵称:</td>
                 <td class="zixun_td1">{{ person_id }}</td>
             </tr>
-            <tr class="zixun_tr">
+            <tr class="personinfo">
                 <td style="letter-spacing: 40px" class="zixun_td">性别:</td>
                 <td class="zixun_td1">{{ person_sex }}</td>
             </tr>
-            <tr class="zixun_tr">
+            <tr class="personinfo">
                 <td style="letter-spacing: 40px" class="zixun_td">邮箱:</td>
                 <td class="zixun_td1">{{ person_yx }}</td>
             </tr>
@@ -52,7 +52,7 @@
 <script src="js/xmagic.js" ></script>
 <script>
     var person_information=new Vue({
-        el:"#zixun_box",
+        el:"#abc",
         data:{
             person_img:"image/dangmei1.jpg",
             person_id:"历历琐忆",
@@ -97,12 +97,12 @@
         color:#C97582;
     }
     .zixun_td{
-
-        width: 350px;
-        height: 35px;
-        margin: 8px;
+        position:relative;
+        width: 360px;
+        height: 70px;
+        margin-left: 8px;
+        left:5px;
         /*background-color: #0d71bb;*/
-
     }
     .person_img{
         width: 150px;
@@ -129,14 +129,14 @@
         left:30%;
         top:5%;
         border-collapse:separate;
-        border-spacing:0px 60px;"
+        border-spacing:0px 50px;"
     }
     .person_title{
         position: absolute;
         left: 0%;
         top:1%;
         width: 100%;
-        height: 7%;
+        height: 10%;
         /*background-color: mediumpurple;*/
         text-align: center;
         font-size: 32px;

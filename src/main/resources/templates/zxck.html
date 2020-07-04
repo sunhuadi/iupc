@@ -43,37 +43,37 @@
     </div>
     <div class="zixun_text">
         <table style="border-collapse:separate; border-spacing:0px 40px;">
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td style="letter-spacing: 40px" class="zixun_td">商品</td>
                 <td class="zixun_td1">{{ text_title }}</td>
             </tr>
 
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td class="zixun_td">上新店铺</td>
                 <td class="zixun_td1">{{ text_shop }}</td>
             </tr>
 
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td class="zixun_td">上新时间</td>
                 <td class="zixun_td1">{{ text_time }}</td>
             </tr>
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td class="zixun_td">下架时间</td>
                 <td class="zixun_td1">{{ text_stop }}</td>
             </tr>
 
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td style="letter-spacing: 40px" class="zixun_td">价格</td>
                 <td class="zixun_td1">{{ text_price }}</td>
             </tr>
 
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td class="zixun_td">上新形式</td>
                 <td class="zixun_td1">{{ text_modality }}</td>
             </tr>
 
 
-            <tr class="zixun_tr">
+            <tr class="zixuninfo">
                 <td class="zixun_td"><a href="https://weibo.com/u/7435182303/home?wvr=5">点此购买</a></td>
             </tr>
         </table>
@@ -119,14 +119,14 @@
             },
             favor(){
                 axios.post("/favor",{id:this.id,variable:0})
-                .then(function (response) {
-                    console.log("收藏成功");
-                    alert("收藏成功");
-                })
-                .catch(function (error) {
-                    console.log("收藏成功");
-                    console.log(error);
-                })
+                    .then(function (response) {
+                        console.log("收藏成功");
+                        alert("收藏成功");
+                    })
+                    .catch(function (error) {
+                        console.log("收藏成功");
+                        console.log(error);
+                    })
             }
         },
         computed:{
@@ -139,22 +139,22 @@
     axios.post('/getonenews', {
         value:mynewsid,
     }).then(function (response) {
-       var datas=response.data;
-       console.log(response)
-       if(datas!=null)
-       {
-           newsvue.text_fbtime=datas.news_formattime;
-           newsvue.text_title=datas.news_title;
-           newsvue.text_intro=datas.news_content.split(/\n/g);
-           newsvue.text_shop=datas.news_author;
-           newsvue.text_modality=datas.news_updateway;
-           newsvue.text_price=datas.news_price;
-           newsvue.text_time=datas.news_begintime
-           newsvue.text_stop=datas.news_stoptime;
-           newsvue.piclist=datas.news_pic;
-           newsvue.text_intro.unshift("");
-               //+" -- "+datas[0].news_stoptime;
-       }
+        var datas=response.data;
+        console.log(response)
+        if(datas!=null)
+        {
+            newsvue.text_fbtime=datas.news_formattime;
+            newsvue.text_title=datas.news_title;
+            newsvue.text_intro=datas.news_content.split(/\n/g);
+            newsvue.text_shop=datas.news_author;
+            newsvue.text_modality=datas.news_updateway;
+            newsvue.text_price=datas.news_price;
+            newsvue.text_time=datas.news_begintime
+            newsvue.text_stop=datas.news_stoptime;
+            newsvue.piclist=datas.news_pic;
+            newsvue.text_intro.unshift("");
+            //+" -- "+datas[0].news_stoptime;
+        }
     })
         .catch(function (error) {
             console.log(error);
@@ -194,7 +194,7 @@
         width: 40%;
         height: 600px;
         font-size:24px;
-        background-color: #FFF7ED;
+        background-color: #E3EFF9;
         padding: 30px;
     }
     .zixun_picture{
@@ -236,8 +236,8 @@
     }
     .zixun_td{
 
-        width: 150px;
-        height: 35px;
+        width: 200px;
+        height: 40px;
         margin: 8px;
 
     }.zixun_td1{
