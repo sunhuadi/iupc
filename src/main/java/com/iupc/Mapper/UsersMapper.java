@@ -20,4 +20,6 @@ public interface UsersMapper {
     void insertDiscuss(DiscussContent discussContent);
     List<DiscussContent> getDiscussBytoid(String answerto);
     Shop qurryShopById(String id);
+    void insertShop(Shop shop);
+    int getMaxShopid();
 }

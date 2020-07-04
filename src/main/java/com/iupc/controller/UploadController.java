@@ -96,5 +96,16 @@ public class UploadController {
         return ius.upload_discuss(discussContent);
     }
 
-
+    @ResponseBody
+    @PostMapping("/applyshop1")
+    public HashMap<String,String> applyshop(
+                                             @RequestParam("myfile") MultipartFile file,
+                                             @RequestPart Map<String, Object> shop) throws IOException {
+        System.out.println("已经接受请求，正在处理......");
+        System.out.println(shop);
+        Shop shop1 = JSON.parseObject(JSON.toJSONString(shop), Shop.class);
+        System.out.println(shop1);
+        //News useNews = new News();
+        return ius.applyshop(file,shop1);
+    }
 }

@@ -15,4 +15,6 @@ public interface IUploadService {
     public HashMap<String,String> upload_user(MultipartFile file, Users user) throws IOException;
     public HashMap<String,String> upload_goods(MultipartFile[] files, MultipartFile file, Goods good, List<Goods_num> goods_num) throws IOException;
     public HashMap<String,String> upload_discuss(DiscussContent discussContent);
+    public HashMap<String,String> applyshop(MultipartFile file, Shop shop) throws IOException;
 }
+

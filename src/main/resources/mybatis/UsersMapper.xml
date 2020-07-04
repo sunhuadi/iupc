@@ -43,6 +43,14 @@
         select * from shop
         where shop_id=#{id}
     </select>
-
+    <insert id="insertShop" parameterType="DiscussContent">
+     insert into shop
+     (username,shop_name,shop_introduce,shop_pic,shop_id,shop_atime)
+      values
+      (#{username},#{shop_name},#{shop_introduce},#{shop_pic},#{shop_id},#{shop_atime})
+</insert>
+    <select id="getMaxShopid" resultType="int">
+        select Max(shop_id) from shop
+    </select>
 
 </mapper>
