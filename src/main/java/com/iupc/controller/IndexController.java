@@ -2,9 +2,12 @@ package com.iupc.controller;
 
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
+import com.iupc.Mapper.UsersMapper;
 import com.iupc.pojo.*;
 import com.iupc.service.IIndexService;
 import com.iupc.util.CommonFileUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,11 +128,28 @@ public class IndexController {
        // System.out.println(id+admin);
         return iis.admin(v,admin,id) ;
     }
-
+@Autowired
+    UsersMapper usersMapper;
     @ResponseBody
     @PostMapping("/search")//适应于三种情况
     public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map,0资讯，1note,2goods,value为空查询所有
     {
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        Record record=usersMapper.qurryRecordBynk("admincs",map.get("value"));
+        if(record==null)
+    {
+        Record record1=new Record();
+        record1.setKey(map.get("value"));
+        record1.setTimes(1);
+        record1.setUsername("admincs");
+        usersMapper.insertRecord(record1);
+    }
+     else {
+            System.out.println("开始更新");
+            usersMapper.updateTimes(record);
+        }
+
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
             List<Object> objList= iis.getAllBysearch(map.get("value"),map.get("variable"));
@@ -224,5 +244,12 @@ public class IndexController {
     public List<Object>shfavor(@RequestBody HashMap<String,String> map)//传入类型为map
     {
         return iis.favor(map.get("variable"));
+    }
+    @ResponseBody
+    @PostMapping("/command")//
+    public List<Object> testrecord( @RequestBody HashMap<String,String> map)
+    {
+
+        return iis.recommend(map.get("variable"));
     }
 }

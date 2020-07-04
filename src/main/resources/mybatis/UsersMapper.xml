@@ -53,4 +53,29 @@
         select Max(shop_id) from shop
     </select>
 
+    <insert id="insertRecord" parameterType="Record">
+     insert into record
+     (username,record_keys,times) values(#{username},#{record_keys},#{times})
+</insert>
+    <select id="qurryRecordBynk" parameterType="String" resultType="Record">
+        select * from record
+        where username=#{username}and record_keys=#{keys}
+    </select>
+    <update id="updateTimes" parameterType="Record">
+        update record set
+        times=#{times}+1
+        where  username=#{username} and record_keys=#{record_keys}
+    </update>
+    <select id="qurryRecordByusername" parameterType="String" resultType="String">
+        select record_keys from record
+        where username=#{username}
+        order by times desc
+    </select>
+    <update id="updateUserRole" parameterType="Users">
+        update users set
+        role="1"
+        where  username=#{username}
+    </update>
+
+
 </mapper>

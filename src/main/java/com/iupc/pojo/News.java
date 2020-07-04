@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class News {
     private String news_id;//资讯id
@@ -20,6 +21,15 @@ public class News {
     private float news_price;//上新价格
     private String[] news_pic;//多图
     private String news_show;
+    private List<Notes> notesList;
+
+    public List<Notes> getNotesList() {
+        return notesList;
+    }
+
+    public void setNotesList(List<Notes> notesList) {
+        this.notesList = notesList;
+    }
 
     public String getNews_show() {
         return news_show;

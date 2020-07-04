@@ -62,4 +62,19 @@ SELECT notes.*
 FROM notes, favorite_content
 WHERE notes.note_id = favorite_content.fcid and favorite_content.ftype=#{v}and favorite_content.username=#{username}
 </select>
+<insert id="insertNewsNote" parameterType="NewsNotes">
+    insert into news_note (news_id,note_id) values (#{news_id},{note_id});
+</insert>
+    <select id="qurryNewsByNote" parameterType="String" resultType="News">
+        select news.*
+        from news,news_note
+        where news.news_id=news_note.news_id and news_note.note_id=#{note_id}
+    </select>
+    <select id="qurryNotesByNews" parameterType="String" resultType="Notes">
+        select notes.*
+        from notes,news_note
+        where notes.note_id=news_note.note_id and news_note.news_id=#{news_id}
+    </select>
+
+
 </mapper>
