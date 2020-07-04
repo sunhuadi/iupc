@@ -173,5 +173,27 @@ public class UploadServicImpl implements IUploadService {
     }
 
 
+    public HashMap<String,String> upload_discuss(DiscussContent discussContent){
+        System.out.println(usersMapper.getIdtoSet());
+        discussContent.setDcid(Integer.toString(usersMapper.getIdtoSet()+1));
+        if(discussContent.getAnswerto()==null)
+        {
+            discussContent.setAnswerto("-1");//代表一级讨论信息
+        }
+
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        discussContent.setPubuser_id("admin");
+        Timestamp time = new Timestamp(new Date().getTime());
+        discussContent.setPubtime(time);
+        System.out.println(discussContent.getContent());
+        usersMapper.insertDiscuss(discussContent);
+
+        HashMap<String,String> mp=new HashMap<String,String>();
+        mp.put("msg","上传成功！");
+        return mp;
+
+    }
+
 
 }

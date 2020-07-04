@@ -1,9 +1,6 @@
 package com.iupc.service;
 
-import com.iupc.pojo.Goods;
-import com.iupc.pojo.News;
-import com.iupc.pojo.Notes;
-import com.iupc.pojo.zixun;
+import com.iupc.pojo.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
@@ -24,4 +21,6 @@ public interface IIndexService {
     public List<Object> indexshow(String v,String show);
     public HashMap<String,String> admin(String v,String admin,String id);
     public List<Object> favor(String v);
+    public List<DiscussContent> getDis();
+    Shop getAllinformationByShopid(String id);
 }

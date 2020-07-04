@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 @Service("IndexServic")
@@ -235,6 +236,50 @@ NotesMapper notesMapper;
         mp.put("msg","收藏成功");
         return mp;
     }
+@Override
+public List<DiscussContent> getDis(){
+        List<DiscussContent> list=usersMapper.getDiscussBytoid("-1");
+        for(int i=0;i<list.size();i++)
+        {
+            Users users=usersMapper.getUserByName(list.get(i).getPubuser_id());
 
+            List<DiscussContent> list2=usersMapper.getDiscussBytoid(list.get(i).getDcid());
+            if(list2!=null)
+            {
+                list.get(i).setImg(users.getPortrait());
+                for(int j=0;j<list2.size();j++)
+                {
+                    Users users2=usersMapper.getUserByName(list2.get(j).getPubuser_id());
+                    list2.get(j).setImg(users2.getPortrait());
+                }
+                list.get(i).setDiscusslist(list2);
+            }
+        }
+        return list;
+
+
+}
+@Override
+public Shop getAllinformationByShopid(String id)
+{
+
+    Shop shop=new Shop();
+    Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+    if(!pattern.matcher(id).matches())//不是数字构成，为用户名
+    {
+         shop=usersMapper.getShopByName(id);
+        id=shop.getShop_id();
+    }
+    else {
+         shop=usersMapper.qurryShopById(id);
+    }
+
+
+    List<Goods> goods=newsMapper.qurryGoodsByShopid(id);
+    if (goods!=null)
+    shop.setGoodsList(goods);
+
+    return shop;
+}
 }
 

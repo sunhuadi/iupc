@@ -156,5 +156,9 @@ SELECT goods.*
 FROM goods, favorite_content
 WHERE goods.Goods_id = favorite_content.fcid and favorite_content.ftype=#{v}and favorite_content.username=#{username}
 </select>
+<select id="qurryGoodsByShopid" resultType="Goods" parameterType="String">
+SELECT * FROM goods
+where Goods_shopid=#{shopid}
+</select>
 
 </mapper>
