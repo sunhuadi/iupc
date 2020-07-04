@@ -13,7 +13,7 @@
         or note_title like concat('%',#{value},'%')
     </select>
     <select id="getNotesNumber" resultType="int">
-        select count(*) from notes
+        select MAX(note_id) from notes
     </select>
 <insert id="insertNotes" parameterType="Notes">
 

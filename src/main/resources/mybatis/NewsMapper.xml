@@ -28,7 +28,7 @@
     value(#{news_pic},#{news_id})
     </insert>
 <select id="getNewsNumber" resultType="int" >
-            select count(*) from news
+            select MAX(news_id) from news
 </select>
 <select id="qurryPicbyId" resultType="String" >
    select news_pic from news_pic
@@ -71,7 +71,7 @@
     value(#{goods_pic},#{goods_id})
     </insert>
 <select id="getGoodsNumber" resultType="int" >
-            select count(*) from goods
+            select MAX(Goods_id) from goods
 </select>
 <select id="qurryGoodsPicbyId" resultType="String" >
    select goods_pic from goods_pic
