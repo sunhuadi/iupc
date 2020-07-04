@@ -3,6 +3,9 @@
     --bgimgwidth:1748px;
     --bgimgheight:847px;
 }
+*{
+    clear:both;
+}
 #zixun_box{
     position: absolute;
     left:17%;
@@ -417,4 +420,89 @@ ul li{
     width: 150px;
     height: 70px;
     left:8%;
+}
+#adminbox{
+    position: absolute;
+    /*left:12%;*/
+    top:11%;
+    width:75%;
+    left:20%;
+    height: 130%;
+    /*border-radius: 30px;*/
+    margin-bottom: 100px;
+}
+.adminmenu{
+    position: absolute;
+    top:12%;
+    left:4%;
+    width: 12%;
+    border: outset #d4d6de 2px;
+
+}
+.admenuli{
+    height: 40px;
+    font-size:25px;
+    border: outset darkgray 2px;
+    text-align: center;
+    margin: 10px 5px 10px 5px;
+    padding:10px;
+    background: rgba(112,112,175,0.5);
+}
+.zixun_tr{
+    position: relative;
+    left:5%;
+    top:50%;
+    width: 80%;
+    height: 25%;
+    background: #4a494b;
+    color:white;
+    /*background-color: mediumpurple;*/
+    /*border-bottom:1px solid darkgray;*/
+}
+.zixun_tr1{
+    position: relative;
+    left:5%;
+    top:50%;
+    width: 80%;
+    height: 20%;
+    background: #f1f6ff;
+    color:black;
+    /*background-color: mediumpurple;*/
+    /*border-bottom:1px solid darkgray;*/
+}
+.zixun_td1{
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
+    text-align: center;
+    border:1px solid darkgray;
+    max-width: 150px;
+}
+.zixun_td2{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #E2E2E2;
+    border:1px solid darkgray;
+}
+
+.admin_table{
+    position: absolute;
+    left:5%;
+    width: 90%;
+    top:0%;    }
+.admin_button{
+    background-color:#e2e2e2;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 2px solid gray;
+    color:white;
+}
+.administrator_table{
+    position: relative;
+    top:4%;
+    left: 5%;
+    width: 90%;
 }

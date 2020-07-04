@@ -107,7 +107,7 @@ public class IndexController {
         return newsMapper.qurryGoodsByIdSzieColor(id, size, color);
     }
     @ResponseBody
-    @GetMapping("/getallnewsshow1")//可扩展到其他方面
+    @PostMapping("/getallnewsshow1")//可扩展到其他方面
     public List<Object> indexshow1(@RequestBody HashMap<String,String> map)
     {
         String v=map.get("variable");
