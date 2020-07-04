@@ -2,10 +2,7 @@ package com.iupc.controller;
 
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
-import com.iupc.pojo.Goods;
-import com.iupc.pojo.Goods_num;
-import com.iupc.pojo.News;
-import com.iupc.pojo.Notes;
+import com.iupc.pojo.*;
 import com.iupc.service.IIndexService;
 import com.iupc.util.CommonFileUtil;
 import org.slf4j.Logger;
@@ -189,12 +186,31 @@ public class IndexController {
     public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
     {
 
-        String v=null;
+        //String v=null;
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
         //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
 
         return iis.setFavor(map.get("id"),map.get("variable"));
     }
+    @ResponseBody
+    @PostMapping("/showfavor")
+    public List<Object>showfavor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
+        //String v=null;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+
+        return iis.favor(map.get("variable"));
+    }
+    @ResponseBody
+    @GetMapping("/discussshow")
+    public List<DiscussContent> showdis()
+    {
+
+        return iis.getDis();
+    }
+
+
 
 
 

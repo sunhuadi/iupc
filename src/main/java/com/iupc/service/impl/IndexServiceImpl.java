@@ -235,6 +235,29 @@ NotesMapper notesMapper;
         mp.put("msg","收藏成功");
         return mp;
     }
+@Override
+public List<DiscussContent> getDis(){
+        List<DiscussContent> list=usersMapper.getDiscussBytoid("-1");
+        for(int i=0;i<list.size();i++)
+        {
+            Users users=usersMapper.getUserByName(list.get(i).getPubuser_id());
+
+            List<DiscussContent> list2=usersMapper.getDiscussBytoid(list.get(i).getDcid());
+            if(list2!=null)
+            {
+                list.get(i).setImg(users.getPortrait());
+                for(int j=0;j<list2.size();j++)
+                {
+                    Users users2=usersMapper.getUserByName(list2.get(j).getPubuser_id());
+                    list2.get(j).setImg(users2.getPortrait());
+                }
+                list.get(i).setDiscusslist(list2);
+            }
+        }
+        return list;
+
+
+}
 
 }
 

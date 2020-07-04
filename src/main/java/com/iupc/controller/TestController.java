@@ -1,10 +1,13 @@
 package com.iupc.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
+import com.iupc.pojo.DiscussContent;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.service.IIndexService;
+import com.iupc.service.IUploadService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -19,6 +22,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TestController {
@@ -26,6 +30,8 @@ public class TestController {
     @Autowired
     IIndexService indexService;
 
+    @Autowired
+    IUploadService iUploadService;
 
     @ResponseBody
     @GetMapping("/testShow/{v}/{admin}")//可扩展到其他方面
@@ -43,7 +49,18 @@ public class TestController {
     }
 
 
-
+    @ResponseBody
+    @GetMapping("/testuploaddis/{answerto}/{content}/{shop_id}")//上传讨论内容
+    public HashMap<String,String> uploaddiscuss(@PathVariable("answerto") String to,@PathVariable("content") String content,@PathVariable("shop_id") String id)
+    {
+        System.out.println(to+content+id);
+        DiscussContent discussContent=new DiscussContent();
+        discussContent.setAnswerto(to);
+        discussContent.setContent(content);
+        discussContent.setShop_id(id);
+        //DiscussContent discussContent= JSON.parseObject(JSON.toJSONString(discuss), DiscussContent.class);;
+        return iUploadService.upload_discuss(discussContent);
+    }
 
 
 

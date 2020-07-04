@@ -88,5 +88,13 @@ public class UploadController {
         return ius.upload_goods(files,file,good,listgood);
        // return null;
     }
+    @ResponseBody
+    @PostMapping("/uploaddiscuss")//上传讨论内容,上传方式可以使用formdata
+    public HashMap<String,String> uploaddiscuss(@RequestPart Map<String, Object> discuss)
+    {
+        DiscussContent discussContent=JSON.parseObject(JSON.toJSONString(discuss), DiscussContent.class);;
+        return ius.upload_discuss(discussContent);
+    }
+
 
 }

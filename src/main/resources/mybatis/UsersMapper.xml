@@ -25,6 +25,20 @@
       values
       (#{username},#{fcid},#{ftype},#{time})
 </insert>
+    <select id="getIdtoSet" resultType="int">
+        select Max(dcid) from discuss_content
+    </select>
+
+    <insert id="insertDiscuss" parameterType="DiscussContent">
+     insert into discuss_content
+     (dcid,pubuser_id,answerto,pubtime,shop_id,content)
+      values
+      (#{dcid},#{pubuser_id},#{answerto},#{pubtime},#{shop_id},#{content})
+</insert>
+    <select id="getDiscussBytoid" resultType="DiscussContent" parameterType="String">
+        select * from discuss_content
+        where answerto=#{answerto}
+    </select>
 
 
 </mapper>
