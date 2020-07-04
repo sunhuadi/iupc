@@ -146,7 +146,6 @@ public class IndexController {
 
 
 
-
 /*
     @ResponseBody
     @GetMapping("/test")
@@ -210,6 +209,13 @@ public class IndexController {
         return iis.getDis();
     }
 
+    @ResponseBody
+    @PostMapping("/showshop")//可扩展到其他方面
+    public Shop showshop( @RequestBody HashMap<String,String> map)
+    {
+
+        return iis.getAllinformationByShopid(map.get("id"));//id可以是用户名
+    }
 
 
 

@@ -22,4 +22,5 @@ public interface IIndexService {
     public HashMap<String,String> admin(String v,String admin,String id);
     public List<Object> favor(String v);
     public List<DiscussContent> getDis();
+    Shop getAllinformationByShopid(String id);
 }

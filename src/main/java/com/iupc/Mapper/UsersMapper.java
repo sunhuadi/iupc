@@ -19,5 +19,5 @@ public interface UsersMapper {
     int getIdtoSet();
     void insertDiscuss(DiscussContent discussContent);
     List<DiscussContent> getDiscussBytoid(String answerto);
-
+    Shop qurryShopById(String id);
 }

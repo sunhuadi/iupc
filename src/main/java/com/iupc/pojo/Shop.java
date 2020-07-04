@@ -1,14 +1,24 @@
 package com.iupc.pojo;
 
 
+import java.util.List;
+
 public class Shop {
 
   private String shop_name;//商店名字
   private String shop_introduce;//店铺介绍
   private String shop_pic;//店铺头像
   private String username;//店铺所属用户
+  private String shop_id;//商店id
+  private List<Goods> goodsList;
 
+  public List<Goods> getGoodsList() {
+    return goodsList;
+  }
 
+  public void setGoodsList(List<Goods> goodsList) {
+    this.goodsList = goodsList;
+  }
 
   public String getShop_id() {
     return shop_id;
@@ -18,7 +28,7 @@ public class Shop {
     this.shop_id = shop_id;
   }
 
-  private String shop_id;//商店id
+
   public String getUsername() {
     return username;
   }

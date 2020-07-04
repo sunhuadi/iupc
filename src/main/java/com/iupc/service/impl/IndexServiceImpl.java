@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 @Service("IndexServic")
@@ -258,6 +259,27 @@ public List<DiscussContent> getDis(){
 
 
 }
+@Override
+public Shop getAllinformationByShopid(String id)
+{
 
+    Shop shop=new Shop();
+    Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+    if(!pattern.matcher(id).matches())//不是数字构成，为用户名
+    {
+         shop=usersMapper.getShopByName(id);
+        id=shop.getShop_id();
+    }
+    else {
+         shop=usersMapper.qurryShopById(id);
+    }
+
+
+    List<Goods> goods=newsMapper.qurryGoodsByShopid(id);
+    if (goods!=null)
+    shop.setGoodsList(goods);
+
+    return shop;
+}
 }
 

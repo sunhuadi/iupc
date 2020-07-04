@@ -6,6 +6,7 @@ import com.iupc.Mapper.NotesMapper;
 import com.iupc.pojo.DiscussContent;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
+import com.iupc.pojo.Shop;
 import com.iupc.service.IIndexService;
 import com.iupc.service.IUploadService;
 import org.apache.shiro.SecurityUtils;
@@ -32,6 +33,15 @@ public class TestController {
 
     @Autowired
     IUploadService iUploadService;
+
+    @ResponseBody
+    @GetMapping("/testshowshop/{shop}")//可扩展到其他方面
+    public Shop showshop( @PathVariable("shop") String id)
+    {
+
+        return indexService.getAllinformationByShopid(id);
+    }
+
 
     @ResponseBody
     @GetMapping("/testShow/{v}/{admin}")//可扩展到其他方面

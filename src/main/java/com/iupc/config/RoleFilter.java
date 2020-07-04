@@ -25,7 +25,6 @@ public class  RoleFilter extends RolesAuthorizationFilter {
                 return true;
             }
         }
-
         return false;
     }
 }
