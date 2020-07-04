@@ -47,7 +47,13 @@ public class TestController {
 
 
 
-
+    @ResponseBody
+    @GetMapping("/testfavor/{v}")
+    public List<Object> quryyfavor(@PathVariable("v") String v)
+    {
+        System.out.println("进入测试");
+        return  indexService.favor(v);
+    }
 
 
 

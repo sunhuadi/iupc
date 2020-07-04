@@ -125,6 +125,26 @@ NotesMapper notesMapper;
 
     }
     @Override
+    public List<Object> favor(String v){
+        List<Object> list=new ArrayList<>();
+        System.out.println(v);
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        if(v.equals("0")) {
+            list= Collections.singletonList(newsMapper.qurryAllNewsByFavor(currentUser.getUsername(), v));
+        }
+        else if (v.equals("1"))
+        {
+            list= Collections.singletonList(notesMapper.qurryAllNotesByFavor(currentUser.getUsername(), v));
+        }else {
+            list= Collections.singletonList(newsMapper.qurryAllGoodsByFavor(currentUser.getUsername(), v));
+        }
+
+        return list;
+
+
+    }
+    @Override
     public HashMap<String,String> admin(String v,String admin,String id){
         if(v.equals("0"))
         {
