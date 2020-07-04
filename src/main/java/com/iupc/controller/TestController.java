@@ -27,10 +27,8 @@ import java.util.Map;
 
 @Controller
 public class TestController {
-
     @Autowired
     IIndexService indexService;
-
     @Autowired
     IUploadService iUploadService;
 
@@ -41,7 +39,13 @@ public class TestController {
 
         return indexService.getAllinformationByShopid(id);
     }
+    @ResponseBody
+    @GetMapping("/testrecord/{v}")//
+    public List<Object> testrecord( @PathVariable("v") String v)
+    {
 
+        return indexService.recommend(v);
+    }
 
     @ResponseBody
     @GetMapping("/testShow/{v}/{admin}")//可扩展到其他方面
@@ -158,7 +162,6 @@ public class TestController {
     {
         return np.qurryAllNotes();
     }
-
     @ResponseBody
     @RequestMapping("/testinsert")
     public void insert()

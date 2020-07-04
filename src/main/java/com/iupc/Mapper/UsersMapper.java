@@ -1,9 +1,6 @@
 package com.iupc.Mapper;
 
-import com.iupc.pojo.DiscussContent;
-import com.iupc.pojo.FavoriteContent;
-import com.iupc.pojo.Shop;
-import com.iupc.pojo.Users;
+import com.iupc.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UsersMapper {
+    void updateUserRole(Users users);
     Users getUserByName(String username);
     Shop getShopByName(String username);
     void insertUsers(Users user);
@@ -22,4 +20,9 @@ public interface UsersMapper {
     Shop qurryShopById(String id);
     void insertShop(Shop shop);
     int getMaxShopid();
+    void updateTimes(Record record);
+    void  insertRecord(Record record);
+    Record qurryRecordBynk(String username,String keys);
+
+    String[] qurryRecordByusername(String username);
 }

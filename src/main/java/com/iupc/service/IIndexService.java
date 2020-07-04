@@ -23,4 +23,6 @@ public interface IIndexService {
     public List<Object> favor(String v);
     public List<DiscussContent> getDis();
     Shop getAllinformationByShopid(String id);
+    public List<Object> recommend(String v);
+
 }

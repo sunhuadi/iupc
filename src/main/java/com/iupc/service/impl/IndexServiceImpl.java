@@ -6,17 +6,21 @@ import com.iupc.Mapper.UsersMapper;
 import com.iupc.Mapper.ZixunMapper;
 import com.iupc.pojo.*;
 import com.iupc.service.IIndexService;
+import jdk.nashorn.internal.objects.NativeMath;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Min;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
+
+import static java.lang.Math.min;
 
 @Service("IndexServic")
 public class IndexServiceImpl implements IIndexService {
@@ -40,6 +44,7 @@ public class IndexServiceImpl implements IIndexService {
         return zxlist;
     }
 
+    @Override
     public List<News> getAllnews() {
        // String formatDate = null;
 
@@ -132,12 +137,15 @@ NotesMapper notesMapper;
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
         if(v.equals("0")) {
+            if(newsMapper.qurryAllNewsByFavor(currentUser.getUsername(), v)!=null)
             list= Collections.singletonList(newsMapper.qurryAllNewsByFavor(currentUser.getUsername(), v));
         }
         else if (v.equals("1"))
         {
+            if(notesMapper.qurryAllNotesByFavor(currentUser.getUsername(), v)!=null)
             list= Collections.singletonList(notesMapper.qurryAllNotesByFavor(currentUser.getUsername(), v));
         }else {
+            if(newsMapper.qurryAllGoodsByFavor(currentUser.getUsername(), v)!=null)
             list= Collections.singletonList(newsMapper.qurryAllGoodsByFavor(currentUser.getUsername(), v));
         }
 
@@ -281,5 +289,21 @@ public Shop getAllinformationByShopid(String id)
 
     return shop;
 }
+@Override
+    public List<Object> recommend(String v){
+    List<Object> list=new ArrayList<>();
+    System.out.println(v);
+    Subject subject1 = SecurityUtils.getSubject();
+    Users currentUser=(Users) subject1.getPrincipal();
+
+        String[] key =usersMapper.qurryRecordByusername("admin");
+        for(int i=0;i< min(key.length,3);i++)
+        {
+            System.out.println(key[i]);
+            list.addAll(getAllBysearch(key[i],v));
+        }
+    return list;
+    }
+
 }
 

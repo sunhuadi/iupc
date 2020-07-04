@@ -142,7 +142,7 @@ public class UploadServicImpl implements IUploadService {
 
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
-        good.setGoods_shopid(currentUser.getShowname());
+        good.setGoods_shopid(currentUser.getUsername());
 
         System.out.println(files.length);
         for(int i=0;i<files.length;i++){
@@ -183,7 +183,7 @@ public class UploadServicImpl implements IUploadService {
 
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
-        discussContent.setPubuser_id("admin");
+        discussContent.setPubuser_id(currentUser.getUsername());
         Timestamp time = new Timestamp(new Date().getTime());
         discussContent.setPubtime(time);
         System.out.println(discussContent.getContent());
@@ -194,12 +194,14 @@ public class UploadServicImpl implements IUploadService {
         return mp;
 
     }
+
     public HashMap<String,String> applyshop(MultipartFile file, Shop shop) throws IOException{
         shop.setShop_id(Integer.toString(usersMapper.getMaxShopid()+1));
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
+        usersMapper.updateUserRole(currentUser);
         //shop.setUsername(currentUser.getUsername());
-        shop.setUsername("admin");
+        shop.setUsername(currentUser.getUsername());
         String path = fileUtil.uploadFile(file);
         shop.setShop_pic("http://39.97.113.33/"+path);
         Timestamp time = new Timestamp(new Date().getTime());
