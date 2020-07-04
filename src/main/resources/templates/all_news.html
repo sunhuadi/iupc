@@ -21,6 +21,7 @@
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mainframe">
+    <span style="position:absolute;top:0;width: 100%;height: 100%;background:rgba(255,255,255,0.5)">
     <h1 class="mainframe_title"> 全部资讯 </h1>
     <hr style="border: none;height: 3px;background: #0f0f0f" />
     <span id="shrs" style="width: 100%">
@@ -33,6 +34,7 @@
               :news_content="item.news_content"
         >
         </news>
+        </span>
         </span>
 </div>
 </body>

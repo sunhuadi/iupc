@@ -20,11 +20,21 @@
 <body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
-<div class="mianframe">
+<div class="mainframe">
     <h1 class="mainframe_title"> 收藏夹 </h1>
-    <hr />
-    <span id="search_note">
-        <news v-for="item in search_note_data" myclassname="news_sh" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce">
+    <div class="srtourist">
+        <span> <a class="acrs" href="/favorite_news">资讯</a> </span>
+        /<span> <a class="unacrs" href="/favorite_note">笔记</a> </span>
+        /<span> <a class="unacrs" href="/favorite_goods">商品</a> </span>
+    </div>
+    <span class="shrs" id="search_note">
+        <news v-for="item in datas"
+              myclassname="zxi"
+              :news_title="item.news_title"
+              :news_id="item.news_id"
+              :news_img="item.news_img"
+              :news_time="item.news_time"
+              :news_content="item.news_content">
         </news>
     </span>
 </div>
@@ -35,66 +45,21 @@
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
 <script >
-    var searchnotevue=new Vue({
+    var fvue=new Vue({
         el:"#search_note",
         data:{
-            search_note_data:[
-                {   text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg"
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg"
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg"
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg"
-
-                }
-            ]
-
+            datas:[]
         }
     })
-
-    //     var search_kw=sessionStorage.getItem("search_keyword");
-    //     var rsvue= new Vue({
-    //         el:"#shrs_note",
-    //         data:{
-    //             searchdata:[],
-    //         }
-    //     });
-    //     var datas;
-    //     console.log(search_kw);
-    //     axios.post('/search', {
-    //         value:search_kw,
-    //     }).then(function (response) {
-    //         rsvue.searchdata=null
-    //         rsvue.searchdata=response.data;
-    //         console.log(rsvue.searchdata)
-    //         //console.log(response.data);
-    // //console.log(response.data)
-    //     })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
+    axios.post("/getfavor",{variable:'0'}).then(
+        function (response) {
+            fvue.datas=null;
+            fvue.datas=response.data[0];
+            console.log(fvue.datas);
+        }).catch(function (error) {
+            console.log(error);
+        }
+    )
 </script>
 
 </html>

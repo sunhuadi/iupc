@@ -219,8 +219,10 @@ public class IndexController {
     }
 
 
-
-
-
-
+    @ResponseBody
+    @PostMapping("/getfavor")
+    public List<Object>shfavor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
+        return iis.favor(map.get("variable"));
+    }
 }
