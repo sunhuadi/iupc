@@ -32,9 +32,9 @@ var tourist_vue= new Vue(
                 {content:"我的收藏",
                     isshow:false,
                     slcontent:[
-                        {name:"资讯",link:""},
-                        {name:"笔记",link:""},
-                        {name:"商品",link:""},
+                        {name:"资讯",link:"/favorite_news"},
+                        {name:"笔记",link:"/favorite_note"},
+                        {name:"商品",link:"/favorite_goods"},
                     ]
                 },
                 {content:"笔记发布",
@@ -144,7 +144,6 @@ var search_vue= new Vue(
             doshowit()
             {
                 snhs=JSON.parse(sessionStorage.getItem("history_search"));
-                console.log(snhs);
                 if(snhs!=null){
                     this.history_search=snhs;
                     if(this.history_search.length>0)
@@ -189,13 +188,17 @@ Vue.component("news",{
     },
     computed:{
         shortifycontent(){
+            if(this.news_content==null)
+                return "无内容";
             if(this.news_content.length<=150)
-            return this.news_content;
+                return this.news_content;
             else
-            return this.news_content.slice(0,100)+"...";
+                return this.news_content.slice(0,100)+"...";
         }
+
     },
     methods:{
+
         readthisnews()
         {
             sessionStorage.setItem("mynews_id",this.news_id);
@@ -227,6 +230,8 @@ Vue.component("news_message",{
     },
     computed:{
         shortifycontent(){
+            if(this.news_content==null)
+                return "无内容";
             if(this.news_content.length<=150)
                 return this.news_content;
             else
@@ -271,7 +276,6 @@ var setvue=new Vue({
     methods:{
         bgsettingshow() {
             this.bgsisshow=!this.bgsisshow;
-            console.log("showit");
         },
         changebg(which){
             document.documentElement.style.setProperty("--bgimg",'url("'+this.bgslist[which].var+'")')
@@ -395,7 +399,6 @@ Vue.component("datapiece",
                         sessionStorage.setItem("mynews_id",this.did);
                         break;
                 }
-                console.log(tlink);
                 window.location.href=tlink;
             },pass:function () {
 
@@ -404,7 +407,6 @@ Vue.component("datapiece",
                     id:this.did
                 }).then(function (response) {
                     alert(response.data.msg)
-                    console.log(response);
                 })
                     .catch(function (error) {
                         console.log(error);
@@ -417,7 +419,6 @@ Vue.component("datapiece",
                 }).then(function (response) {
                     alert(response.data.msg)
                     window.location.href="/admin";
-                    console.log(response);
                 })
                     .catch(function (error) {
                         console.log(error);
@@ -428,3 +429,30 @@ Vue.component("datapiece",
 
     }
 )
+Vue.component("delete",{
+    template:`
+        <span @click="dodelete">
+            删除
+        </span>`,
+    methods:{
+        dodelete(){
+            console.log("尝试删除"+this.delete_id+"::"+this.delete_type)
+            axios.post("/delet",{id:this.delete_id,variable:this.delete_type})
+                .then(function (response) {
+                    console.log("删除成功")
+                })
+                .catch(function (error) {
+                    console.log(error)
+
+                })
+        }
+    },
+    props:{
+        delete_type:String,
+        delete_id:String,
+    }
+})
+
+var tx=document.getElementById("header_tx");
+console.log("头像："+sessionStorage.getItem("img"))
+tx.src=sessionStorage.getItem("img");

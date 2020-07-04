@@ -23,10 +23,10 @@
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div id="zixun_box">
-<zzc></zzc>
     <div>
-        <img style="width: 90px;height: 78px" src="image/返回.png" >
         <gotoback></gotoback>
+        <delete delete_type="0" :delete_id="id"></delete>
+        <span @click="favor()">收藏</span>
     </div>
     <p class="zixun_title" >{{ title }}</p>
     <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
@@ -86,11 +86,13 @@
 
 </div>
 <script>
+    var mynewsid=sessionStorage.getItem("mynews_id");
     var newsvue = new Vue({
         el: "#zixun_box",
         data:{
             text_fbtime:"5月20日13：14",
             title: "闲乘月",
+            id: mynewsid,
             text_title:"格裙 闲乘月",
             text_shop:"Sumire-栗米JK馆",
             text_time:"6月26日21：40",
@@ -114,6 +116,17 @@
                     this.likenum++;
                 }
                 this.islike=!this.islike;
+            },
+            favor(){
+                axios.post("/favor",{id:this.id,variable:0})
+                .then(function (response) {
+                    console.log("收藏成功");
+                    alert("收藏成功");
+                })
+                .catch(function (error) {
+                    console.log("收藏成功");
+                    console.log(error);
+                })
             }
         },
         computed:{
@@ -122,7 +135,7 @@
             }
         }
     });
-    var mynewsid=sessionStorage.getItem("mynews_id");
+
     axios.post('/getonenews', {
         value:mynewsid,
     }).then(function (response) {

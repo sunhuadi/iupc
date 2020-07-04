@@ -3,6 +3,16 @@
     --bgimgwidth:1748px;
     --bgimgheight:847px;
 }
+#zixun_box{
+    position: absolute;
+    left:17%;
+    top:11%;
+    width: 80%;
+    height: 230%;
+    background: var(--bgimg);
+    border-radius: 30px;
+    margin-bottom: 100px;
+}
 a{
     color:black;
 }
@@ -384,12 +394,12 @@ ul li{
     width: 150px;
     height: 70px;
     left:94%;
-    top:5px;
+    top:0;
 }
 #header_tx{
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 100px;
     background: #91b8ff;
 }

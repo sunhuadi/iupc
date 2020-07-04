@@ -117,7 +117,6 @@
                         password: that.userpassword,
                     })
                         .then(function (response) {//是返回的所有信息
-//response.length
                             console.log(response.data)
                             if (response.data.code=="0")
                             {
@@ -126,10 +125,12 @@
                                 that.msg=response.data.msg
                                 console.log(response.data.role)
                                 console.log(response.data.username)
-                                console.log(response.data.img)
-//console.log(response.data.role)
-// sessionStorage.setItem("msg","");
-                                window.location.href="/";
+                                console.log(response.data.img);
+                                sessionStorage.setItem("username",response.data.username);
+                                sessionStorage.setItem("realname",response.data.name);
+                                sessionStorage.setItem("img",response.data.img);
+                                sessionStorage.setItem("role",response.data.role);
+                                 window.location.href="/";
                             }
                             else {
                                 that.msg=response.data.msg

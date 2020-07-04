@@ -141,6 +141,7 @@ public class IndexController {
     {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        System.out.println(map.get("id")+"::"+map.get("variable"));
         return iis.delet(map.get("id"),map.get("variable"));
     }
 
@@ -218,8 +219,10 @@ public class IndexController {
     }
 
 
-
-
-
-
+    @ResponseBody
+    @PostMapping("/getfavor")
+    public List<Object>shfavor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
+        return iis.favor(map.get("variable"));
+    }
 }
