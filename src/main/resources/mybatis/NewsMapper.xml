@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iupc.Mapper.NewsMapper">
-
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
@@ -29,7 +28,7 @@
     value(#{news_pic},#{news_id})
     </insert>
 <select id="getNewsNumber" resultType="int" >
-            select count(*) from news
+            select MAX(news_id) from news
 </select>
 <select id="qurryPicbyId" resultType="String" >
    select news_pic from news_pic
@@ -72,10 +71,10 @@
     value(#{goods_pic},#{goods_id})
     </insert>
 <select id="getGoodsNumber" resultType="int" >
-            select count(*) from goods
+            select MAX(Goods_id) from goods
 </select>
 <select id="qurryGoodsPicbyId" resultType="String" >
-   select good_pic from goods_pic
+   select goods_pic from goods_pic
    where goods_id=#{goods_id}
 </select>
 <select id="insertGoodsNum" parameterType="Goods_num" >
@@ -83,5 +82,70 @@
     (good_id,good_color,good_size,good_num,good_price)
     value(#{good_id},#{good_color},#{good_size},#{good_num},#{good_price})
 </select>
+
+<select id="qurryGoodsSizeById" resultType="String">
+select good_size from good_num
+where good_id=#{id}
+</select>
+
+<select id="qurryGoodsById" resultType="Goods">
+select * from goods
+where Goods_id=#{id}
+</select>
+
+<select id="qurryGoodsColorByIdSzie" resultType="String">
+select good_color from good_num
+where good_id=#{id} and good_size=#{size}
+</select>
+
+<select id="qurryGoodsByIdSzieColor" resultType="Goods_num">
+select * from good_num
+where good_id=#{id} and good_size=#{size} and good_color=#{color}
+</select>
+        <select id="qurryAllNewsByShow" resultType="News" parameterType="String" >
+            select * from news
+            where news_show=#{show}
+        </select>
+        <update id="updataNewsByShow" parameterType="String">
+        update news set
+        news_show=#{show}
+        where news_id=#{id}
+        </update>
+        <select id="qurryAllGoodsByShow" resultType="Goods" parameterType="String" >
+            select * from goods
+            where Goods_show=#{show}
+        </select>
+        <update id="updataGoodsByShow" parameterType="String">
+        update goods set
+          Goods_show=#{show}
+             where Goods_id=#{id}
+         </update>
+
+
+<select id="qurryGoodsBy" resultType="Goods" parameterType="String">
+select * from goods
+where Goods_content like concat('%',#{value},'%')
+or  Goods_name like concat('%',#{value},'%')
+or  Goods_category like concat('%',#{value},'%')
+</select>
+<select id="qurryAllGoods" resultType="Goods" parameterType="String">
+select * from goods
+</select>
+    <delete id="deletNewsByid" parameterType="String">
+        delete from news
+        where news_id=#{id};
+        delete from news_pic
+        where news_id=#{id};
+    </delete>
+<delete id="deletGoodsByid" parameterType="String">
+    delete from goods
+    where Goods_id=#{id};
+    delete from goods_pic
+    where goods_id=#{id};
+    delete from good_num
+    where good_id=#{id};
+
+</delete>
+
 
 </mapper>

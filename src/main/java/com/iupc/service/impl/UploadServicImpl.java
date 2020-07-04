@@ -37,7 +37,7 @@ public class UploadServicImpl implements IUploadService {
             String path = fileUtil.uploadFile(file);
             news.setNews_img("http://39.97.113.33/"+path);
         System.out.println(news.getNews_img());
-        String id=Integer.toString(nm.getNewsNumber());
+        String id=Integer.toString(nm.getNewsNumber()+1);
         news.setNews_id(id);
         Timestamp time = new Timestamp(new Date().getTime());
         System.out.println("当前时间为:"+time);
@@ -97,7 +97,7 @@ public class UploadServicImpl implements IUploadService {
         note.setNote_img("http://39.97.113.33/"+path);
         System.out.println(note.getNote_img());
          //id
-        String id=Integer.toString(notesMapper.getNotesNumber());
+        String id=Integer.toString(notesMapper.getNotesNumber()+1);
         note.setNote_id(id);
         //时间
         Timestamp time = new Timestamp(new Date().getTime());
@@ -132,7 +132,7 @@ public class UploadServicImpl implements IUploadService {
         good.setGoods_picture("http://39.97.113.33/"+path);
         System.out.println(good.getGoods_picture());
         //id
-        String id=Integer.toString(nm.getGoodsNumber());
+        String id=Integer.toString(nm.getGoodsNumber()+1);
         good.setGoods_id(id);
         //时间
         Timestamp time = new Timestamp(new Date().getTime());

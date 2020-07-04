@@ -16,6 +16,33 @@ public class Goods {
     private String Goods_content;//商品介绍
     private int Goods_sum;//总剩余数
     private String  Goods_place;
+    private String[] piclist;
+    private String[] sizelist;
+    private String[] colorlist;
+
+    public String[] getPiclist() {
+        return piclist;
+    }
+
+    public void setPiclist(String[] piclist) {
+        this.piclist = piclist;
+    }
+
+    public String[] getSizelist() {
+        return sizelist;
+    }
+
+    public void setSizelist(String[] sizelist) {
+        this.sizelist = sizelist;
+    }
+
+    public String[] getColorlist() {
+        return colorlist;
+    }
+
+    public void setColorlist(String[] colorlist) {
+        this.colorlist = colorlist;
+    }
 
     public String getGoods_id() {
         return Goods_id;

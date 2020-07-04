@@ -14,14 +14,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("test2").setViewName("test1");
         registry.addViewController("news").setViewName("news");
         registry.addViewController("note").setViewName("note");
-        registry.addViewController("message").setViewName("message");
-        registry.addViewController("discuss").setViewName("discuss");
-        registry.addViewController("Store_information").setViewName("Store_information");
-        registry.addViewController("person_information").setViewName("person_information");
-      //  registry.addViewController("note").setViewName("note");
         registry.addViewController("/upload").setViewName("test/pictest");
         registry.addViewController("/search_result").setViewName("search_result");
-        registry.addViewController("administrator").setViewName("administrator");
         registry.addViewController("/upload_news").setViewName("upload_news");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/signup").setViewName("denglu");
@@ -29,7 +23,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/searchnote").setViewName("search_result_note");
         registry.addViewController("/upload_note").setViewName("upload_note");
         registry.addViewController("/upload_shop").setViewName("upload_shop");
-        registry.addViewController("/admin").setViewName("administrator");
+        registry.addViewController("/upload_good").setViewName("upload_good");
+        registry.addViewController("/admin_news").setViewName("administrator");
+        registry.addViewController("/admin_notes").setViewName("admin_notes");
+        registry.addViewController("/admin_shops").setViewName("admin_shops");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/shopcheck").setViewName("shop_check");
         registry.addViewController("/all_news_hf").setViewName("all_news_hf");
@@ -40,6 +37,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/all_notes_jk").setViewName("all_notes_jk");
         registry.addViewController("/all_notes").setViewName("all_notes");
         registry.addViewController("/all_news").setViewName("all_news");
+        registry.addViewController("/sgood").setViewName("search_result_goods");
         //registry.addViewController("/zxck").setViewName("note");
 
     }

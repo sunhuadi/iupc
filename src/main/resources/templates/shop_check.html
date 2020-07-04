@@ -18,6 +18,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -25,39 +26,42 @@
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
 <div id="shopcheck_box">
-    <img src="image/note_pic_1.jpg" class="shopcheck_pic">
+    <img :src="goods.goods_picture" class="shopcheck_pic">
 
     <div class="shopcheck_text">
-        <p class="shopcheck_text_title">{{shop_title}}</p>
+        <p class="shopcheck_text_title">{{goods.goods_name}}</p>
         <table class="shopcheck_text_table">
             <tr class="shopcheck_tr">
                 <td class="shopcheck_td">价格</td>
-                <td class="shopcheck_td1">{{shop_price}}</td>
+                <td class="shopcheck_td1">{{goods.goods_price}}</td>
             </tr>
             <tr class="shopcheck_tr">
                 <td class="shopcheck_td">发货地</td>
-                <td class="shopcheck_td1">{{shop_where}}</td>
+                <td class="shopcheck_td1">{{goods.goods_place}}</td>
             </tr>
             <tr class="shopcheck_tr">
                 <td class="shopcheck_td">类别</td>
-                <td class="shopcheck_td1">{{shop_kind}}</td>
+                <td class="shopcheck_td1">{{goods.goods_category}}</td>
             </tr>
             <tr class="shopcheck_tr">
                 <td class="shopcheck_td">尺码</td>
                 <td class="shopcheck_td1">
-                    <select>
-                        <option v-for="item in shop_size"  :value="a">{{item}}</option>
+                    <select  v-model="nowsize" @change="getcolor">
+                        <option v-for="item in goods.sizelist" :value="item">{{item}}</option>
                     </select>
                 </td>
             </tr>
-
             <tr class="shopcheck_tr">
                 <td class="shopcheck_td">颜色</td>
                 <td class="shopcheck_td1">
-                    <select>
-                        <option v-for="item in shop_color"  :value="a">{{item}}</option>
+                    <select  v-model="nowcolor" @change="changecolor">
+                        <option v-for="item in colorlist " :value="item">{{item}}</option>
                     </select>
                 </td>
+            </tr>
+            <tr class="shopcheck_tr">
+                <td class="shopcheck_td">剩余数目</td>
+                <td class="shopcheck_td1">{{nownum}}</td>
             </tr>
 
         </table>
@@ -66,28 +70,84 @@
 
     <div class="shopcheck_detail">
         <p class="shopcheck_detail_title">商品详情</p>
-
         <div class="shopcheckdetail_pic">
-            <img v-for="item in piclist"  :src="item" class="shopcheck_picture">
+            <img v-for="item in goods.piclist"  :src="item" class="shopcheck_picture">
         </div>
-        <p class="shopdetail">{{shop_detail}}</p>
+        <p class="shopdetail">{{goods.goods_content}}</p>
     </div>
-
 </div>
 <script>
     var shopcheck_vue=new Vue({
         el:"#shopcheck_box",
         data:{
-            shop_title:"闲乘月",
-            shop_price:200,
-            shop_where:"青岛",
-            shop_size:["S","M","XL"],
-            shop_color:["淡黄","恶人紫","姨妈红"],
-            shop_kind:"JK",
-            piclist:["image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_1.jpg","image/note_pic_2.jpg","image/note_pic_3.jpg","image/note_pic_4.jpg","image/zixun_pic2.jpg","image/zixun_pic3.jpg"],
-            shop_detail:"卖家承诺七天内发货，中通韵达包邮，到货后七天内无条件退换"
+            nowsize:null,
+            nowcolor:null,
+            colorlist:[],
+            nowprice:null,
+            nownum:null,
+            goods:{
+            },
+        },methods:{
+            getcolor:function() {
+                that=this
+                console.log("正在发送请求！"+that.nowsize)
+                axios.post('/getcolor', {
+                    id:"1",size:that.nowsize,
+                }).then(function (response) {
+                    var datas=response.data;
+                    console.log(response)
+                    if(datas!=null)
+                    {
+                        that.colorlist=response.data
+                        //shopcheck_vue.goods=response.data
+                        console.log(shopcheck_vue.goods)
+                        //+" -- "+datas[0].news_stoptime;
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            changecolor:function () {
+                that=this
+                console.log("发送请求，获取数目！"+ that.nowsize+that.nowcolor)
+                axios.post('/getnumprice', {
+                    id:"1",size:that.nowsize,color:that.nowcolor
+                }).then(function (response) {
+                    var datas=response.data;
+                    console.log(response.data)
+                    if(datas!=null)
+                    {
+                        that.goods.goods_price=response.data.good_price
+                        that.nownum=response.data.good_num
+                        //console.log(shopcheck_vue.goods)
+                        //+" -- "+datas[0].news_stoptime;
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
         }
     })
+    var mynewsid=sessionStorage.getItem("mynews_id");
+    console.log("正在发送请求！")
+    axios.post('/getonegoods', {
+        id:"1",
+    }).then(function (response) {
+        var datas=response.data;
+        console.log(response)
+        if(datas!=null)
+        {
+            shopcheck_vue.goods=response.data
+            console.log(shopcheck_vue.goods)
+            //+" -- "+datas[0].news_stoptime;
+        }
+    })
+        .catch(function (error) {
+            console.log(error);
+        });
 </script>
 
 

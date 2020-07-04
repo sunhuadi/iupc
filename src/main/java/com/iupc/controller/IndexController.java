@@ -1,5 +1,9 @@
 package com.iupc.controller;
 
+import com.iupc.Mapper.NewsMapper;
+import com.iupc.Mapper.NotesMapper;
+import com.iupc.pojo.Goods;
+import com.iupc.pojo.Goods_num;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
 import com.iupc.service.IIndexService;
@@ -29,21 +33,35 @@ public class IndexController {
 
         return "index";
     }*/
+    @Autowired
+    NewsMapper newsMapper;
     @ResponseBody
     @GetMapping("/getallnews")
     public List<News> index(Model model)
     {
-       // Date date=new Date();
         System.out.println("util:"+new Date());
-       // System.out.println("sql:"+new java.sql.Date(new Date()));
-       // java.util.Date dt = new java.util.Date();
         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        //String currentTime = dt.toString();
-        //Date date = new Date();
         List<News> newsList=iis.getAllnews();
         System.out.println(currentTime);
         return newsList;
     }
+    @Autowired
+    NotesMapper notesMapper;
+    @ResponseBody
+    @GetMapping("/getallnotes")
+    public List<Notes> allnote()
+    {
+        List<Notes> notes=notesMapper.qurryAllNotes();
+        return notes;
+    }
+    @ResponseBody
+    @GetMapping("/getallgoods")
+    public List<Goods> allgoods(Model model)
+    {
+        List<Goods> notes=newsMapper.qurryAllGoods();
+        return notes;
+    }
+
 
     @ResponseBody
     @PostMapping("/getonenews")
@@ -63,17 +81,74 @@ public class IndexController {
         System.out.println("查看笔记，ID： "+map.get("id"));
         return iis.getNotesById(id);
     }
+    @ResponseBody
+    @PostMapping("/getonegoods")
+    public Goods getgoodsbyid(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        System.out.println("商品，ID： "+map.get("id"));
+        return iis.getgoodsById(id);
+    }
+    @ResponseBody
+    @PostMapping("/getcolor")
+    public String[] getcolor(@RequestBody HashMap<String,String> map)
+    {
 
+        String id=map.get("id");
+        String size=map.get("size");
+        System.out.println("Size： "+map.get("size"));
+        return newsMapper.qurryGoodsColorByIdSzie(id,size);
+    }
+    @ResponseBody
+    @PostMapping("/getnumprice")
+    public Goods_num getnumprice(@RequestBody HashMap<String,String> map)
+    {
+        String id=map.get("id");
+        String size=map.get("size");
+        String color=map.get("color");
+        System.out.println("商品，ID,颜色 "+id+size+color);
+        return newsMapper.qurryGoodsByIdSzieColor(id,size,color);
+    }
 
     @ResponseBody
-    @PostMapping("/search")
-    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map
+    @GetMapping("/getallnewsshow1")//可扩展到其他方面
+    public List<Object> indexshow1(@RequestBody HashMap<String,String> map)
+    {
+        String v=map.get("variable");
+        String admin=map.get("admin");
+
+        return iis.indexshow(v,admin);
+    }
+    @ResponseBody
+    @PostMapping("/admin1")
+    public HashMap<String,String> admin(@RequestBody HashMap<String,String> map)
+    {
+        String admin=map.get("admin");
+        String id=map.get("id");
+        String v=map.get("variable");
+       // System.out.println(id+admin);
+        return iis.admin(v,admin,id) ;
+    }
+
+    @ResponseBody
+    @PostMapping("/search")//适应于三种情况
+    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map,0资讯，1note,2goods,value为空查询所有
     {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
-            List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+            List<Object> objList= iis.getAllBysearch(map.get("value"),map.get("variable"));
         return objList;
     }
+    @ResponseBody
+    @PostMapping("/delet")//适应于三种情况
+    public HashMap<String,String> delet(@RequestBody HashMap<String,String> map)//传入类型为map,盲写
+    {
+        //map.get("value");
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        return iis.delet(map.get("id"),map.get("variable"));
+    }
+
+
 
 
 /*
@@ -108,6 +183,21 @@ public class IndexController {
             System.out.println(path);
         }
         return "success";
+    }
+    @ResponseBody
+    @PostMapping("/favor")
+    public HashMap<String,String>favor(@RequestBody HashMap<String,String> map)//传入类型为map
+    {
+
+        String v=null;
+        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        if(map.get("variable").equals("1"))
+        {
+            v="Note";
+        }
+        //List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+
+        return iis.setFavor(map.get("id"),v);
     }
 
 

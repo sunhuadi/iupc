@@ -20,20 +20,26 @@
 <body class="body">
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
-<div class="mianframe">
-    <h1 class="mainframe_title"> 搜索结果 </h1>
-    <hr style="border: none;height: 3px;background: #0f0f0f" />
-    <span id="shrs" style="width: 100%">
-        <news v-for="item in searchdata"
-              myclassname="zxi"
-              :news_title="item.news_title"
-              :news_id="item.news_id"
-              :news_img="item.news_img"
-              :news_time="item.news_time"
-              :news_content="item.news_content"
-        >
-        </news>
+<div class="mainframe">
+    <span style="position:absolute;width: 100%;height: 100%;background:rgba(255,255,255,0.5)">
+    <h1 style="z-index:10" class="mainframe_title"> 搜索结果 </h1>
+        <div class="srtourist">
+            <span> <a class="acrs" href="/search_result">资讯</a> </span>
+            /<span> <a class="unacrs" href="/searchnote">笔记</a> </span>
+            /<span> <a class="unacrs" href="/search_result">商品</a> </span>
+        </div>
+        <span class="shrs" id="shrs" style="width: 100%">
+            <news v-for="item in searchdata"
+                  myclassname="zxi"
+                  :news_title="item.news_title"
+                  :news_id="item.news_id"
+                  :news_img="item.news_img"
+                  :news_time="item.news_time"
+                  :news_content="item.news_content"
+            >
+            </news>
         </span>
+    </span>
 </div>
 </body>
 <style>

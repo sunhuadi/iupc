@@ -14,19 +14,19 @@ var tourist_vue= new Vue(
                 {content:"三坑笔记",
                     isshow:false,
                     slcontent:[
-                        {name:"汉服",link:"/all_news_hf"},
-                        {name:"Lolita",link:"/all_news_lolita"},
-                        {name:"JK",link:"/all_news_jk"},
-                        {name:"全部",link:"/all_news"},
+                        {name:"汉服",link:"/all_notes_hf"},
+                        {name:"Lolita",link:"/all_notes_lolita"},
+                        {name:"JK",link:"/all_notes_jk"},
+                        {name:"全部",link:"/all_notes"},
                     ]
                 },
                 {content:"查看资讯",
                     isshow:false,
                     slcontent:[
-                        {name:"汉服",link:"/zxck"},
-                        {name:"Lolita",link:""},
-                        {name:"JK",link:""},
-                        {name:"全部",link:""},
+                        {name:"汉服",link:"/all_news_hf"},
+                        {name:"Lolita",link:"/all_news_lolita"},
+                        {name:"JK",link:"/all_news_jk"},
+                        {name:"全部",link:"/all_news"},
                     ]
                 },
                 {content:"我的收藏",
@@ -289,7 +289,142 @@ if(now_bg!=null)
 for(var i=1;i<21;i++){
     var bgp={src:"",var:""};
     bgp.src="image/background/"+i+".jpg";
-    console.log(bgp.src);
     bgp.var="../"+bgp.src;
     setvue.bgslist.push(bgp);
 }
+Vue.component("note",{
+    template:`
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="note_img" />
+        <div class="zxi_text">
+        <p class="zxi_title" @click="readthisnote" >{{ note_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ note_time }}</p>
+        </div>
+        </div>`,
+    props:{
+        note_title:String,
+        note_id:String,
+        note_time:String,
+        note_img:String,
+        note_content:String,
+        myclassname:String,
+    },
+    computed:{
+        shortifycontent(){
+            if(this.note_content.length<=150)
+                return this.note_content;
+            else
+                return this.note_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisnote()
+        {
+            sessionStorage.setItem("mynoteid",this.note_id);
+            window.location.href="/note";
+        }
+    }
+})
+Vue.component("zzc",{
+    template:` <div 
+ style="position:absolute;
+ pointer-events:none;
+ width: 100%;
+ height: 100%;
+ background:rgba(255,255,255,0.5)">
+</div>`,
+
+})
+Vue.component("datapiece",
+    {
+        template:`
+        <table class="administrator_table">
+            <tr :class="myclassname">
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{number}}</td>
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{dauthor}}</td>
+        <td class="zixun_td1">
+            <span @click="checkcontent">点此查看</span>
+        </td>
+        <td class="zixun_td1">{{dtime}}</td>
+        <td class="zixun_td1">{{gettype}}</td>
+        <td class="zixun_td1">
+            <button class="admin_button" style="background: rgba(0,128,0,0.8)"  @click="pass">通过</button>
+        </td>
+        <td class="zixun_td1">
+            <button class="admin_button" style="background: rgba(128,0,0,0.8)" @click="reject">驳回</button>
+        </td>
+    </tr>  </table>  `,
+        props:{
+            dauthor:String,
+            dtime:String,
+            dtype:String,
+            did:String,
+            myclassname:String,
+            number:String,
+        },
+        computed:{
+            gettype(){
+                switch (this.dtype) {
+                    case "news":
+                        return "资讯";
+                        break;
+                    case "note":
+                        return "笔记";
+                        break;
+                    case "goods":
+                        return "商品";
+                        break;
+                }
+            }
+        },
+        methods:{
+            checkcontent(){
+                var tlink;
+                switch (this.dtype) {
+                    case "news":
+                        tlink="/zxck";
+                        sessionStorage.setItem("mynews_id",this.did);
+                        break;
+                    case "note":
+                        tlink="/note";
+                        sessionStorage.setItem("mynote_id",this.did);
+                        break;
+                    case "goods":
+                        tlink="/note";
+                        sessionStorage.setItem("mynews_id",this.did);
+                        break;
+                }
+                console.log(tlink);
+                window.location.href=tlink;
+            },pass:function () {
+
+                axios.post('/admin1', {
+                    admin:"1",
+                    id:this.did
+                }).then(function (response) {
+                    alert(response.data.msg)
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            reject:function () {
+                axios.post('/admin1', {
+                    admin:"2",
+                    id:this.did
+                }).then(function (response) {
+                    alert(response.data.msg)
+                    window.location.href="/admin";
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+        },
+
+    }
+)

@@ -23,6 +23,7 @@
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div id="zixun_box">
+<zzc></zzc>
     <div>
         <img style="width: 90px;height: 78px" src="image/返回.png" >
         <gotoback></gotoback>
@@ -80,9 +81,7 @@
 
     </div>
     <div class="zixun_intro">
-        <p class="zixun_intro_text">
-            {{'商品简介:'+text_intro}}
-        </p>
+        <p class="zixun_intro_text" v-for="data in text_intro">{{data}}</p>
     </div>
 
 </div>
@@ -98,7 +97,7 @@
             text_stop:"7月6日21:40",
             text_price:200.0,
             text_modality:"现货（包邮）",
-            text_intro:"这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆这是一条非常非常好看的裙子！200块钱你买不了吃亏买不了上当，今天穿上闲乘月 明天能嫁你爱豆",
+            text_intro:[],
             likenum:1,
             looknum:100,
             islike:false,
@@ -116,6 +115,11 @@
                 }
                 this.islike=!this.islike;
             }
+        },
+        computed:{
+            contentfy(){
+                return this.text_intro.replace(/\n/g,"<br/>")
+            }
         }
     });
     var mynewsid=sessionStorage.getItem("mynews_id");
@@ -128,13 +132,14 @@
        {
            newsvue.text_fbtime=datas.news_formattime;
            newsvue.text_title=datas.news_title;
-           newsvue.text_intro=datas.news_content;
+           newsvue.text_intro=datas.news_content.split(/\n/g);
            newsvue.text_shop=datas.news_author;
            newsvue.text_modality=datas.news_updateway;
            newsvue.text_price=datas.news_price;
            newsvue.text_time=datas.news_begintime
            newsvue.text_stop=datas.news_stoptime;
            newsvue.piclist=datas.news_pic;
+           newsvue.text_intro.unshift("");
                //+" -- "+datas[0].news_stoptime;
        }
     })
@@ -152,11 +157,12 @@
         left:17%;
         top:11%;
         width: 80%;
-        height: 130%;
-        background: #E3EFF9;
-        border-radius: 30px;
+        height: 200%;
+        min-height:1000px;
         margin-bottom: 100px;
-
+        clear: both;
+        background-image:var(--bgimg) ;
+        background-size:cover ;
     }
     .zixun_pic{
         position: relative;
@@ -171,13 +177,12 @@
     .zixun_text{
         position: absolute;
         left: 53%;
-        top:15.5%;
+        top:200px;
         width: 40%;
-        height: 60%;
+        height: 600px;
         font-size:24px;
         background-color: #FFF7ED;
         padding: 30px;
-        border-radius: 30px;
     }
     .zixun_picture{
         position: relative;
@@ -210,10 +215,8 @@
         background-color: #D4E5F3;
     }
     .zixun_tr{
-
         width: 500px;
         height: 40px;
-
     }
     .zixun_tr:hover{
         color:#C97582;
@@ -231,16 +234,16 @@
      }
     .zixun_intro{
         position: absolute;
-        top:80%;
+        top:900px;
         width: 92%;
-        height: 16%;
+        overflow: auto;
+        padding-bottom: 40px;
         left:2%;
         background-color:#FFF7ED ;
-        border-radius: 30px;
     }
     .zixun_intro_text{
         font-size: 20px;
-        margin: 40px;
+        margin:5px 20px 5px 20px;
     }
 
 </style>

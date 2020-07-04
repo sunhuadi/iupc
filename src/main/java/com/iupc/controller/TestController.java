@@ -4,6 +4,7 @@ import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
 import com.iupc.pojo.News;
 import com.iupc.pojo.Notes;
+import com.iupc.service.IIndexService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -12,20 +13,58 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class TestController {
 
+    @Autowired
+    IIndexService indexService;
+
+
+    @ResponseBody
+    @GetMapping("/testShow/{v}/{admin}")//可扩展到其他方面
+    public List<Object> indexshow1(@PathVariable("v") String v, @PathVariable("admin") String admin)
+    {
+
+        return indexService.indexshow(v,admin);
+    }
+    @ResponseBody
+    @GetMapping("/testadmin/{v}/{admin}/{id}")
+    public HashMap<String,String> admin(@PathVariable("v") String v, @PathVariable("admin") String admin,@PathVariable("id")String id)
+    {
+         System.out.println(v+admin+id);
+        return indexService.admin(v,admin,id) ;
+    }
+
+
+
+
+
+
+
+
+
+
+    @ResponseBody
+    @RequestMapping("/testdelet")
+    public String delet()
+    {
+        indexService.delet("4","2");
+        return "success";
+    }
+    @ResponseBody
+    @RequestMapping("/testserch/{value}/{version}")
+    public List<Object> quryy(@PathVariable("value") String id, @PathVariable("version") String v)
+    {
+
+        return  null;
+    }
 
     @RequestMapping("/test/index")
     public String index()
