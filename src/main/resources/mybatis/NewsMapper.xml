@@ -6,10 +6,6 @@
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
-        <select id="qurryAllNewsShow" resultType="News" parameterType="String" >
-            select * from news
-            where news_show=#{show}
-        </select>
     <select id="qurryNewsByContent" resultType="News" parameterType="String">
         select * from news
         where news_content like concat('%',#{value},'%')
@@ -106,12 +102,26 @@ where good_id=#{id} and good_size=#{size}
 select * from good_num
 where good_id=#{id} and good_size=#{size} and good_color=#{color}
 </select>
+        <select id="qurryAllNewsByShow" resultType="News" parameterType="String" >
+            select * from news
+            where news_show=#{show}
+        </select>
+        <update id="updataNewsByShow" parameterType="String">
+        update news set
+        news_show=#{show}
+        where news_id=#{id}
+        </update>
+        <select id="qurryAllGoodsByShow" resultType="Goods" parameterType="String" >
+            select * from goods
+            where Goods_show=#{show}
+        </select>
+        <update id="updataGoodsByShow" parameterType="String">
+        update goods set
+          Goods_show=#{show}
+             where Goods_id=#{id}
+         </update>
 
-<update id="updataNews" parameterType="News">
-update news set
-news_show=#{news_show}
-where news_id=#{news_id}
-</update>
+
 <select id="qurryGoodsBy" resultType="Goods" parameterType="String">
 select * from goods
 where Goods_content like concat('%',#{value},'%')
@@ -123,17 +133,19 @@ select * from goods
 </select>
     <delete id="deletNewsByid" parameterType="String">
         delete from news
-        where news_id=#{id}
+        where news_id=#{id};
         delete from news_pic
-        where news_id=#{id}
+        where news_id=#{id};
     </delete>
 <delete id="deletGoodsByid" parameterType="String">
     delete from goods
-    where goods_id=#{id}
+    where Goods_id=#{id};
     delete from goods_pic
-    where good_id=#{id}
+    where goods_id=#{id};
     delete from good_num
-    where good_id=#{id}
+    where good_id=#{id};
 
 </delete>
+
+
 </mapper>

@@ -43,9 +43,17 @@
     </insert>
     <delete id="deletNotesByid" parameterType="String">
         delete from notes
-        where notes_id=#{id}
+        where note_id=#{id};
         delete from notes_pic
-        where notes_id=#{id}
+        where note_id=#{id};
     </delete>
-
+    <select id="qurryAllNotesByShow" resultType="Notes" parameterType="String" >
+            select * from notes
+            where note_show=#{show}
+        </select>
+    <update id="updataNotesByShow" parameterType="String">
+        update notes set
+          note_show=#{show}
+             where note_id=#{id}
+         </update>
 </mapper>

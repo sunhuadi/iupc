@@ -1,5 +1,6 @@
 package com.iupc.Mapper;
 
+import com.iupc.pojo.News;
 import com.iupc.pojo.NewsPic;
 import com.iupc.pojo.Notes;
 import com.iupc.pojo.NotesPic;
@@ -21,4 +22,6 @@ public interface NotesMapper {
 
     void deletNotesByid(String id);
 
+    List<Notes> qurryAllNotesByShow(String show);
+    void updataNotesByShow(String id ,String show);
 }

@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.zip.DataFormatException;
 
 @Service("IndexServic")
@@ -51,20 +48,99 @@ public class IndexServiceImpl implements IIndexService {
 
 @Autowired
 NotesMapper notesMapper;
+    @Autowired
+    UsersMapper usersMapper;
+    @Autowired
+    NewsMapper newsMapper;
     @Override
-    public List<Object>getNewsBysearch(String  value,String v) {
+    public List<Object> getAllBysearch(String  value,String v) {
+        List<Object> objList=new ArrayList<>();
         if(v.equals("0"))
         {
-            List<Object> objList= Collections.singletonList(ns.qurryNewsByContent(value));
+            if(value!=null)
+            {
+                 objList= Collections.singletonList(ns.qurryNewsByContent(value));
+            }
+            else {
+                  objList= Collections.singletonList(ns.qurryAllNews());
+            }
             return objList;
         }else if(v.equals("1")){
-            List<Object> objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
+            if(value!=null)
+            {
+                objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
+            }
+            else {
+                objList= Collections.singletonList(notesMapper.qurryAllNotes());
+            }
             return objList;
-        }else {
-            List<Object> objList= Collections.singletonList(ns.qurryGoodsBy(value));
+        }else
+        {
+            if(value!=null)
+            {
+                objList= Collections.singletonList(ns.qurryGoodsBy(value));
+            }
+            else {
+                objList= Collections.singletonList(ns.qurryAllGoods());
+            }
+
             return objList;
         }
 
+    }
+    @Override
+    public List<Object> indexshow(String v,String show){
+        List<Object> list=new ArrayList<>();
+        if(v.equals("0"))
+        {
+            if(show!=null)
+            {
+                list= Collections.singletonList(newsMapper.qurryAllNewsByShow(show));
+            }
+            else {
+                list= Collections.singletonList(newsMapper.qurryAllNews());
+            }
+
+        }
+        else if (v.equals("2")){
+            if(show!=null)
+            {
+                list= Collections.singletonList(newsMapper.qurryAllGoodsByShow(show));
+            }
+            else {
+                list= Collections.singletonList(newsMapper.qurryAllGoods());
+            }
+        }
+        else {
+            if(show!=null)
+            {
+                list= Collections.singletonList(notesMapper.qurryAllNotesByShow(show));
+            }
+            else {
+                list= Collections.singletonList(notesMapper.qurryAllNotesByShow(show));
+            }
+        }
+        return list;
+
+
+    }
+    @Override
+    public HashMap<String,String> admin(String v,String admin,String id){
+        if(v.equals("0"))
+        {
+            newsMapper.updataNewsByShow(id,admin);
+        }
+        else if(v.equals("1"))
+        {
+            notesMapper.updataNotesByShow(id,admin);
+        }else
+        {
+            newsMapper.updataGoodsByShow(id,admin);
+        }
+
+        HashMap<String,String> mp=new HashMap<>();
+        mp.put("msg","操作成功！");
+        return mp ;
     }
     @Override
    public HashMap<String,String> delet(String id,String v){
@@ -122,8 +198,7 @@ NotesMapper notesMapper;
         return good;
     }
 
-    @Autowired
-    UsersMapper usersMapper;
+
     @Override
   public  HashMap<String,String> setFavor(String id, String v){
         FavoriteContent fc=new FavoriteContent();

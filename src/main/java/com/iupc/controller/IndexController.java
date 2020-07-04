@@ -62,14 +62,6 @@ public class IndexController {
         return notes;
     }
 
-    @ResponseBody
-    @GetMapping("/getallnewsshow1")//可扩展到其他方面
-    public List<News> indexshow1(Model model)
-    {
-        List<News> newsList=newsMapper.qurryAllNewsShow("0");
-        return newsList;
-    }
-
 
     @ResponseBody
     @PostMapping("/getonenews")
@@ -97,7 +89,6 @@ public class IndexController {
         System.out.println("商品，ID： "+map.get("id"));
         return iis.getgoodsById(id);
     }
-
     @ResponseBody
     @PostMapping("/getcolor")
     public String[] getcolor(@RequestBody HashMap<String,String> map)
@@ -120,28 +111,32 @@ public class IndexController {
     }
 
     @ResponseBody
+    @GetMapping("/getallnewsshow1")//可扩展到其他方面
+    public List<Object> indexshow1(@RequestBody HashMap<String,String> map)
+    {
+        String v=map.get("variable");
+        String admin=map.get("admin");
+
+        return iis.indexshow(v,admin);
+    }
+    @ResponseBody
     @PostMapping("/admin1")
     public HashMap<String,String> admin(@RequestBody HashMap<String,String> map)
     {
         String admin=map.get("admin");
         String id=map.get("id");
-        System.out.println(id+admin);
-        News news=new News();
-        news.setNews_id(id);
-        news.setNews_show(admin);
-        newsMapper.updataNews(news);
-        HashMap<String,String> mp=new HashMap<>();
-        mp.put("msg","操作成功！");
-        return mp ;
+        String v=map.get("variable");
+       // System.out.println(id+admin);
+        return iis.admin(v,admin,id) ;
     }
 
     @ResponseBody
     @PostMapping("/search")//适应于三种情况
-    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map
+    public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map,0资讯，1note,2goods,value为空查询所有
     {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
-            List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
+            List<Object> objList= iis.getAllBysearch(map.get("value"),map.get("variable"));
         return objList;
     }
     @ResponseBody
@@ -153,17 +148,7 @@ public class IndexController {
         return iis.delet(map.get("id"),map.get("variable"));
     }
 
-    @ResponseBody
-    @PostMapping("/searchgoods")
-    public List<Object> getGoods(@RequestBody HashMap<String,String> map)//传入类型为map
-    {
-        //map.get("value");
-        //List<News> newsList=iis.getNewsBysearch(map.get("value"));
-        List<Object> objList= iis.getNewsBysearch(map.get("value"),map.get("variable"));
 
-
-        return objList;
-    }
 
 
 /*

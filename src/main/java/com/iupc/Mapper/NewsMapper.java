@@ -10,7 +10,11 @@ import java.util.List;
 @Repository
 public interface NewsMapper {
     List<News> qurryAllNews();
-    List<News> qurryAllNewsShow(String show);
+    List<News> qurryAllNewsByShow(String show);
+    void updataNewsByShow(String id ,String show);
+
+    List<News> qurryAllGoodsByShow(String show);
+    void updataGoodsByShow(String id ,String show);
     List<News> qurryNewsByContent(String value);
     News qurryNewsById(String value);
    // List<News> qurryNewsByContent(News news);
@@ -18,7 +22,7 @@ public interface NewsMapper {
     void insertNewsPic(NewsPic np);
     int getNewsNumber();
     String[] qurryPicbyId(String news_id);
-    void updataNews(News news);
+
     void deletGoodsByid(String id);
     void deletNewsByid(String id);
     void insertGoods(Goods good);
