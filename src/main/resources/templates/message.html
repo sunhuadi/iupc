@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="body">
+
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div id="zixun_box">
+    <gotoback></gotoback>
+    <p class="message_biaoti">我的消息</p>
+    <span id="search_note">
+        <news_message v-for="item in search_note_data" myclassname="news_sh1" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce" :news_zt="item.zt">
+        </news_message>
+    </span>
+
+</div>
+
+</body>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script>
+    var searchnotevue=new Vue({
+        el:"#search_note",
+        data:{
+            search_note_data:[
+                {   text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                }
+            ]
+
+        }
+    })
+</script>
+<style>
+    #zixun_box{
+        position: absolute;
+        left:17%;
+        top:11%;
+        width: 80%;
+        height: 130%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+    }
+    .news_sh1{
+        position: relative;
+        top:10%;
+        left: 13%;
+        display: inline-block;
+        margin:20px;
+        width:70%;
+        border-radius: 20px;
+        display: inline-block;
+        background: #F8EDDB;
+        color: #6e6d71;
+    }
+    .message_biaoti{
+        position: absolute;
+
+        top:2%;
+        width: 100%;
+        height: 5%;
+      border-bottom: 2px solid black;
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="body">
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div id="zixun_box">
+    <gotoback></gotoback>
+    <div class="discuss_title">讨论区</div>
+    <div class="comment_area">
+        <img src="image/dangmei2.jpg" class="discuss_img">
+        <textarea class="discuss_textarea" ></textarea>
+        <button class="discuss_button">评论</button>
+    </div>
+
+    <div class="detail_area">
+        <div v-for="item in comment" class="person_comment">
+            <img class="personcomment_img" src="image/dangmei3.jpg">
+            <p class="comment_wz">{{ item.personcomment }}</p>
+            <div  class="comment_comment">
+                <img src="image/dangmei2.jpg" class="detail_img">
+                <p class="comment_comment_detail">阿巴</p>
+            </div>
+            <div  class="comment_comment">
+                <img src="image/dangmei2.jpg" class="detail_img">
+                <p class="comment_comment_detail">阿巴</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script>
+    var discuss=new Vue({
+        el:"#zixun_box",
+        data:{
+            comment:[
+                {
+                    personcomment:"莫愁前路无知己，天下谁人不识君）",
+                    commentdetail:[
+                        {
+                            commentdetail_detail:"吃啥了",
+                        }
+                    ]
+
+                },
+                {
+                    personcomment:"还有7天就离开石大一年了，七年的石大求学时光一晃而过，但都历历在目。",
+
+                },
+                {
+                    personcomment:"祝最好的学长学姐们毕业快乐！",
+
+                },
+                {
+                    personcomment:"期待小编把连续几年的毕业视频发一下",
+
+                }
+            ]
+
+        }
+    })
+</script>
+<style>
+    #zixun_box{
+        position: absolute;
+        left:17%;
+        top:11%;
+        width: 80%;
+        height: 230%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+    }
+    .discuss_title{
+        position: absolute;
+        left:0%;
+        top:1%;
+        width: 100%;
+        height: 5%;
+        /*border-bottom: 2px solid black;*/
+        text-align: center;
+        font-size: 30px;
+    }
+    .comment_area{
+        position: absolute;
+        left:5%;
+        top:50px;
+        width: 90%;
+        height: 300px;
+        /*background-color: #1fc231;*/
+        border-bottom: 2px solid gray;
+    }
+    .discuss_img{
+        position: absolute;
+        top:5%;
+        left:3%;
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+    }
+    .discuss_textarea{
+        position: absolute;
+        top:0px;
+        left:13%;
+        width:85%;
+        height:200px;
+        font-size:20px;
+        text-indent: 2em;
+
+    }
+    .discuss_button{
+        position: absolute;
+        top:220px;
+        right: 2%;
+        width: 80px;
+        height: 50px;
+        background-color: pink;
+    }
+    .detail_area{
+        position: absolute;
+        top:400px;
+        left:5%;
+        width: 90%;
+        /*height: 60%;*/
+        /*background-color: #e8e2ff;*/
+    }
+    .person_comment{
+        position: relative;
+        left:5%;
+        margin-top: 20px;
+        width: 1100px;
+        height:200px;
+        /*margin-bottom: 20px;*/
+        background-color: #ffefed;
+
+    }
+    .personcomment_img{
+        position: absolute;
+        top:10%;
+        left:1%;
+        width: 80px;
+        height: 80px;
+        border-radius: 100px;
+
+    }
+    .detail_img{
+        position: absolute;
+        top:10%;
+        left:1%;
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+
+    }
+    .comment_wz{
+        position: absolute;
+        left:10%;
+        top:20%;
+        width: 85%;
+        font-size: 23px;
+        background-color: #FFF7ED;
+    }
+    .comment_comment_detail{
+        position: absolute;
+        left:10%;
+        top:20%;
+        width: 85%;
+        font-size: 23px;
+        background-color: #FFF7ED;
+
+    }
+    .comment_comment{
+        position: relative;
+        top:40%;
+        left:15%;
+        width: 80%;
+        height: 25%;
+        margin-bottom: 10px;
+        /*background-color: purple;*/
+    }
+</style>
+</html>

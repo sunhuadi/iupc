@@ -176,6 +176,7 @@ Vue.component("news",{
         <p class="zxi_title" @click="readthisnews" >{{ news_title }}</a></p>
         <p class="zxi_content">{{ shortifycontent }}</p>
         <p class="zxi_time" >{{ news_time }}</p>
+       
         </div>
         </div>`,
     props:{
@@ -202,13 +203,52 @@ Vue.component("news",{
         }
     }
 })
+Vue.component("news_message",{
+    template:`
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="news_img" />
+        <img class="zxi_pic_fly" src="image/透明蓝色蝴蝶结.gif">
+        <div class="zxi_text">
+        <p class="zxi_title" @click="readthisnews" >{{ news_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ news_time }}</p>
+        <p class="zxi_zt">状态:{{news_zt}}</p>
+       
+        </div>
+        </div>`,
+    props:{
+        news_title:String,
+        news_id:String,
+        news_time:String,
+        news_img:String,
+        news_content:String,
+        myclassname:String,
+        news_zt:String,
+    },
+    computed:{
+        shortifycontent(){
+            if(this.news_content.length<=150)
+                return this.news_content;
+            else
+                return this.news_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisnews()
+        {
+            sessionStorage.setItem("mynews_id",this.news_id);
+            window.location.href="/zxck";
+        }
+    }
+})
+
 /*
  * 返回按钮组件
  *  myclassname 设置class
  */
 Vue.component("gotoback",{
     template:`
-        <span :class="myclassname"  @click="dogoback" >返回</span>
+        <span :class="myclassname"  @click="dogoback" ><img style="width: 90px;height: 78px" src="image/返回.png" ></span>
     `,
     methods: {
         dogoback(){
