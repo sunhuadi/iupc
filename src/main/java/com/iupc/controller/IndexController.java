@@ -144,6 +144,7 @@ public class IndexController {
     {
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
+        System.out.println(map.get("id")+"::"+map.get("variable"));
         return iis.delet(map.get("id"),map.get("variable"));
     }
 

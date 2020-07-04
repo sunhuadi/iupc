@@ -23,6 +23,7 @@
 <div th:insert="~{index::header}"></div>
 <div id="zixun_box">
     <gotoback></gotoback>
+    <delete delete_type="1" :delete_id="notes.note_id"></delete>
     <p class="zixun_title" >{{ notes.note_title }}</p>
 
     <hr style="border:none;left:0%;width: 100%;height:3px;position: absolute;top:10%;z-index:0;background-color: white"/>
@@ -79,12 +80,12 @@
         },
 
     });
-
+        var mynoteid=sessionStorage.getItem("mynoteid");
     axios.post('/getnotbyid', {
-        id:"0",
+        id:mynoteid,
     }).then(function (response) {
 
-        zixunvue.notes=response.data;
+        notevue.notes=response.data;
         console.log(response);
     })
         .catch(function (error) {

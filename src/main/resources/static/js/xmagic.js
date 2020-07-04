@@ -388,3 +388,26 @@ Vue.component("datapiece",
 
     }
 )
+Vue.component("delete",{
+    template:`
+        <span @click="dodelete">
+            删除
+        </span>`,
+    methods:{
+        dodelete(){
+            console.log("尝试删除"+this.delete_id+"::"+this.delete_type)
+            axios.post("/delet",{id:this.delete_id,variable:this.delete_type})
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+
+                })
+        }
+    },
+    props:{
+        delete_type:String,
+        delete_id:String,
+    }
+})
