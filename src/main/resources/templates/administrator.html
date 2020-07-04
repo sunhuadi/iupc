@@ -79,7 +79,7 @@
 
         },mounted(){
             that=this
-            axios.get('/getallnewsshow1')
+            axios.get('/getallnewsshow1',{variable:0,admin:1})
             .then(function (response) {//是返回的所有信息
                 console.log(response);
                 console.log(response.data)

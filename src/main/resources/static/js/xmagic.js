@@ -345,8 +345,8 @@ Vue.component("datapiece",
         template:`
         <table class="administrator_table">
             <tr :class="myclassname">
-        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{number}}</td>
-        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{dauthor}}</td>
+        <td class="zixun_td1">{{number}}</td>
+        <td class="zixun_td1">{{dauthor}}</td>
         <td class="zixun_td1">
             <span @click="checkcontent">点此查看</span>
         </td>

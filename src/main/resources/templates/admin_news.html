@@ -15,25 +15,35 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div th:insert="~{index::header}"></div>
+<div class="adminmenu">
+    <div class="admenuli"><a style="color:black" href="/admin_news">资讯审核</a></div>
+    <div class="admenuli"><a style="color:black" href="/admin_notes">笔记审核</a></div>
+    <div class="admenuli"><a style="color:black" href="/admin_shops">店铺管理</a></div>
+    <div class="admenuli"><a style="color:black" href="">资讯审核</a></div>
+</div>
 <div id="adminbox">
     <table class="admin_table">
 
+        <td class="zixun_td2">序号</td>
         <td class="zixun_td2">店家</td>
         <td class="zixun_td2">审核内容</td>
         <td class="zixun_td2">申请时间</td>
         <td class="zixun_td2">类型</td>
         <td class="zixun_td2">通过</td>
-        <td class="zixun_td2">不通过</td>
+        <td class="zixun_td2">驳回</td>
 
-        <datapiece v-for="item in admin"
-                   :did="'1'"
+        <datapiece v-for="(item,index) in news"
+                   :number="index+1"
+                   :myclassname="index%2==0?'zixun_tr':''"
+                   :did="item.news_id"
                    :dtype="'news'"
-                   :dauthor="item.shop"
-                   :dtime="item.time">
+                   :dauthor="item.news_author"
+                   :dtime="item.news_time"
+        >
         </datapiece>
 
 
@@ -43,140 +53,48 @@
 </body>
 <script src="js/xmagic.js" ></script>
 <script>
-    Vue.component("datapiece",
-        {
-            template:`
-<table class="administrator_table">
-            <tr class="zixun_tr">
-        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{dauthor}}</td>
-        <td class="zixun_td1">
-            <span @click="checkcontent">点此查看</span>
-        </td>
-        <td class="zixun_td1">{{dtime}}</td>
-        <td class="zixun_td1">{{dtype}}</td>
-        <td class="zixun_td1">
-            <button class="admin_button">通过</button>
-        </td>
-        <td class="zixun_td1">
-            <button class="admin_button">驳回</button>
-        </td>
-    </tr>  </table>     `,
-            props:{
-                dauthor:String,
-                dtime:String,
-                dtype:String,
-                did:String,
-            },
-            methods:{
-                checkcontent(){
-                    var tlink;
-                    switch (this.dtype) {
-                        case "news":
-                            tlink="/zxck";
-                            sessionStorage.setItem("mynews_id",this.did);
-                            break;
-                        case "note":
-                            tlink="/note";
-                            sessionStorage.setItem("mynote_id",this.did);
-                            break;
-                        case "goods":
-                            tlink="/note";
-                            sessionStorage.setItem("mynews_id",this.did);
-                            break;
-                    }
-                    console.log(tlink);
-                    window.location.href=tlink;
-                }
 
-            },
-
-        }
-    )
     var administrator=new Vue({
         el:"#adminbox",
         data:{
-            admin:[
-                {
-                    shop:"半糖奶绿",
-                    detail:"www.baidu.com/",
-                    time:"2020-7-1",
-                },
-                {
-                    shop:"二毛",
-                    detail:"https://www.baidu.com/",
-                    time:"2020-7-1",
-                },
-                {
-                    shop:"hope",
-                    detail:"https://www.baidu.com/",
-                    time:"2020-7-1",
-                },
-            ]
+            news:[]
 
+        },mounted(){
+            that=this
+            axios.post('/getallnewsshow1',{variable:0,admin:0})
+                .then(function (response) {//是返回的所有信息
+                    console.log(response);
+                    console.log(response.data)
+                    that.news=response.data[0]
+                    //response.length
+                })
+                .catch(function (error) {
+                    console.log(error);
+
+
+                });
+        },methods: {
+            pass:function () {
+                axios.post('/admin1', {
+                    admin:"1",
+                }).then(function (response) {
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            reject:function () {
+                axios.post('/admin1', {
+                    admin:"2",
+                }).then(function (response) {
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     })
 </script>
-<style>
-    #adminbox{
-        position: absolute;
-        /*left:12%;*/
-        top:11%;
-        width:75%;
-        left:20%;
-        height: 130%;
-        background: #f1f3f4;
-        /*border-radius: 30px;*/
-        margin-bottom: 100px;
-
-    }
-    .zixun_tr{
-        position: relative;
-        left:5%;
-        top:50%;
-        width: 80%;
-        height: 25%;
-        /*background-color: mediumpurple;*/
-        /*border-bottom:1px solid darkgray;*/
-    }
-    .zixun_td1{
-        width: 150px;
-        height: 45px;
-        font-size: 23px;
-        text-align: center;
-        background-color: #E9EBED;
-        border-bottom:1px solid darkgray;
-    }
-    .zixun_td2{
-        width: 150px;
-        height: 40px;
-        font-size: 25px;
-        text-align: center;
-        background-color: #E2E2E2;
-        border-bottom:1px solid darkgray;
-    }
-
-    .admin_table{
-        position: absolute;
-        left:5%;
-        width: 90%;
-        top:0%;
-
-        /*border-collapse:separate;*/
-        /*border-spacing:0px 40px;*/
-    }
-    .admin_button{
-        background-color:#e2e2e2;
-        border-radius: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        border: 2px solid lightgray;
-    }
-    .administrator_table{
-        position: relative;
-        top:4%;
-        left: 5%;
-        width: 90%;
-    }
-
-</style>
 </html>
