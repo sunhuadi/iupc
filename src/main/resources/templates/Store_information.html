@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="body">
+
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div id="zixun_box">
+    <gotoback></gotoback>
+    <div class="zixun_text">
+        <p class="store_title">店铺信息</p>
+        <table class="store_table">
+            <tr class="zixun_tr">
+                <td  style="text-align: right" class="zixun_tdd">基本信息</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td style="letter-spacing: 40px" class="zixun_td">头像:</td>
+                <td class="zixun_td1"><img class="store_img" src="image/dangmei1.jpg"></td>
+            </tr>
+            <tr class="zixun_tr">
+                <td style="letter-spacing: 40px" class="zixun_td">昵称:</td>
+                <td class="zixun_td1">{{ store_id }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td style="letter-spacing: 40px" class="zixun_td">性别:</td>
+                <td class="zixun_td1">{{ store_sex }}</td>
+            </tr>
+            <tr class="zixun_tr">
+                <td style="letter-spacing: 40px" class="zixun_td">邮箱:</td>
+                <td class="zixun_td1">{{ store_yx }}</td>
+            </tr>
+
+        </table>
+        <div class="store_zx">
+            <p style="text-align: center">店铺商品</p>
+            <news v-for="item in store_data" myclassname="news_sh2" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce" >
+            </news>
+
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+<script src="js/xmagic.js" ></script>
+<script>
+    var storevue= new Vue({
+        el:"#zixun_box",
+        data:{
+            store_img:"image/dangmei1.jpg",
+            store_id:"半糖奶绿",
+            store_sex:"女",
+            store_yx:"1470472144@qq.com",
+            store_data:[
+                {   text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+
+            ]
+
+        }
+    })
+</script>
+<style>
+    #zixun_box{
+        position: absolute;
+        left:14%;
+        top:11%;
+        width: 84%;
+        height: 200%;
+        background: #E3EFF9;
+        border-radius: 30px;
+        margin-bottom: 100px;
+    }
+    .zixun_text{
+        position: absolute;
+        left: 5%;
+        top:2%;
+        width: 90%;
+        height: 80%;
+        font-size:24px;
+        /*background-color: #FFF7ED;*/
+        padding: 30px;
+        border-radius: 30px;
+    }
+    .zixun_tr{
+        position: relative;
+        left:5%;
+        left:80%;
+        width: 300px;
+        height: 40px;
+        /*background-color: #1fc231;*/
+
+
+    }
+    .zixun_tr:hover{
+        color:#C97582;
+    }
+    .zixun_td{
+
+        width: 250px;
+        height: 35px;
+        margin: 8px;
+        /*background-color: #0d71bb;*/
+
+    }
+    .zixun_tdd{
+
+        width: 300px;
+        height: 35px;
+        margin: 8px;
+        /*background-color: #0d71bb;*/
+
+    }
+
+    .zixun_td1{
+         width: 250px;
+         height: 35px;
+         font-size: 23px;
+        /*background-color: pink;*/
+     }
+    .store_title{
+        position: absolute;
+        left: 0%;
+        top:1%;
+        width: 100%;
+        height: 7%;
+        /*background-color: mediumpurple;*/
+        text-align: center;
+        font-size: 32px;
+        border-bottom: 2px solid black;
+    }
+    .store_table{
+        position: absolute;
+        left:00%;
+        top:5%;
+        border-collapse:separate;
+        border-spacing:0px 60px;"
+    }
+    .store_img{
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+    }
+    .store_zx{
+        position: absolute;
+        left:45%;
+        top:10%;
+        width: 60%;
+        height: 80%;
+        /*margin-bottom: 50px;*/
+        /*background-color: #e8e2ff;*/
+    }
+    .news_sh2{
+        position: relative;
+        top:10%;
+        display: inline-block;
+        margin:20px;
+        width:90%;
+        display: inline-block;
+        background: #F8EDDB;
+        color: #6e6d71;
+    }
+</style>
+</html>
