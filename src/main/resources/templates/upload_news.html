@@ -200,15 +200,6 @@
                 alert("请检查是否有未填写内容！")
             }
 
-                let formData = new FormData();
-                formData.append('type', 'image/jpg');
-
-                console.log(picsuper.files.length)
-                for(var i=0;i<picsuper.files.length;i++)
-                {
-                    formData.append('myfile', picsuper.files[i]);
-                    console.log(picsuper.files[i])
-                }
             },
 
         }

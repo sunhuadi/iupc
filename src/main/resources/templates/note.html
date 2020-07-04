@@ -81,10 +81,10 @@
     });
 
     axios.post('/getnotbyid', {
-        id:noteid,
+        id:"0",
     }).then(function (response) {
 
-        notevue.notes=response.data;
+        zixunvue.notes=response.data;
         console.log(response);
     })
         .catch(function (error) {

@@ -47,6 +47,8 @@ public class IndexServiceImpl implements IIndexService {
 
         return ns.qurryAllNews();
     }
+
+
 @Autowired
 NotesMapper notesMapper;
     @Override
@@ -58,8 +60,32 @@ NotesMapper notesMapper;
         }else if(v.equals("1")){
             List<Object> objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
             return objList;
+        }else {
+            List<Object> objList= Collections.singletonList(ns.qurryGoodsBy(value));
+            return objList;
         }
-        return null;
+
+    }
+    @Override
+   public HashMap<String,String> delet(String id,String v){
+        HashMap<String,String> mp=new HashMap<>();
+
+        if(v.equals("0"))
+        {
+            ns.deletNewsByid(id);
+            mp.put("msg","删除一条资讯成功！");
+            return mp;
+        }else if(v.equals("1")){
+            notesMapper.deletNotesByid(id);
+            mp.put("msg","删除一条笔记成功！");
+            return mp;
+        }else {
+            ns.deletGoodsByid(id);
+            mp.put("msg","删除一个商品成功！");
+
+            return mp;
+        }
+
     }
 
     @Override

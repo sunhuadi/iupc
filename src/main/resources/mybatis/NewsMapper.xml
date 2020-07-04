@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iupc.Mapper.NewsMapper">
-
     <select id="qurryAllNews" resultType="News" >
         select * from news
     </select>
@@ -113,4 +112,28 @@ update news set
 news_show=#{news_show}
 where news_id=#{news_id}
 </update>
+<select id="qurryGoodsBy" resultType="Goods" parameterType="String">
+select * from goods
+where Goods_content like concat('%',#{value},'%')
+or  Goods_name like concat('%',#{value},'%')
+or  Goods_category like concat('%',#{value},'%')
+</select>
+<select id="qurryAllGoods" resultType="Goods" parameterType="String">
+select * from goods
+</select>
+    <delete id="deletNewsByid" parameterType="String">
+        delete from news
+        where news_id=#{id}
+        delete from news_pic
+        where news_id=#{id}
+    </delete>
+<delete id="deletGoodsByid" parameterType="String">
+    delete from goods
+    where goods_id=#{id}
+    delete from goods_pic
+    where good_id=#{id}
+    delete from good_num
+    where good_id=#{id}
+
+</delete>
 </mapper>
