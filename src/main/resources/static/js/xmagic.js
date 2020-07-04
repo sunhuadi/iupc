@@ -296,3 +296,95 @@ Vue.component("zzc",{
 </div>`,
 
 })
+Vue.component("datapiece",
+    {
+        template:`
+        <table class="administrator_table">
+            <tr :class="myclassname">
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{number}}</td>
+        <td style="letter-spacing: 10px;font-size:20px;text-align: center" class="zixun_td1">{{dauthor}}</td>
+        <td class="zixun_td1">
+            <span @click="checkcontent">点此查看</span>
+        </td>
+        <td class="zixun_td1">{{dtime}}</td>
+        <td class="zixun_td1">{{gettype}}</td>
+        <td class="zixun_td1">
+            <button class="admin_button" style="background: rgba(0,128,0,0.8)"  @click="pass">通过</button>
+        </td>
+        <td class="zixun_td1">
+            <button class="admin_button" style="background: rgba(128,0,0,0.8)" @click="reject">驳回</button>
+        </td>
+    </tr>  </table>  `,
+        props:{
+            dauthor:String,
+            dtime:String,
+            dtype:String,
+            did:String,
+            myclassname:String,
+            number:String,
+        },
+        computed:{
+            gettype(){
+                switch (this.dtype) {
+                    case "news":
+                        return "资讯";
+                        break;
+                    case "note":
+                        return "笔记";
+                        break;
+                    case "goods":
+                        return "商品";
+                        break;
+                }
+            }
+        },
+        methods:{
+            checkcontent(){
+                var tlink;
+                switch (this.dtype) {
+                    case "news":
+                        tlink="/zxck";
+                        sessionStorage.setItem("mynews_id",this.did);
+                        break;
+                    case "note":
+                        tlink="/note";
+                        sessionStorage.setItem("mynote_id",this.did);
+                        break;
+                    case "goods":
+                        tlink="/note";
+                        sessionStorage.setItem("mynews_id",this.did);
+                        break;
+                }
+                console.log(tlink);
+                window.location.href=tlink;
+            },pass:function () {
+
+                axios.post('/admin1', {
+                    admin:"1",
+                    id:this.did
+                }).then(function (response) {
+                    alert(response.data.msg)
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            reject:function () {
+                axios.post('/admin1', {
+                    admin:"2",
+                    id:this.did
+                }).then(function (response) {
+                    alert(response.data.msg)
+                    window.location.href="/admin";
+                    console.log(response);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+        },
+
+    }
+)
