@@ -1,9 +1,6 @@
 package com.iupc.Mapper;
 
-import com.iupc.pojo.News;
-import com.iupc.pojo.NewsPic;
-import com.iupc.pojo.Notes;
-import com.iupc.pojo.NotesPic;
+import com.iupc.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +22,8 @@ public interface NotesMapper {
     List<Notes> qurryAllNotesByShow(String show);
     void updataNotesByShow(String id ,String show);
     List<News> qurryAllNotesByFavor(String username,String v);
+
+    void insertNewsNote(NewsNotes newsNotes);
+    List<News> qurryNewsByNote(String note_id);
+    List<Notes> qurryNotesByNews(String news_id);
 }

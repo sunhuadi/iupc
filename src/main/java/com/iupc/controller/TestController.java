@@ -48,6 +48,14 @@ public class TestController {
     }
 
     @ResponseBody
+    @GetMapping("/testq/{id}")//
+    public Notes testq( @PathVariable("id") String id)
+    {
+
+        return indexService.getNotesById(id);
+    }
+
+    @ResponseBody
     @GetMapping("/testShow/{v}/{admin}")//可扩展到其他方面
     public List<Object> indexshow1(@PathVariable("v") String v, @PathVariable("admin") String admin)
     {

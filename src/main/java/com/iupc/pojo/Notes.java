@@ -2,6 +2,7 @@ package com.iupc.pojo;
 
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Notes {
 
@@ -15,6 +16,15 @@ public class Notes {
     private String note_title;//笔记标题
 
     private String note_img;
+    private List<News> newsList;
+
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
+    }
 
     public String[] getNote_pic() {
         return note_pic;

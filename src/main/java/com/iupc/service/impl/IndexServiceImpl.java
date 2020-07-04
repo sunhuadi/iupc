@@ -205,6 +205,9 @@ NotesMapper notesMapper;
         if(pic!=null)
         news.setNews_pic(pic);
 
+        List<Notes> list=notesMapper.qurryNotesByNews(value);
+        if (list!=null)
+        news.setNotesList(list);
         return news;
     }
 
@@ -214,7 +217,11 @@ NotesMapper notesMapper;
     {
         Notes note=notesMapper.qurryNoteById(id);
         note.setNote_pic(notesMapper.qurryNotePicbyId(id));
-
+        List<News> list=notesMapper.qurryNewsByNote(id);
+        if(list!=null)
+        {
+            note.setNewsList(list);
+        }
         return note;
     }
 
