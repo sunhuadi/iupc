@@ -308,7 +308,7 @@ public Shop getAllinformationByShopid(String id)
         for(int i=0;i< min(key.length,3);i++)
         {
             System.out.println(key[i]);
-            list.addAll(getAllBysearch(key[i],v));
+            list.addAll(getAllBysearch(key[i],v).subList(0,3));
         }
     return list;
     }
