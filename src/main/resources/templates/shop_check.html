@@ -26,6 +26,11 @@
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
 <div id="shopcheck_box">
+    <div>
+        <gotoback></gotoback>
+        <delete delete_type="0" :delete_id="id"></delete>
+        <span @click="favor()">收藏</span>
+    </div>
     <img :src="goods.goods_picture" class="shopcheck_pic">
 
     <div class="shopcheck_text">
@@ -80,6 +85,7 @@
     var shopcheck_vue=new Vue({
         el:"#shopcheck_box",
         data:{
+            id:"",
             nowsize:null,
             nowcolor:null,
             colorlist:[],
@@ -108,6 +114,17 @@
                         console.log(error);
                     });
             },
+            favor(){
+                axios.post("/favor",{id:this.id,variable:2})
+                    .then(function (response) {
+                        console.log("收藏成功");
+                        alert("收藏成功");
+                    })
+                    .catch(function (error) {
+                        console.log("收藏成功");
+                        console.log(error);
+                    })
+            },
             changecolor:function () {
                 that=this
                 console.log("发送请求，获取数目！"+ that.nowsize+that.nowcolor)
@@ -132,6 +149,7 @@
         }
     })
     var mygoodid=sessionStorage.getItem("mygoodsid");
+    shopcheck_vue.id=sessionStorage.getItem("mygoodsid");
     console.log("正在发送请求！")
     axios.post('/getonegoods', {
         id:mygoodid,

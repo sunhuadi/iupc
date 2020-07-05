@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>搜索结果</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body>
-
+<body class="body">
+<div th:insert="~{index::header}"></div>
+<div th:insert="~{index::tourist}"></div>
+<div class="mainframe">
+    <h1 class="mainframe_title"> 收藏夹 </h1>
+    <div class="srtourist">
+        <span> <a class="unacrs" href="/favorite_news">资讯</a> </span>
+        /<span> <a class="unacrs" href="/favorite_note">笔记</a> </span>
+        /<span> <a class="acrs" href="/favorite_goods">商品</a> </span>
+    </div>
+    <span class="shrs" id="search_goods">
+        <goods v-for="item in datas"
+              myclassname="zxi"
+              :goods_title="item.goods_name"
+              :goods_id="item.goods_id"
+              :goods_img="item.goods_picture"
+              :goods_time="item.goods_time"
+              :goods_content="item.goods_content">
+        </goods>
+    </span>
+</div>
 </body>
+<style>
+
+</style>
+<script src="js/pic_box.js" ></script>
+<script src="js/xmagic.js" ></script>
+<script >
+    var fvue=new Vue({
+        el:"#search_goods",
+        data:{
+            datas:[]
+        }
+    })
+    axios.post("/getfavor",{variable:2}).then(
+        function (response) {
+            fvue.datas=null;
+            fvue.datas=response.data[0];
+            console.log(fvue.datas);
+        }).catch(function (error) {
+            console.log(error);
+        }
+    )
+</script>
+
 </html>
