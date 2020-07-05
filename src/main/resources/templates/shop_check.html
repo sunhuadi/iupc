@@ -131,10 +131,10 @@
             }
         }
     })
-    var mynewsid=sessionStorage.getItem("mynews_id");
+    var mygoodid=sessionStorage.getItem("mygoodsid");
     console.log("正在发送请求！")
     axios.post('/getonegoods', {
-        id:"1",
+        id:mygoodid,
     }).then(function (response) {
         var datas=response.data;
         console.log(response)

@@ -25,19 +25,19 @@
     <h1 style="z-index:10" class="mainframe_title"> 搜索结果 </h1>
     <div class="srtourist">
         <span> <a class="unacrs" href="/search_result">资讯</a> </span>
-        /<span> <a class="acrs" href="/searchnote">笔记</a> </span>
-        /<span> <a class="unacrs" href="/search_result">商品</a> </span>
+        /<span> <a class="unacrs" href="/searchnote">笔记</a> </span>
+        /<span> <a class="acrs" href="/searchgoods">商品</a> </span>
     </div>
-    <div class="shrs" id="search_note">
-        <note
-                v-for="item in search_note_data"
+    <div class="shrs" id="search_goods">
+        <goods
+                v-for="item in search_goods_data"
                 myclassname="zxi"
-                :note_title="item.goods_name"
-                :note_id=item.goods_id
-                :note_img="item.goods_picture"
-                :note_time="item.goods_time"
-                :note_content="item.goods_content">
-        </note>
+                :goods_title="item.goods_name"
+                :goods_id=item.goods_id
+                :goods_img="item.goods_picture"
+                :goods_time="item.goods_time"
+                :goods_content="item.goods_content">
+        </goods>
     </div>
          </span>
 </div>
@@ -48,19 +48,19 @@
 <script src="js/xmagic.js" ></script>
 <script >
     var search_kw=sessionStorage.getItem("search_keyword");
-    var searchnotevue=new Vue({
-        el:"#search_note",
+    var searchgoodsvue=new Vue({
+        el:"#search_goods",
         data:{
-            search_note_data:[]
+            search_goods_data:[]
         }
     })
 
     console.log(search_kw);
     axios.post('/search', {value:"测试",variable: "2"})
         .then(function (response) {
-            searchnotevue.search_note_data=null
-            searchnotevue.search_note_data=response.data[0];
-            console.log(searchnotevue.search_note_data)
+            searchgoodsvue.search_goods_data=null
+            searchgoodsvue.search_goods_data=response.data[0];
+            console.log(searchgoodsvue.search_goods_data)
         }).catch(
         function (error) {
             console.log(error);

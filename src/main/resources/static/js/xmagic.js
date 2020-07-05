@@ -330,6 +330,40 @@ Vue.component("note",{
         }
     }
 })
+Vue.component("goods",{
+    template:`
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="goods_img" />
+        <div class="zxi_text">
+        <p class="zxi_title" @click="readthisgoods" >{{ goods_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ goods_time }}</p>
+        </div>
+        </div>`,
+    props:{
+        goods_title:String,
+        goods_id:String,
+        goods_time:String,
+        goods_img:String,
+        goods_content:String,
+        myclassname:String,
+    },
+    computed:{
+        shortifycontent(){
+            if(this.goods_content.length<=150)
+                return this.goods_content;
+            else
+                return this.goods_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisgoods()
+        {
+            sessionStorage.setItem("mygoodsid",this.goods_id);
+            window.location.href="/shopcheck";
+        }
+    }
+})
 Vue.component("zzc",{
     template:` <div 
  style="position:absolute;
