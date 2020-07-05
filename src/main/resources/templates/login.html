@@ -127,6 +127,7 @@
                                 console.log(response.data.username)
                                 console.log(response.data.img);
                                 sessionStorage.setItem("username",response.data.username);
+                                sessionStorage.setItem("userid",that.userid);
                                 sessionStorage.setItem("realname",response.data.name);
                                 sessionStorage.setItem("img",response.data.img);
                                 sessionStorage.setItem("role",response.data.role);

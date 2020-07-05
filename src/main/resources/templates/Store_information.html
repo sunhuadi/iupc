@@ -21,26 +21,42 @@
 
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
-<div class="mainframe" id="storea_box">
-    <gotoback></gotoback>
+<div class="mainframe" id="store_box" style="overflow: auto">
+    <p class="store_title">店铺信息</p>
     <div class="store_text">
-        <p class="store_title">店铺信息</p>
         <table class="store_table">
             <tr class="store_tr">
-
+                <td style="letter-spacing: 2px" class="store_td">店铺头像</td>
                 <td class="store_td1"><img class="store_img" src="image/dangmei1.jpg"></td>
-                <td style="letter-spacing: 2px" class="store_td">{{ store_id }}<br><br>店铺邮箱：{{ store_yx }}</td>
             </tr>
-
-
+            <tr class="store_tr">
+                <td style="letter-spacing: 2px" class="store_td">店铺名</td>
+                <td style="letter-spacing: 2px" class="store_td">{{ store_name}}</td>
+            </tr>
+            <tr class="store_tr">
+                <td style="letter-spacing: 2px" class="store_td">开店时间</td>
+                <td style="letter-spacing: 2px" class="store_td">{{ store_time}}</td>
+            </tr>
+            <tr class="store_tr">
+                <td style="letter-spacing: 2px" class="store_td">店铺邮箱</td>
+                <td style="letter-spacing: 2px" class="store_td">{{store_yx}}</td>
+            </tr>
         </table>
-        <div class="store_zx">
-            <news v-for="item in store_data" myclassname="news_sh2" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce" >
-            </news>
-
+        <div class="dpjj">
+            <div style="text-align: center;font-size: 25px;">店铺简介</div>
+            <hr />
+            <div style="font-size: 20px;margin:20px 40px 0 40px;">{{ store_intro }}</div>
         </div>
-
-
+        <div class="store_zx">
+            <goods v-for="item in store_data"
+                   myclassname="zxi"
+                   :goods_title="item.goods_name"
+                   :goods_id="item.goods_id"
+                   :goods_img="item.goods_picture"
+                   :goods_time="item.goods_time"
+                   :goods_content="item.goods_content" >
+            </goods>
+        </div>
     </div>
 </div>
 
@@ -48,98 +64,78 @@
 <script src="js/xmagic.js" ></script>
 <script>
     var storevue= new Vue({
-        el:"#storea_box",
+        el:"#store_box",
         data:{
             store_img:"image/dangmei1.jpg",
             store_id:"半糖奶绿",
-            store_sex:"女",
+            store_name:"女",
+            store_time:"",
             store_yx:"1470472144@qq.com",
-            store_data:[
-                {   text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg",
-                    zt:"驳回",
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg",
-                    zt:"驳回",
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg",
-                    zt:"驳回",
-
-                },
-                {
-                    text_fbtime:"5月20日13：15",
-                    title: "闲乘月",
-                    text_shop:"Sumire-栗米JK馆",
-                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
-                    piclist:"image/note_pic_1.jpg",
-                    zt:"驳回",
-
-                },
-
-
-            ]
-
+            store_intro:"",
+            store_data:[]
         }
+    })
+    var un=sessionStorage.getItem("userid");
+    console.log(un);
+    axios.post("/showshop",{id:un}).then(function (response) {
+        console.log(response)
+        storevue.store_id=response.data.shop_id;
+        storevue.store_name=response.data.shop_name;
+        storevue.store_name=response.data.shop_name;
+        storevue.store_time=response.data.shop_atime;
+        storevue.store_intro=response.data.shop_introduce;
+        storevue.store_data=response.data.goodsList;
+    }).catch(function (error) {
+        console.log(error)
     })
 </script>
 <style>
-    #zixun_box{
+    .dpjj{
+        position: relative;
+        top:400px;
+        width: 80%;
+        left:10%;
+        border: outset #c5ceed 3px;
+        border-radius: 5px;
+        min-height:300px;
+        background: rgba(128,128,155,0.5);
+    }
+    #store_box{
         position: absolute;
         left:14%;
         top:11%;
         width: 84%;
         height: 200%;
-        background: #E3EFF9;
+        overflow: auto;
         border-radius: 30px;
         margin-bottom: 100px;
     }
     .store_text{
         position: absolute;
         left: 5%;
-        top:2%;
+        top:0;
         width: 90%;
         height: 80%;
         font-size:24px;
-        /*background-color: black;*/
         padding: 30px;
         border-radius: 30px;
     }
     .store_tr{
         position: relative;
+        margin:5px;
         left:5%;
-        /*left:80%;*/
-        /*width: 200px;*/
-        height: 40px;
+        margin:10px;
+        height: 50px;
         /*background-color: pink;*/
-
-
     }
     .store_tr:hover{
         color:#C97582;
     }
     .store_td{
-
+        margin: 0;
         width: 150px;
         height: 35px;
-        margin: 8px;
-        /*background-color: #0d71bb;*/
-
     }
-
     .store_td1{
          width: 50px;
          height: 35px;
@@ -149,45 +145,32 @@
     .store_title{
         position: absolute;
         left: 0%;
-        top:1%;
+        top:1px;
         width: 100%;
-        height: 10%;
-        /*background-color: mediumpurple;*/
+        height:40px;
         text-align: center;
-        font-size: 32px;
+        font-size: 30px;
         border-bottom: 2px solid black;
     }
     .store_table{
         position: absolute;
         left:25%;
         width: 50%;
-        top:5%;
-        border-collapse:separate;
-        border-spacing:0px 60px;
-        /*background-color: #1fc231;*/
+        top:100px;
     }
     .store_img{
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         border-radius: 100px;
     }
     .store_zx{
         position: absolute;
         left:0%;
-        top:50%;
-        width: 125%;
-        height: 80%;
-        /*margin-bottom: 50px;*/
-        /*background-color: #e8e2ff;*/
+        top:800px;
+        width:100%;
+        border: outset gray 2px;
+        background-color: rgba(128,128,140,0.5);
     }
-    .news_sh2{
-        position: relative;
-        display: inline-block;
-        margin:20px;
-        width:37%;
-        display: inline-block;
-        background: #F8EDDB;
-        color: #6e6d71;
-    }
+
 </style>
 </html>

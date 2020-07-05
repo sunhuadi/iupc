@@ -46,8 +46,6 @@
             search_note_data:[]
         }
     })
-
-    console.log(search_kw);
     axios.post('/search', {value:"jk",variable: "1"})
         .then(function (response) {
             searchnotevue.search_note_data=null
