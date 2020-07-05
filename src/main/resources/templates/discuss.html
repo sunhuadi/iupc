@@ -45,9 +45,10 @@
 
     <div class="comment_area">
         <img src="image/dangmei2.jpg" class="discuss_img">
-        <textarea class="discuss_textarea" ></textarea>
-        <p class="hfxx">{{ '回复:'+answer_name+'的评论'+answer_id }}</p>
-        <button class="discuss_button">评论</button>
+        <textarea v-model="content" class="discuss_textarea" ></textarea>
+        <p class="hfxx">{{isanswer?'回复:'+answer_name+'的评论'+answer_id:'发表评论' }}</p>
+        <span class="pldx">评论店家 <input type="checkbox" v-model="isanswer"/> </span>
+        <button @click="submitd()" class="discuss_button">评论</button>
     </div>
 </div>
 
@@ -92,11 +93,31 @@
             ],
             answer_id:"",
             answer_name:"",
+            isanswer:false,
+            content:"",
         },
         methods:{
             answerto(id,name){
                 this.answer_id=id;
                 this.answer_name=name;
+                this.isanswer=true;
+            },
+            submitd(){
+                var dc={
+                    content:this.content,
+                    answerto:this.answer_id,
+                    shopid:"1",
+                }
+                dc.answerto=this.isanswer?this.answer_id:"-1";
+                let formdata=new FormData;
+                formdata.append("discuss",JSON.stringify(dc));
+                axios.post("/uploaddiscuss",formdata).then(function (response) {
+                    console.log("成功")
+                    console.log(response)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+
             }
 
         }
@@ -110,6 +131,11 @@
     })
 </script>
 <style>
+    .pldx{
+        position: absolute;
+        bottom:40px;
+        left:40px;
+    }
     .discuss_area{
         height:58%;
         background: #FDFDF7;
@@ -120,8 +146,9 @@
     .hfxx{
         position: absolute;
         left:0px;
+        text-align: center;
         bottom: 60px;
-        height:40px;
+        height:60px;
         width: 180px;
         background: #FFF7ED;
     }
