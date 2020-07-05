@@ -34,8 +34,8 @@ public class UploadServicImpl implements IUploadService {
 
         HashMap<String,String> mp=new HashMap<String,String>();
 
-            String path = fileUtil.uploadFile(file);
-            news.setNews_img("http://39.97.113.33/"+path);
+        String path = fileUtil.uploadFile(file);
+        news.setNews_img("http://39.97.113.33/"+path);
         System.out.println(news.getNews_img());
         String id=Integer.toString(nm.getNewsNumber()+1);
         news.setNews_id(id);
@@ -44,6 +44,11 @@ public class UploadServicImpl implements IUploadService {
         news.setNews_time(time);
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
+        if(currentUser==null)
+        {
+            mp.put("msg","请先登陆！");
+            return mp;
+        }
         news.setNews_author(currentUser.getUsername());
         nm.insertNews(news);
 
@@ -92,6 +97,8 @@ public class UploadServicImpl implements IUploadService {
     public HashMap<String,String> upload_note(MultipartFile[] files, MultipartFile file, Notes note,List<NewsNotes> newsNotesList) throws IOException{
 
         HashMap<String,String> mp=new HashMap<String,String>();
+
+
          //头像
         String path = fileUtil.uploadFile(file);
         note.setNote_img("http://39.97.113.33/"+path);
@@ -101,6 +108,19 @@ public class UploadServicImpl implements IUploadService {
         String id=Integer.toString((notesMapper.getNotesNumber()+1));
         System.out.println(id);
         note.setNote_id(id);
+
+//关联关系
+        for(int i=0;i<newsNotesList.size();i++)
+        {
+            if(nm.qurryNewsById(newsNotesList.get(i).getNews_id())==null)
+            {
+                mp.put("msg","资讯"+newsNotesList.get(i).getNews_id()+"不存在，请重新填写！");
+                return mp;
+            }
+            System.out.println(id);
+            newsNotesList.get(i).setNote_id(id);
+            notesMapper.insertNewsNote(newsNotesList.get(i));
+        }
         //时间
         Timestamp time = new Timestamp(new Date().getTime());
         System.out.println("当前时间为:"+time);
@@ -109,6 +129,11 @@ public class UploadServicImpl implements IUploadService {
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
         note.setNote_author(currentUser.getUsername());
+        if(currentUser==null)
+        {
+            mp.put("msg","请先登陆！");
+            return mp;
+        }
         notesMapper.insertNotes(note);
         System.out.println(files.length);
         for(int i=0;i<files.length;i++){
@@ -121,12 +146,6 @@ public class UploadServicImpl implements IUploadService {
                 notesMapper.insertNotesPic(new NotesPic(note.getNote_id(),"http://39.97.113.33/"+path));
             }
             System.out.println("http://39.97.113.33/"+path);
-        }
-        for(int i=0;i<newsNotesList.size();i++)
-        {
-            System.out.println(id);
-            newsNotesList.get(i).setNote_id(id);
-            notesMapper.insertNewsNote(newsNotesList.get(i));
         }
         mp.put("msg","上传成功");
         return mp;
@@ -150,8 +169,14 @@ public class UploadServicImpl implements IUploadService {
 
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
-        good.setGoods_shopid(currentUser.getUsername());
 
+
+        if(currentUser==null)
+        {
+            mp.put("msg","请先登陆！");
+            return mp;
+        }
+        good.setGoods_shopid(usersMapper.getShopByName(currentUser.getUsername()).getShop_id());//设置用户对应的账户id
         System.out.println(files.length);
         for(int i=0;i<files.length;i++){
             if(files[i].isEmpty()){
@@ -188,25 +213,33 @@ public class UploadServicImpl implements IUploadService {
         {
             discussContent.setAnswerto("-1");//代表一级讨论信息
         }
-
+        HashMap<String,String> mp=new HashMap<String,String>();
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
+        if(currentUser==null)
+        {
+            mp.put("msg","请先登陆！");
+            return mp;
+        }
         discussContent.setPubuser_id(currentUser.getUsername());
         Timestamp time = new Timestamp(new Date().getTime());
         discussContent.setPubtime(time);
         System.out.println(discussContent.getContent());
         usersMapper.insertDiscuss(discussContent);
-
-        HashMap<String,String> mp=new HashMap<String,String>();
         mp.put("msg","上传成功！");
         return mp;
-
     }
 
     public HashMap<String,String> applyshop(MultipartFile file, Shop shop) throws IOException{
+        HashMap<String,String> mp=new HashMap<String,String>();
         shop.setShop_id(Integer.toString(usersMapper.getMaxShopid()+1));
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
+        if(currentUser==null)
+        {
+            mp.put("msg","请先登陆！");
+            return mp;
+        }
         usersMapper.updateUserRole(currentUser);
         //shop.setUsername(currentUser.getUsername());
         shop.setUsername(currentUser.getUsername());
@@ -215,7 +248,6 @@ public class UploadServicImpl implements IUploadService {
         Timestamp time = new Timestamp(new Date().getTime());
         System.out.println("当前时间为:"+time);
         shop.setShop_atime(time);
-        HashMap<String,String> mp=new HashMap<String,String>();
         usersMapper.insertShop(shop);
         mp.put("msg","上传成功！");
         return mp;

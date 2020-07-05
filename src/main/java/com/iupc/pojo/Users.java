@@ -1,11 +1,40 @@
 package com.iupc.pojo;
 
+import java.sql.Timestamp;
+
 public class Users {
     private String username;//登录名
     private String password;//密码
     private String portrait;//头像
     private String role;//身份
     private String showname;//昵称
+    private String realname;
+    private String email;
+    private Timestamp birthday;
+
+    public Timestamp getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Timestamp birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getShowname() {
         return showname;

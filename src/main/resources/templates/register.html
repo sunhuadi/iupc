@@ -35,6 +35,28 @@
         <!--<input type="text" name="name">-->
         <br>
     </div>
+    <div class="username">
+        <br>
+        <span class="register_span"> 真实姓名 </span>
+        <input class="name" type="text" placeholder="" v-model="user.realname" >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
+    <div class="username">
+        <br>
+        <span class="register_span"> 出生日期 </span>
+        <input  v-model="user.birthday" type="date" class="upinput"  >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
+
+    <div class="username">
+        <br>
+        <span class="register_span"> 你的邮箱 </span>
+        <input class="name" type="email" placeholder="" v-model="user.email" >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
     <div class="passw1">
         <span class="register_span">请设置密码</span>
         <input type="password" class="password1" v-model="user.password">
@@ -71,6 +93,9 @@
                 username:null,
                 password: null,
                 showname:null,
+                realname:null,
+                email:null,
+                birthday:null
             },
             repassword:null,
             //role:"",
@@ -87,7 +112,11 @@
             },
             zhuce:function () {let formData = new FormData();
                 that=this
-                if(that.user.username!=null&&that.user.password!=null&& that.user.showname!=null&&that.repassword!=null&&picuper.files[0]!=null)
+                if(that.user.username!=null&&that.user.password!=null&& that.user.showname!=null&&that.repassword!=null&&picuper.files[0]!=null&&
+                    that.user.realname!=null&&
+                    that.user.email!=null&&
+                    that.user.birthday!=null
+                )
                 {
                     if(that.user.password==that.repassword)
                     {
@@ -116,7 +145,7 @@
                             })
                     }
                     else {
-                        alert("两次输入密码错误，请重试!")
+                        alert("两次输入密码不一致，请重试!")
                     }
                 }
                 else{
