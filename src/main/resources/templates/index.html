@@ -87,10 +87,31 @@
     <p class="zx_box_title">热门资讯
     </p>
     <div id="zx_box_1">
-        <news  v-for="item in zxall" myclassname="zxi" :news_title="item.news_title" :news_id=item.news_id :news_img="item.news_img" :news_time="item.news_time" :news_content="item.news_content">
+        <news  v-for="item in zxall"
+               myclassname="zxi"
+               :news_title="item.news_title"
+               :news_id=item.news_id
+               :news_img="item.news_img"
+               :news_time="item.news_time"
+               :news_content="item.news_content">
         </news>
     </div>
 </div>
+
+<div id="zx_box1">
+    <p class="zx_box_title">笔记
+    </p>
+    <div id="zx_box_2">
+        <note  v-for="item in zxall" myclassname="zxi"
+               :note_title="item.note_title"
+               :note_id=item.note_id
+               :note_img="item.note_img"
+               :note_time="item.note_time"
+               :note_content="item.note_content">
+        </note>
+    </div>
+</div>
+
 <script>
     var picboxvue=new Vue({
         el:"#ads",
