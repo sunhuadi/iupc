@@ -32,7 +32,7 @@
         </p>
         <p class="loginrow">
             <button class="xbutton_login" @click="denglu" >登陆</button>
-            <button class="xbutton_login" >注册</button>
+            <button class="xbutton_login" @click="register" >注册</button>
         </p>
     </div>
     <div class="loginads">
@@ -98,6 +98,10 @@
 //user:null,
 // msg:sessionStorage.getItem("msg"),
         }, methods:{
+            register()
+            {
+                window.location.href="/register";
+            },
             denglu:function () {
                 console.log(this.userid)
                 console.log(this.role)

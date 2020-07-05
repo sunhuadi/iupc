@@ -49,7 +49,7 @@ var tourist_vue= new Vue(
                     isshow:false,
                     slcontent:[
                         {name:"进入店铺",link:"Store_information"},
-                        {name:"店铺管理",link:""},
+                        {name:"申请店铺",link:"/applyshop"},
                     ]
                 },
                 {content:"店家专属",
@@ -65,6 +65,13 @@ var tourist_vue= new Vue(
                     slcontent:[
                         {name:"我的消息",link:""},
                         {name:"账号信息",link:"person_information"},
+                    ]
+                },
+                {content:"管理网站",
+                    isshow:false,
+                    slcontent:[
+                        {name:"审核笔记",link:"admin_news"},
+                        {name:"审核资讯",link:"admin_notes"},
                     ]
                 },
                 {content:"敬请期待",
@@ -441,24 +448,50 @@ Vue.component("datapiece",
                 }
                 window.location.href=tlink;
             },pass:function () {
-
-                axios.post('/admin1', {
+                var dc={
                     admin:"1",
-                    id:this.did
-                }).then(function (response) {
+                    id:this.did,
+                    variable:""
+                };
+                switch (this.dtype) {
+                    case "news":
+                        dc.variable="0";
+                        break;
+                    case "note":
+                        dc.variable="1";
+                        break;
+                    case "goods":
+                        dc.variable="2";
+                        break;
+                }
+                axios.post('/admin1', dc).then(function (response) {
                     alert(response.data.msg)
+                    window.location.href="/admin_news";
                 })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
             reject:function () {
-                axios.post('/admin1', {
+                var dc={
                     admin:"2",
-                    id:this.did
-                }).then(function (response) {
+                    id:this.did,
+                    variable:""
+                };
+                switch (this.dtype) {
+                    case "news":
+                        dc.variable="0";
+                        break;
+                    case "note":
+                        dc.variable="1";
+                        break;
+                    case "goods":
+                        dc.variable="2";
+                        break;
+                }
+                axios.post('/admin1', dc).then(function (response) {
                     alert(response.data.msg)
-                    window.location.href="/admin";
+                    window.location.href="/admin_news";
                 })
                     .catch(function (error) {
                         console.log(error);

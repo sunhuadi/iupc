@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>搜索结果</title>
+    <title>笔记</title>
     <link th:href="@{css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{css/iupc.css}" rel="stylesheet">
     <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
@@ -21,7 +21,7 @@
 <div th:insert="~{index::header}"></div>
 <div th:insert="~{index::tourist}"></div>
 <div class="mainframe">
-    <h1 class="mainframe_title"> 搜索结果 </h1>
+    <h1 class="mainframe_title"> Lolita笔记 </h1>
     <div class="shrs" id="search_note">
         <note
                 v-for="item in search_note_data"

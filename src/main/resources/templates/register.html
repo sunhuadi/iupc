@@ -23,28 +23,27 @@
 <body class="body">
 <div class="mainframe_register" id="register">
     <div class="username">
-        <span class="register_span">设置用户名</span>
-        <input class="name" type="text" placeholder="" v-model="user.username" >
+        <span class="uplabel">登录账号</span>
+        <input class="upinput" type="text" placeholder="" v-model="user.username" >
         <!--<input type="text" name="name">-->
         <br>
     </div>
     <br>
     <div class="username">
-        <span class="register_span">请设置昵称</span>
-        <input class="name" type="text" placeholder="" v-model="user.showname" >
+        <span class="uplabel">设置昵称</span>
+        <input class="upinput" type="text" placeholder="" v-model="user.showname" >
+        <br>
+    </div>
+    <div class="username">
+        <br>
+        <span class="uplabel"> 真实姓名 </span>
+        <input class="upinput" type="text" placeholder="" v-model="user.realname" >
         <!--<input type="text" name="name">-->
         <br>
     </div>
     <div class="username">
         <br>
-        <span class="register_span"> 真实姓名 </span>
-        <input class="name" type="text" placeholder="" v-model="user.realname" >
-        <!--<input type="text" name="name">-->
-        <br>
-    </div>
-    <div class="username">
-        <br>
-        <span class="register_span"> 出生日期 </span>
+        <span class="uplabel"> 出生日期 </span>
         <input  v-model="user.birthday" type="date" class="upinput"  >
         <!--<input type="text" name="name">-->
         <br>
@@ -52,24 +51,24 @@
 
     <div class="username">
         <br>
-        <span class="register_span"> 你的邮箱 </span>
-        <input class="name" type="email" placeholder="" v-model="user.email" >
+        <span class="uplabel"> 你的邮箱 </span>
+        <input class="upinput" type="email" placeholder="" v-model="user.email" >
         <!--<input type="text" name="name">-->
         <br>
-    </div>
-    <div class="passw1">
-        <span class="register_span">请设置密码</span>
-        <input type="password" class="password1" v-model="user.password">
+    </div><br>
+    <div class="username">
+        <span class="uplabel">设置密码</span>
+        <input type="password" class="upinput" v-model="user.password">
         <br>
-    </div>
-    <div class="passw2">
-        <span class="register_span">请确认密码</span>
-        <input type="password" class="password2"  v-model="repassword">
+    </div><br>
+    <div class="username">
+        <span class="uplabel">确认密码</span>
+        <input type="password" class="upinput"  v-model="repassword">
         <br>
     </div>
     <div class="upimg">
         <p class="upfile" >
-            <label class="uplabel">上传封面</label>
+            <label class="uplabel">上传头像</label>
             <input type="file"  id="picuper" class="upinput" @change="changepic()" accept="image/jpg" >
         </p>
         <div class="previewer1">
@@ -77,12 +76,8 @@
         </div>
 
 </div>
-    <div>
+    <div style="left:47%;position: absolute;bottom:300px;">
         <button style="background-color: #FDEDED; height:60px;width:70px;margin-top:80px;font-size: 25px; display: inline-block" class="regibutton" @click="zhuce">注册</button>
-    </div>
-    <div class="return">
-        <img style="width: 90px;height: 78px" src="image/返回.png" >
-        <span style="font-size: 20px;color: #557496">返回</span>
     </div>
 </div>
 <script>
@@ -135,6 +130,7 @@
                             if(res.data.code=="0")
                             {
                                 alert(res.data.msg)
+                                window.location.href="/login"
                             }
                             else {
                                 alert(res.data.msg)
@@ -170,6 +166,25 @@
         width: 150px;
         margin: 0;
     }
+    .upp{
+        position: relative;
+        margin:0;
+        margin-top:20px;
+        height:40px;
+        left:10%;
+    }
+    .uplabel{
+        width: 120px;
+        font-size:22px;
+    }
+    .upinput{
+        height:40px;
+        font-size: 18px;
+        width:450px;
+        border-radius: 10px;
+        font-family: "微软雅黑 Light";
+        font-weight: bolder;
+    }
     .previewers{
         height:480px;
         left:10%;
@@ -193,7 +208,7 @@
     }
     .username{
         position: relative;
-        top:200px;
+        top:100px;
         left: 42%;
     }
     .passw1{
@@ -208,8 +223,8 @@
     }
     .upimg{
         position: relative;
-        top:260px;
-        left: 35%;
+        top:150px;
+        left:30%;
     }
     .usertype{
         position: relative;
@@ -219,7 +234,7 @@
     .regibutton{
         position: relative;
         left:48%;
-        top:310px;
+        top:270px;
         border-radius: 4px;
         border: 2px solid #FAE3EA;
     }

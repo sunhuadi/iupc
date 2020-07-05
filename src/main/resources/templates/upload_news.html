@@ -187,6 +187,7 @@
                         .then(res => {
                             console.log("成功！")
                             alert(res.data.msg)
+                            window.location.href="/"
                         })
                         .catch(err => {
                             alert(res.data.msg)

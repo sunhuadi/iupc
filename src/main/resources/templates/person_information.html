@@ -26,24 +26,26 @@
     <div class="zixun_text">
         <p class="person_title">个人信息</p>
         <table class="store_table">
-
-            <tr class="personinfo">
-                <td style="letter-spacing: 40px" class="zixun_td">头像:</td>
-                <td class="zixun_td1"><img class="person_img" src="image/dangmei1.jpg"></td>
+            <tr class="store_tr">
+                <td class="store_td">头像</td>
+                <td class="store_td1"><img class="store_img" :src="user.portrait"></td>
             </tr>
-            <tr class="personinfo">
-                <td style="letter-spacing: 40px" class="zixun_td">昵称:</td>
-                <td class="zixun_td1">{{ person_id }}</td>
+            <tr class="store_tr">
+                <td  class="store_td">昵称:</td>
+                <td class="store_td1">{{ user.showname }}</td>
             </tr>
-            <tr class="personinfo">
-                <td style="letter-spacing: 40px" class="zixun_td">性别:</td>
-                <td class="zixun_td1">{{ person_sex }}</td>
+            <tr class="store_tr">
+                <td  class="store_td">出生日期</td>
+                <td class="store_td1">{{ user.birthday }}</td>
             </tr>
-            <tr class="personinfo">
-                <td style="letter-spacing: 40px" class="zixun_td">邮箱:</td>
-                <td class="zixun_td1">{{ person_yx }}</td>
+            <tr class="store_tr">
+                <td  class="store_td">邮箱:</td>
+                <td class="store_td1">{{ user.email }}</td>
             </tr>
-
+            <tr class="store_tr">
+                <td  class="store_td">真实姓名</td>
+                <td class="store_td1">{{ user.realname }}</td>
+            </tr>
         </table>
     </div>
 </div>
@@ -54,24 +56,18 @@
     var person_information=new Vue({
         el:"#abc",
         data:{
-            person_img:"image/dangmei1.jpg",
-            person_id:"历历琐忆",
-            person_sex:"女",
-            person_yx:"1470472144@qq.com",
+            user:{}
         }
+    })
+    axios.get("getUser").then(function (response){
+        console.log(response.data);
+        person_information.user=response.data;
+    })
+    .catch(function(error){
+        console.log(error);
     })
 </script>
 <style>
-    #zixun_box{
-        position: absolute;
-        left:14%;
-        top:11%;
-        width: 84%;
-        height: 200%;
-        background: #E3EFF9;
-        border-radius: 30px;
-        margin-bottom: 100px;
-    }
     .zixun_text{
         position: absolute;
         left: 5%;
@@ -83,53 +79,11 @@
         padding: 30px;
         border-radius: 30px;
     }
-    .zixun_tr{
-        position: relative;
-        left:5%;
-        left:80%;
-        width: 300px;
-        height: 40px;
-        /*background-color: #1fc231;*/
-
-
-    }
-    .zixun_tr:hover{
-        color:#C97582;
-    }
-    .zixun_td{
-        position:relative;
-        width: 360px;
-        height: 70px;
-        margin-left: 8px;
-        left:5px;
-        /*background-color: #0d71bb;*/
-    }
-    .person_img{
-        width: 150px;
-        height: 150px;
-        border-radius: 100px;
-    }
-    .zixun_tdd{
-
-        width: 300px;
-        height: 35px;
-        margin: 8px;
-        /*background-color: #0d71bb;*/
-
-    }
-
-    .zixun_td1{
-        width: 350px;
-        height: 35px;
-        font-size: 23px;
-        /*background-color: pink;*/
-    }
     .store_table{
         position: absolute;
         left:30%;
         top:5%;
-        border-collapse:separate;
-        border-spacing:0px 50px;"
+        background: rgba(128,128,128,0.5);
     }
     .person_title{
         position: absolute;
@@ -142,5 +96,41 @@
         font-size: 32px;
         border-bottom: 2px solid black;
     }
+    .store_tr{
+        position: relative;
+        left:5%;
+        height: 50px;
+        margin: 0;
+    }
+    .store_tr:hover{
+        color:#C97582;
+    }
+    .store_td{
+        margin: 0;
+        width: 70px;
+        height: 35px;
+        text-align: center;
+        border: inset #e8eded;
+    }
+    .store_td1{
+        width: 50px;
+        height: 35px;
+        font-size: 23px;
+        text-align: center;
+        border: inset #e8eded;
+    }
+
+    .store_table{
+        position: absolute;
+        left:25%;
+        width: 50%;
+        top:100px;
+    }
+    .store_img{
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+    }
+
 </style>
 </html>

@@ -41,15 +41,23 @@
         <img v-for="item in notes.note_pic"  :src="item" class="note_picture">
     </div>
     <div class="note_text">
-        <div class="note_link">
-            <span >搭配连接</span>
-            <a v-for="item in linklist" :href="item" class="note_link_jt">搭配连接</a>
-        </div>
         <div class="note_intro">
             <p class="note_intro_text">{{notes.note_content}}</p>
         </div>
     </div>
-
+    <div id="zx_box" style="position: absolute;top:100%;left:0;width: 100%;">
+        <p class="zx_box_title">相关资讯</p>
+        <div id="zx_box_1" >
+            <news  v-for="item in notes.newsList"
+                   myclassname="zxi"
+                   :news_title="item.news_title"
+                   :news_id=item.news_id
+                   :news_img="item.news_img"
+                   :news_time="item.news_time"
+                   :news_content="item.news_content">
+            </news>
+        </div>
+    </div>
 </div>
 
 </body>
@@ -81,13 +89,14 @@
                 this.islike=!this.islike;
             },
             favor(){
-                axios.post("/favor",{id:this.notes.id,variable:1})
+                console.log(this.notes.note_id)
+                axios.post("/favor",{id:this.notes.note_id,variable:1})
                     .then(function (response) {
                         console.log("收藏成功");
                         alert("收藏成功");
                     })
                     .catch(function (error) {
-                        console.log("收藏成功");
+                        console.log("收藏失败");
                         console.log(error);
                     })
             }
@@ -111,17 +120,6 @@
 </script>
 
 <style>
-    #zixun_box{
-        position: absolute;
-        left:17%;
-        top:11%;
-        width: 80%;
-        height: 130%;
-        background: #E3EFF9;
-        border-radius: 30px;
-        margin-bottom: 100px;
-
-    }
     .zixun_title{
         position:absolute;
         font-size:35px;

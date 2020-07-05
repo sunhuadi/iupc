@@ -47,7 +47,7 @@
         <img src="image/dangmei2.jpg" class="discuss_img">
         <textarea v-model="content" class="discuss_textarea" ></textarea>
         <p class="hfxx">{{isanswer?'回复:'+answer_name+'的评论'+answer_id:'发表评论' }}</p>
-        <span class="pldx">评论店家 <input type="checkbox" v-model="isanswer"/> </span>
+        <span class="pldx">评论店家 {{isanswer}} <input type="checkbox" v-model="isanswer"/> </span>
         <button @click="submitd()" class="discuss_button">评论</button>
     </div>
 </div>
@@ -108,11 +108,16 @@
                     answerto:this.answer_id,
                     shopid:"1",
                 }
-                dc.answerto=this.isanswer?this.answer_id:"-1";
+                if(!this.isanswer||dc.answerto==""||dc.answerto==null){
+                    dc.answerto="-1";
+                }
+                console.log(dc)
                 let formdata=new FormData;
-                formdata.append("discuss",JSON.stringify(dc));
-                axios.post("/uploaddiscuss",formdata).then(function (response) {
+                formdata.append("discuss", new Blob([JSON.stringify(dc)], {type: "application/json"}));
+                axios.post("/uploaddiscuss",formdata, {headers: {'Content-Type': 'multipart/form-data'}}).then(function (response) {
                     console.log("成功")
+                    alert("成功");
+                    window.location.reload();
                     console.log(response)
                 }).catch(function (error) {
                     console.log(error)
