@@ -44,7 +44,7 @@ public class UploadServicImpl implements IUploadService {
         news.setNews_time(time);
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
-        news.setNews_author(currentUser.getShowname());
+        news.setNews_author(currentUser.getUsername());
         nm.insertNews(news);
 
        // System.out.println("转换为sql时间为:"+news.getNews_time());
@@ -89,7 +89,7 @@ public class UploadServicImpl implements IUploadService {
 
     @Autowired
     NotesMapper notesMapper;
-    public HashMap<String,String> upload_note(MultipartFile[] files, MultipartFile file, Notes note) throws IOException{
+    public HashMap<String,String> upload_note(MultipartFile[] files, MultipartFile file, Notes note,List<NewsNotes> newsNotesList) throws IOException{
 
         HashMap<String,String> mp=new HashMap<String,String>();
          //头像
@@ -97,7 +97,9 @@ public class UploadServicImpl implements IUploadService {
         note.setNote_img("http://39.97.113.33/"+path);
         System.out.println(note.getNote_img());
          //id
-        String id=Integer.toString(notesMapper.getNotesNumber()+1);
+
+        String id=Integer.toString((notesMapper.getNotesNumber()+1));
+        System.out.println(id);
         note.setNote_id(id);
         //时间
         Timestamp time = new Timestamp(new Date().getTime());
@@ -106,7 +108,7 @@ public class UploadServicImpl implements IUploadService {
         //作者
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
-        note.setNote_author(currentUser.getShowname());
+        note.setNote_author(currentUser.getUsername());
         notesMapper.insertNotes(note);
         System.out.println(files.length);
         for(int i=0;i<files.length;i++){
@@ -119,6 +121,12 @@ public class UploadServicImpl implements IUploadService {
                 notesMapper.insertNotesPic(new NotesPic(note.getNote_id(),"http://39.97.113.33/"+path));
             }
             System.out.println("http://39.97.113.33/"+path);
+        }
+        for(int i=0;i<newsNotesList.size();i++)
+        {
+            System.out.println(id);
+            newsNotesList.get(i).setNote_id(id);
+            notesMapper.insertNewsNote(newsNotesList.get(i));
         }
         mp.put("msg","上传成功");
         return mp;

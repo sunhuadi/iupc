@@ -37,6 +37,19 @@
                 <p style="text-align: center ">封面预览</p>
             </div>
         </div>
+        <div class="up_part">
+            <table class="good_table">
+                <tr v-for="(item,index) in inputs">
+                    <td class="good_td">有关资讯ID:</td>
+                    <td><input class="good_input" v-model="inputs[index].news_id"  /></td>
+
+                </tr>
+            </table>
+            <div class="div_button">
+                <button class="good_button1" @click="insertone"> 添加</button>
+                <button class="good_button1" @click="deleteall"> 全部删除</button>
+            </div>
+        </div>
 
         <hr style="border:none;height:5px;background:#b8cce2;width:90%;" />
         <div class="up_part">
@@ -74,9 +87,21 @@
             notes:{
                 note_title:null,
                 note_content:null
-            }
+            },
+            inputs:[],
         },
         methods:{
+            insertone()
+            {
+                this.inputs.push({news_id:"",note_id:""})
+            },
+            deleteall(){
+                this.inputs.splice(0,this.inputs.length)
+            },
+            deleteone(which)
+            {
+                this.inputs.splice(which,1);
+            },
             changepic() {
                 var reads = new FileReader();
                 var f = document.getElementById('picuper').files[0];
@@ -124,6 +149,7 @@
                     }else {
                         let formData = new FormData();
                         that=this
+                        formData.append('inputs',new Blob([JSON.stringify(that.inputs)], {type: "application/json"}))
                         formData.append('myfile',picuper.files[0])
                         //formData.append('news', that.news);
                         //console.log(that.news)

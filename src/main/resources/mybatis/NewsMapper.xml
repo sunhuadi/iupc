@@ -8,8 +8,9 @@
     </select>
     <select id="qurryNewsByContent" resultType="News" parameterType="String">
         select * from news
-        where news_content like concat('%',#{value},'%')
-        or news_title like concat('%',#{value},'%')
+        where (news_content like concat('%',#{value},'%')
+        or news_title like concat('%',#{value},'%'))and news_show="1"
+
     </select>
     <select id="qurryNewsById" resultType="News" parameterType="String">
         select * from news
@@ -123,9 +124,10 @@ where good_id=#{id} and good_size=#{size} and good_color=#{color}
 
 <select id="qurryGoodsBy" resultType="Goods" parameterType="String">
 select * from goods
-where Goods_content like concat('%',#{value},'%')
+where (Goods_content like concat('%',#{value},'%')
 or  Goods_name like concat('%',#{value},'%')
-or  Goods_category like concat('%',#{value},'%')
+or  Goods_category like concat('%',#{value},'%'))
+and Goods_show="1"
 </select>
 <select id="qurryAllGoods" resultType="Goods" parameterType="String">
 select * from goods

@@ -134,6 +134,7 @@ public class IndexController {
     @PostMapping("/search")//适应于三种情况
     public List<Object> Test(@RequestBody HashMap<String,String> map)//传入类型为map,0资讯，1note,2goods,value为空查询所有
     {
+
         Subject subject1 = SecurityUtils.getSubject();
         Users currentUser=(Users) subject1.getPrincipal();
         Record record=usersMapper.qurryRecordBynk("admincs",map.get("value"));
@@ -149,7 +150,8 @@ public class IndexController {
             System.out.println("开始更新");
             usersMapper.updateTimes(record);
         }
-
+        System.out.println(map.get("value"));
+        System.out.println(map.get("variable"));
         //map.get("value");
         //List<News> newsList=iis.getNewsBysearch(map.get("value"));
             List<Object> objList= iis.getAllBysearch(map.get("value"),map.get("variable"));

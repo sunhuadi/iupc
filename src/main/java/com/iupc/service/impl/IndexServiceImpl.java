@@ -68,7 +68,7 @@ NotesMapper notesMapper;
         {
             if(value!=null)
             {
-                 objList= indexshow(v,"1");
+                 objList= Collections.singletonList(newsMapper.qurryNewsByContent(value));
             }
             else {
                   objList=indexshow(v,"1");
@@ -77,7 +77,7 @@ NotesMapper notesMapper;
         }else if(v.equals("1")){
             if(value!=null)
             {
-                objList= indexshow(v,"1");
+                objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
             }
             else {
                 objList= indexshow(v,"1");
@@ -87,7 +87,7 @@ NotesMapper notesMapper;
         {
             if(value!=null)
             {
-                objList= indexshow(v,"1");
+                objList= Collections.singletonList(newsMapper.qurryGoodsBy(value));
             }
             else {
                 objList=indexshow(v,"1");

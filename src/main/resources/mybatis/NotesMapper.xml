@@ -9,8 +9,9 @@
     </select>
     <select id="qurryNotesBysearch" resultType="Notes" parameterType="String">
         select * from notes
-        where note_content like concat('%',#{value},'%')
-        or note_title like concat('%',#{value},'%')
+        where (note_content like concat('%',#{value},'%')
+        or note_title like concat('%',#{value},'%'))
+        and note_show="1"
     </select>
     <select id="getNotesNumber" resultType="int">
         select MAX(note_id) from notes
@@ -63,7 +64,7 @@ FROM notes, favorite_content
 WHERE notes.note_id = favorite_content.fcid and favorite_content.ftype=#{v}and favorite_content.username=#{username}
 </select>
 <insert id="insertNewsNote" parameterType="NewsNotes">
-    insert into news_note (news_id,note_id) values (#{news_id},{note_id});
+    insert into news_note (news_id,note_id) values (#{news_id},#{note_id});
 </insert>
     <select id="qurryNewsByNote" parameterType="String" resultType="News">
         select news.*

@@ -56,7 +56,7 @@
     })
 
     console.log(search_kw);
-    axios.post('/search', {value:"测试",variable: "2"})
+    axios.post('/search', {value:search_kw,variable: "2"})
         .then(function (response) {
             searchgoodsvue.search_goods_data=null
             searchgoodsvue.search_goods_data=response.data[0];

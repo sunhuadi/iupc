@@ -154,11 +154,10 @@ public class TestController {
         }
 
     }
-    @ResponseBody
     @RequestMapping("/unauthorizedUrl")
     public String unan()
     {
-        return "权限不够，请重试返回";
+        return "permission";
     }
     @Autowired
     NotesMapper np;

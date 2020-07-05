@@ -56,13 +56,14 @@ public class UploadController {
     @PostMapping("/uploadNotes")
     public HashMap<String,String> uploadNote(@RequestParam("myfiles") MultipartFile[] files,
                                              @RequestParam("myfile") MultipartFile file,
-                                             @RequestPart Map<String, Object> notes) throws IOException {
+                                             @RequestPart Map<String, Object> notes,@RequestPart List<Map<String, Object>> inputs) throws IOException {
         System.out.println("已经接受请求，正在处理......");
         System.out.println(notes);
         Notes note = JSON.parseObject(JSON.toJSONString(notes), Notes.class);
+        List<NewsNotes> newsNotesList=JSON.parseArray(JSON.toJSONString(inputs),NewsNotes.class);
         System.out.println(note);
         //News useNews = new News();
-        return ius.upload_note(files,file,note);
+        return ius.upload_note(files,file,note,newsNotesList);
     }
     @ResponseBody
     @PostMapping("/uploadGoods")
@@ -75,6 +76,8 @@ public class UploadController {
         Goods good = JSON.parseObject(JSON.toJSONString(goods), Goods.class);
         //List<String> languages = new ArrayList<>();
         List<Goods_num> listgood=JSON.parseArray(JSON.toJSONString(inputs),Goods_num.class);
+
+
         /*
         List<Goods_num> list=new ArrayList<>();
         for(int i=0;i<inputs.size();i++)
