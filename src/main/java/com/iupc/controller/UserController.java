@@ -3,6 +3,7 @@ package com.iupc.controller;
 import com.iupc.Mapper.UsersMapper;
 import com.iupc.pojo.Users;
 import com.iupc.service.IUserService;
+import org.apache.catalina.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -73,5 +74,14 @@ public class UserController {
          mp=iUserService.testUser(username,password);
 
 */
+    }
+    @ResponseBody
+    @GetMapping("getUser")
+    public Users getUsernow()
+    {
+        Subject subject1 = SecurityUtils.getSubject();
+        Users currentUser=(Users) subject1.getPrincipal();
+        currentUser.setPassword("**********");
+        return currentUser;
     }
 }

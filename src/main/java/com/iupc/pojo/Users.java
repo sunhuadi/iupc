@@ -6,6 +6,24 @@ public class Users {
     private String portrait;//头像
     private String role;//身份
     private String showname;//昵称
+    private String realname;
+    private String email;
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getShowname() {
         return showname;

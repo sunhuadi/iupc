@@ -35,6 +35,20 @@
         <!--<input type="text" name="name">-->
         <br>
     </div>
+    <div class="username">
+        <br>
+        <span class="register_span"> 真实姓名 </span>
+        <input class="name" type="text" placeholder="" v-model="user.realname" >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
+    <div class="username">
+        <br>
+        <span class="register_span"> 你的邮箱 </span>
+        <input class="name" type="email" placeholder="" v-model="user.email" >
+        <!--<input type="text" name="name">-->
+        <br>
+    </div>
     <div class="passw1">
         <span class="register_span">请设置密码</span>
         <input type="password" class="password1" v-model="user.password">
@@ -71,6 +85,8 @@
                 username:null,
                 password: null,
                 showname:null,
+                realname:null,
+                email:null
             },
             repassword:null,
             //role:"",
