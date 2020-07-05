@@ -253,7 +253,7 @@ Vue.component("news_message",{
  */
 Vue.component("gotoback",{
     template:`
-        <span :class="myclassname"  @click="dogoback" ><img style="width: 90px;height: 78px" src="image/返回.png" ></span>
+        <span :class="myclassname"  @click="dogoback" ><img style="width: 90px;height: 78px"  >返回</span>
     `,
     methods: {
         dogoback(){
@@ -330,6 +330,40 @@ Vue.component("note",{
         {
             sessionStorage.setItem("mynoteid",this.note_id);
             window.location.href="/note";
+        }
+    }
+})
+Vue.component("goods",{
+    template:`
+        <div :class="myclassname">
+        <img class="zxi_pic" :src="goods_img" />
+        <div class="zxi_text">
+        <p class="zxi_title" @click="readthisgoods" >{{ goods_title }}</a></p>
+        <p class="zxi_content">{{ shortifycontent }}</p>
+        <p class="zxi_time" >{{ goods_time }}</p>
+        </div>
+        </div>`,
+    props:{
+        goods_title:String,
+        goods_id:String,
+        goods_time:String,
+        goods_img:String,
+        goods_content:String,
+        myclassname:String,
+    },
+    computed:{
+        shortifycontent(){
+            if(this.goods_content.length<=150)
+                return this.goods_content;
+            else
+                return this.goods_content.slice(0,100)+"...";
+        }
+    },
+    methods:{
+        readthisgoods()
+        {
+            sessionStorage.setItem("mygoodsid",this.goods_id);
+            window.location.href="/shopcheck";
         }
     }
 })

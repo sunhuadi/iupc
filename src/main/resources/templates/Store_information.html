@@ -21,34 +21,20 @@
 
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
-<div id="zixun_box">
+<div class="mainframe" id="storea_box">
     <gotoback></gotoback>
-    <div class="zixun_text">
+    <div class="store_text">
         <p class="store_title">店铺信息</p>
         <table class="store_table">
-            <tr class="zixun_tr">
-                <td  style="text-align: right" class="zixun_tdd">基本信息</td>
+            <tr class="store_tr">
+
+                <td class="store_td1"><img class="store_img" src="image/dangmei1.jpg"></td>
+                <td style="letter-spacing: 2px" class="store_td">{{ store_id }}<br><br>店铺邮箱：{{ store_yx }}</td>
             </tr>
-            <tr class="zixun_tr">
-                <td style="letter-spacing: 40px" class="zixun_td">头像:</td>
-                <td class="zixun_td1"><img class="store_img" src="image/dangmei1.jpg"></td>
-            </tr>
-            <tr class="zixun_tr">
-                <td style="letter-spacing: 40px" class="zixun_td">昵称:</td>
-                <td class="zixun_td1">{{ store_id }}</td>
-            </tr>
-            <tr class="zixun_tr">
-                <td style="letter-spacing: 40px" class="zixun_td">性别:</td>
-                <td class="zixun_td1">{{ store_sex }}</td>
-            </tr>
-            <tr class="zixun_tr">
-                <td style="letter-spacing: 40px" class="zixun_td">邮箱:</td>
-                <td class="zixun_td1">{{ store_yx }}</td>
-            </tr>
+
 
         </table>
         <div class="store_zx">
-            <p style="text-align: center">店铺商品</p>
             <news v-for="item in store_data" myclassname="news_sh2" :news_title="item.title" :news_id="3" :news_img="item.piclist" :news_time="item.text_fbtime" :news_content="item.note_introduce" >
             </news>
 
@@ -62,7 +48,7 @@
 <script src="js/xmagic.js" ></script>
 <script>
     var storevue= new Vue({
-        el:"#zixun_box",
+        el:"#storea_box",
         data:{
             store_img:"image/dangmei1.jpg",
             store_id:"半糖奶绿",
@@ -94,6 +80,16 @@
                     zt:"驳回",
 
                 },
+                {
+                    text_fbtime:"5月20日13：15",
+                    title: "闲乘月",
+                    text_shop:"Sumire-栗米JK馆",
+                    note_introduce:"这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！这条裙子真的太好看，穿上能嫁你爱豆！",
+                    piclist:"image/note_pic_1.jpg",
+                    zt:"驳回",
+
+                },
+
 
             ]
 
@@ -111,59 +107,51 @@
         border-radius: 30px;
         margin-bottom: 100px;
     }
-    .zixun_text{
+    .store_text{
         position: absolute;
         left: 5%;
         top:2%;
         width: 90%;
         height: 80%;
         font-size:24px;
-        /*background-color: #FFF7ED;*/
+        /*background-color: black;*/
         padding: 30px;
         border-radius: 30px;
     }
-    .zixun_tr{
+    .store_tr{
         position: relative;
         left:5%;
-        left:80%;
-        width: 300px;
+        /*left:80%;*/
+        /*width: 200px;*/
         height: 40px;
-        /*background-color: #1fc231;*/
+        /*background-color: pink;*/
 
 
     }
-    .zixun_tr:hover{
+    .store_tr:hover{
         color:#C97582;
     }
-    .zixun_td{
+    .store_td{
 
-        width: 250px;
-        height: 35px;
-        margin: 8px;
-        /*background-color: #0d71bb;*/
-
-    }
-    .zixun_tdd{
-
-        width: 300px;
+        width: 150px;
         height: 35px;
         margin: 8px;
         /*background-color: #0d71bb;*/
 
     }
 
-    .zixun_td1{
-         width: 250px;
+    .store_td1{
+         width: 50px;
          height: 35px;
          font-size: 23px;
-        /*background-color: pink;*/
+        /*background-color: purple;*/
      }
     .store_title{
         position: absolute;
         left: 0%;
         top:1%;
         width: 100%;
-        height: 7%;
+        height: 10%;
         /*background-color: mediumpurple;*/
         text-align: center;
         font-size: 32px;
@@ -171,10 +159,12 @@
     }
     .store_table{
         position: absolute;
-        left:00%;
+        left:25%;
+        width: 50%;
         top:5%;
         border-collapse:separate;
-        border-spacing:0px 60px;"
+        border-spacing:0px 60px;
+        /*background-color: #1fc231;*/
     }
     .store_img{
         width: 150px;
@@ -183,19 +173,18 @@
     }
     .store_zx{
         position: absolute;
-        left:45%;
-        top:10%;
-        width: 60%;
+        left:0%;
+        top:50%;
+        width: 125%;
         height: 80%;
         /*margin-bottom: 50px;*/
         /*background-color: #e8e2ff;*/
     }
     .news_sh2{
         position: relative;
-        top:10%;
         display: inline-block;
         margin:20px;
-        width:90%;
+        width:37%;
         display: inline-block;
         background: #F8EDDB;
         color: #6e6d71;

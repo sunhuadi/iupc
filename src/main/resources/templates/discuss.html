@@ -20,33 +20,35 @@
 <body class="body">
 <div th:insert="~{index::tourist}"></div>
 <div th:insert="~{index::header}"></div>
-<div id="zixun_box" style="background: none;">
-    <gotoback></gotoback>
-    <div class="discuss_title">讨论区</div>
-    <div class="comment_area">
-        <img src="image/dangmei2.jpg" class="discuss_img">
-        <textarea class="discuss_textarea" ></textarea>
-        <button class="discuss_button">评论</button>
-    </div>
-    <div class="detail_area">
-        <div v-for="item in comment" class="person_comment">
-            <div class="commentbox">
-                <p class="comment_author">{{item.pubuser_id}}</p>
-                <img class="personcomment_img" :src="item.img">
-                <p class="comment_wz">{{ item.content }}</p>
-                <span class="answerb">回复</span>
-            </div>
-
-            <div class="answerbox">
-                <div v-for="data in item.discusslist" class="commentbox">
-                    <p class="comment_author">{{data.pubuser_id}}</p>
-                    <img :src="data.img" class="personcomment_img">
-                    <p class="comment_wz">{{ data.content }}</p>
-                    <span class="answerb">回复</span>
+<div id="discuss">
+    <div class="discuss_area">
+        <gotoback></gotoback>
+        <div class="discuss_title">讨论区</div>
+        <div class="detail_area">
+            <div v-for="item in comment" class="person_comment">
+                <div class="commentbox">
+                    <p class="comment_author">{{item.pubuser_id}}</p>
+                    <img class="personcomment_img" :src="item.img">
+                    <p class="comment_wz">{{ item.content }}</p>
+                    <span @click="answerto(item.dcid,item.pubuser_id)" class="answerb">回复</span>
+                </div>
+                <div class="answerbox">
+                    <div v-for="data in item.discusslist" class="commentbox">
+                        <p class="comment_author">{{data.pubuser_id}}</p>
+                        <img :src="data.img" class="personcomment_img">
+                        <p class="comment_wz">{{ data.content }}</p>
+                    </div>
                 </div>
             </div>
-            <div style="clear: both"></div>
         </div>
+    </div>
+
+    <div class="comment_area">
+        <img src="image/dangmei2.jpg" class="discuss_img">
+        <textarea v-model="content" class="discuss_textarea" ></textarea>
+        <p class="hfxx">{{isanswer?'回复:'+answer_name+'的评论'+answer_id:'发表评论' }}</p>
+        <span class="pldx">评论店家 <input type="checkbox" v-model="isanswer"/> </span>
+        <button @click="submitd()" class="discuss_button">评论</button>
     </div>
 </div>
 
@@ -55,42 +57,68 @@
 <script src="js/xmagic.js" ></script>
 <script>
     var discuss=new Vue({
-        el:"#zixun_box",
+        el:"#discuss",
         data:{
-            comment:[
-                {
-                    dcid:"",
-                    img:"image/0.jpg",
-                    pubuser_id:"123",
-                    pubtime:"",
-                    content:"渭城朝雨浥轻尘，客舍青青柳色新",
-                    discusslist:[
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        },
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        },
-                        {
-                            dcid:"",
-                            pubuser_id:"123",
-                            img:"image/0.jpg",
-                            content:"莫愁前路无知己，天下谁人不识君",
-                            pubtime:"",
-                        }
-                    ]
+            comment:[{
+                dcid:"",
+                img:"image/0.jpg",
+                pubuser_id:"123",
+                pubtime:"",
+                content:"渭城朝雨浥轻尘，客舍青青柳色新",
+                discusslist:[
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    },
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    },
+                    {
+                        dcid:"",
+                        pubuser_id:"123",
+                        img:"image/0.jpg",
+                        content:"莫愁前路无知己，天下谁人不识君",
+                        pubtime:"",
+                    }
+                ]
 
-                },
+            },
+            ],
+            answer_id:"",
+            answer_name:"",
+            isanswer:false,
+            content:"",
+        },
+        methods:{
+            answerto(id,name){
+                this.answer_id=id;
+                this.answer_name=name;
+                this.isanswer=true;
+            },
+            submitd(){
+                var dc={
+                    content:this.content,
+                    answerto:this.answer_id,
+                    shopid:"1",
+                }
+                dc.answerto=this.isanswer?this.answer_id:"-1";
+                let formdata=new FormData;
+                formdata.append("discuss",JSON.stringify(dc));
+                axios.post("/uploaddiscuss",formdata).then(function (response) {
+                    console.log("成功")
+                    console.log(response)
+                }).catch(function (error) {
+                    console.log(error)
+                })
 
-            ]
+            }
 
         }
     })
@@ -103,6 +131,27 @@
     })
 </script>
 <style>
+    .pldx{
+        position: absolute;
+        bottom:40px;
+        left:40px;
+    }
+    .discuss_area{
+        height:58%;
+        background: #FDFDF7;
+        overflow: auto;
+        position: fixed;
+        width: 85%;
+    }
+    .hfxx{
+        position: absolute;
+        left:0px;
+        text-align: center;
+        bottom: 60px;
+        height:60px;
+        width: 180px;
+        background: #FFF7ED;
+    }
     .answerb{
         position: absolute;
         right:50px;
@@ -112,7 +161,7 @@
         width: 90%;
         height:140px;
         position: relative;
-        background: #ffe7ef;
+        background: #D0DDED;
         border-radius:5px;
     }
     .discuss_title{
@@ -120,18 +169,18 @@
         left:0%;
         top:1%;
         width: 100%;
-        height: 5%;
+        height:40px;
         /*border-bottom: 2px solid black;*/
         text-align: center;
         font-size: 30px;
     }
     .comment_area{
-        position: absolute;
-        left:5%;
-        top:50px;
-        width: 90%;
-        height: 300px;
-        /*background-color: #1fc231;*/
+        position: fixed;
+        left:13%;
+        bottom:0;
+        width: 85%;
+        height: 250px;
+        background: #E3EFF9;
         border-bottom: 2px solid gray;
     }
     .discuss_img{
@@ -154,15 +203,16 @@
     }
     .discuss_button{
         position: absolute;
-        top:220px;
+        top:205px;
         right: 2%;
         width: 80px;
-        height: 50px;
-        background-color: pink;
+        height: 40px;
+        background-color: #FDEDED;
+        border:2px;
     }
     .detail_area{
         position: absolute;
-        top:400px;
+        top:30px;
         left:5%;
         width: 90%;
         /*height: 60%;*/
@@ -171,11 +221,11 @@
     .person_comment{
         position: relative;
         left:5%;
-        margin-top: 20px;
         width: 90%;
         height:400px;
         overflow: auto;
-        background-color: #ffefed;
+        background-color: #E3EFF9;
+        margin:20px 0 20px 0;
         clear: both;
         min-height:200px;
 
@@ -200,6 +250,14 @@
         width: 100px;
         height: 100px;
         border-radius: 100px;
+    }
+    #discuss{
+        position: absolute;
+        left:13%;
+        top:11%;
+        height:89%;
+        width: 85%;
+
     }
     .comment_wz{
         position: absolute;

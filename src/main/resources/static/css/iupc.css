@@ -66,6 +66,24 @@ a{
     border-style: outset;
     clear: both;
 }
+.mainframe_register{
+    color:black;
+    font-size: 30px;
+    top:0%;
+    left: 0%;
+    position: absolute;
+    width: 100%;
+    min-width:1200px;
+    height:100%;
+    padding-bottom: 80px;
+    /*background: rgba(222,246,255,0.8);*/
+    background-image: var(--bgimg);
+    background-size:cover;
+    display: table;
+    border-style: outset;
+    clear: both;
+    z-index: 0;
+}
 .bgspic{
     /*margin-left: px;*/
     border-left: 3px solid #E3EFF9;
@@ -458,16 +476,17 @@ ul li{
     left:4%;
     width: 12%;
     border: outset #d4d6de 2px;
+    background: #F1F3F4;
 
 }
 .admenuli{
-    height: 40px;
+    height: 75px;
     font-size:25px;
     border: outset darkgray 2px;
     text-align: center;
     margin: 10px 5px 10px 5px;
     padding:10px;
-    background: rgba(112,112,175,0.5);
+    background: #E2E2E2;
 }
 .zixun_tr{
     position: relative;
@@ -526,4 +545,40 @@ ul li{
     top:4%;
     left: 5%;
     width: 90%;
+}
+.personinfo{
+    position: relative;
+    left:5%;
+    top:50%;
+    width: 80%;
+    height: 25%;
+    background: #F3E9EE;
+    color:black;
+    padding-left:10px ;
+    /*background-color: mediumpurple;*/
+    /*border-bottom:1px solid darkgray;*/
+}
+.storeinfo{
+    position: relative;
+    left:5%;
+    top:50%;
+    width: 80%;
+    height: 25%;
+    background: #F8EDDB;
+    color:black;
+    padding-left:10px ;
+    /*background-color: mediumpurple;*/
+    /*border-bottom:1px solid darkgray;*/
+}
+.zixuninfo{
+    position: relative;
+    left:5%;
+    top:50%;
+    width: 80%;
+    height: 25%;
+    background: #FFF7ED;
+    color:black;
+    padding-left:10px ;
+    /*background-color: mediumpurple;*/
+    /*border-bottom:1px solid darkgray;*/
 }
