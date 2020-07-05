@@ -50,7 +50,6 @@
             searchdata:[],
         }
     });
-    console.log(search_kw);
     axios.post('/search', {value:"jk",variable:"0"})
         .then(function (response) {
             rsvue.searchdata=null
