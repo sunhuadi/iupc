@@ -16,7 +16,7 @@ public interface NewsMapper {
     List<News> qurryAllNewsByShow(String show);
     void updataNewsByShow(String id ,String show);
 
-    List<News> qurryAllGoodsByShow(String show);
+    List<Goods> qurryAllGoodsByShow(String show);
     void updataGoodsByShow(String id ,String show);
     List<News> qurryNewsByContent(String value);
     News qurryNewsById(String value);

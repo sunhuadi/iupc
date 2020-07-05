@@ -1,5 +1,6 @@
 package com.iupc.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iupc.Mapper.NewsMapper;
 import com.iupc.Mapper.NotesMapper;
 import com.iupc.Mapper.UsersMapper;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 import static java.lang.Math.min;
+import static org.apache.ibatis.ognl.OgnlOps.convertValue;
 
 @Service("IndexServic")
 public class IndexServiceImpl implements IIndexService {
@@ -43,13 +45,9 @@ public class IndexServiceImpl implements IIndexService {
         }
         return zxlist;
     }
+    @Autowired
+    ObjectMapper objectMapper;
 
-    @Override
-    public List<News> getAllnews() {
-       // String formatDate = null;
-
-        return ns.qurryAllNews();
-    }
 
 
 @Autowired
@@ -59,35 +57,40 @@ NotesMapper notesMapper;
     @Autowired
     NewsMapper newsMapper;
     @Override
+    public List<News> getAllnews() {
+        // String formatDate = null;
+        List<News> newsList=newsMapper.qurryAllNewsByShow("1");
+        return newsList;
+    }@Override
     public List<Object> getAllBysearch(String  value,String v) {
         List<Object> objList=new ArrayList<>();
         if(v.equals("0"))
         {
             if(value!=null)
             {
-                 objList= Collections.singletonList(ns.qurryNewsByContent(value));
+                 objList= indexshow(v,"1");
             }
             else {
-                  objList= Collections.singletonList(ns.qurryAllNews());
+                  objList=indexshow(v,"1");
             }
             return objList;
         }else if(v.equals("1")){
             if(value!=null)
             {
-                objList= Collections.singletonList(notesMapper.qurryNotesBysearch(value));
+                objList= indexshow(v,"1");
             }
             else {
-                objList= Collections.singletonList(notesMapper.qurryAllNotes());
+                objList= indexshow(v,"1");
             }
             return objList;
         }else
         {
             if(value!=null)
             {
-                objList= Collections.singletonList(ns.qurryGoodsBy(value));
+                objList= indexshow(v,"1");
             }
             else {
-                objList= Collections.singletonList(ns.qurryAllGoods());
+                objList=indexshow(v,"1");
             }
 
             return objList;
@@ -148,7 +151,6 @@ NotesMapper notesMapper;
             if(newsMapper.qurryAllGoodsByFavor(currentUser.getUsername(), v)!=null)
             list= Collections.singletonList(newsMapper.qurryAllGoodsByFavor(currentUser.getUsername(), v));
         }
-
         return list;
 
 

@@ -51,14 +51,14 @@ public class IndexController {
     @GetMapping("/getallnotes")
     public List<Notes> allnote()
     {
-        List<Notes> notes=notesMapper.qurryAllNotes();
+        List<Notes> notes=notesMapper.qurryAllNotesByShow("1");
         return notes;
     }
     @ResponseBody
     @GetMapping("/getallgoods")
     public List<Goods> allgoods(Model model)
     {
-        List<Goods> notes=newsMapper.qurryAllGoods();
+        List<Goods> notes=newsMapper.qurryAllGoodsByShow("1");
         return notes;
     }
 
