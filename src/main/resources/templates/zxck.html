@@ -36,6 +36,7 @@
         <span> <img src="image/cake.png"  style="height: 30px;width: 30px"  />{{  '浏览: '+looknum }}</span>
         <span style="margin-left: 30px"> {{text_fbtime}}</span>
         <span>{{'By  '+text_shop}}</span>
+        <span>{{'资讯ID：'+news_id}}</span>
     </div>
 
     <div class="zixun_pic">
@@ -99,6 +100,7 @@
             text_price:200.0,
             text_modality:"现货（包邮）",
             text_intro:[],
+            news_id:"",
             likenum:1,
             looknum:100,
             islike:false,
@@ -145,11 +147,12 @@
             newsvue.text_fbtime=datas.news_formattime;
             newsvue.text_title=datas.news_title;
             newsvue.text_intro=datas.news_content.split(/\n/g);
-            newsvue.text_shop=datas.news_author;
+            newsvue.text_shop=datas.author_name;
             newsvue.text_modality=datas.news_updateway;
             newsvue.text_price=datas.news_price;
             newsvue.text_time=datas.news_begintime
             newsvue.text_stop=datas.news_stoptime;
+            newsvue.news_id=datas.news_id;
             newsvue.piclist=datas.news_pic;
             newsvue.text_intro.unshift("");
             //+" -- "+datas[0].news_stoptime;
