@@ -70,7 +70,7 @@ public class IndexController {
         String value=map.get("value");
         System.out.println("查看资讯，ID： "+map.get("value"));
         News news =iis.getNewsById(value);
-
+        news.setAuthor_name(usersMapper.getShopByName(news.getNews_author()).getShop_name());
         return news;
     }
     @ResponseBody

@@ -21,6 +21,16 @@ public class News {
     private float news_price;//上新价格
     private String[] news_pic;//多图
     private String news_show;
+    private String author_name;
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
     private List<Notes> notesList;
 
     public List<Notes> getNotesList() {
