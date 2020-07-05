@@ -23,6 +23,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("permission").setViewName("permission");
         registry.addViewController("/shop").setViewName("shop_check");
         registry.addViewController("/searchnote").setViewName("search_result_note");
+        registry.addViewController("/searchgoods").setViewName("search_result_goods");
         registry.addViewController("/upload_note").setViewName("upload_note");
         registry.addViewController("/upload_shop").setViewName("upload_shop");
         registry.addViewController("/favorite_news").setViewName("favorite_zx");
