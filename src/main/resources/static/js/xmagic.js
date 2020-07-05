@@ -353,6 +353,9 @@ Vue.component("goods",{
     },
     computed:{
         shortifycontent(){
+            if(this.goods_content==null){
+                return "";
+            }
             if(this.goods_content.length<=150)
                 return this.goods_content;
             else
