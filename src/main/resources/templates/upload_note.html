@@ -38,17 +38,23 @@
             </div>
         </div>
         <div class="up_part">
-            <table class="good_table">
-                <tr v-for="(item,index) in inputs">
-                    <td class="good_td">有关资讯ID:</td>
-                    <td><input class="good_input" v-model="inputs[index].news_id"  /></td>
-
-                </tr>
-            </table>
+            <p v-for="(item,index) in inputs" class="upp" >
+                <label class="uplabel">有关资讯ID:</label>
+                <input class="good_input" v-model="inputs[index].news_id"  />
+            </p>
             <div class="div_button">
-                <button class="good_button1" @click="insertone"> 添加</button>
-                <button class="good_button1" @click="deleteall"> 全部删除</button>
+                <button style="width: 80px;height:40px;font-size: 18px;" @click="insertone"> 添加</button>
+                <button style="width: 80px;height:40px;font-size: 15px;" @click="deleteall"> 全部删除</button>
             </div>
+        </div>
+<!--            <table class="good_table">-->
+<!--                <tr v-for="(item,index) in inputs">-->
+<!--                    <td class="good_td">有关资讯ID:</td>-->
+<!--                    <td ><input class="good_input" v-model="inputs[index].news_id"  /></td>-->
+
+<!--                </tr>-->
+<!--            </table>-->
+
         </div>
 
         <hr style="border:none;height:5px;background:#b8cce2;width:90%;" />
@@ -189,6 +195,10 @@
 
 </script>
 <style>
+    .div_button{
+        position: relative;
+        left:10%;
+    }
     .up_part{
         position: relative;
         left:5%;
