@@ -40,7 +40,7 @@
 </style>
 <script src="js/xmagic.js" ></script>
 <script >
-    var search_kw="lolita";
+    var search_kw=;
     var searchnotevue=new Vue({
         el:"#search_note",
         data:{
@@ -49,7 +49,7 @@
     })
 
     console.log(search_kw);
-    axios.post('/search', {value:search_kw,variable: "1"})
+    axios.post('/search', {value:"lolita",variable: "1"})
         .then(function (response) {
             searchnotevue.search_note_data=null
             searchnotevue.search_note_data=response.data[0];
