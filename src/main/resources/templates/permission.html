@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小学期网站</title>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/iupc.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap-theme.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{css/semantic.css}" rel="stylesheet">
+    <link th:href="@{css/sunhuadi.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/npm.js}" ></script>
+    <script type="text/javascript" th:src="@{js/vue.js}" ></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{js/semantic.js}" ></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="body">
+
+<div th:insert="~{index::tourist}"></div>
+<div th:insert="~{index::header}"></div>
+<div class="mainframe" id="permission">
+    <gotoback></gotoback>
+     <div class="permission_text">
+         <p class="permission_t">很抱歉，您的权限不足，请原路返回~</p>
+     </div>
+    <img class="permission_pic" src="image/权限不足.png">
+
+
+
+
+</body>
+<script src="js/xmagic.js" ></script>
+<style>
+    .permission_text{
+        position: absolute;
+        left:20%;
+        top:25%;
+        width: 60%;
+        height: 15%;
+        /*background-color: #1fc231;*/
+    }
+    .permission_t{
+        font-size: 35px;
+        text-align: center;
+    }
+    .permission_pic{
+        position: absolute;
+        left: 37%;
+        top:40%;
+        width: 300px;
+        height: 300px;
+    }
+</style>
+</html>
