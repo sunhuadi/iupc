@@ -44,7 +44,6 @@
 <script src="js/pic_box.js" ></script>
 <script src="js/xmagic.js" ></script>
 <script>
-    var search_kw="jk";
     var rsvue= new Vue({
         el:"#shrs",
         data:{
@@ -52,7 +51,7 @@
         }
     });
     console.log(search_kw);
-    axios.post('/search', {value:search_kw,variable:"0"})
+    axios.post('/search', {value:"jk",variable:"0"})
         .then(function (response) {
             rsvue.searchdata=null
             rsvue.searchdata=response.data[0];
