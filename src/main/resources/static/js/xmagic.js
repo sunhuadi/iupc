@@ -40,7 +40,7 @@ var tourist_vue= new Vue(
                 {content:"笔记发布",
                     isshow:false,
                     slcontent:[
-                        {name:"发布笔记",link:""},
+                        {name:"发布笔记",link:"upload_note"},
                         {name:"已发布",link:""},
                     ]
                 },
@@ -48,7 +48,7 @@ var tourist_vue= new Vue(
                 {content:"我的店铺",
                     isshow:false,
                     slcontent:[
-                        {name:"进入店铺",link:""},
+                        {name:"进入店铺",link:"Store_information"},
                         {name:"店铺管理",link:""},
                     ]
                 },
@@ -57,14 +57,14 @@ var tourist_vue= new Vue(
                     slcontent:[
                         {name:"商品上新",link:"/upload_good"},
                         {name:"资讯发布",link:"/upload_news"},
-                        {name:"讨论区",link:""},
+                        {name:"讨论区",link:"discuss"},
                     ]
                 },
                 {content:"我的信息",
                     isshow:false,
                     slcontent:[
                         {name:"我的消息",link:""},
-                        {name:"账号信息",link:""},
+                        {name:"账号信息",link:"person_information"},
                     ]
                 },
                 {content:"敬请期待",
