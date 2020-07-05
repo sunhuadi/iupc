@@ -1,5 +1,7 @@
 package com.iupc.pojo;
 
+import java.sql.Timestamp;
+
 public class Users {
     private String username;//登录名
     private String password;//密码
@@ -8,6 +10,15 @@ public class Users {
     private String showname;//昵称
     private String realname;
     private String email;
+    private Timestamp birthday;
+
+    public Timestamp getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Timestamp birthday) {
+        this.birthday = birthday;
+    }
 
     public String getRealname() {
         return realname;

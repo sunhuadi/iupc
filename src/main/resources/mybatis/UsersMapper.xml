@@ -14,9 +14,9 @@
     </select>
     <insert id="insertUsers" parameterType="Users">
      insert into users
-     (username,password,showname,portrait,role,realname,email)
+     (username,password,showname,portrait,role,realname,email,birthday)
       values
-      (#{username},#{password},#{showname},#{portrait},#{role},#{realname},#{email})
+      (#{username},#{password},#{showname},#{portrait},#{role},#{realname},#{email},#{birthday})
 </insert>
 
     <insert id="insertFover" parameterType="FavoriteContent">

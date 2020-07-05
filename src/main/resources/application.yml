@@ -1,4 +1,4 @@
 spring:
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd
     time-zone: Asia/Shanghai
