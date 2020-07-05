@@ -253,7 +253,7 @@ Vue.component("news_message",{
  */
 Vue.component("gotoback",{
     template:`
-        <span :class="myclassname"  @click="dogoback" ><img style="width: 90px;height: 78px"  >返回</span>
+        <span :class="myclassname"  @click="dogoback" >返回</span>
     `,
     methods: {
         dogoback(){
@@ -316,6 +316,9 @@ Vue.component("note",{
     },
     computed:{
         shortifycontent(){
+            if(this.note_content==null){
+                return "";
+            }
             if(this.note_content.length<=150)
                 return this.note_content;
             else

@@ -302,7 +302,6 @@ public Shop getAllinformationByShopid(String id)
     System.out.println(v);
     Subject subject1 = SecurityUtils.getSubject();
     Users currentUser=(Users) subject1.getPrincipal();
-
         String[] key =usersMapper.qurryRecordByusername("admin");
         for(int i=0;i< min(key.length,3);i++)
         {
